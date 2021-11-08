@@ -223,16 +223,16 @@ int main(int argc, char * argv[]) {
         }
          /////////////////////////////////////////////////////////////////////
         data_average = (data_average * 0 + YD_distance[252])/1;
-        fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
+        fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
     	
-    	if(data_average < 0.4 && init1 == false){
+    	if(data_average < 0.4 && init1 == false){	//trans MS "D13/1"
 		init1 = true;
 		serial1 = write(fd,"D13/1",6);
 		if (serial1 < 0) {
 			perror("Write failed - ");
 		}
 	}
-	else if(data_average >= 0.4 && init1 == true) {
+	else if(data_average >= 0.4 && init1 == true){	//trans MS "D13/1"
 		init1 = false;
 		serial1 = write(fd,"D13/0",6);
 	 	if(serial1 < 0){
@@ -240,7 +240,7 @@ int main(int argc, char * argv[]) {
 		}
 	}
 	
-	/////////////////read
+	///////////////////////////////////////////////////////////////////////////read
 	char buf[256];
   	serial1 = read(fd, (void*)buf, 255);
   	if (serial1 < 0) {
