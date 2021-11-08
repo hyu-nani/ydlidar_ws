@@ -30,6 +30,7 @@ int fd;
 int serial1;
 bool init1 = true;
 float data_average;
+void SerialPrint(string buffer);
 
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
@@ -223,21 +224,14 @@ int main(int argc, char * argv[]) {
         }
 	/////////////////////////////////////////////////////////////////////
         data_average = (data_average * 0 + YD_distance[252])/1;
-        fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
     	
-    	if(data_average < 0.4 && init1 == false){	//trans MS "D13/1"
+    if(data_average < 0.4 && init1 == false){	//trans MS "D13/1"
 		init1 = true;
-		serial1 = write(fd,"D13/1",6);
-		if (serial1 < 0) {
-			perror("Write failed - ");
-		}
+		SerialPrint("D13/1");
 	}
 	else if(data_average >= 0.4 && init1 == true){	//trans MS "D13/1"
 		init1 = false;
-		serial1 = write(fd,"D13/0",6);
-	 	if(serial1 < 0){
-			perror("write failed - ");
-		}
+		SerialPrint("D13/0");
 	}
 	
 	///////////////////////////////////////////////////////////////////////////read
@@ -267,8 +261,9 @@ int main(int argc, char * argv[]) {
 void SerialPrint(string buffer)
 {
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
-	
 	serial1 = write(fd,buffer,6);
-	
+	if(serial1 < 0){
+		perror("write failed - ");
+	}
 	close(fd);
 }
