@@ -267,3 +267,7 @@ void SerialPrint(string buffer)
 	}
 	close(fd);
 }
+void SerialRead()
+{
+	
+}
