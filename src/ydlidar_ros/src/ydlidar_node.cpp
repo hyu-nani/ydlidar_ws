@@ -221,7 +221,7 @@ int main(int argc, char * argv[]) {
             scan_pub.publish(scan_msg);
             
         }
-         /////////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////
         data_average = (data_average * 0 + YD_distance[252])/1;
         fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
     	
@@ -264,3 +264,11 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
+void SerialPrint(string buffer)
+{
+	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
+	
+	serial1 = write(fd,buffer,6);
+	
+	close(fd);
+}
