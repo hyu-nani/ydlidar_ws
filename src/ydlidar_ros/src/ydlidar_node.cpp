@@ -187,11 +187,11 @@ int main(int argc, char * argv[]) {
 	ros::Subscriber sub = n.subscribe<sensor_msgs::LaserScan>("/scan", 1000, scanCallback);
 	
 	printf("....");
-    	
+    	//test ms
     while (ret&&ros::ok()) {
         bool hardError;
         LaserScan scan;
-        //and loop here
+        //and loop here 
     	
         if(laser.doProcessSimple(scan, hardError )){
             sensor_msgs::LaserScan scan_msg;
