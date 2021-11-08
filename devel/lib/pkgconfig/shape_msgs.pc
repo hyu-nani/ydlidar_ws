@@ -1,0 +1,8 @@
+prefix=/home/pls/ydlidar_ws/devel
+
+Name: shape_msgs
+Description: Description of shape_msgs
+Version: 1.13.1
+Cflags: -I/home/pls/ydlidar_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs message_runtime std_msgs

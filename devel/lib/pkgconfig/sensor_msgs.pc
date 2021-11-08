@@ -1,0 +1,8 @@
+prefix=/home/pls/ydlidar_ws/devel
+
+Name: sensor_msgs
+Description: Description of sensor_msgs
+Version: 1.13.1
+Cflags: -I/home/pls/ydlidar_ws/devel/include -I/home/pls/ydlidar_ws/src/ros/common_msgs/sensor_msgs/include
+Libs: -L${prefix}/lib 
+Requires: geometry_msgs message_runtime std_msgs

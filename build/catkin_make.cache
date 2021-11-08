@@ -1,0 +1,2 @@
+ros/common_msgs/actionlib_msgs:ros/common_msgs/common_msgs:ros/common_msgs/diagnostic_msgs:ros/common_msgs/geometry_msgs:ros/common_msgs/nav_msgs:ros/common_msgs/sensor_msgs:ros/common_msgs/shape_msgs:ros/common_msgs/stereo_msgs:ros/common_msgs/trajectory_msgs:ros/common_msgs/visualization_msgs:ydlidar_ros
+-DCATKIN_DEVEL_PREFIX=/home/pls/ydlidar_ws/devel -DCMAKE_INSTALL_PREFIX=/home/pls/ydlidar_ws/install -G Unix Makefiles

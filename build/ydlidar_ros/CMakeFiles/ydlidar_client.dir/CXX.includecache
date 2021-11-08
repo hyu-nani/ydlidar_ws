@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/pls/ydlidar_ws/devel/include/sensor_msgs/LaserScan.h
+string
+-
+vector
+-
+map
+-
+ros/types.h
+-
+ros/serialization.h
+-
+ros/builtin_message_traits.h
+-
+ros/message_operations.h
+-
+std_msgs/Header.h
+-
+
+/home/pls/ydlidar_ws/src/ydlidar_ros/src/ydlidar_client.cpp
+ros/ros.h
+/home/pls/ydlidar_ws/src/ydlidar_ros/src/ros/ros.h
+sensor_msgs/LaserScan.h
+/home/pls/ydlidar_ws/src/ydlidar_ros/src/sensor_msgs/LaserScan.h
+
