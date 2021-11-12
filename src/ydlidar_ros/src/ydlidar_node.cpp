@@ -92,7 +92,7 @@ int main(int argc, char * argv[]) {
     printf("  | | | |_| | |___ | || |_| / ___ \\|  _ <  \n");
     printf("  |_| |____/|_____|___|____/_/   \\_\\_| \\_\\ \n");
     printf("ydlidar_node file\n");
-    
+    printf(" NANI's convert version")
     printf("\n");
     fflush(stdout);
   
