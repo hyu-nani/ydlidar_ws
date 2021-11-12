@@ -29,7 +29,7 @@ float YD_angle[500];
 int fd;
 int serial1;
 bool init1 = true;
-float data_average;
+float data_average=0;
 void SerialPrint(string buffer);
 
 std::vector<float> split(const std::string &s, char delim) {
@@ -48,15 +48,15 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
     	printf("[YDLIDAR INFO]: angle_range : [%f, %f]\n", RAD2DEG(scan->angle_min), RAD2DEG(scan->angle_max));
     
 	for(int i = 0; i < count; i++) {
-        	float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
-        	YD_angle[i] = degree;
-        	float val = scan->ranges[i];
-        	if(val != 0)
-        		YD_distance[i] = val;
+        float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
+        YD_angle[i] = degree;
+        float val = scan->ranges[i];
+        if(val != 0)
+        	YD_distance[i] = val;
 		if(YD_angle[i]> -5 && YD_angle[i]< 5){
-        		printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
+        	printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
    		}
-    	}
+    }
 //    for(int i = 0; i < count; i++) {
 //        float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
 //	if(degree > -5 && degree< 5)
@@ -66,25 +66,25 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 
 int main(int argc, char * argv[]) {
     printf("serial connecting,.....\n");
-    ////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////// usb arduino
     fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
     if (fd == -1) {
-    	printf("nob");
-  	perror("open_port: Unable to open /dev/ttyACM0 - ");
+    	printf("doesn't connected arduino");
+  		perror("open_port: Unable to open /dev/ttyACM0 - ");
     	return(-1);
     }
     struct termios options;
-        tcgetattr(fd, &options);
-        options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;         //<Set baud rate
-        options.c_iflag = IGNPAR;
-        options.c_oflag = 0;
-        options.c_lflag = 0;
-        tcflush(fd, TCIFLUSH);
-        tcsetattr(fd, TCSANOW, &options);
-    	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
-    	fcntl(fd, F_SETFL, 0);
+    tcgetattr(fd, &options);
+    options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;         //<Set baud rate
+    options.c_iflag = IGNPAR;
+    options.c_oflag = 0;
+    options.c_lflag = 0;
+    tcflush(fd, TCIFLUSH);
+    tcsetattr(fd, TCSANOW, &options);
+    //Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
+    fcntl(fd, F_SETFL, 0);
     /////////////////////////////////////////////////////////////////
-    
+   
     ros::init(argc, argv, "ydlidar_node"); 
     printf("__   ______  _     ___ ____    _    ____  \n");
     printf("\\ \\ / /  _ \\| |   |_ _|  _ \\  / \\  |  _ \\ \n");
@@ -92,7 +92,7 @@ int main(int argc, char * argv[]) {
     printf("  | | | |_| | |___ | || |_| / ___ \\|  _ <  \n");
     printf("  |_| |____/|_____|___|____/_/   \\_\\_| \\_\\ \n");
     printf("ydlidar_node file\n");
-    printf(" NANI's convert version")
+    printf(" NANI version")
     printf("\n");
     fflush(stdout);
   
@@ -223,15 +223,11 @@ int main(int argc, char * argv[]) {
             
         }
 	/////////////////////////////////////////////////////////////////////
-        data_average = (data_average * 0 + YD_distance[252])/1;
+	int number = 1
+	data_average = (data_average * (number-1) + YD_distance[252])/number;
     	
-    if(data_average < 0.4 && init1 == false){	//trans MS "D13/1"
-		init1 = true;
-		SerialPrint("D13/1");
-	}
-	else if(data_average >= 0.4 && init1 == true){	//trans MS "D13/1"
-		init1 = false;
-		SerialPrint("D13/0");
+    if(data_average < 0.4){	//trans MS "D13/1"
+		SerialPrint("10 0 0"); //X Y angle
 	}
 	
 	///////////////////////////////////////////////////////////////////////////read
