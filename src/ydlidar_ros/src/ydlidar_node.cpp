@@ -255,7 +255,6 @@ int main(int argc, char * argv[]) {
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
     laser.disconnecting();
-    close(fd);
     return 0;
 }
 
