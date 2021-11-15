@@ -30,7 +30,7 @@ int fd;
 int serial1;
 bool init1 = true;
 float data_average=0;
-void SerialPrint(char buffer[]);
+void SerialPrint(char* buffer);
 
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
@@ -262,7 +262,7 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
-void SerialPrint(char buffer[])
+void SerialPrint(char* buffer)
 {
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
 	serial1 = write(fd,buffer,strlen(buffer));
