@@ -227,7 +227,13 @@ int main(int argc, char * argv[]) {
 	data_average = (data_average * (number-1) + YD_distance[252])/number ;
     	
     if(data_average < 0.4){	//trans MS "D13/1"
-		SerialPrint("10 0 0"); //X Y angle
+		//SerialPrint("10 0 0"); //X Y angle
+		fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
+		serial1 = write("10 0 0",6);
+		if(serial1 < 0){
+			perror("write failed - ");
+		}
+		close(fd);
 	}
 	
 	///////////////////////////////////////////////////////////////////////////read
@@ -253,7 +259,7 @@ int main(int argc, char * argv[]) {
     close(fd);
     return 0;
 }
-
+/*
 void SerialPrint(char buffer[])
 {
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
@@ -263,6 +269,7 @@ void SerialPrint(char buffer[])
 	}
 	close(fd);
 }
+*/
 void SerialRead()
 {
 	
