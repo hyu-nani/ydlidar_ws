@@ -228,15 +228,17 @@ int main(int argc, char * argv[]) {
         }
 		//////////////////////////////////////////////////////////////////////////
 		int number = 5 ;
+		bool active = false;
 		data_average = (data_average * (number-1) + YD_distance[252])/number ;
 		if (old_distance[0] != 0){
+			active = false;
 			for(int i=0;i<500;i++){
 				float difference = YD_distance[i] - old_distance[i];
 				if (difference > 0.1)
-				{
-					printf("Scan move!");
-				}
+					active = true;
 			}
+			if(active == true)
+				printf("Scan! who are you?");
 		}
 		if(data_average < 0.4){	//trans MS
 			SerialPrint("10 0 0"); //X Y angle
