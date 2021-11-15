@@ -26,6 +26,7 @@ using namespace ydlidar;
 #define ROSVerision "1.4.6"
 float YD_distance[500];
 float YD_angle[500];
+float old_distance[500];
 int fd;
 int serial1;
 bool init1 = true;
@@ -47,8 +48,8 @@ std::vector<float> split(const std::string &s, char delim) {
 void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 {
     int count = scan->scan_time / scan->time_increment;
-    printf("[YDLIDAR INFO]: I heard a laser scan %s[%d]:\n", scan->header.frame_id.c_str(), count);
-    printf("[YDLIDAR INFO]: angle_range : [%f, %f]\n", RAD2DEG(scan->angle_min), RAD2DEG(scan->angle_max));
+    //printf("[YDLIDAR INFO]: I heard a laser scan %s[%d]:\n", scan->header.frame_id.c_str(), count);
+    //printf("[YDLIDAR INFO]: angle_range : [%f, %f]\n", RAD2DEG(scan->angle_min), RAD2DEG(scan->angle_max));
     
 	for(int i = 0; i < count; i++) {
         float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
@@ -57,7 +58,7 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
         if(val != 0)
         	YD_distance[i] = val;
 		if(YD_angle[i]> -5 && YD_angle[i]< 5){
-        	printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
+        	//printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
    		}
     }
 //    for(int i = 0; i < count; i++) {
@@ -228,10 +229,20 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		int number = 5 ;
 		data_average = (data_average * (number-1) + YD_distance[252])/number ;
-    	
-		if(data_average < 0.4){	//trans MS "D13/1"
+		if (old_distance[0] != 0){
+			for(int i=0;i<500;i++){
+				float difference = YD_distance[i] - old_distance[i];
+				if (difference > 0.1)
+				{
+					printf("Scan move!");
+				}
+			}
+		}
+		if(data_average < 0.4){	//trans MS
 			SerialPrint("10 0 0"); //X Y angle
 		}
+		for(int i=0;i<500;i++)
+			old_distance[i] = YD_distance[i];
 		///////////////////////////////////////////////////////////////////////////read
 		SerialRead();
   		//////////////////////////////////////////////////////////////////////////
