@@ -20,7 +20,6 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <termios.h>
-#include <wiringPi.h>
 
 using namespace ydlidar;
 #define RAD2DEG(x) ((x)*180./M_PI)
@@ -32,7 +31,6 @@ int serial1;
 bool init1 = true;
 float data_average=0;
 
-#define LED 3
 
 void SerialPrint(char* strBuffer);
 void SerialRead();
@@ -70,7 +68,6 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 }
 
 int main(int argc, char * argv[]) {
-	pinMode(LED,OUTPUT);
     printf("serial connecting,.....\n");
     //////////////////////////////////////////////////////////////// usb arduino
     fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
