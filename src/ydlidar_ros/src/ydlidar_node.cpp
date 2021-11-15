@@ -92,7 +92,7 @@ int main(int argc, char * argv[]) {
     printf("  | | | |_| | |___ | || |_| / ___ \\|  _ <  \n");
     printf("  |_| |____/|_____|___|____/_/   \\_\\_| \\_\\ \n");
     printf("ydlidar_node file\n");
-    printf(" NANI version")
+    printf(" NANI version");
     printf("\n");
     fflush(stdout);
   
@@ -223,8 +223,8 @@ int main(int argc, char * argv[]) {
             
         }
 	/////////////////////////////////////////////////////////////////////
-	int number = 1
-	data_average = (data_average * (number-1) + YD_distance[252])/number;
+	int number = 1 ;
+	data_average = (data_average * (number-1) + YD_distance[252])/number ;
     	
     if(data_average < 0.4){	//trans MS "D13/1"
 		SerialPrint("10 0 0"); //X Y angle
@@ -254,10 +254,10 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
-void SerialPrint(string buffer)
+void SerialPrint(char buffer[])
 {
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
-	serial1 = write(fd,buffer,6);
+	serial1 = write(fd,buffer,len(buffer));
 	if(serial1 < 0){
 		perror("write failed - ");
 	}
