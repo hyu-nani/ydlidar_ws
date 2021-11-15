@@ -30,7 +30,7 @@ int fd;
 int serial1;
 bool init1 = true;
 float data_average=0;
-void SerialPrint(string buffer);
+void SerialPrint(char buffer[100]);
 
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
