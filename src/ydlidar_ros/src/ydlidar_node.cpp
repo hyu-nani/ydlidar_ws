@@ -30,7 +30,9 @@ int fd;
 int serial1;
 bool init1 = true;
 float data_average=0;
-void SerialPrint(char* buffer);
+
+void SerialPrint(char* strBuffer);
+void SerialRead(char* strBuffer)
 
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
@@ -239,22 +241,11 @@ int main(int argc, char * argv[]) {
 	}
 	
 	///////////////////////////////////////////////////////////////////////////read
-	char buf[256];
-  	serial1 = read(fd, (void*)buf, 255);
-  	if (serial1 < 0) {
-  	 	perror("Read failed - ");
-  	} 
-  	else if (serial1 == 0) printf("No data on port\n");
-  	else {
-   		buf[serial1] = '\0';
-    		printf("%i bytes read : %s", serial1, buf);
-  	}
-  	close(fd);
+	SerialRead();
   	//////////////////////////////////////////////////////////////////////////
-        rate.sleep();
-        ros::spinOnce();
+    rate.sleep();
+    ros::spinOnce();
     }
-
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
     laser.disconnecting();
@@ -262,16 +253,27 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
-void SerialPrint(char* buffer)
+void SerialPrint(char* strBuffer)
 {
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
-	serial1 = write(fd,buffer,strlen(buffer));
+	serial1 = write(fd,strBuffer,strlen(strBuffer));
 	if(serial1 < 0)
 		perror("write failed - ");
 	close(fd);
 }
 
-void SerialRead()
+void SerialRead(char* strBuffer)
 {
-	
+	char buf[256];
+	serial1 = read(fd, (void*)buf, 255);
+	if (serial1 < 0) {
+		perror("Read failed - ");
+	}
+	else if (serial1 == 0) printf("No data on port\n");
+	else {
+		buf[serial1] = '\0';
+		printf("%i bytes read : %s", serial1, buf);
+	}
+	close(fd);
+	strBuffer = buf;
 }
