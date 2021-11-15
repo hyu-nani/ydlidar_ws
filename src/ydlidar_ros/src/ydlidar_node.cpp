@@ -225,21 +225,11 @@ int main(int argc, char * argv[]) {
             
         }
 	/////////////////////////////////////////////////////////////////////
-	int number = 1 ;
+	int number = 5 ;
 	data_average = (data_average * (number-1) + YD_distance[252])/number ;
-    	
     if(data_average < 0.4){	//trans MS "D13/1"
 		SerialPrint("10 0 0"); //X Y angle
-		/*
-		fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
-		serial1 = write(fd,"10 0 0",6);
-		if(serial1 < 0){
-			perror("write failed - ");
-		}
-		close(fd);
-		*/
 	}
-	
 	///////////////////////////////////////////////////////////////////////////read
 	SerialRead();
   	//////////////////////////////////////////////////////////////////////////
