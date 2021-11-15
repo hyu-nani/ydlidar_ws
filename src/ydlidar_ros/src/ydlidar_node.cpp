@@ -257,7 +257,7 @@ int main(int argc, char * argv[]) {
 void SerialPrint(char buffer[])
 {
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
-	serial1 = write(fd,buffer,len(buffer));
+	serial1 = write(fd,buffer,strlen(buffer));
 	if(serial1 < 0){
 		perror("write failed - ");
 	}
