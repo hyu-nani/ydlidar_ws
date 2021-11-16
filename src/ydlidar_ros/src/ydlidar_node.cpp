@@ -247,7 +247,7 @@ int main(int argc, char * argv[]) {
 		if(active == true){
 			time_t now;
 			time(&now);
-			printf("현재 날짜와 시간:%s", asctime(localtime(&now)));
+			printf("Corrent Time :%s", asctime(localtime(&now)));
 			printf("%d\tScan! Angle:%f\n",printCount,YD_angle[angleNum]);
 			printCount++;
 		}
