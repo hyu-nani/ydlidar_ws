@@ -232,9 +232,8 @@ int main(int argc, char * argv[]) {
 		data_average = (data_average * (number-1) + YD_distance[252])/number ;
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
-				float difference = YD_distance[i] - old_distance[i];
-				printf("Scan! who are you?");
-				if (difference > 0.1)
+				float difference = abs(YD_distance[i] - old_distance[i]);
+				if (difference > 0.05)
 					active = true;
 			}
 		}
