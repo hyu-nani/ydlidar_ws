@@ -233,7 +233,7 @@ int main(int argc, char * argv[]) {
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
 				float difference = abs(YD_distance[i] - old_distance[i]);
-				if (difference > 0.05)
+				if (difference > 0.15)
 					active = true;
 			}
 		}
