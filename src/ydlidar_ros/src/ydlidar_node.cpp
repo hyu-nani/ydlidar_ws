@@ -244,7 +244,7 @@ int main(int argc, char * argv[]) {
 			}
 		}
 		if(active == true){
-			printf("%d\tScan! Angle:%f\n",printCount,);
+			printf("%d\tScan! Angle:%f\n",printCount,angleNum);
 			printCount++;
 		}
 		if(data_average[252] < 0.4){	//trans MS
