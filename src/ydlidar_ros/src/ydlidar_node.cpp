@@ -247,7 +247,7 @@ int main(int argc, char * argv[]) {
 		if(active == true){
 			time_t now;
 			time(&now);
-			printf("式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式\n");
+			printf("式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式式\n");
 			printf("Corrent Time :%s", asctime(localtime(&now)));
 			printf("%d\tScan! Angle:%f\n",printCount,YD_angle[angleNum]);
 			printCount++;
@@ -256,7 +256,7 @@ int main(int argc, char * argv[]) {
 			SerialPrint("10 0 0"); //X Y angle
 		}
 		for(int i=0;i<500;i++)
-			old_distance[i] = YD_distance[i];
+			old_distance[i] = data_average[i];
 		///////////////////////////////////////////////////////////////////////////read
 		//SerialRead();
   		//////////////////////////////////////////////////////////////////////////
