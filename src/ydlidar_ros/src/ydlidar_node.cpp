@@ -228,20 +228,23 @@ int main(int argc, char * argv[]) {
             
         }
 		//////////////////////////////////////////////////////////////////////////
-		int number = 5 ;
+		int number = 10 ;
 		bool active = false;
+		int angleNum;
 		for(int i=0;i<500;i++){
 			data_average[i] = (data_average[i] * (number-1) + YD_distance[i])/number ;
 		}
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
 				float difference = abs(data_average[i] - old_distance[i]);
-				if (difference > 0.15)
+				if (difference > 0.2){
 					active = true;
+					angleNum = i;
+				}
 			}
 		}
 		if(active == true){
-			printf("%d\tScan! who are you?\n",printCount);
+			printf("%d\tScan! Angle:%f\n",printCount,);
 			printCount++;
 		}
 		if(data_average[252] < 0.4){	//trans MS
