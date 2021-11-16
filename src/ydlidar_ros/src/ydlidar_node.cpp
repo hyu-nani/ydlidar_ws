@@ -233,12 +233,12 @@ int main(int argc, char * argv[]) {
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
 				float difference = abs(YD_distance[i] - old_distance[i]);
-				if (difference > 0.01)
+				if (difference > 0.05)
 					active = true;
 			}
 		}
 		if(active == true){
-			printf("Scan! who are you?");
+			printf("Scan! who are you?\n");
 		}
 		if(data_average < 0.4){	//trans MS
 			SerialPrint("10 0 0"); //X Y angle
