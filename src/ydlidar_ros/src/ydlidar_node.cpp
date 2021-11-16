@@ -31,7 +31,7 @@ int fd;
 int serial1;
 bool init1 = true;
 float data_average[500] = 0;
-int count = 0;
+int printCount = 0;
 
 
 void SerialPrint(char* strBuffer);
@@ -241,8 +241,8 @@ int main(int argc, char * argv[]) {
 			}
 		}
 		if(active == true){
-			printf("%d\tScan! who are you?\n",count);
-			count++;
+			printf("%d\tScan! who are you?\n",printCount);
+			printCount++;
 		}
 		if(data_average < 0.4){	//trans MS
 			SerialPrint("10 0 0"); //X Y angle
