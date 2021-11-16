@@ -30,7 +30,7 @@ float old_distance[500];
 int fd;
 int serial1;
 bool init1 = true;
-float data_average[500] = 0;
+float data_average[500] = {0};
 int printCount = 0;
 
 
