@@ -233,6 +233,7 @@ int main(int argc, char * argv[]) {
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
 				float difference = YD_distance[i] - old_distance[i];
+				printf("Scan! who are you?");
 				if (difference > 0.1)
 					active = true;
 			}
