@@ -30,7 +30,8 @@ float old_distance[500];
 int fd;
 int serial1;
 bool init1 = true;
-float data_average=0;
+float data_average[500] = 0;
+int count = 0;
 
 
 void SerialPrint(char* strBuffer);
@@ -229,16 +230,19 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		int number = 5 ;
 		bool active = false;
-		data_average = (data_average * (number-1) + YD_distance[252])/number ;
+		for(int i=0;i<500;i++){
+			data_average[i] = (data_average[i] * (number-1) + YD_distance[i])/number ;
+		}
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
-				float difference = abs(YD_distance[i] - old_distance[i]);
+				float difference = abs(data_average[i] - old_distance[i]);
 				if (difference > 0.15)
 					active = true;
 			}
 		}
 		if(active == true){
-			printf("Scan! who are you?\n");
+			printf("%d\tScan! who are you?\n",count);
+			count++;
 		}
 		if(data_average < 0.4){	//trans MS
 			SerialPrint("10 0 0"); //X Y angle
