@@ -256,6 +256,7 @@ int main(int argc, char * argv[]) {
 				}
 			}
 		}
+		system("clear");
 		for(int i=0;i<mapSize;i++){
 			for(int j=0;j<mapSize;j++){
 				if(pinMap[i][j] == 1)
