@@ -249,7 +249,7 @@ int main(int argc, char * argv[]) {
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] > 100){
+			if(data_count[i] > 50){
 				int Xvalue = acos(YD_angle[i])*data_average[i]*1;
 				int Yvalue = asin(YD_angle[i])*data_average[i]*1;
 				allMap[robotX+Xvalue][robotY+Yvalue] = 1;
