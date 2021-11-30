@@ -257,7 +257,10 @@ int main(int argc, char * argv[]) {
 		}
 		for(int i=0;i<1000;i++){
 			for(int j=0;j<1000;j++){
-				printf(pinMap[i][j]);
+				if(pinMap[i][j] = 1)
+					printf("0");
+				else
+					printf(" ");
 			}
 		}
 		/*
