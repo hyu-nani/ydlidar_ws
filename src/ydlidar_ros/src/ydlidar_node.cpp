@@ -203,6 +203,7 @@ int main(int argc, char * argv[]) {
 	
 	printf("....");
     	//test ms
+	int count = 0;
     while (ret&&ros::ok()) {
         bool hardError;
         LaserScan scan;
@@ -242,13 +243,13 @@ int main(int argc, char * argv[]) {
 			int averageCount = 10 ; //average
 			data_average[i] = (data_average[i] * (averageCount-1) + YD_distance[i])/averageCount;
 			float difference = abs(data_average[i] - YD_distance[i]);
-			if( difference < 0.01 || difference != 0){
+			if( difference < 0.005 || difference != 0){
 				data_count[i] = data_count[i] + 1;
 			}
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] > 100){
+			if(data_count[i] > 10){
 				int Xvalue = asin(YD_angle[i])*data_average[i]*10;
 				int Yvalue = acos(YD_angle[i])*data_average[i]*10;
 				allMap[robotX+Xvalue][robotY+Yvalue] = 1;
@@ -256,6 +257,7 @@ int main(int argc, char * argv[]) {
 				active = true;
 			}
 		}
+		
 		/*
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
@@ -271,6 +273,10 @@ int main(int argc, char * argv[]) {
 			printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 			active = false;
 		}
+		if(count>1000){
+			robotY++;
+			count = 0;
+		}
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 		/*
 		if(active == true){
@@ -285,6 +291,7 @@ int main(int argc, char * argv[]) {
 			SerialPrint("10 0 90"); //X Y angle
 		}
 		*/
+		count++;
 		for(int i=0;i<500;i++)
 			old_distance[i] = data_average[i];
 		///////////////////////////////////////////////////////////////////////////read
