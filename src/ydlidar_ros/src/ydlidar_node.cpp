@@ -25,13 +25,14 @@
 using namespace ydlidar;
 #define RAD2DEG(x) ((x)*180./M_PI)
 #define ROSVerision "1.4.6"
-float YD_distance[500];
-float YD_angle[500];
-float old_distance[500];
-int fd;
-int serial1;
-bool init1 = true;
-float data_average[500] = {0};
+float	YD_distance[500];
+float	YD_angle[500];
+float	old_distance[500];
+int		fd;
+int		serial1;
+bool	init1 = true;
+float	data_average[500]	=	{0};
+int		data_count[500]		=	{0};
 int printCount = 0;
 
 
@@ -117,7 +118,7 @@ int main(int argc, char * argv[]) {
     bool inverted = true;
     bool isSingleChannel = false;
     bool isTOFLidar = false;
-
+	bool pinMap[1000][1000] = {0};
 	
     ros::NodeHandle nh;
     ros::Publisher scan_pub = nh.advertise<sensor_msgs::LaserScan>("scan", 1000);
@@ -229,12 +230,23 @@ int main(int argc, char * argv[]) {
             
         }
 		//////////////////////////////////////////////////////////////////////////
-		int number = 10 ; //average
 		bool active = false;
 		int angleNum;
 		for(int i=0;i<500;i++){
-			data_average[i] = (data_average[i] * (number-1) + YD_distance[i])/number ;
+			int averageCount = 10 ; //average
+			data_average[i] = (data_average[i] * (averageCount-1) + YD_distance[i])/averageCount;
+			float dataDifference = abs(data_average[i] - YD_distance[i]);
+			if(dataDifference < 0.1){
+				data_count[i]++;
+			}
+			if(data_count[i] > 50){
+				int Xvalue = acos(YD_angle[i])*data_average[i];
+				int Yvalue = asin(YD_angle[i])*data_average[i];
+				pinMap[Xvalue][Yvalue] = 1;
+				data_count[i] = 0;
+			}
 		}
+		
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
 				float difference = abs(data_average[i] - old_distance[i]);
@@ -244,6 +256,10 @@ int main(int argc, char * argv[]) {
 				}
 			}
 		}
+		for(int i=0;i<1000;i++){
+			printf(pinMap[i])
+		}
+		/*
 		if(active == true){
 			time_t now;
 			time(&now);
@@ -255,6 +271,7 @@ int main(int argc, char * argv[]) {
 		if(data_average[252] < 0.4){	//trans MS
 			SerialPrint("10 0 90"); //X Y angle
 		}
+		*/
 		for(int i=0;i<500;i++)
 			old_distance[i] = data_average[i];
 		///////////////////////////////////////////////////////////////////////////read
