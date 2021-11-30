@@ -244,7 +244,7 @@ int main(int argc, char * argv[]) {
 			float difference = abs(old_distance[i] - YD_distance[i]);
 			int Xvalue = sin(YD_angle[i])*YD_distance[i]*5;
 			int Yvalue = cos(YD_angle[i])*YD_distance[i]*5;
-			if( difference < 0.002 && difference != 0 && YD_distance[i] > 0.05){
+			if( (difference < 0.005) &&	(difference != 0) && (YD_distance[i] > 0.15)){
 				data_count[i]++;
 				if(allMap[robotY+Yvalue][robotX+Xvalue]==0){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
@@ -254,7 +254,7 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 			active = true;
-			if(data_count[i] > 10){
+			if(data_count[i] > 30){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2;
 				data_count[i] = 0;
 				active = true;
