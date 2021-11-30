@@ -249,7 +249,7 @@ int main(int argc, char * argv[]) {
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] > 10){
+			if(data_count[i] > 100){
 				int Xvalue = asin(YD_angle[i])*data_average[i]*10;
 				int Yvalue = acos(YD_angle[i])*data_average[i]*10;
 				allMap[robotX+Xvalue][robotY+Yvalue] = 1;
@@ -275,7 +275,6 @@ int main(int argc, char * argv[]) {
 		}
 		if(count>100){
 			robotY++;
-			printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			count = 0;
 		}
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
