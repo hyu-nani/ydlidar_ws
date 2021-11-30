@@ -254,7 +254,7 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 			active = true;
-			if(data_count[i] > 20){
+			if(data_count[i] > 15){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 				//active = true;
@@ -350,7 +350,7 @@ void printSSHmonitor(int currentY,int currentX){
 				allMap[i+currentY-printSize/2][j+currentX-printSize/2] = 0;
 			}
 			else if(pinMap[i][j] == 2)
-			printf("@@");
+			printf("##");
 			else if(pinMap[i][j] == 3)
 			printf("[]");
 			else 
