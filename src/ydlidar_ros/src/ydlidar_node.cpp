@@ -265,7 +265,6 @@ int main(int argc, char * argv[]) {
 				}
 			}
 		}
-		pinMap[printSize/2][printSize/2] = 2;
 		if(active == true){
 			printSSHmonitor(robotX,robotY);
 			active = false;
@@ -325,6 +324,7 @@ void printSSHmonitor(int currentX,int currentY){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[i+currentX-printSize/2][j+currentY-printSize/2];
+	pinMap[printSize/2][printSize/2] = 2;
 	system("clear");
 	for(int i=0;i<printSize+1;i++)
 	printf("--");
