@@ -252,7 +252,7 @@ int main(int argc, char * argv[]) {
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] > 15){
+			if(data_count[i] > 10){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 			}
@@ -340,15 +340,15 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i=0;i<printSize;i++){
 		printf("|");
 		for(int j=0;j<printSize;j++){
-			if(pinMap[i][j] == 1){
+			if(pinMap[i][j] == 1){//sensitive
 				printf("::");
 				allMap[i+currentY-printSize/2][j+currentX-printSize/2] = 0;
 			}
-			else if(pinMap[i][j] == 2)
+			else if(pinMap[i][j] == 2)//hold , wall
 			printf("##");
-			else if(pinMap[i][j] == 3)
+			else if(pinMap[i][j] == 3)//center
 			printf("[]");
-			else 
+			else//nothing
 			printf("  ");
 		}
 		printf("|\n");
