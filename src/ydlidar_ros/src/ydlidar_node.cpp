@@ -264,22 +264,22 @@ int main(int argc, char * argv[]) {
 		if(active == true){
 			system("clear");
 			for(int i=0;i<mapSize;i++)
-				printf("-");
+				printf("--");
 			printf("\n");
 			for(int i=0;i<mapSize;i++){
 				printf("|");
 				for(int j=0;j<mapSize;j++){
 					if(pinMap[i][j] == 1)
-						printf("@");
+						printf("&&");
 					else if(pinMap[i][j] == 2)
-						printf("+");
+						printf("<>");
 					else
-						printf(" ");
+						printf("  ");
 				}
 				printf("|\n");
 			}
 			for(int i=0;i<mapSize;i++)
-				printf("-");
+				printf("--");
 			printf("\n");
 			active = false;
 		}
