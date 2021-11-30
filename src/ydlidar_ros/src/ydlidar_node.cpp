@@ -268,10 +268,10 @@ int main(int argc, char * argv[]) {
 			}
 		}
 		if(active == true){
-			system("clear");
 			//printSSHmonitor(robotX,robotY);
 			active = false;
 		}
+		system("clear");
 		/*
 		if(active == true){
 			time_t now;
