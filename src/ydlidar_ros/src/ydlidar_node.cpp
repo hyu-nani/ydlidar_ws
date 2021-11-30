@@ -239,10 +239,13 @@ int main(int argc, char * argv[]) {
 			if(dataDifference < 0.1){
 				data_count[i]++;
 			}
+			else{
+				data_count[i] = 0;
+			}
 			if(data_count[i] > 50){
 				int Xvalue = acos(YD_angle[i])*data_average[i];
 				int Yvalue = asin(YD_angle[i])*data_average[i];
-				pinMap[Xvalue][Yvalue] = 1;
+				pinMap[mapSize/2+Xvalue][mapSize/2+Yvalue] = 1;
 				data_count[i] = 0;
 			}
 		}
