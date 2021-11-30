@@ -242,14 +242,14 @@ int main(int argc, char * argv[]) {
 		for(int i=0;i<500;i++){
 			float difference = abs(old_distance[i] - YD_distance[i]);
 			if( difference < 0.01 && difference != 0){
-				data_count[i] = data_count[i] + 1;
+				data_count[i]++:
 			}
 			else{
 				data_count[i] = 0;
 			}
 			if(data_count[i] > 10){
-				int Xvalue = asin(YD_angle[i])*YD_distance[i]*1;
-				int Yvalue = acos(YD_angle[i])*YD_distance[i]*1;
+				int Xvalue = sin(YD_angle[i])*YD_distance[i]*1;
+				int Yvalue = cos(YD_angle[i])*YD_distance[i]*1;
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
 				data_count[i] = 0;
 				active = true;
