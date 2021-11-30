@@ -243,8 +243,8 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 			if(data_count[i] > 100){
-				int Xvalue = acos(YD_angle[i])*data_average[i];
-				int Yvalue = asin(YD_angle[i])*data_average[i];
+				int Xvalue = acos(YD_angle[i])*data_average[i]*10;
+				int Yvalue = asin(YD_angle[i])*data_average[i]*10;
 				pinMap[mapSize/2+Xvalue][mapSize/2+Yvalue] = 1;
 				data_count[i] = 0;
 				pinMap[mapSize/2][mapSize/2] = 2;
