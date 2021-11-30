@@ -242,8 +242,8 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		for(int i=0;i<500;i++){
 			float difference = fabs(old_distance[i] - YD_distance[i]);
-			int Xvalue = cos(YD_angle[i]/2+90)*YD_distance[i]*10;
-			int Yvalue = sin(YD_angle[i]/2+90)*YD_distance[i]*10;
+			int Xvalue = cos((YD_angle[i]/2+90)*M_PI/180)*YD_distance[i]*10;
+			int Yvalue = sin((YD_angle[i]/2+90)*M_PI/180)*YD_distance[i]*10;
 			if( (difference < 0.005) &&	(difference != 0) && (YD_distance[i] > 0.15)){
 				data_count[i]++;
 				if(allMap[robotY+Yvalue][robotX+Xvalue]==0){
@@ -274,7 +274,6 @@ int main(int argc, char * argv[]) {
 		if(active == true){
 			printSSHmonitor(robotY,robotX);
 			printf("angle-distance[%f - %f]100 %d\n",YD_angle[100],YD_distance[100],count);
-			printf("--%f",cos(90*M_PI/180));
 			
 			active = false;
 		}
