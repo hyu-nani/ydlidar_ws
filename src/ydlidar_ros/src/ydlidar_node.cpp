@@ -262,7 +262,7 @@ int main(int argc, char * argv[]) {
 		}
 		system("clear");
 		for(int i=0;i<mapSize;i++)
-			printf("-")
+			printf("-");
 		for(int i=0;i<mapSize;i++){
 			printf("|");
 			for(int j=0;j<mapSize;j++){
