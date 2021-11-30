@@ -240,9 +240,7 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		int angleNum;
 		for(int i=0;i<500;i++){
-			int averageCount = 10 ; //average
-			data_average[i] = (data_average[i] * (averageCount-1) + YD_distance[i])/averageCount;
-			float difference = abs(data_average[i] - YD_distance[i]);
+			float difference = abs(old_distance[i] - YD_distance[i]);
 			if( difference < 0.01 && difference != 0){
 				data_count[i] = data_count[i] + 1;
 			}
@@ -289,7 +287,7 @@ int main(int argc, char * argv[]) {
 		*/
 		count++;
 		for(int i=0;i<500;i++)
-			old_distance[i] = data_average[i];
+			old_distance[i] = YD_distance[i];
 		///////////////////////////////////////////////////////////////////////////read
 		//SerialRead();
   		//////////////////////////////////////////////////////////////////////////
