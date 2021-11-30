@@ -34,8 +34,12 @@ bool	init1 = true;
 float	data_average[500]	=	{0};
 int		data_count[500]		=	{0};
 int		printCount = 0;
-const int	printSize				=	50;
-int		pinMap[printSize][printSize]	=	{0};
+
+const int	printSize						=	50;
+int			pinMap[printSize][printSize]	=	{0};
+	
+int		allMap[sizeof(int)][sizeof(int)] = {0};			//All map
+int		robotX = sizeof(int)/2, robotY = sizeof(int)/2; //center
 
 void SerialPrint(char* strBuffer);
 void SerialRead();
@@ -262,25 +266,7 @@ int main(int argc, char * argv[]) {
 		}
 		pinMap[printSize/2][printSize/2] = 2;
 		if(active == true){
-			system("clear");
-			for(int i=0;i<printSize+1;i++)
-				printf("--");
-			printf("\n");
-			for(int i=0;i<printSize;i++){
-				printf("|");
-				for(int j=0;j<printSize;j++){
-					if(pinMap[i][j] == 1)
-						printf("&&");
-					else if(pinMap[i][j] == 2)
-						printf("<>");
-					else
-						printf("  ");
-				}
-				printf("|\n");
-			}
-			for(int i=0;i<printSize+1;i++)
-				printf("--");
-			printf("\n");
+			printSSHmonitor(10000,10000)
 			active = false;
 		}
 		/*
@@ -333,4 +319,25 @@ void SerialRead()
 		printf("%i bytes read : %s", serial1, buf);
 	}
 	close(fd);
+}
+void printSSHmonitor(int currentX,int currentY){
+	system("clear");
+	for(int i=0;i<printSize+1;i++)
+	printf("--");
+	printf("\n");
+	for(int i=0;i<printSize;i++){
+		printf("|");
+		for(int j=0;j<printSize;j++){
+			if(pinMap[i][j] == 1)
+			printf("&&");
+			else if(pinMap[i][j] == 2)
+			printf("<>");
+			else
+			printf("  ");
+		}
+		printf("|\n");
+	}
+	for(int i=0;i<printSize+1;i++)
+	printf("--");
+	printf("\n");
 }
