@@ -248,9 +248,10 @@ int main(int argc, char * argv[]) {
 				data_count[i]++;
 			else
 				data_count[i] = 0;
-			allMap[robotY+Yvalue][robotX+Xvalue] = 1;
+			if(allMap[robotY+Yvalue][robotX+Xvalue]==0)
+				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
 			active = true;
-			if(data_count[i] > 15){
+			if(data_count[i] > 10){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2;
 				data_count[i] = 0;
 				active = true;
@@ -329,7 +330,7 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[i+currentY-printSize/2][j+currentX-printSize/2];
-	pinMap[printSize/2][printSize/2] = 2;
+	pinMap[printSize/2][printSize/2] = 3;
 	system("clear");
 	printf("\n");
 	for(int i=0;i<printSize+1;i++)
