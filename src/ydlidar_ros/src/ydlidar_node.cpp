@@ -247,15 +247,15 @@ int main(int argc, char * argv[]) {
 			if( (difference < 0.005) &&	(difference != 0) && (YD_distance[i] > 0.15)){
 				data_count[i]++;
 				if(allMap[robotY+Yvalue][robotX+Xvalue]==0){
-				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
+				allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
 				}
 			}
 			else{
 				data_count[i] = 0;
 			}
 			active = true;
-			if(data_count[i] > 50){
-				allMap[robotY+Yvalue][robotX+Xvalue] = 2;
+			if(data_count[i] > 20){
+				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 				//active = true;
 			}
@@ -350,7 +350,7 @@ void printSSHmonitor(int currentY,int currentX){
 				allMap[i+currentY-printSize/2][j+currentX-printSize/2] = 0;
 			}
 			else if(pinMap[i][j] == 2)
-			printf("%%");
+			printf("##");
 			else if(pinMap[i][j] == 3)
 			printf("[]");
 			else 
