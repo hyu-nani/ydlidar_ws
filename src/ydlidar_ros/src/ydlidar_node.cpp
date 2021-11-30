@@ -247,6 +247,7 @@ int main(int argc, char * argv[]) {
 				int Yvalue = asin(YD_angle[i])*data_average[i];
 				pinMap[mapSize/2+Xvalue][mapSize/2+Yvalue] = 1;
 				data_count[i] = 0;
+				pinMap[mapSize/2][mapSize/2] = 2;
 			}
 		}
 		
@@ -264,6 +265,8 @@ int main(int argc, char * argv[]) {
 			for(int j=0;j<mapSize;j++){
 				if(pinMap[i][j] == 1)
 					printf("@");
+				else if(pinMap[i][j] == 2)
+					printf("+");
 				else
 					printf(" ");
 			}
