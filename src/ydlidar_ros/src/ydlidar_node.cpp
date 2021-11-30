@@ -236,13 +236,13 @@ int main(int argc, char * argv[]) {
 			int averageCount = 10 ; //average
 			data_average[i] = (data_average[i] * (averageCount-1) + YD_distance[i])/averageCount;
 			float dataDifference = abs(data_average[i] - YD_distance[i]);
-			if(dataDifference < 0.1){
+			if(dataDifference < 0.05){
 				data_count[i]++;
 			}
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] > 25){
+			if(data_count[i] > 100){
 				int Xvalue = acos(YD_angle[i])*data_average[i];
 				int Yvalue = asin(YD_angle[i])*data_average[i];
 				pinMap[mapSize/2+Xvalue][mapSize/2+Yvalue] = 1;
