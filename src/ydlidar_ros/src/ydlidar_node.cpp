@@ -33,8 +33,8 @@ int		serial1;
 bool	init1 = true;
 float	data_average[500]	=	{0};
 int		data_count[500]		=	{0};
-int printCount = 0;
-
+int		printCount = 0;
+int		pinMap[1000][1000]	=	{0};
 
 void SerialPrint(char* strBuffer);
 void SerialRead();
@@ -118,7 +118,6 @@ int main(int argc, char * argv[]) {
     bool inverted = true;
     bool isSingleChannel = false;
     bool isTOFLidar = false;
-	bool pinMap[1000][1000] = {0};
 	
     ros::NodeHandle nh;
     ros::Publisher scan_pub = nh.advertise<sensor_msgs::LaserScan>("scan", 1000);
