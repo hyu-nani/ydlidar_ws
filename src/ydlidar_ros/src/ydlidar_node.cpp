@@ -241,7 +241,7 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		int angleNum;
 		for(int i=0;i<500;i++){
-			float difference = abs(old_distance[i] - YD_distance[i]);
+			float difference = fabs(old_distance[i] - YD_distance[i]);
 			int Xvalue = -sin(YD_angle[i])*YD_distance[i]*5;
 			int Yvalue = cos(YD_angle[i])*YD_distance[i]*5;
 			if( (difference < 0.005) &&	(difference != 0) && (YD_distance[i] > 0.15)){
