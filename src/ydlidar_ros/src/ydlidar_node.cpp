@@ -346,7 +346,7 @@ void printSSHmonitor(int currentY,int currentX){
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1){
 				printf("--");
-				pinMap[i][j] = 0;
+				allMap[i+currentY-printSize/2][j+currentX-printSize/2] = 0;
 			}
 			else if(pinMap[i][j] == 2)
 			printf("OO");
