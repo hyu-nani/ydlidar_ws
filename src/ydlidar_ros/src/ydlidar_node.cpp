@@ -59,8 +59,8 @@ std::vector<float> split(const std::string &s, char delim) {
 void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 {
     int lidarReadCount = scan->scan_time / scan->time_increment;
-    printf("[YDLIDAR INFO]: I heard a laser scan %s[%d]:\n", scan->header.frame_id.c_str(), lidarReadCount);
-    printf("[YDLIDAR INFO]: angle_range : [%f, %f]\n", RAD2DEG(scan->angle_min), RAD2DEG(scan->angle_max));
+    //printf("[YDLIDAR INFO]: I heard a laser scan %s[%d]:\n", scan->header.frame_id.c_str(), lidarReadCount);
+    //printf("[YDLIDAR INFO]: angle_range : [%f, %f]\n", RAD2DEG(scan->angle_min), RAD2DEG(scan->angle_max));
     
 	for(int i = 0; i < lidarReadCount; i++) {
         float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
@@ -68,9 +68,9 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
         float val = scan->ranges[i];
         if(val != 0)
         	YD_distance[i] = val;
-		if(YD_angle[i]> -5 && YD_angle[i]< 5){
-        	printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
-   		}
+		//if(YD_angle[i]> -5 && YD_angle[i]< 5){
+        //	printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
+   		//}
     }
 //    for(int i = 0; i < count; i++) {
 //        float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
@@ -250,8 +250,8 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 			if(data_count[i] > 100){
-				int Xvalue = acos(YD_angle[i])*data_average[i]*100;
-				int Yvalue = asin(YD_angle[i])*data_average[i]*100;
+				int Xvalue = acos(YD_angle[i])*data_average[i]*1;
+				int Yvalue = asin(YD_angle[i])*data_average[i]*1;
 				allMap[robotX+Xvalue][robotY+Yvalue] = 1;
 				data_count[i] = 0;
 				active = true;
@@ -268,7 +268,7 @@ int main(int argc, char * argv[]) {
 			}
 		}
 		if(active == true){
-			//printSSHmonitor(robotX,robotY);
+			printSSHmonitor(robotX,robotY);
 			active = false;
 		}
 		system("clear");
