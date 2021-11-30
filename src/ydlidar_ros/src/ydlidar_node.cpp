@@ -248,8 +248,8 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 			if(data_count[i] > 10){
-				int Xvalue = asin(YD_angle[i])*data_average[i]*1;
-				int Yvalue = acos(YD_angle[i])*data_average[i]*1;
+				int Xvalue = asin(YD_angle[i])*YD_distance[i]*1;
+				int Yvalue = acos(YD_angle[i])*YD_distance[i]*1;
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
 				data_count[i] = 0;
 				active = true;
