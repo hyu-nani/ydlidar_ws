@@ -229,7 +229,7 @@ int main(int argc, char * argv[]) {
             
         }
 		//////////////////////////////////////////////////////////////////////////
-		int number = 10 ;
+		int number = 10 ; //average
 		bool active = false;
 		int angleNum;
 		for(int i=0;i<500;i++){
@@ -253,7 +253,7 @@ int main(int argc, char * argv[]) {
 			printCount++;
 		}
 		if(data_average[252] < 0.4){	//trans MS
-			SerialPrint("10 0 0"); //X Y angle
+			SerialPrint("10 0 90"); //X Y angle
 		}
 		for(int i=0;i<500;i++)
 			old_distance[i] = data_average[i];
