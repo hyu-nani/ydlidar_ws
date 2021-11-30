@@ -273,8 +273,9 @@ int main(int argc, char * argv[]) {
 			printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 			active = false;
 		}
-		if(count>1000){
+		if(count>10000){
 			robotY++;
+			printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 			count = 0;
 		}
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
