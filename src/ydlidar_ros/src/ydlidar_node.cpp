@@ -69,7 +69,7 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
         if(val != 0)
         	YD_distance[i] = val;
 		if(YD_angle[i]> -5 && YD_angle[i]< 5){
-        	printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
+        	//printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
    		}
     }
 //    for(int i = 0; i < count; i++) {
@@ -270,7 +270,7 @@ int main(int argc, char * argv[]) {
 		*/
 		if(active == true){
 			printSSHmonitor(robotX,robotY);
-			printf("angle-distance[%f - %f]252\n",YD_angle[252],YD_distance[252]);
+			printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 			active = false;
 		}
 		/*
