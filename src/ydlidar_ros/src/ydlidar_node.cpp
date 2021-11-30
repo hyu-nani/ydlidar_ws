@@ -242,8 +242,8 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		for(int i=0;i<500;i++){
 			float difference = fabs(old_distance[i] - YD_distance[i]);
-			int Xvalue = cos((YD_angle[i]/2+90)*M_PI/180)*YD_distance[i]*5;
-			int Yvalue = sin((YD_angle[i]/2+90)*M_PI/180)*YD_distance[i]*5;
+			int Xvalue = cos((YD_angle[i]+90)*M_PI/180)*YD_distance[i]*5;
+			int Yvalue = sin((YD_angle[i]+90)*M_PI/180)*YD_distance[i]*5;
 			if( (difference < 0.005) &&	(difference != 0) && (YD_distance[i] > 0.15)){
 				data_count[i]++;
 				if(allMap[robotY+Yvalue][robotX+Xvalue]==0){
@@ -254,7 +254,7 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 			active = true;
-			if(data_count[i] > 30){
+			if(data_count[i] > 50){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2;
 				data_count[i] = 0;
 				//active = true;
@@ -346,13 +346,13 @@ void printSSHmonitor(int currentY,int currentX){
 		printf("|");
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1){
-				printf("--");
+				printf("<>");
 				allMap[i+currentY-printSize/2][j+currentX-printSize/2] = 0;
 			}
 			else if(pinMap[i][j] == 2)
-			printf("OO");
+			printf("%%");
 			else if(pinMap[i][j] == 3)
-			printf("<>");
+			printf("[]");
 			else 
 			printf("  ");
 		}
