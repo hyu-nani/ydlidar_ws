@@ -62,7 +62,7 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
     printf("[YDLIDAR INFO]: I heard a laser scan %s[%d]:\n", scan->header.frame_id.c_str(), lidarReadCount);
     printf("[YDLIDAR INFO]: angle_range : [%f, %f]\n", RAD2DEG(scan->angle_min), RAD2DEG(scan->angle_max));
     
-	for(int i = 0; i < count; i++) {
+	for(int i = 0; i < lidarReadCount; i++) {
         float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
         YD_angle[i] = degree;
         float val = scan->ranges[i];
