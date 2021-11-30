@@ -256,7 +256,9 @@ int main(int argc, char * argv[]) {
 			}
 		}
 		for(int i=0;i<1000;i++){
-			printf(pinMap[i])
+			for(int j=0;j<1000;j++){
+				printf(pinMap[i][j]);
+			}
 		}
 		/*
 		if(active == true){
