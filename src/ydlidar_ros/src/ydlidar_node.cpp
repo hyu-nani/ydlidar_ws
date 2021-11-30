@@ -247,10 +247,10 @@ int main(int argc, char * argv[]) {
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] >50){
+			if(data_count[i] > 50){
 				int Xvalue = acos(YD_angle[i])*data_average[i]*10;
 				int Yvalue = asin(YD_angle[i])*data_average[i]*10;
-				pinMap[printSize/2+Xvalue][printSize/2+Yvalue] = 1;
+				allMap[robotX+Xvalue][robotY+Yvalue] = 1;
 				data_count[i] = 0;
 				active = true;
 			}
@@ -323,7 +323,7 @@ void SerialRead()
 }
 void printSSHmonitor(int currentX,int currentY){
 	for(int i = 0 ; i<printSize;i++)
-		for(int j = 0; i<printSize;i++)
+		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[i+currentX-printSize/2][j+currentY-printSize/2];
 	system("clear");
 	for(int i=0;i<printSize+1;i++)
@@ -333,7 +333,7 @@ void printSSHmonitor(int currentX,int currentY){
 		printf("|");
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1)
-			printf("&&");
+			printf("##");
 			else if(pinMap[i][j] == 2)
 			printf("<>");
 			else
