@@ -257,7 +257,7 @@ int main(int argc, char * argv[]) {
 			if(data_count[i] > 30){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2;
 				data_count[i] = 0;
-				active = true;
+				//active = true;
 			}
 		}
 		
