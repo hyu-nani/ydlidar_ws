@@ -249,8 +249,9 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 			if(data_count[i] >= 0){
-				int Xvalue = asin(YD_angle[i])*data_average[i]*100;
-				int Yvalue = acos(YD_angle[i])*data_average[i]*100;
+				int Xvalue = asin(YD_angle[i])*data_average[i]*10;
+				int Yvalue = acos(YD_angle[i])*data_average[i]*10;
+				printf("%d %d",Xvalue,Yvalue);
 				allMap[robotX+Xvalue][robotY+Yvalue] = 1;
 				data_count[i] = 0;
 				active = true;
@@ -269,6 +270,7 @@ int main(int argc, char * argv[]) {
 		*/
 		if(active == true){
 			printSSHmonitor(robotX,robotY);
+			printf("angle-distance[%f - %f]252\n",YD_angle[252],YD_distance[252]);
 			active = false;
 		}
 		/*
