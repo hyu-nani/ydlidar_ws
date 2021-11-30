@@ -249,8 +249,8 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 			if(data_count[i] > 10){
-				int Xvalue = sin(YD_angle[i])*YD_distance[i]*1;
-				int Yvalue = cos(YD_angle[i])*YD_distance[i]*1;
+				int Xvalue = sin(YD_angle[i])*YD_distance[i]*10;
+				int Yvalue = cos(YD_angle[i])*YD_distance[i]*10;
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
 				data_count[i] = 0;
 				active = true;
