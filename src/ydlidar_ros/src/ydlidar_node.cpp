@@ -241,13 +241,13 @@ int main(int argc, char * argv[]) {
 		for(int i=0;i<500;i++){
 			int averageCount = 10 ; //average
 			data_average[i] = (data_average[i] * (averageCount-1) + YD_distance[i])/averageCount;
-			if(abs(data_average[i] - YD_distance[i]) < 0.05){
+			if(abs(data_average[i] - YD_distance[i]) < 0.01){
 				data_count[i] = data_count[i] + 1;
 			}
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] >= 50){
+			if(data_count[i] > 50){
 				int Xvalue = asin(YD_angle[i])*data_average[i]*10;
 				int Yvalue = acos(YD_angle[i])*data_average[i]*10;
 				allMap[robotX+Xvalue][robotY+Yvalue] = 1;
