@@ -276,7 +276,7 @@ int main(int argc, char * argv[]) {
 			printf("|\n");
 		}
 		for(int i=0;i<mapSize;i++)
-			printf("-")
+			printf("-");
 		/*
 		if(active == true){
 			time_t now;
