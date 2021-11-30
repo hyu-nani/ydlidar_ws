@@ -242,7 +242,7 @@ int main(int argc, char * argv[]) {
 			int averageCount = 10 ; //average
 			data_average[i] = (data_average[i] * (averageCount-1) + YD_distance[i])/averageCount;
 			float difference = abs(data_average[i] - YD_distance[i]);
-			if( difference < 0.01 || difference != 0){
+			if( difference < 0.005 || difference != 0){
 				data_count[i] = data_count[i] + 1;
 			}
 			else{
