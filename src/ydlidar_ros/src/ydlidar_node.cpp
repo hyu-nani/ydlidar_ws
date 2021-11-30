@@ -242,16 +242,16 @@ int main(int argc, char * argv[]) {
 		int angleNum;
 		for(int i=0;i<500;i++){
 			float difference = abs(old_distance[i] - YD_distance[i]);
-			if( difference < 0.002 && difference != 0 && YD_distance[i] > 0.05){
+			int Xvalue = sin(YD_angle[i])*YD_distance[i]*10;
+			int Yvalue = cos(YD_angle[i])*YD_distance[i]*10;
+			if( difference < 0.002 && difference != 0 && YD_distance[i] > 0.05)
 				data_count[i]++;
-			}
-			else{
+			else
 				data_count[i] = 0;
-			}
+			allMap[robotY+Yvalue][robotX+Xvalue] = 1;
+			active = true;
 			if(data_count[i] > 15){
-				int Xvalue = sin(YD_angle[i])*YD_distance[i]*10;
-				int Yvalue = cos(YD_angle[i])*YD_distance[i]*10;
-				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
+				allMap[robotY+Yvalue][robotX+Xvalue] = 2;
 				data_count[i] = 0;
 				active = true;
 			}
@@ -338,11 +338,15 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i=0;i<printSize;i++){
 		printf("|");
 		for(int j=0;j<printSize;j++){
-			if(pinMap[i][j] == 1)
-			printf("##");
+			if(pinMap[i][j] == 1){
+				printf("--");
+				pinMap[i][j] = 0;
+			}
 			else if(pinMap[i][j] == 2)
+			printf("00");
+			else if(pinMap[i][j] == 3)
 			printf("<>");
-			else
+			else 
 			printf("  ");
 		}
 		printf("|\n");
