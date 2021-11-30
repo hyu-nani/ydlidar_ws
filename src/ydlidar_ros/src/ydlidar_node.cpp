@@ -45,7 +45,7 @@ int		robotX = sizeof(int)/2, robotY = sizeof(int)/2; //center
 
 void SerialPrint(char* strBuffer);
 void SerialRead();
-void printSSHmonitor(int currentX,int currentY);
+void printSSHmonitor(int currentY,int currentX);
 
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
@@ -330,7 +330,7 @@ void SerialRead()
 	}
 	close(fd);
 }
-void printSSHmonitor(int currentX,int currentY){
+void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[i+currentY-printSize/2][j+currentX-printSize/2];
