@@ -242,15 +242,15 @@ int main(int argc, char * argv[]) {
 		int angleNum;
 		for(int i=0;i<500;i++){
 			float difference = abs(old_distance[i] - YD_distance[i]);
-			if( difference < 0.001 && difference != 0 && YD_distance[i] > 0.01){
+			if( difference < 0.002 && difference != 0 && YD_distance[i] > 0.05){
 				data_count[i]++;
 			}
 			else{
 				data_count[i] = 0;
 			}
 			if(data_count[i] > 5){
-				int Xvalue = sin(YD_angle[i])*YD_distance[i]*1;
-				int Yvalue = cos(YD_angle[i])*YD_distance[i]*1;
+				int Xvalue = sin(YD_angle[i])*YD_distance[i]*10;
+				int Yvalue = cos(YD_angle[i])*YD_distance[i]*10;
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
 				data_count[i] = 0;
 				active = true;
