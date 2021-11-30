@@ -272,6 +272,7 @@ int main(int argc, char * argv[]) {
 			printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 			active = false;
 		}
+		printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 		/*
 		if(active == true){
 			time_t now;
