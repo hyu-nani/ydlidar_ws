@@ -334,7 +334,11 @@ void printSSHmonitor(int currentY,int currentX){
 	}
 	pinMap[printSize/2][printSize/2] = 3;
 	printf("\n");
-	for(int i=0;i<printSize+1;i++)
+	
+	for(int i=0;i<printSize/2-2;i++)
+	printf("--");
+	printf("FRONT");
+	for(int i=0;i<printSize/2-2;i++)
 	printf("--");
 	printf("\n");
 	for(int i=0;i<printSize;i++){
@@ -353,7 +357,10 @@ void printSSHmonitor(int currentY,int currentX){
 		}
 		printf("|\n");
 	}
-	for(int i=0;i<printSize+1;i++)
+	for(int i=0;i<printSize/2-2;i++)
+	printf("--");
+	printf("BACK");
+	for(int i=0;i<printSize/2-2;i++)
 	printf("--");
 	printf("\n");
 }
