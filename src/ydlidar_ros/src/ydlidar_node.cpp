@@ -272,6 +272,7 @@ int main(int argc, char * argv[]) {
 		}
 		*/
 		if(active == true){
+			printf("\n\t\tROS-lidar SSH monitor\n");
 			printSSHmonitor(robotY,robotX);
 			printf("count:%d  /  1-unit : %d cm ",count,unitDistance);
 			
