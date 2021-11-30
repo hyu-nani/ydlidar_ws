@@ -274,7 +274,7 @@ int main(int argc, char * argv[]) {
 		if(active == true){
 			printSSHmonitor(robotY,robotX);
 			printf("angle-distance[%f - %f]100 %d\n",YD_angle[100],YD_distance[100],count);
-			printf("--%f",cos(90));
+			printf("--%f",cos(90*M_PI/180));
 			
 			active = false;
 		}
