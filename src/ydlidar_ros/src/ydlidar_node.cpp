@@ -40,7 +40,7 @@ int		lidarReadCount;
 const int	printSize						=	50;
 int			pinMap[printSize][printSize]	=	{0};
 
-int		allMapSize = 1000000;
+int		allMapSize = 10000;
 int		allMap[allMapSize][allMapSize] = {0};			//All map
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
 
