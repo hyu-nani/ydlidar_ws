@@ -257,17 +257,16 @@ int main(int argc, char * argv[]) {
 				active = true;
 			}
 		}
-		/*
+		
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
 				float difference = abs(data_average[i] - old_distance[i]);
 				if (difference > 0.2){
-					active = true;
 					angleNum = i;
 				}
 			}
 		}
-		*/
+		
 		if(active == true){
 			printSSHmonitor(robotX,robotY);
 			printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
