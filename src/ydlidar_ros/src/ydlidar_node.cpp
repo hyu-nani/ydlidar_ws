@@ -261,7 +261,10 @@ int main(int argc, char * argv[]) {
 			}
 		}
 		system("clear");
+		for(int i=0;i<mapSize;i++)
+			printf("-")
 		for(int i=0;i<mapSize;i++){
+			printf("|");
 			for(int j=0;j<mapSize;j++){
 				if(pinMap[i][j] == 1)
 					printf("@");
@@ -270,8 +273,10 @@ int main(int argc, char * argv[]) {
 				else
 					printf(" ");
 			}
-			printf("\n");
+			printf("|\n");
 		}
+		for(int i=0;i<mapSize;i++)
+			printf("-")
 		/*
 		if(active == true){
 			time_t now;
