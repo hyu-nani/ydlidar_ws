@@ -271,7 +271,6 @@ int main(int argc, char * argv[]) {
 			printSSHmonitor(robotX,robotY);
 			active = false;
 		}
-		system("clear");
 		/*
 		if(active == true){
 			time_t now;
