@@ -35,7 +35,6 @@ bool	init1 = true;
 float	data_average[500]	=	{0};
 int		data_count[500]		=	{0};
 int		printCount = 0;
-bool	active = true;
 int		lidarReadCount;
 
 const int	printSize						=	50;
@@ -253,11 +252,9 @@ int main(int argc, char * argv[]) {
 			else{
 				data_count[i] = 0;
 			}
-			active = true;
 			if(data_count[i] > 15){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
-				//active = true;
 			}
 		}
 		
@@ -271,13 +268,11 @@ int main(int argc, char * argv[]) {
 			}
 		}
 		*/
-		if(active == true){
-			printf("\n\t\tROS-lidar SSH monitor\n");
-			printSSHmonitor(robotY,robotX);
-			printf("count:%d  /  1-unit : %d cm ",count,unitDistance);
-			
-			active = false;
-		}
+		system("clear");
+		printSSHmonitor(robotY,robotX);
+		printf("count:%d  /  1-unit : %d cm \n",count,unitDistance);
+		printf("\t\t[[ROS-lidar SSH monitor]]\n");
+		
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 		/*
 		if(active == true){
@@ -338,7 +333,6 @@ void printSSHmonitor(int currentY,int currentX){
 		}
 	}
 	pinMap[printSize/2][printSize/2] = 3;
-	system("clear");
 	printf("\n");
 	for(int i=0;i<printSize+1;i++)
 	printf("--");
