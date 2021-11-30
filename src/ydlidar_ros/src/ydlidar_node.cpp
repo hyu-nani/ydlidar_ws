@@ -21,6 +21,7 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <termios.h>
+#include <math.h>
 
 using namespace ydlidar;
 #define RAD2DEG(x) ((x)*180./M_PI)
@@ -239,7 +240,6 @@ int main(int argc, char * argv[]) {
             
         }
 		//////////////////////////////////////////////////////////////////////////
-		int angleNum;
 		for(int i=0;i<500;i++){
 			float difference = fabs(old_distance[i] - YD_distance[i]);
 			int Xvalue = -sin(YD_angle[i])*YD_distance[i]*5;
