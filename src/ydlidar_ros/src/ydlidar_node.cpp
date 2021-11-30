@@ -261,7 +261,7 @@ int main(int argc, char * argv[]) {
 				}
 			}
 		}
-		if(active == true){
+		if(active == true||active == false){
 			system("clear");
 			for(int i=0;i<mapSize;i++)
 				printf("--");
