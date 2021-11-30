@@ -340,7 +340,7 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("FRONT");
 	for(int i=0;i<printSize/2-1;i++)
 	printf("--");
-	printf("\n");
+	printf("-\n");
 	for(int i=0;i<printSize;i++){
 		printf("|");
 		for(int j=0;j<printSize;j++){
@@ -349,7 +349,7 @@ void printSSHmonitor(int currentY,int currentX){
 				allMap[i+currentY-printSize/2][j+currentX-printSize/2] = 0;
 			}
 			else if(pinMap[i][j] == 2)//hold , wall
-			printf("##");
+			printf("OO");
 			else if(pinMap[i][j] == 3)//center
 			printf("[]");
 			else//nothing
