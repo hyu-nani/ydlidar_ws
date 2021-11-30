@@ -34,7 +34,7 @@ bool	init1 = true;
 float	data_average[500]	=	{0};
 int		data_count[500]		=	{0};
 int		printCount = 0;
-
+bool	active = true;
 int		lidarReadCount;
 
 const int	printSize						=	50;
@@ -237,7 +237,6 @@ int main(int argc, char * argv[]) {
             
         }
 		//////////////////////////////////////////////////////////////////////////
-		bool active = false;
 		int angleNum;
 		for(int i=0;i<lidarReadCount;i++){
 			int averageCount = 10 ; //average
@@ -249,7 +248,7 @@ int main(int argc, char * argv[]) {
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] > 50){
+			if(data_count[i] > 20){
 				int Xvalue = asin(YD_angle[i])*data_average[i]*10;
 				int Yvalue = acos(YD_angle[i])*data_average[i]*10;
 				allMap[robotX+Xvalue][robotY+Yvalue] = 1;
