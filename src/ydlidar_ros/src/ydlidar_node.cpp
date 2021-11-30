@@ -346,11 +346,11 @@ void printSSHmonitor(int currentY,int currentX){
 		printf("|");
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1){
-				printf("<>");
+				printf("::");
 				allMap[i+currentY-printSize/2][j+currentX-printSize/2] = 0;
 			}
 			else if(pinMap[i][j] == 2)
-			printf("##");
+			printf("@@");
 			else if(pinMap[i][j] == 3)
 			printf("[]");
 			else 
