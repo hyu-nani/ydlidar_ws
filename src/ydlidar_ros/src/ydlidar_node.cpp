@@ -239,7 +239,7 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		bool active = false;
 		int angleNum;
-		for(int i=0;i<500;i++){
+		for(int i=0;i<lidarReadCount;i++){
 			int averageCount = 10 ; //average
 			data_average[i] = (data_average[i] * (averageCount-1) + YD_distance[i])/averageCount;
 			float dataDifference = abs(data_average[i] - YD_distance[i]);
