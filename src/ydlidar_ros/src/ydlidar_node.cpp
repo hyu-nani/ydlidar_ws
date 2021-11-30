@@ -43,6 +43,7 @@ int		robotX = sizeof(int)/2, robotY = sizeof(int)/2; //center
 
 void SerialPrint(char* strBuffer);
 void SerialRead();
+void printSSHmonitor(int currentX,int currentY);
 
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
