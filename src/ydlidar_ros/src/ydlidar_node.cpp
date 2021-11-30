@@ -267,7 +267,7 @@ int main(int argc, char * argv[]) {
 		}
 		pinMap[printSize/2][printSize/2] = 2;
 		if(active == true){
-			printSSHmonitor(10000,10000)
+			printSSHmonitor(robotX,robotY);
 			active = false;
 		}
 		/*
@@ -322,6 +322,9 @@ void SerialRead()
 	close(fd);
 }
 void printSSHmonitor(int currentX,int currentY){
+	for(int i = 0 ; i<printSize;i++)
+		for(int j = 0; i<printSize;i++)
+			pinMap[i][j] = allMap[i+currentX-printSize/2][j+currentY-printSize/2];
 	system("clear");
 	for(int i=0;i<printSize+1;i++)
 	printf("--");
