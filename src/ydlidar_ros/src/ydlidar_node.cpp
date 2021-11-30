@@ -243,13 +243,13 @@ int main(int argc, char * argv[]) {
 			int averageCount = 10 ; //average
 			data_average[i] = (data_average[i] * (averageCount-1) + YD_distance[i])/averageCount;
 			float difference = abs(data_average[i] - YD_distance[i]);
-			if( difference < 0.005 || difference != 0){
+			if( difference < 0.01 && difference > 0.001){
 				data_count[i] = data_count[i] + 1;
 			}
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] > 100){
+			if(data_count[i] > 10){
 				int Xvalue = asin(YD_angle[i])*data_average[i]*10;
 				int Yvalue = acos(YD_angle[i])*data_average[i]*10;
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
@@ -272,10 +272,6 @@ int main(int argc, char * argv[]) {
 			printSSHmonitor(robotY,robotX);
 			printf("angle-distance[%f - %f]253 %d\n",YD_angle[253],YD_distance[253],count);
 			active = false;
-		}
-		if(count>100){
-			//robotY++;
-			count = 0;
 		}
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 		/*
