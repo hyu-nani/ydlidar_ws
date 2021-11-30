@@ -252,7 +252,7 @@ int main(int argc, char * argv[]) {
 			if(data_count[i] > 100){
 				int Xvalue = asin(YD_angle[i])*data_average[i]*10;
 				int Yvalue = acos(YD_angle[i])*data_average[i]*10;
-				allMap[robotX+Xvalue][robotY+Yvalue] = 1;
+				allMap[robotY+Yvalue][robotX+Xvalue] = 1;
 				data_count[i] = 0;
 				active = true;
 			}
@@ -269,7 +269,7 @@ int main(int argc, char * argv[]) {
 		}
 		*/
 		if(active == true){
-			printSSHmonitor(robotX,robotY);
+			printSSHmonitor(robotY,robotX);
 			printf("angle-distance[%f - %f]253 %d\n",YD_angle[253],YD_distance[253],count);
 			active = false;
 		}
@@ -333,7 +333,7 @@ void SerialRead()
 void printSSHmonitor(int currentX,int currentY){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
-			pinMap[i][j] = allMap[i+currentX-printSize/2][j+currentY-printSize/2];
+			pinMap[i][j] = allMap[i+currentY-printSize/2][j+currentX-printSize/2];
 	pinMap[printSize/2][printSize/2] = 2;
 	system("clear");
 	printf("\n");
