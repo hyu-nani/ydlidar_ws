@@ -241,9 +241,8 @@ int main(int argc, char * argv[]) {
 		for(int i=0;i<lidarReadCount;i++){
 			int averageCount = 10 ; //average
 			data_average[i] = (data_average[i] * (averageCount-1) + YD_distance[i])/averageCount;
-			float dataDifference = abs(data_average[i] - YD_distance[i]);
-			if(dataDifference < 0.05){
-				data_count[i]++;
+			if(abs(data_average[i] - YD_distance[i]) < 0.05){
+				data_count[i] = data_count[i] + 1;
 			}
 			else{
 				data_count[i] = 0;
@@ -257,7 +256,7 @@ int main(int argc, char * argv[]) {
 				active = true;
 			}
 		}
-		
+		/*
 		if (old_distance[0] != 0){
 			for(int i=0;i<500;i++){
 				float difference = abs(data_average[i] - old_distance[i]);
@@ -266,13 +265,13 @@ int main(int argc, char * argv[]) {
 				}
 			}
 		}
-		
+		*/
 		if(active == true){
 			printSSHmonitor(robotX,robotY);
 			printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 			active = false;
 		}
-		printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
+		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 		/*
 		if(active == true){
 			time_t now;
