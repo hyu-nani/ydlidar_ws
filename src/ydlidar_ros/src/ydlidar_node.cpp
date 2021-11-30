@@ -34,7 +34,8 @@ bool	init1 = true;
 float	data_average[500]	=	{0};
 int		data_count[500]		=	{0};
 int		printCount = 0;
-int		pinMap[1000][1000]	=	{0};
+const int	mapSize				=	100;
+int		pinMap[mapSize][mapSize]	=	{0};
 
 void SerialPrint(char* strBuffer);
 void SerialRead();
@@ -238,7 +239,7 @@ int main(int argc, char * argv[]) {
 			if(dataDifference < 0.1){
 				data_count[i]++;
 			}
-			if(data_count[i] > 50){
+			if(data_count[i] > 100){
 				int Xvalue = acos(YD_angle[i])*data_average[i];
 				int Yvalue = asin(YD_angle[i])*data_average[i];
 				pinMap[Xvalue][Yvalue] = 1;
@@ -255,13 +256,14 @@ int main(int argc, char * argv[]) {
 				}
 			}
 		}
-		for(int i=0;i<1000;i++){
-			for(int j=0;j<1000;j++){
-				if(pinMap[i][j] = 1)
-					printf("0");
+		for(int i=0;i<mapSize;i++){
+			for(int j=0;j<mapSize;j++){
+				if(pinMap[i][j] == 1)
+					printf("@");
 				else
 					printf(" ");
 			}
+			printf("\n");
 		}
 		/*
 		if(active == true){
