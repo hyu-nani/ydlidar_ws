@@ -242,7 +242,7 @@ int main(int argc, char * argv[]) {
 		for(int i=0;i<500;i++){
 			float difference = abs(old_distance[i] - YD_distance[i]);
 			if( difference < 0.01 && difference != 0){
-				data_count[i]++:
+				data_count[i]++;
 			}
 			else{
 				data_count[i] = 0;
