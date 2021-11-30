@@ -248,6 +248,7 @@ int main(int argc, char * argv[]) {
 				pinMap[mapSize/2+Xvalue][mapSize/2+Yvalue] = 1;
 				data_count[i] = 0;
 				pinMap[mapSize/2][mapSize/2] = 2;
+				active = true;
 			}
 		}
 		
@@ -260,25 +261,28 @@ int main(int argc, char * argv[]) {
 				}
 			}
 		}
-		system("clear");
-		for(int i=0;i<mapSize;i++)
-			printf("-");
-		printf("\n");
-		for(int i=0;i<mapSize;i++){
-			printf("|");
-			for(int j=0;j<mapSize;j++){
-				if(pinMap[i][j] == 1)
-					printf("@");
-				else if(pinMap[i][j] == 2)
-					printf("+");
-				else
-					printf(" ");
+		if(active == true){
+			system("clear");
+			for(int i=0;i<mapSize;i++)
+				printf("-");
+			printf("\n");
+			for(int i=0;i<mapSize;i++){
+				printf("|");
+				for(int j=0;j<mapSize;j++){
+					if(pinMap[i][j] == 1)
+						printf("@");
+					else if(pinMap[i][j] == 2)
+						printf("+");
+					else
+						printf(" ");
+				}
+				printf("|\n");
 			}
-			printf("|\n");
+			for(int i=0;i<mapSize;i++)
+				printf("-");
+			printf("\n");
+			active = false;
 		}
-		for(int i=0;i<mapSize;i++)
-			printf("-");
-		printf("\n");
 		/*
 		if(active == true){
 			time_t now;
