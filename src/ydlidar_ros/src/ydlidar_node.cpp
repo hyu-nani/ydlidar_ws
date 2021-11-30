@@ -252,7 +252,7 @@ int main(int argc, char * argv[]) {
 			else{
 				data_count[i] = 0;
 			}
-			if(data_count[i] > 10){
+			if(data_count[i] > 5){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 			}
@@ -270,8 +270,8 @@ int main(int argc, char * argv[]) {
 		*/
 		system("clear");
 		printSSHmonitor(robotY,robotX);
-		printf("count:%d  /  1-unit : %d cm \n",count,unitDistance);
-		printf("\t\t[[ROS-lidar SSH monitor]]\n");
+		printf("count:%d  /  1-unit : %d cm   []Robot  ::Sensing  OOWall\n",count,unitDistance);
+		printf("\t\t[[ ROS-lidar SSH monitor ]]\n");
 		
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 		/*
