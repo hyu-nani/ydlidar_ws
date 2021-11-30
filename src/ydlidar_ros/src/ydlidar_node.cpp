@@ -241,7 +241,7 @@ int main(int argc, char * argv[]) {
 		int angleNum;
 		for(int i=0;i<500;i++){
 			float difference = abs(old_distance[i] - YD_distance[i]);
-			if( difference < 0.01 && difference != 0 && YD_distance[i] > 0.05){
+			if( difference < 0.01 && difference != 0 && YD_distance[i] > 0.01){
 				data_count[i]++;
 			}
 			else{
