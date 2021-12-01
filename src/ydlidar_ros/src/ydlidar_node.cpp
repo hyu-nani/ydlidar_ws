@@ -337,7 +337,7 @@ void printSSHmonitor(int currentY,int currentX){
 			pinMap[i][j] = allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX];
 	pinMap[printSize/2][printSize/2] = 3;
 	printf("\n ");
-	
+	printf("\033[97m");//white
 	for(int i=0;i<printSize/2-1;i++)
 	printf("--");
 	printf("FRONT");
@@ -347,17 +347,20 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i=0;i<printSize;i++){
 		printf(" |");
 		for(int j=0;j<printSize;j++){
-			if(pinMap[i][j] == 1)//sensitive
-			printf("::");
+			if(pinMap[i][j] == 1){//sensitive
+				printf("\033[90m");//dark gray
+				printf("::");
+				printf("\033[97m");//white
+			}
 			else if(pinMap[i][j] == 2){//hold , wall
-				printf("\033[31m");
+				printf("\033[31m");//red
 				printf("OO");
-				printf("\033[0m");
+				printf("\033[97m");//white
 			}
 			else if(pinMap[i][j] == 3){//center
-				printf("\033[32m");
+				printf("\033[92m");//light grren
 				printf("[]");
-				printf("\033[0m");
+				printf("\033[97m");//white
 			}
 			else//nothing
 			printf("  ");
@@ -371,4 +374,5 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i=0;i<printSize/2-1;i++)
 	printf("--");
 	printf("\n");
+	printf("\033[0m");//white
 }
