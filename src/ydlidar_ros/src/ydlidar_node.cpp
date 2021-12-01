@@ -331,7 +331,7 @@ void SerialRead()
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++){
 		for(int j = 0; j<printSize;j++){
-			pinMap[i][j] = allMap[(i+currentY-printSize/2)*printScale][(j+currentX-printSize/2)*printScale];
+			pinMap[i][j] = allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX];
 		}
 	}
 	pinMap[printSize/2][printSize/2] = 3;
