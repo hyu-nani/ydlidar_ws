@@ -332,8 +332,8 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++){
 		for(int j = 0; j<printSize;j++){
 			int point = 0;
-			for(int k=-printScale/2; k<printScale/2;k++)
-				for(int p=-printScale/2; p<printScale/2;p++)
+			for(int k=0; k<printScale;k++)
+				for(int p=0; p<printScale;p++)
 					if(allMap[i+k+currentY][j+p+currentX] == 1)
 						point++;
 			if(point > sqrt(printScale))
@@ -354,8 +354,8 @@ void printSSHmonitor(int currentY,int currentX){
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1){//sensitive
 				printf("::");
-				for(int k=-printScale/2; k<printScale/2;k++)
-					for(int p=-printScale/2; p<printScale/2;p++)
+				for(int k=0; k<printScale;k++)
+					for(int p=0; p<printScale;p++)
 						allMap[i+k+currentY][j+p+currentX] = 0;
 			}
 			else if(pinMap[i][j] == 2)//hold , wall
