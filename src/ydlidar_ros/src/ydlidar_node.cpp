@@ -248,13 +248,11 @@ int main(int argc, char * argv[]) {
 			int Yvalue = round(-cos(YD_angle[i]*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 			if(allMap[robotY+Yvalue][robotX+Xvalue]!=2)
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
-			if( (difference < 0.01) &&	(difference != 0) && (YD_distance[i] > 0.15)){
+			if( (difference < 0.01) &&	(difference != 0) && (YD_distance[i] > 0.15))
 				data_count[i]++;
-			}
-			else{
+			else
 				data_count[i] = 0;
-			}
-			if(data_count[i] > 10){
+			if(data_count[i] > 15){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 			}
@@ -333,11 +331,9 @@ void SerialRead()
 	close(fd);
 }
 void printSSHmonitor(int currentY,int currentX){
-	for(int i = 0 ; i<printSize;i++){
-		for(int j = 0; j<printSize;j++){
+	for(int i = 0 ; i<printSize;i++)
+		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX];
-		}
-	}
 	pinMap[printSize/2][printSize/2] = 3;
 	printf("\n ");
 	
