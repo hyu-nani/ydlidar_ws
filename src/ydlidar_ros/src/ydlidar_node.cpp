@@ -39,9 +39,10 @@ int		lidarReadCount;
 
 const int	printSize						=	50;
 int			pinMap[printSize][printSize]	=	{0};
-	
-float		unitScale	=	1.0;//1unit cm
-const int	allMapSize = 20000;
+int			printScale						=	5.0//scale
+
+float		unitScale						=	1.0;//1unit cm
+const int	allMapSize						=	20000;
 unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
 
@@ -330,7 +331,7 @@ void SerialRead()
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++){
 		for(int j = 0; j<printSize;j++){
-			pinMap[i][j] = allMap[i+currentY-printSize/2][j+currentX-printSize/2];
+			pinMap[i][j] = allMap[(i+currentY-printSize/2)*printScale][(j+currentX-printSize/2)*printScale];
 		}
 	}
 	pinMap[printSize/2][printSize/2] = 3;
