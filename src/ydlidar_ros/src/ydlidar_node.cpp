@@ -248,7 +248,7 @@ int main(int argc, char * argv[]) {
 			if( (difference < 0.005) &&	(difference != 0) && (YD_distance[i] > 0.15)){
 				data_count[i]++;
 				if(allMap[robotY+Yvalue][robotX+Xvalue]==0){
-				allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
+					allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
 				}
 			}
 			else{
@@ -337,7 +337,7 @@ void printSSHmonitor(int currentY,int currentX){
 					if(allMap[i+k+currentY][j+p+currentX] == 1)
 						point++;
 			if(point >= sqrt(printScale))
-				pinMap[i][j] = 1;
+				allMap[i+currentY][j+currentX] = 1;
 		}
 	}
 	pinMap[printSize/2][printSize/2] = 3;
