@@ -42,7 +42,7 @@ int			pinMap[printSize][printSize]	=	{0};
 	
 float		unitScale	=	8.0;//1unit cm
 const int	allMapSize = 1000000;
-__int64		allMap[allMapSize][allMapSize] = {0};			//All map
+unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
 
 void SerialPrint(char* strBuffer);
