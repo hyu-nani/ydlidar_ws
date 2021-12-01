@@ -271,7 +271,7 @@ int main(int argc, char * argv[]) {
 		*/
 		system("clear");
 		printSSHmonitor(robotY,robotX);
-		printf("count:%d  /  1-unit : %d cm   []Robot  ::Sensing  OOWall\n",count,unitScale);
+		printf("count:%d  /  1-unit : %f cm   []Robot  ::Sensing  OOWall\n",count,unitScale);
 		printf("\t\t[[ ROS-lidar SSH monitor ]]\n");
 		
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
