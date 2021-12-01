@@ -40,7 +40,7 @@ int		lidarReadCount;
 const int	printSize						=	50;
 int			pinMap[printSize][printSize]	=	{0};
 	
-int			unitScale	=	5;//1unit cm
+float		unitScale	=	5.0;//1unit cm
 const int	allMapSize = 10000;
 int		allMap[allMapSize][allMapSize] = {0};			//All map
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
@@ -242,8 +242,8 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		for(int i=0;i<500;i++){
 			float difference = fabs(old_distance[i] - YD_distance[i]);
-			int Xvalue = round(-sin(YD_angle[i]*M_PI/180.0)*YD_distance[i]*100/unitScale);
-			int Yvalue = round(-cos(YD_angle[i]*M_PI/180.0)*YD_distance[i]*100/unitScale);
+			int Xvalue = round(-sin(YD_angle[i]*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+			int Yvalue = round(-cos(YD_angle[i]*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 			if( (difference < 0.01) &&	(difference != 0) && (YD_distance[i] > 0.15)){
 				data_count[i]++;
 				if(allMap[robotY+Yvalue][robotX+Xvalue]==0){
