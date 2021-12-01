@@ -350,14 +350,14 @@ void printSSHmonitor(int currentY,int currentX){
 			if(pinMap[i][j] == 1)//sensitive
 			printf("::");
 			else if(pinMap[i][j] == 2){//hold , wall
-				system("Color 0A");
+				printf("\033[31m");
 				printf("OO");
-				system("Color 07");
+				printf("\033[0m");
 			}
 			else if(pinMap[i][j] == 3){//center
-				system("Color 04");
+				printf("\033[32m");
 				printf("[]");
-				system("Color 07");
+				printf("\033[0m");
 			}
 			else//nothing
 			printf("  ");
