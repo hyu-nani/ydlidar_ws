@@ -22,6 +22,7 @@
 #include <errno.h>
 #include <termios.h>
 #include <math.h>
+#include <stdlib.h>
 
 using namespace ydlidar;
 #define RAD2DEG(x) ((x)*180./M_PI)
@@ -348,10 +349,16 @@ void printSSHmonitor(int currentY,int currentX){
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1)//sensitive
 			printf("::");
-			else if(pinMap[i][j] == 2)//hold , wall
-			printf("OO");
-			else if(pinMap[i][j] == 3)//center
-			printf("[]");
+			else if(pinMap[i][j] == 2){//hold , wall
+				system("Color 0A");
+				printf("OO");
+				system("Color 07");
+			}
+			else if(pinMap[i][j] == 3){//center
+				system("Color 04");
+				printf("[]");
+				system("Color 07");
+			}
 			else//nothing
 			printf("  ");
 		}
