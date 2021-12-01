@@ -68,9 +68,10 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 	for(int i = 0; i < lidarReadCount; i++) {
         float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
         YD_angle[i] = degree;
-        float val = scan->ranges[i];
-        if(val != 0)
-        	YD_distance[i] = val;
+        YD_distance[i] = scan->ranges[i];
+		//float val = scan->ranges[i];
+        //if(val != 0)
+        //	YD_distance[i] = val;
 		//if(YD_angle[i]> -5 && YD_angle[i]< 5){
         	//printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
    		//}
