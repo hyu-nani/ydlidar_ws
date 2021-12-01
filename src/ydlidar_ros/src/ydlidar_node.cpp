@@ -259,16 +259,6 @@ int main(int argc, char * argv[]) {
 			}
 		}
 		
-		/*
-		if (old_distance[0] != 0){
-			for(int i=0;i<500;i++){
-				float difference = abs(data_average[i] - old_distance[i]);
-				if (difference > 0.2){
-					angleNum = i;
-				}
-			}
-		}
-		*/
 		system("clear");
 		printSSHmonitor(robotY,robotX);
 		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[90m ::Sensing \033[31m OOWall\n\033[0m",count,unitScale,printScale);
