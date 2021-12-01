@@ -254,7 +254,7 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 			if(data_count[i] > 20){
-				//allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
+				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 			}
 		}
