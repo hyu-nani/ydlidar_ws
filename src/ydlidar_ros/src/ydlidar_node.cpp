@@ -329,15 +329,15 @@ void SerialRead()
 	close(fd);
 }
 void printSSHmonitor(int currentY,int currentX){
-	for(int i = 0 ; i<printSize;i++){
-		for(int j = 0; j<printSize;j++){
+	for(int i = 0 ; i<printSize*printScale;i+=printScale){
+		for(int j = 0; j<printSize*printScale;j+=printScale){
 			int point = 0;
 			for(int k=0; k<printScale;k++)
 				for(int p=0; p<printScale;p++)
 					if(allMap[i+k+currentY][j+p+currentX] == 1)
 						point++;
 			if(point >= sqrt(printScale))
-				allMap[i+currentY][j+currentX] = 1;
+				pinMap[i][j] = 1;
 		}
 	}
 	pinMap[printSize/2][printSize/2] = 3;
