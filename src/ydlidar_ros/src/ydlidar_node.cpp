@@ -245,11 +245,9 @@ int main(int argc, char * argv[]) {
 			float difference = fabs(old_distance[i] - YD_distance[i]);
 			int Xvalue = round(-sin(YD_angle[i]*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 			int Yvalue = round(-cos(YD_angle[i]*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+			allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
 			if( (difference < 0.005) &&	(difference != 0) && (YD_distance[i] > 0.15)){
 				data_count[i]++;
-				if(allMap[robotY+Yvalue][robotX+Xvalue]==0){
-				allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
-				}
 			}
 			else{
 				data_count[i] = 0;
