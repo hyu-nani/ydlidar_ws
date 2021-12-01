@@ -41,7 +41,7 @@ const int	printSize						=	50;
 int			pinMap[printSize][printSize]	=	{0};
 	
 float		unitScale	=	1.0;//1unit cm
-const int	allMapSize = 1000000;
+const int	allMapSize = 100000;
 unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
 
