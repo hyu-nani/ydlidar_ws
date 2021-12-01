@@ -272,7 +272,7 @@ int main(int argc, char * argv[]) {
 		*/
 		system("clear");
 		printSSHmonitor(robotY,robotX);
-		printf("count:%d  /  1-unit : %f cm   []Robot  ::Sensing  OOWall\n",count,unitScale);
+		printf("count:%d  /  1-unit : %f cm  / print scale : %d  []Robot  ::Sensing  OOWall\n",count,unitScale,printScale);
 		printf("\t\t[[ ROS-lidar SSH monitor ]]\n");
 		
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
@@ -346,10 +346,8 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i=0;i<printSize;i++){
 		printf("|");
 		for(int j=0;j<printSize;j++){
-			if(pinMap[i][j] == 1){//sensitive
-				printf("::");
-				allMap[i+currentY-printSize/2][j+currentX-printSize/2] = 0;
-			}
+			if(pinMap[i][j] == 1)//sensitive
+			printf("::");
 			else if(pinMap[i][j] == 2)//hold , wall
 			printf("OO");
 			else if(pinMap[i][j] == 3)//center
@@ -359,6 +357,10 @@ void printSSHmonitor(int currentY,int currentX){
 		}
 		printf("|\n");
 	}
+	for(int i=0;i<allMapSize;i++)
+		for(int j=0;j<allMapSize;j++)
+			if(allMap[i][j] == 1)
+				allMap[i][j] = 0;
 	for(int i=0;i<printSize/2;i++)
 	printf("--");
 	printf("BACK");
