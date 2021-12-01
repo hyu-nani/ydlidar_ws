@@ -363,6 +363,6 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("\n");
 	for(int i=0;i<printSize;i++)
 		for(int j=0;j<printSize;j++)
-			if(allMap[i-printSize/2+currentY][j-printSize/2+currentX] == 1)
-				allMap[i-printSize/2+currentY][j-printSize/2+currentX] = 0;
+			if(allMap[i-printSize+currentY][j-printSize+currentX] == 1)
+				allMap[i-printSize+currentY][j-printSize+currentX] = 0;
 }
