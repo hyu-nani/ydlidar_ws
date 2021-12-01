@@ -39,7 +39,7 @@ int		lidarReadCount;
 
 const int	printSize						=	50;
 int			pinMap[printSize][printSize]	=	{0};
-int			printScale						=	1.0;//scale
+int			printScale						=	2.0;//scale
 
 float		unitScale						=	5.0;//1unit cm
 const int	allMapSize						=	20000;
@@ -248,7 +248,7 @@ int main(int argc, char * argv[]) {
 			if( (difference < 0.005) &&	(difference != 0) && (YD_distance[i] > 0.15)){
 				data_count[i]++;
 				if(allMap[robotY+Yvalue][robotX+Xvalue]==0){
-					allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
+				allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
 				}
 			}
 			else{
@@ -331,7 +331,7 @@ void SerialRead()
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++){
 		for(int j = 0; j<printSize;j++){
-			pinMap[i][j] = allMap[i+currentY][j+currentX];
+			pinMap[i][j] = allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX];
 		}
 	}
 	pinMap[printSize/2][printSize/2] = 3;
@@ -348,7 +348,7 @@ void printSSHmonitor(int currentY,int currentX){
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1){//sensitive
 				printf("::");
-				allMap[i+currentY][j+currentX] = 0;
+				allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX] = 0;
 			}
 			else if(pinMap[i][j] == 2)//hold , wall
 			printf("OO");
