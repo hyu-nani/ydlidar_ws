@@ -265,7 +265,7 @@ int main(int argc, char * argv[]) {
 				allPointMap[i][j] = 0;
 		//add point at the pointMap
 		int pointRange = 50;
-		int pointMax=0,pointX=0,pointY=0;
+		unsigned int pointMax=0,pointX=0,pointY=0;
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
 				if(allMap[i][j]==2)
