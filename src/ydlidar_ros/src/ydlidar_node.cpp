@@ -264,7 +264,7 @@ int main(int argc, char * argv[]) {
 			for(int j=0;j<allMapSize;j++)
 				allPointMap[i][j] = 0;
 		//add point at the pointMap
-		int pointRange = 5;
+		int pointRange = 50;
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
 				if(allMap[i][j]==2)
@@ -272,10 +272,16 @@ int main(int argc, char * argv[]) {
 						for(int p=-pointRange;p<pointRange;p++)
 							allPointMap[k+i][p+j]++;
 		//find score and record
+		int max=0,pointX,pointY;
 		for(int i=0;i<allMapSize;i++)
-			for(int j=0;j<allMapSize;j++)
-				if(allPointMap[i][j] > 10)
-					allMap[i][j] = 3;//departure
+			for(int j=0;j<allMapSize;j++){
+				if(allPointMap[i][j] > max){
+					max = allPointMap[i][j];
+					pointY=i;
+					pointX=j;
+				}
+			}
+		allMap[pointY][pointX] = 3;
 		system("clear");
 		printSSHmonitor(robotY,robotX);
 		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[90m ::Sensing \033[31m OOWall\n\033[0m",count,unitScale,printScale);
