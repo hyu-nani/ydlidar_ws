@@ -279,7 +279,7 @@ int main(int argc, char * argv[]) {
 					pointMax = allPointMap[i][j];
 					pointY=i;
 					pointX=j;
-					allMap[pointY][pointX] = 3;
+					printf("%d",pointMax);
 				}
 		allMap[pointY][pointX] = 3;
 		system("clear");
