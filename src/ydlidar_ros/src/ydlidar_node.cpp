@@ -265,6 +265,7 @@ int main(int argc, char * argv[]) {
 				allPointMap[i][j] = 0;
 		//add point at the pointMap
 		int pointRange = 50;
+		int pointMax=0,pointX=0,pointY=0;
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
 				if(allMap[i][j]==2)
@@ -272,13 +273,13 @@ int main(int argc, char * argv[]) {
 						for(int p=-pointRange;p<pointRange;p++)
 							allPointMap[k+i][p+j]++;
 		//find score and record
-		int pointMax=0,pointX=0,pointY=0;
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
 				if(allPointMap[i][j] > pointMax){
 					pointMax = allPointMap[i][j];
 					pointY=i;
 					pointX=j;
+					allMap[pointY][pointX] = 3;
 				}
 		allMap[pointY][pointX] = 3;
 		system("clear");
