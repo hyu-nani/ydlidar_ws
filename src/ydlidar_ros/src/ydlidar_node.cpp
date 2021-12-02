@@ -261,8 +261,11 @@ int main(int argc, char * argv[]) {
 		}
 		//clear
 		for(int i=0;i<allMapSize;i++)
-			for(int j=0;j<allMapSize;j++)
+			for(int j=0;j<allMapSize;j++){
 				allPointMap[i][j] = 0;
+				if (allMap[i][j] == 3)
+					allMap = 0;
+			}
 		//add point at the pointMap
 		int pointRange = 10;
 		unsigned int pointMax=0,pointX=0,pointY=0;
