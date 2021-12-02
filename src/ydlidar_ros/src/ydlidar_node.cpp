@@ -280,7 +280,7 @@ int main(int argc, char * argv[]) {
 					pointY=i;
 					pointX=j;
 				}
-		printf("pointMax:%d",pointMax);
+		printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 		allMap[pointY][pointX] = 3;
 		system("clear");
 		printSSHmonitor(robotY,robotX);
