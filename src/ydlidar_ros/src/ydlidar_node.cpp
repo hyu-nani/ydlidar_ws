@@ -264,7 +264,7 @@ int main(int argc, char * argv[]) {
 			for(int j=0;j<allMapSize;j++){
 				allPointMap[i][j] = 0;
 				if (allMap[i][j] == 3)
-					allMap = 0;
+					allMap[i][j] = 0;
 			}
 		//add point at the pointMap
 		int pointRange = 10;
