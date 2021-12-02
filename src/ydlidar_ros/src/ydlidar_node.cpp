@@ -43,7 +43,7 @@ int			pinMap[printSize][printSize]	=	{0};
 int			printScale						=	1;	//scale
 
 float		unitScale						=	10.0;//1unit cm
-const int	allMapSize						=	20000;
+const int	allMapSize						=	2000;
 unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
@@ -259,6 +259,10 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 		}
+		//clear
+		for(int i=0;i<allMapSize;i++)
+			for(int j=0;j<allMapSize;j++)
+				allPointMap[i][j] = 0;
 		//add point at the pointMap
 		int pointRange = 5;
 		for(int i=0;i<allMapSize;i++)
