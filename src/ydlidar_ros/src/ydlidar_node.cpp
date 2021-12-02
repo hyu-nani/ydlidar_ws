@@ -44,7 +44,8 @@ int			printScale						=	1;	//scale
 
 float		unitScale						=	10.0;//1unit cm
 const int	allMapSize						=	20000;
-unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map
+unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map wall, sensing, robot
+unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
 
 void SerialPrint(char* strBuffer);
@@ -258,7 +259,19 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 		}
-		
+		//add point at the pointMap
+		int pointRange = 5;
+		for(i=0;i<allMapSize;i++)
+			for(j=0;j<allMapSize;j++)
+				if(allMap[i][j]==2)
+					for(int k=-pointRange;k<pointRange;k++)
+						for(int p=-pointRange;p<pointRange;p++)
+							allPointMap[k+i][p+j]++;
+		//find score and record
+		for(i=0;i<allMapSize;i++)
+			for(j=0;j<allMapSize;j++)
+				if(allPointMap[i][j] > 10)
+					allMap[i][j] = 3;//departure
 		system("clear");
 		printSSHmonitor(robotY,robotX);
 		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[90m ::Sensing \033[31m OOWall\n\033[0m",count,unitScale,printScale);
@@ -325,7 +338,7 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX];
-	pinMap[printSize/2][printSize/2] = 3;
+	pinMap[printSize/2][printSize/2] = 4;
 	printf("\n ");
 	printf("\033[97m");//white
 	for(int i=0;i<printSize/2-1;i++)
@@ -347,7 +360,12 @@ void printSSHmonitor(int currentY,int currentX){
 				printf("  ");
 				printf("\033[40m\033[97m");//black back & white
 			}
-			else if(pinMap[i][j] == 3){//center
+			else if(pinMap[i][j] == 3){//departure
+				printf("\033[41m");//red back
+				printf("  ");
+				printf("\033[40m\033[97m");//black back & white
+			}
+			else if(pinMap[i][j] == 4){//center
 				printf("\033[92m");//light grren
 				printf("[]");
 				printf("\033[97m");//white
