@@ -343,8 +343,8 @@ void printSSHmonitor(int currentY,int currentX){
 				printf("\033[97m");//white
 			}
 			else if(pinMap[i][j] == 2){//hold , wall
-				printf("\033[31m");//red
-				printf("OO");
+				printf("\033[41m");//red
+				printf("  ");
 				printf("\033[97m");//white
 			}
 			else if(pinMap[i][j] == 3){//center
