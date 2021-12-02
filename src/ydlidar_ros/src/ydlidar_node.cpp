@@ -274,13 +274,12 @@ int main(int argc, char * argv[]) {
 		//find score and record
 		int max=0,pointX=0,pointY=0;
 		for(int i=0;i<allMapSize;i++)
-			for(int j=0;j<allMapSize;j++){
+			for(int j=0;j<allMapSize;j++)
 				if(allPointMap[i][j] > max){
 					max = allPointMap[i][j];
 					pointY=i;
 					pointX=j;
 				}
-			}
 		allMap[pointY][pointX] = 3;
 		system("clear");
 		printSSHmonitor(robotY,robotX);
