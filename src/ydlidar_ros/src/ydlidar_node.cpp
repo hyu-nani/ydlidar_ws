@@ -261,15 +261,15 @@ int main(int argc, char * argv[]) {
 		}
 		//add point at the pointMap
 		int pointRange = 5;
-		for(i=0;i<allMapSize;i++)
-			for(j=0;j<allMapSize;j++)
+		for(int i=0;i<allMapSize;i++)
+			for(int j=0;j<allMapSize;j++)
 				if(allMap[i][j]==2)
 					for(int k=-pointRange;k<pointRange;k++)
 						for(int p=-pointRange;p<pointRange;p++)
 							allPointMap[k+i][p+j]++;
 		//find score and record
-		for(i=0;i<allMapSize;i++)
-			for(j=0;j<allMapSize;j++)
+		for(int i=0;i<allMapSize;i++)
+			for(int j=0;j<allMapSize;j++)
 				if(allPointMap[i][j] > 10)
 					allMap[i][j] = 3;//departure
 		system("clear");
