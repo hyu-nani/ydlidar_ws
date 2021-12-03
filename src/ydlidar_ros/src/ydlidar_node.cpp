@@ -292,7 +292,7 @@ int main(int argc, char * argv[]) {
 				}
 		printf("\033[<%d>A",cursorCount);
 		cursorCount=0;
-		printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);cursorCount++;
+		printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 		allMap[pointY][pointX] = 3;
 		
 		printSSHmonitor(robotY,robotX);
@@ -361,7 +361,7 @@ void printSSHmonitor(int currentY,int currentX){
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX];
 	pinMap[printSize/2][printSize/2] = 5;
-	printf("\n ");
+	printf("\n ");cursorCount++;
 	printf("\033[97m");//white
 	for(int i=0;i<printSize/2-1;i++)
 	printf("--");
