@@ -277,7 +277,7 @@ int main(int argc, char * argv[]) {
 							allPointMap[k+i][p+j]++;
 					for(int k=i;k<abs(i-allMapSize/2);k++)//empty space check
 						for(int p=j;p<abs(j-allMapSize/2);j++)
-							allMap[k+allMapSize/2][j+allMapSize/2] = 3;
+							allMap[k+allMapSize/2][j+allMapSize/2] = 4;
 				}
 		//find score and record
 		for(int i=0;i<allMapSize;i++)
