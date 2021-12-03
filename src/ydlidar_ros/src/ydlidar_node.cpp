@@ -37,7 +37,6 @@ float	data_average[500]	=	{0};
 int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
-int		cursorCount=0;
 
 
 const int	printSize						=	80;
@@ -290,14 +289,13 @@ int main(int argc, char * argv[]) {
 					pointY=i;
 					pointX=j;
 				}
-		printf("\033[%d;%dH",1,1);
-		cursorCount=0;
+		printf("\033[%d;%dH",1,1);//set cursor 0,0
 		printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 		allMap[pointY][pointX] = 3;
 		
 		printSSHmonitor(robotY,robotX);
-		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[90m ::Sensing \033[31m OOWall\n\033[0m",count,unitScale,printScale);cursorCount++;
-		printf("\t\t[[ ROS-lidar SSH monitor ]]\n");cursorCount++;
+		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[90m ::Sensing \033[31m OOWall\n\033[0m",count,unitScale,printScale);
+		printf("\t\t[[ ROS-lidar SSH monitor ]]\n");
 		for(int i=0;i<printSize;i++)
 			for(int j=0;j<printSize;j++)
 				if(allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX] == 1)
@@ -361,14 +359,14 @@ void printSSHmonitor(int currentY,int currentX){
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX];
 	pinMap[printSize/2][printSize/2] = 5;
-	printf("\n ");cursorCount++;
+	printf("\n ");
 	printf("\033[97m");//white
 	for(int i=0;i<printSize/2-1;i++)
 	printf("--");
 	printf("FRONT");
 	for(int i=0;i<printSize/2-1;i++)
 	printf("--");
-	printf("-\n");cursorCount++;
+	printf("-\n");
 	for(int i=0;i<printSize;i++){
 		printf(" |");
 		for(int j=0;j<printSize;j++){
@@ -400,7 +398,7 @@ void printSSHmonitor(int currentY,int currentX){
 			else//nothing
 			printf("  ");
 		}
-		printf("|\n");cursorCount++;
+		printf("|\n");
 	}
 	printf(" ");
 	for(int i=0;i<printSize/2;i++)
@@ -408,7 +406,7 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("BACK");
 	for(int i=0;i<printSize/2-1;i++)
 	printf("--");
-	printf("\n");cursorCount++;
+	printf("\n");
 	printf("\033[0m");//white
 }
 
