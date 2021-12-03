@@ -290,7 +290,7 @@ int main(int argc, char * argv[]) {
 					pointY=i;
 					pointX=j;
 				}
-		printf("\033[<%d>A",cursorCount-1);
+		printf("\033[%d;%dH",1,1);
 		cursorCount=0;
 		printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 		allMap[pointY][pointX] = 3;
