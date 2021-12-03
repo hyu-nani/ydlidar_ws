@@ -48,7 +48,7 @@ const int	allMapSize						=	2000;
 unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
-float	robotAngle = 90;
+float	robotAngle = 110;
 void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
