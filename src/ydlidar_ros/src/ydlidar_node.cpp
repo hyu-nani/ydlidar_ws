@@ -39,11 +39,11 @@ int		printCount = 0;
 int		lidarReadCount;
 
 
-const int	printSize						=	160;
+const int	printSize						=	100;
 int			pinMap[printSize][printSize]	=	{0};
-int			printScale						=	2;	//scale
+int			printScale						=	1;	//scale
 
-float		unitScale						=	3.0;//1unit cm
+float		unitScale						=	10.0;//1unit cm
 const int	allMapSize						=	1000;
 unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
