@@ -275,9 +275,9 @@ int main(int argc, char * argv[]) {
 					for(int k=-pointRange;k<pointRange;k++)
 						for(int p=-pointRange;p<pointRange;p++)
 							allPointMap[k+i][p+j]++;
-					for(int k=i;k<abs(i-allMapSize/2);k++)//empty space check
-						for(int p=j;p<abs(j-allMapSize/2);j++)
-							allMap[k+allMapSize/2][j+allMapSize/2] = 4;
+					for(int k=i;k<abs(allMapSize/2);k++)//empty space check
+						for(int p=j;p<abs(allMapSize/2);j++)
+							allMap[k][j] = 4;
 				}
 		//find score and record
 		for(int i=0;i<allMapSize;i++)
