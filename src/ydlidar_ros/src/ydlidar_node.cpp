@@ -270,7 +270,7 @@ int main(int argc, char * argv[]) {
 					allMap[i][j] = 0;
 			}
 		//add point at the pointMap
-		int pointRange = 15;
+		int pointRange = 20;
 		unsigned int pointMax=0,pointX=0,pointY=0;
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
