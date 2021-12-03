@@ -51,6 +51,7 @@ int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
 void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
+void Line(int x0, int y0,int x1, int y1);
 
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
@@ -275,23 +276,8 @@ int main(int argc, char * argv[]) {
 					for(int k=-pointRange;k<pointRange;k++)
 						for(int p=-pointRange;p<pointRange;p++)
 							allPointMap[k+i][p+j]++;
-					int k=i-allMapSize/2, p=j-allMapSize/2;
-					if(k>=0 && p>=0)
-						for(int a=0;a<k;a++)
-							for(int b=0;b<p;b++)
-								allMap[a+allMapSize/2][b+allMapSize/2] = 4;
-					else if(k<0 && p>=0)
-						for(int a=0;a<-k;a++)
-							for(int b=0;b<p;b++)
-								allMap[-a+allMapSize/2][b+allMapSize/2] = 4;
-					else if(k>=0 && p<0)
-						for(int a=0;a<k;a++)
-							for(int b=0;b<-p;b++)
-								allMap[a+allMapSize/2][-b+allMapSize/2] = 4;
-					else if(k<0 && p<0)
-						for(int a=0;a<-k;a++)
-							for(int b=0;b<-p;b++)
-								allMap[-a+allMapSize/2][-b+allMapSize/2] = 4;
+					//check empty space
+					Line(allMapSize/2,allMapSize/2,i,j);
 				}
 		//find score and record
 		for(int i=0;i<allMapSize;i++)
@@ -419,4 +405,44 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("--");
 	printf("\n");
 	printf("\033[0m");//white
+}
+
+void Line(int x0, int y0,int x1, int y1) {
+	int steep = abs(y1 - y0) > abs(x1 - x0);
+	int t;
+	if (steep) {
+		t=x0;x0=y0;y0=t;
+		t=x1;x1=y1;y1=t;
+	}
+
+	if (x0 > x1) {
+		t=x0;x0=x1;x1=t;
+		t=y0;y0=y1;y1=t;
+	}
+
+	int16_t dx, dy;
+	dx = x1 - x0;
+	dy = abs(y1 - y0);
+
+	int16_t err = dx / 2;
+	int16_t ystep;
+
+	if (y0 < y1) {
+		ystep = 1;
+		} else {
+		ystep = -1;
+	}
+
+	for (; x0<=x1; x0++) {
+		if (steep) {
+			allMap[y0][x0]=4;
+			} else {
+			allMap[x0][y0]=4;
+		}
+		err -= dy;
+		if (err < 0) {
+			y0 += ystep;
+			err += dx;
+		}
+	}
 }
