@@ -39,16 +39,18 @@ int		printCount = 0;
 int		lidarReadCount;
 
 
-const int	printSize						=	150;
-int			pinMap[printSize][printSize]	=	{0};
+const int	printSize						=	150;//SSH print size
+int			pinMap[printSize][printSize]	=	{0};//SSH print map
 int			printScale						=	1;	//scale
-
 float		unitScale						=	5.0;//1-unit cm
 const int	allMapSize						=	2000;
 unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
+	
+//ROBOT data initial setting
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
-float	robotAngle = 110;
+float	robotAngle = 90;
+
 void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
@@ -114,9 +116,41 @@ int main(int argc, char * argv[]) {
     printf(" \\ V /| | | | |    | || | | |/ _ \\ | |_) | \n");
     printf("  | | | |_| | |___ | || |_| / ___ \\|  _ <  \n");
     printf("  |_| |____/|_____|___|____/_/   \\_\\_| \\_\\ \n");
-    printf("ydlidar_node file\n");
-    printf(" NANI version");
+	printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::/n");
+	printf("/n");
+	printf("/n");
+	printf("                 -/oo    .oo+ /n");
+	printf("               `dMMNd    -MMN /n");
+	printf("              .+MMm..    -MMN         -:::.     /n");
+	printf("             `MMMMMMN    -MMN      :hMMMMMMmo`  /n");
+	printf("              `+MMd``    -MMN     oMMh:.`.+NMm. /n");
+	printf("               /MMd      -MMN    `MMd      -MMy /n");
+	printf("               /MMd      -MMN    `NMm.     +MMo /n");
+	printf("               /MMd      -MMN     :mMms//+hNMy` /n");
+	printf("               :hhs      .hhy      .+hmmmmdy:        ``` /n");
+	printf("                                      `...`          ooo /n");
+	printf("                                                     ::: /n");
+	printf("               `-------------  .++/   /++:   +++`    ---     `+++-+syy+-   /n");
+	printf("               .sssssssssssss  `NMM. `NMMm  /MMm     yyy`    .MMMNhsyNMMs  /n");
+	printf("               `-------------   oMMs oMMMM: dMM:     yyy`    .MMN.   .NMM. /n");
+	printf("                                `mMN`mMshMh-MMh      yyy`    .MMm     dMM- /n");
+	printf("                                 /MMdMM.:MMdMM-      yyy`    .MMm     dMM- /n");
+	printf("                                  dMMMy  dMMMs       yyy`    .MMm     dMM- /n");
+	printf("                                  .+++.  -+++`       ---     `++/     /++` /n");
+	printf("/n");
+	printf("                                                             `+++++++++++./n");
+	printf("                                                             `ooooooooooo./n");
+	printf("                                                              ``````````` /n");
+	printf("                                                              :::     -::`     `-/oo/-`  /n");
+	printf("                                                             `MMN     hMM:    `hNNddMNh` /n");
+	printf("                                                             `MMN     hMM:    :MMm-.///. /n");
+	printf("                                                             `MMN     hMM:     :ymNmhs:  /n");
+	printf("                                                             `MMM.   `dMM:    .--..:hMM+ /n");
+	printf("                                                              sMMms+sdMMM:    :NMmoomMM/ /n");
+	printf("                                                               -shdhs/oss-     .+yddho.  /n");
     printf("\n");
+	printf("\n");
+	printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
     fflush(stdout);
   
     std::string port;
