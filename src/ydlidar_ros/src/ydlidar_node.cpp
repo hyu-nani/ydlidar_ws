@@ -49,7 +49,7 @@ unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure poin
 	
 //ROBOT data initial setting
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
-float	robotAngle = 91;
+float	robotAngle = 90;
 
 void SerialPrint(char* strBuffer);
 void SerialRead();
