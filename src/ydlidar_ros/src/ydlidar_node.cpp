@@ -259,13 +259,6 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 		}
-		//empty space check
-		for(int i=0;i<allMapSize;i++)
-			for(int j=0;j<allMapSize;j++)
-				if(allMap[i][j] == 2)
-					for(int k=i;k<abs(i-allMapSize/2);k++)
-						for(int p=j;p<abs(j-allMapSize/2);j++)
-							allMap[k][j] = 3;
 		//clear
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++){
@@ -278,10 +271,14 @@ int main(int argc, char * argv[]) {
 		unsigned int pointMax=0,pointX=0,pointY=0;
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
-				if(allMap[i][j]==2)
+				if(allMap[i][j]==2){
 					for(int k=-pointRange;k<pointRange;k++)
 						for(int p=-pointRange;p<pointRange;p++)
 							allPointMap[k+i][p+j]++;
+					for(int k=i;k<abs(i-allMapSize/2);k++)//empty space check
+						for(int p=j;p<abs(j-allMapSize/2);j++)
+							allMap[k+allMapSize/2][j+allMapSize/2] = 3;
+				}
 		//find score and record
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
