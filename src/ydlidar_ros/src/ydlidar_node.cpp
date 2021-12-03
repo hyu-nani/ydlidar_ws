@@ -257,7 +257,7 @@ int main(int argc, char * argv[]) {
 				data_count[i]++;
 			else
 				data_count[i] = 0;
-			if(data_count[i] > 3){//wall sensitivity
+			if(data_count[i] > 1){//wall sensitivity
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 			}
