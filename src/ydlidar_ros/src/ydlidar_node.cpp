@@ -275,9 +275,23 @@ int main(int argc, char * argv[]) {
 					for(int k=-pointRange;k<pointRange;k++)
 						for(int p=-pointRange;p<pointRange;p++)
 							allPointMap[k+i][p+j]++;
-					for(int k=i;k<abs(allMapSize/2);k++)//empty space check
-						for(int p=j;p<abs(allMapSize/2);j++)
-							allMap[k][j] = 4;
+					int k=i-allMapSize/2, p=j-allMapSize/2;
+					if(k>=0 && p>=0)
+						for(int a=0;a<k;a++)
+							for(int b=0;b<p;b++)
+								allMap[a+allMapSize/2][b+allMapSize/2] = 4;
+					else if(k<0 && p>=0)
+						for(int a=0;a<-k;a++)
+							for(int b=0;b<p;b++)
+								allMap[-a+allMapSize/2][b+allMapSize/2] = 4;
+					else if(k>=0 && p<0)
+						for(int a=0;a<k;a++)
+							for(int b=0;b<-p;b++)
+								allMap[a+allMapSize/2][-b+allMapSize/2] = 4;
+					else if(k<0 && p<0)
+						for(int a=0;a<-k;a++)
+							for(int b=0;b<-p;b++)
+								allMap[-a+allMapSize/2][-b+allMapSize/2] = 4;
 				}
 		//find score and record
 		for(int i=0;i<allMapSize;i++)
