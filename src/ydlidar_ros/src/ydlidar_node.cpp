@@ -435,9 +435,11 @@ void Line(int x0, int y0,int x1, int y1) {
 
 	for (; x0<=x1; x0++) {
 		if (steep) {
-			allMap[y0][x0]=4;
+			if(allMap[y0][x0]!=2)
+				allMap[y0][x0]=4;
 			} else {
-			allMap[x0][y0]=4;
+			if(allMap[y0][x0]!=2)
+				allMap[x0][y0]=4;
 		}
 		err -= dy;
 		if (err < 0) {
