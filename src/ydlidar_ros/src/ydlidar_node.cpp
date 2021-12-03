@@ -295,7 +295,7 @@ int main(int argc, char * argv[]) {
 		
 		printSSHmonitor(robotY,robotX);
 		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
-		printf("\t\t[[ ROS-lidar SSH monitor ]]\n");
+		printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 		for(int i=0;i<printSize;i++)
 			for(int j=0;j<printSize;j++)
 				if(allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX] == 1)
