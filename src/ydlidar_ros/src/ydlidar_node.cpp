@@ -39,11 +39,11 @@ int		printCount = 0;
 int		lidarReadCount;
 
 
-const int	printSize						=	80;
+const int	printSize						=	90;
 int			pinMap[printSize][printSize]	=	{0};
 int			printScale						=	1;	//scale
 
-float		unitScale						=	10.0;//1-unit cm
+float		unitScale						=	9.0;//1-unit cm
 const int	allMapSize						=	1000;
 unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
@@ -257,7 +257,7 @@ int main(int argc, char * argv[]) {
 				data_count[i]++;
 			else
 				data_count[i] = 0;
-			if(data_count[i] > 1){//wall sensitivity
+			if(data_count[i] > 5){//wall sensitivity
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 			}
