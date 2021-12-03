@@ -249,8 +249,8 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		for(int i=0;i<500;i++){
 			float difference = fabs(old_distance[i] - YD_distance[i]);
-			int Xvalue = round(-cos((YD_angle[i]-robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
-			int Yvalue = round(sin((YD_angle[i]-robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+			int Xvalue = round(cos((YD_angle[i]-robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+			int Yvalue = round(-sin((YD_angle[i]-robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 			if(allMap[robotY+Yvalue][robotX+Xvalue] < 2)
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
 			if( (difference < 0.01) &&	(difference != 0) && (YD_distance[i] > 0.15))
