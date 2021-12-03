@@ -257,7 +257,7 @@ int main(int argc, char * argv[]) {
 				data_count[i]++;
 			else
 				data_count[i] = 0;
-			if(data_count[i] > 15){
+			if(data_count[i] > 10){
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 			}
