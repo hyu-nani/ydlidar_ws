@@ -48,7 +48,7 @@ const int	allMapSize						=	2000;
 unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
 int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
-
+float	robotAngle = 90;
 void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
@@ -249,8 +249,8 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		for(int i=0;i<500;i++){
 			float difference = fabs(old_distance[i] - YD_distance[i]);
-			int Xvalue = round(-sin(YD_angle[i]*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
-			int Yvalue = round(-cos(YD_angle[i]*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+			int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+			int Yvalue = round(sin((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 			if(allMap[robotY+Yvalue][robotX+Xvalue] < 2)
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
 			if( (difference < 0.01) &&	(difference != 0) && (YD_distance[i] > 0.15))
