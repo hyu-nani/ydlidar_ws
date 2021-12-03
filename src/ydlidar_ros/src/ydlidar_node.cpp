@@ -39,7 +39,7 @@ int		printCount = 0;
 int		lidarReadCount;
 
 
-const int	printSize						=	180;
+const int	printSize						=	160;
 int			pinMap[printSize][printSize]	=	{0};
 int			printScale						=	1;	//scale
 
