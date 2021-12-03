@@ -43,7 +43,7 @@ const int	printSize						=	500;
 int			pinMap[printSize][printSize]	=	{0};
 int			printScale						=	1;	//scale
 
-float		unitScale						=	1.0;//1-unit cm
+float		unitScale						=	2.0;//1-unit cm
 const int	allMapSize						=	1000;
 unsigned int	allMap[allMapSize][allMapSize] = {0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
