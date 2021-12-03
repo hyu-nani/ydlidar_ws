@@ -259,6 +259,13 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 		}
+		//empty space check
+		for(int i=0;i<allMapSize;i++)
+			for(int j=0;j<allMapSize;j++)
+				if(allMap[i][j] == 2)
+					for(int k=i;k<abs(i-allMapSize/2);k++)
+						for(int p=j;p<abs(j-allMapSize/2);j++)
+							allMap[k][j] = 3;
 		//clear
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++){
@@ -267,7 +274,7 @@ int main(int argc, char * argv[]) {
 					allMap[i][j] = 0;
 			}
 		//add point at the pointMap
-		int pointRange = 20;
+		int pointRange = 15;
 		unsigned int pointMax=0,pointX=0,pointY=0;
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
@@ -351,7 +358,7 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX];
-	pinMap[printSize/2][printSize/2] = 4;
+	pinMap[printSize/2][printSize/2] = 5;
 	printf("\n ");
 	printf("\033[97m");//white
 	for(int i=0;i<printSize/2-1;i++)
@@ -363,8 +370,8 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i=0;i<printSize;i++){
 		printf(" |");
 		for(int j=0;j<printSize;j++){
-			if(pinMap[i][j] == 1){//sensitive
-				printf("\033[37m");//dark gray
+			if(pinMap[i][j] == 1){//sensing
+				printf("\033[33m");//orange
 				printf("::");
 				printf("\033[97m");//white
 			}
@@ -378,7 +385,12 @@ void printSSHmonitor(int currentY,int currentX){
 				printf("  ");
 				printf("\033[40m\033[97m");//black back & white
 			}
-			else if(pinMap[i][j] == 4){//center
+			else if(pinMap[i][j] == 4){//empty space
+				printf("\033[47m");//blue back
+				printf("  ");
+				printf("\033[40m\033[97m");//black back & white
+			}
+			else if(pinMap[i][j] == 5){//center
 				printf("\033[92m");//light grren
 				printf("[]");
 				printf("\033[97m");//white
