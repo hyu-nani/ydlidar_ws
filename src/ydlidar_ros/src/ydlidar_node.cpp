@@ -438,7 +438,7 @@ void Line(int x0, int y0,int x1, int y1) {
 			if(allMap[y0][x0]!=2)
 				allMap[y0][x0]=4;
 			} else {
-			if(allMap[y0][x0]!=2)
+			if(allMap[x0][y0]!=2)
 				allMap[x0][y0]=4;
 		}
 		err -= dy;
