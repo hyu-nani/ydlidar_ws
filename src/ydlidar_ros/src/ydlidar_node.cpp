@@ -287,11 +287,11 @@ int main(int argc, char * argv[]) {
 			int Yvalue = round(-sin((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 			if(allMap[robotY+Yvalue][robotX+Xvalue] < 2)
 				allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
-			if( (difference < 0.01) &&	(difference != 0) && (YD_distance[i] > 0.15))
+			if( (difference < 0.05) &&	(difference != 0) && (YD_distance[i] > 0.15))
 				data_count[i]++;
 			else
 				data_count[i] = 0;
-			if(data_count[i] > 2){//wall sensitivity
+			if(data_count[i] > 1){//wall sensitivity
 				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
 				data_count[i] = 0;
 			}
