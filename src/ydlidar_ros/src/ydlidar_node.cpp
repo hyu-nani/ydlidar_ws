@@ -280,7 +280,7 @@ int main(int argc, char * argv[]) {
             scan_pub.publish(scan_msg);
             
         }
-		//////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////////////////////////////////mapping
 		for(int i=0;i<500;i++){
 			float difference = fabs(old_distance[i] - YD_distance[i]);
 			int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
@@ -323,6 +323,7 @@ int main(int argc, char * argv[]) {
 					pointY=i;
 					pointX=j;
 				}
+		/////////////////////////////////////////////print monitor
 		printf("\033[%d;%dH",1,1);//set cursor 0,0
 		printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 		allMap[pointY][pointX] = 3;
