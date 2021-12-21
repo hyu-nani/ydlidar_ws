@@ -279,9 +279,11 @@ int main(int argc, char * argv[]) {
                 }
             }
             scan_pub.publish(scan_msg);
-            
         }
-		//////////////////////////////////////////////////////////////////////////mapping
+		//////////////////////////////////////////////////////////////////////////
+		//mapping
+		//////////////////////////////////////////////////////////////////////////
+		
 		for(int i=0;i<500;i++){
 			float difference = fabs(old_distance[i] - YD_distance[i]);
 			int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
@@ -340,7 +342,7 @@ int main(int argc, char * argv[]) {
 				if(a == 1 || a == 5) //sensing point or robot center
 					allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX] = 0;
 			}
-
+    
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 		/*
 		if(active == true){
