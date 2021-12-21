@@ -335,11 +335,11 @@ int main(int argc, char * argv[]) {
 		printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 		//return sensing text to empty text 
 		for(int i=0;i<printSize;i++)
-			for(int j=0;j<printSize;j++)
+			for(int j=0;j<printSize;j++){
 			  int a = allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX];
 				if(a == 1 || a == 5) //sensing point or robot center
 					allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX] = 0;
-				  
+			}
 
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 		/*
