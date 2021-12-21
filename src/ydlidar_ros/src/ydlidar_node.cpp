@@ -39,7 +39,8 @@ int		printCount = 0;
 int		lidarReadCount;
 
 
-const int	printSize						=	170;//SSH print size
+const int	printSize						=	110;
+//SSH print size 170 for laptop 110 for tablet
 int			pinMap[printSize][printSize]	=	{0};//SSH print map
 int			printScale						=	1;	//scale
 float		unitScale						=	5.0;//1-unit cm
