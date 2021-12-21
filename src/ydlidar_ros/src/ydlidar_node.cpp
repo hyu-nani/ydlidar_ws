@@ -299,14 +299,14 @@ int main(int argc, char * argv[]) {
 				data_count[i] = 0;
 			}
 		}
-		//clear
+		//reset point map
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++){
 				allPointMap[i][j] = 0;
-				if (allMap[i][j] == 3)
+				if (allMap[i][j] == 3) //departure 
 					allMap[i][j] = 0;
 			}
-		//add point at the pointMap
+		
 		int pointRange = 50;
 		unsigned int pointMax=0,pointX=0,pointY=0;
 		for(int i=0;i<allMapSize;i++)
@@ -319,6 +319,7 @@ int main(int argc, char * argv[]) {
 					//print empty space
 					Line(allMapSize/2,allMapSize/2,i,j);
 				}
+				
 		//find score and record
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
@@ -327,11 +328,14 @@ int main(int argc, char * argv[]) {
 					pointY=i;
 					pointX=j;
 				}
-		/////////////////////////////////////////////print monitor
+		/////////////////////////////////////////////
+		//print monitor
+		/////////////////////////////////////////////
 		printf("\033[%d;%dH",1,1);//set cursor 0,0
 		printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
-		allMap[pointY][pointX] = 3;
+		allMap[pointY][pointX] = 3; //add departure
 		
+		//SSH print
 		printSSHmonitor(robotY,robotX);
 		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
 		printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
@@ -412,29 +416,29 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i=0;i<printSize;i++){
 		printf(" |");
 		for(int j=0;j<printSize;j++){
-			if(pinMap[i][j] == 1){//sensing
+			if(pinMap[i][j] == 1){        //sensing
 				printf("\033[33m");//orange
 				printf("::");
 				printf("\033[97m");//white
 			}
-			else if(pinMap[i][j] == 2){//hold , wall
+			else if(pinMap[i][j] == 2){   //hold , wall
 				printf("\033[41m");//red back
 				printf("  ");
-				printf("\033[40m\033[97m");//black back & white
+				printf("\033[40m\033[97m"); //black back & white
 			}
-			else if(pinMap[i][j] == 3){//departure
+			else if(pinMap[i][j] == 3){   //departure
 				printf("\033[44m");//blue back
 				printf("  ");
 				printf("\033[40m\033[97m");//black back & white
 			}
-			else if(pinMap[i][j] == 4){//empty space
+			else if(pinMap[i][j] == 4){   //empty space
 				printf("\033[47m");//blue back
 				printf("  ");
 				printf("\033[40m\033[97m");//black back & white
 			}
-			else if(pinMap[i][j] == 5){//center
+			else if(pinMap[i][j] == 5){   //center
 				printf("\033[92m");//light grren
-				printf("[]");
+				printf("<>");
 				printf("\033[97m");//white
 			}
 			else//nothing
