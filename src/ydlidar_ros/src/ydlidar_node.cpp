@@ -422,24 +422,24 @@ void printSSHmonitor(int currentY,int currentX){
 				printf("\033[97m");//white
 			}
 			else if(pinMap[i][j] == 2){   //hold , wall
-				printf("\033[41m");//red back
+				printf("\033[41m");//red BG
 				printf("  ");
-				printf("\033[40m\033[97m"); //black back & white
+				printf("\033[40m\033[97m"); //black BG & white
 			}
 			else if(pinMap[i][j] == 3){   //departure
-				printf("\033[44m");//blue back
+				printf("\033[44m");//blue BG
 				printf("  ");
-				printf("\033[40m\033[97m");//black back & white
+				printf("\033[40m\033[97m");//black BG & white
 			}
 			else if(pinMap[i][j] == 4){   //empty space
-				printf("\033[47m");//blue back
+				printf("\033[47m");//blue BG
 				printf("  ");
-				printf("\033[40m\033[97m");//black back & white
+				printf("\033[40m\033[97m");//black BG & white
 			}
 			else if(pinMap[i][j] == 5){   //center
-				printf("\033[92m");//light grren
+				printf("\033[42m\033[31m");//green BG & red
 				printf("<>");
-				printf("\033[97m");//white
+				printf("\033[40m\033[97m");//black BG & white
 			}
 			else//nothing
 			printf("  ");
