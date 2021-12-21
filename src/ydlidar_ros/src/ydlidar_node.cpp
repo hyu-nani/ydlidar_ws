@@ -309,11 +309,12 @@ int main(int argc, char * argv[]) {
 		unsigned int pointMax=0,pointX=0,pointY=0;
 		for(int i=0;i<allMapSize;i++)
 			for(int j=0;j<allMapSize;j++)
-				if(allMap[i][j]==2){
+				if(allMap[i][j]==2){ //find wall place
+				  //add point at the around the wall place
 					for(int k=-pointRange;k<pointRange;k++)
 						for(int p=-pointRange;p<pointRange;p++)
 							allPointMap[k+i][p+j]++;
-					//check empty space
+					//print empty space
 					Line(allMapSize/2,allMapSize/2,i,j);
 				}
 		//find score and record
@@ -332,10 +333,13 @@ int main(int argc, char * argv[]) {
 		printSSHmonitor(robotY,robotX);
 		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
 		printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
+		//return sensing text to empty text 
 		for(int i=0;i<printSize;i++)
 			for(int j=0;j<printSize;j++)
-				if(allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX] == 1)
+			  int a = allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX];
+				if(a == 1 || a == 5) //sensing point or robot center
 					allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX] = 0;
+				  
 
 		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
 		/*
