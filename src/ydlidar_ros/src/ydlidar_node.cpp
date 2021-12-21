@@ -437,7 +437,7 @@ void printSSHmonitor(int currentY,int currentX){
 				printf("\033[40m\033[97m");//black BG & white
 			}
 			else if(pinMap[i][j] == 5){   //center
-				printf("\033[42m\033[31m");//green BG & red
+				printf("\033[45m\033[36m");//magenta BG & cyan
 				printf("<>");
 				printf("\033[40m\033[97m");//black BG & white
 			}
