@@ -376,10 +376,10 @@ int main(int argc, char * argv[]) {
 			scanf("%s",scanData);
 			if(strcmp(scanData,"stop")==0){
 				printf("stop");
-				return 0;
+				break;
 			}
 		}
-		
+		break;
     }
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
