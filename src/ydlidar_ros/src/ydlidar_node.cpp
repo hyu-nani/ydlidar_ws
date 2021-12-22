@@ -334,7 +334,8 @@ int main(int argc, char * argv[]) {
 		printf("\033[%d;%dH",1,1);//set cursor 0,0
 		printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 		allMap[pointY][pointX] = 3; //add departure
-		
+		char charactor;
+		scanf("text:%c",&charactor);
 		//SSH print
 		printSSHmonitor(robotY,robotX);
 		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
