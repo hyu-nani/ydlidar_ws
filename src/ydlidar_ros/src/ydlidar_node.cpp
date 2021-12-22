@@ -384,7 +384,7 @@ int main(int argc, char * argv[]) {
 				printf("input the X Y :");
 				scanf("%d %d",&robotX,&robotY);
 				printf("go to robot X:%d / Y:%d",robotX,robotY);
-				SerialPrint("10 10");
+				//SerialPrint("10 10");
 			}
 		}
 		break;
