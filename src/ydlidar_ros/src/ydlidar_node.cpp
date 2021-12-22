@@ -252,7 +252,6 @@ int main(int argc, char * argv[]) {
 	system("clear");
     while (ret&&ros::ok()) {
         bool hardError;
-        LaserScan scan;
         //and loop here 
     	
 		//////////////////////////////////////////////////////////////////////////
@@ -261,6 +260,7 @@ int main(int argc, char * argv[]) {
 		//while(scanChar != EOF){
 			
 		while(1){
+			LaserScan scan;
 			if(laser.doProcessSimple(scan, hardError )){
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
@@ -379,7 +379,7 @@ int main(int argc, char * argv[]) {
 				printf("--------------------------------stop--------------------------------");
 				printf("\033[40m\033[97m");
 				break;
-			}/*
+			}
 			if(strcmp(scanData,"goto")==0){
 				printf("input the X Y :");
 				scanf("%d %d",&robotX,&robotY);
@@ -391,7 +391,7 @@ int main(int argc, char * argv[]) {
 				perror("write failed - ");
 				close(fd);
 				///////////
-			}*/
+			}
 		}
 		break;
     }
