@@ -261,7 +261,7 @@ int main(int argc, char * argv[]) {
 		scanf("%c", &scanData);
 		//while(scanChar != EOF){
 			
-		while(scanf("%c", &scanData) == EOF){
+		while(scanf("%c", &scanData) != EOF){
 			if(laser.doProcessSimple(scan, hardError )){
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
