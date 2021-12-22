@@ -38,7 +38,7 @@ int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
 
-char scanData = 0;
+int scanData = 0;
 
 const int	printSize						  =	170;
 //SSH print size 170 for laptop 100 for tablet
