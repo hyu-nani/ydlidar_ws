@@ -374,12 +374,12 @@ int main(int argc, char * argv[]) {
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
+			scanf("%c", &scanData);
+			if(scanData == 'o')
+				break;
 		}
 		rate.sleep();
 		ros::spinOnce();
-		scanf("%c", &scanData);
-		if(scanData == 'o')
-			break;
     }
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
