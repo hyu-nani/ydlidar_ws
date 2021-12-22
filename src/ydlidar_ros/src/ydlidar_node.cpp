@@ -375,7 +375,8 @@ int main(int argc, char * argv[]) {
 			ros::spinOnce();
 			scanf("%s",scanData);
 			if(strcmp(scanData,"stop")==0){
-				printf("stop");
+				printf("\033[45m\033[36m");
+				printf("--------------------------------stop--------------------------------");
 				break;
 			}
 		}
