@@ -258,8 +258,6 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		//mapping
 		//////////////////////////////////////////////////////////////////////////
-		printf("Start?");
-		scanf("%c", &scanData);
 		//while(scanChar != EOF){
 			
 		while(scanData != EOF){
@@ -379,8 +377,6 @@ int main(int argc, char * argv[]) {
 			if(scanData == 'o')
 				break;
 		}
-		rate.sleep();
-		ros::spinOnce();
     }
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
