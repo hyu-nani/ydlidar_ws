@@ -283,94 +283,96 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		//mapping
 		//////////////////////////////////////////////////////////////////////////
-		
-		for(int i=0;i<500;i++){
-			float difference = fabs(old_distance[i] - YD_distance[i]);
-			int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
-			int Yvalue = round(-sin((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
-			if(allMap[robotY+Yvalue][robotX+Xvalue] < 2)
-				allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
-			if( (difference < 0.015) &&	(difference != 0) && (YD_distance[i] > 0.15) && (YD_distance[i] < 8))
-				data_count[i]++;
-			else
-				data_count[i] = 0;
-			if(data_count[i] > 2){//wall sensitivity
-				allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
-				data_count[i] = 0;
-			}
-		}
-		//reset point map
-		for(int i=0;i<allMapSize;i++)
-			for(int j=0;j<allMapSize;j++){
-				allPointMap[i][j] = 0;
-				if (allMap[i][j] == 3) //departure 
-					allMap[i][j] = 0;
-			}
-		
-		int pointRange = 50;
-		unsigned int pointMax=0,pointX=0,pointY=0;
-		for(int i=0;i<allMapSize;i++)
-			for(int j=0;j<allMapSize;j++)
-				if(allMap[i][j]==2){ //find wall place
-				  //add point at the around the wall place
-					for(int k=-pointRange;k<pointRange;k++)
-						for(int p=-pointRange;p<pointRange;p++)
-							allPointMap[k+i][p+j]++;
-					//print empty space
-					Line(allMapSize/2,allMapSize/2,i,j);
+		int scanNum = 0;
+		while(scanf("%d",&scanNum)==1){
+			for(int i=0;i<500;i++){
+				float difference = fabs(old_distance[i] - YD_distance[i]);
+				int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+				int Yvalue = round(-sin((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+				if(allMap[robotY+Yvalue][robotX+Xvalue] < 2)
+					allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
+				if( (difference < 0.015) &&	(difference != 0) && (YD_distance[i] > 0.15) && (YD_distance[i] < 8))
+					data_count[i]++;
+				else
+					data_count[i] = 0;
+				if(data_count[i] > 2){//wall sensitivity
+					allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
+					data_count[i] = 0;
 				}
+			}
+			//reset point map
+			for(int i=0;i<allMapSize;i++)
+				for(int j=0;j<allMapSize;j++){
+					allPointMap[i][j] = 0;
+					if (allMap[i][j] == 3) //departure 
+						allMap[i][j] = 0;
+				}
+		
+			int pointRange = 50;
+			unsigned int pointMax=0,pointX=0,pointY=0;
+			for(int i=0;i<allMapSize;i++)
+				for(int j=0;j<allMapSize;j++)
+					if(allMap[i][j]==2){ //find wall place
+					  //add point at the around the wall place
+						for(int k=-pointRange;k<pointRange;k++)
+							for(int p=-pointRange;p<pointRange;p++)
+								allPointMap[k+i][p+j]++;
+						//print empty space
+						Line(allMapSize/2,allMapSize/2,i,j);
+					}
 				
-		//find score and record
-		for(int i=0;i<allMapSize;i++)
-			for(int j=0;j<allMapSize;j++)
-				if(allPointMap[i][j] > pointMax){
-					pointMax = allPointMap[i][j];
-					pointY=i;
-					pointX=j;
+			//find score and record
+			for(int i=0;i<allMapSize;i++)
+				for(int j=0;j<allMapSize;j++)
+					if(allPointMap[i][j] > pointMax){
+						pointMax = allPointMap[i][j];
+						pointY=i;
+						pointX=j;
+					}
+			/////////////////////////////////////////////
+			//print monitor
+			/////////////////////////////////////////////
+			printf("\033[%d;%dH",1,1);//set cursor 0,0
+			printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
+			allMap[pointY][pointX] = 3; //add departure
+			char charactor;
+			scanf("text:%c",&charactor);
+			//SSH print
+			printSSHmonitor(robotY,robotX);
+			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
+			printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
+			//return sensing text to empty text 
+			for(int i=0;i<printSize;i++)
+				for(int j=0;j<printSize;j++){
+				  int a = allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX];
+					if(a == 1 || a == 5) //sensing point or robot center
+						allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX] = 0;
 				}
-		/////////////////////////////////////////////
-		//print monitor
-		/////////////////////////////////////////////
-		printf("\033[%d;%dH",1,1);//set cursor 0,0
-		printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
-		allMap[pointY][pointX] = 3; //add departure
-		char charactor;
-		scanf("text:%c",&charactor);
-		//SSH print
-		printSSHmonitor(robotY,robotX);
-		printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
-		printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
-		//return sensing text to empty text 
-		for(int i=0;i<printSize;i++)
-			for(int j=0;j<printSize;j++){
-			  int a = allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX];
-				if(a == 1 || a == 5) //sensing point or robot center
-					allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX] = 0;
-			}
     
-		//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
-		/*
-		if(active == true){
-			time_t now;
-			time(&now);
-			printf("---------------------------------------------\n");
-			printf("Corrent Time :%s", asctime(localtime(&now)));
-			printf("%d\tScan! Angle:%f\n",printCount,YD_angle[angleNum]);
-			printCount++;
+			//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
+			/*
+			if(active == true){
+				time_t now;
+				time(&now);
+				printf("---------------------------------------------\n");
+				printf("Corrent Time :%s", asctime(localtime(&now)));
+				printf("%d\tScan! Angle:%f\n",printCount,YD_angle[angleNum]);
+				printCount++;
+			}
+			if(data_average[252] < 0.4){	//trans MS
+				SerialPrint("10 0 90"); //X Y angle
+			}
+			*/
+			count++;
+			for(int i=0;i<500;i++)
+				old_distance[i] = YD_distance[i];
+			///////////////////////////////////////////////////////////////////////////read
+			//SerialRead();
+  			//////////////////////////////////////////////////////////////////////////
+			rate.sleep();
+			ros::spinOnce();
+			//////////////////////////////////////////////////////////////////////////END
 		}
-		if(data_average[252] < 0.4){	//trans MS
-			SerialPrint("10 0 90"); //X Y angle
-		}
-		*/
-		count++;
-		for(int i=0;i<500;i++)
-			old_distance[i] = YD_distance[i];
-		///////////////////////////////////////////////////////////////////////////read
-		//SerialRead();
-  	//////////////////////////////////////////////////////////////////////////
-		rate.sleep();
-		ros::spinOnce();
-		//////////////////////////////////////////////////////////////////////////END
     }
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
