@@ -260,7 +260,7 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		//while(scanChar != EOF){
 			
-		while(scanData != EOF){
+		while(1){
 			if(laser.doProcessSimple(scan, hardError )){
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
