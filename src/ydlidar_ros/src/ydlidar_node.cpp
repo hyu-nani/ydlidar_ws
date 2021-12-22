@@ -386,7 +386,7 @@ int main(int argc, char * argv[]) {
 				printf("go to robot X:%d / Y:%d",robotX,robotY);
 				///////////
 				fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
-				serial1 = write(fd,"10 10 0",strlen(strBuffer));
+				serial1 = write(fd,"10 10 0",7);
 				if(serial1 < 0)
 				perror("write failed - ");
 				close(fd);
