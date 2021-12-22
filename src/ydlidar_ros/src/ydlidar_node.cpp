@@ -261,7 +261,7 @@ int main(int argc, char * argv[]) {
 		scanf("%c", &scanData);
 		//while(scanChar != EOF){
 			
-		while(scanf("%c", &scanData) != EOF){
+		while(scanData != EOF){
 			if(laser.doProcessSimple(scan, hardError )){
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
@@ -377,6 +377,7 @@ int main(int argc, char * argv[]) {
 		}
 		rate.sleep();
 		ros::spinOnce();
+		scanf("%c", &scanData);
     }
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
