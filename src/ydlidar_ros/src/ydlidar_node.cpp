@@ -378,7 +378,7 @@ int main(int argc, char * argv[]) {
 		rate.sleep();
 		ros::spinOnce();
 		scanf("%c", &scanData);
-		if(scanData == 'O')
+		if(scanData == 'o')
 			break;
     }
     laser.turnOff();
