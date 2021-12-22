@@ -285,7 +285,7 @@ int main(int argc, char * argv[]) {
 		//mapping
 		//////////////////////////////////////////////////////////////////////////
 		
-		while(scanNum==1){
+		while(scanf(" %d",&scanNum)==1){
 			for(int i=0;i<500;i++){
 				float difference = fabs(old_distance[i] - YD_distance[i]);
 				int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
@@ -373,7 +373,6 @@ int main(int argc, char * argv[]) {
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
-			scanf("%d",&scanNum);
 		}
 		rate.sleep();
 		ros::spinOnce();
