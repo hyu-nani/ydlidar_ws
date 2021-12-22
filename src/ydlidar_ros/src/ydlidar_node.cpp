@@ -254,39 +254,39 @@ int main(int argc, char * argv[]) {
         LaserScan scan;
         //and loop here 
     	
-        if(laser.doProcessSimple(scan, hardError )){
-            sensor_msgs::LaserScan scan_msg;
-            ros::Time start_scan_time;
-            start_scan_time.sec = scan.stamp/1000000000ul;
-            start_scan_time.nsec = scan.stamp%1000000000ul;
-            scan_msg.header.stamp = start_scan_time;
-            scan_msg.header.frame_id = frame_id;
-            scan_msg.angle_min =(scan.config.min_angle);
-            scan_msg.angle_max = (scan.config.max_angle);
-            scan_msg.angle_increment = (scan.config.angle_increment);
-            scan_msg.scan_time = scan.config.scan_time;
-            scan_msg.time_increment = scan.config.time_increment;
-            scan_msg.range_min = (scan.config.min_range);
-            scan_msg.range_max = (scan.config.max_range);
-            int size = (scan.config.max_angle - scan.config.min_angle)/ scan.config.angle_increment + 1;
-            scan_msg.ranges.resize(size);
-            scan_msg.intensities.resize(size);
-            
-            for(int i=0; i < scan.points.size(); i++) {
-                int index = std::ceil((scan.points[i].angle - scan.config.min_angle)/scan.config.angle_increment);
-                if(index >=0 && index < size) {
-                     scan_msg.ranges[index] = scan.points[i].range;
-                     scan_msg.intensities[index] = scan.points[i].intensity;
-                }
-            }
-            scan_pub.publish(scan_msg);
-        }
 		//////////////////////////////////////////////////////////////////////////
 		//mapping
 		//////////////////////////////////////////////////////////////////////////
 		printf("Start?");
 		scanf("%d",&scanNum);
 		while(scanNum==1){
+			if(laser.doProcessSimple(scan, hardError )){
+				sensor_msgs::LaserScan scan_msg;
+				ros::Time start_scan_time;
+				start_scan_time.sec = scan.stamp/1000000000ul;
+				start_scan_time.nsec = scan.stamp%1000000000ul;
+				scan_msg.header.stamp = start_scan_time;
+				scan_msg.header.frame_id = frame_id;
+				scan_msg.angle_min =(scan.config.min_angle);
+				scan_msg.angle_max = (scan.config.max_angle);
+				scan_msg.angle_increment = (scan.config.angle_increment);
+				scan_msg.scan_time = scan.config.scan_time;
+				scan_msg.time_increment = scan.config.time_increment;
+				scan_msg.range_min = (scan.config.min_range);
+				scan_msg.range_max = (scan.config.max_range);
+				int size = (scan.config.max_angle - scan.config.min_angle)/ scan.config.angle_increment + 1;
+				scan_msg.ranges.resize(size);
+				scan_msg.intensities.resize(size);
+				
+				for(int i=0; i < scan.points.size(); i++) {
+					int index = std::ceil((scan.points[i].angle - scan.config.min_angle)/scan.config.angle_increment);
+					if(index >=0 && index < size) {
+						scan_msg.ranges[index] = scan.points[i].range;
+						scan_msg.intensities[index] = scan.points[i].intensity;
+					}
+				}
+				scan_pub.publish(scan_msg);
+			}
 			for(int i=0;i<500;i++){
 				float difference = fabs(old_distance[i] - YD_distance[i]);
 				int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
@@ -374,10 +374,10 @@ int main(int argc, char * argv[]) {
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
+			scanf(" %d",&scanNum);
 		}
 		rate.sleep();
 		ros::spinOnce();
-		scanf(" %d",&scanNum);
     }
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
