@@ -259,7 +259,7 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		printf("Start?");
 		scanChar = getchar();
-		while(scanChar != EOF){}
+		while(scanChar != EOF){
 		//while(scanf(" %c", &scanChar) == 1){
 			if(scanChar == 'n')
 				break;
