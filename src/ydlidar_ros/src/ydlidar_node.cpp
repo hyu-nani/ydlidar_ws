@@ -292,17 +292,18 @@ int main(int argc, char * argv[]) {
 				float difference = fabs(old_distance[i] - YD_distance[i]);
 				int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 				int Yvalue = round(-sin((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
-				if(allMap[robotY+Yvalue][robotX+Xvalue] < 2)
-					allMap[robotY+Yvalue][robotX+Xvalue] = 1; //sense
+				if(allMap[allMapSize/2+robotY+Yvalue][allMapSize/2+robotX+Xvalue] < 2)
+					allMap[allMapSize/2+robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
 				if( (difference < 0.015) &&	(difference != 0) && (YD_distance[i] > 0.15) && (YD_distance[i] < 8))
 					data_count[i]++;
 				else
 					data_count[i] = 0;
 				if(data_count[i] > 2){//wall sensitivity
-					allMap[robotY+Yvalue][robotX+Xvalue] = 2; //hold
+					allMap[allMapSize/2+robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 					data_count[i] = 0;
 				}
 			}
+			
 			//reset point map
 			for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++){
@@ -337,7 +338,7 @@ int main(int argc, char * argv[]) {
 			/////////////////////////////////////////////
 			printf("\033[%d;%dH",1,1);//set cursor 0,0
 			printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
-			allMap[allMapSize/2+pointY][allMapSize/2+pointX] = 3; //add departure
+			allMap[pointY][pointX] = 3; //add departure
 			//SSH print
 			printSSHmonitor(allMapSize/2+robotY,allMapSize/2+robotX);
 			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
