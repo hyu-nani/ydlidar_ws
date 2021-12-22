@@ -23,8 +23,9 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
-
+//#include <iostream>
 using namespace ydlidar;
+
 #define RAD2DEG(x) ((x)*180./M_PI)
 #define ROSVerision "1.4.6"
 float	YD_distance[500];
