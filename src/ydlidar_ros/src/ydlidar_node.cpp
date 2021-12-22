@@ -38,7 +38,7 @@ int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
 
-int scanNum = 0;
+char scanChar = 0;
 
 const int	printSize						  =	170;
 //SSH print size 170 for laptop 100 for tablet
@@ -258,8 +258,7 @@ int main(int argc, char * argv[]) {
 		//mapping
 		//////////////////////////////////////////////////////////////////////////
 		printf("Start?");
-		scanf("%d",&scanNum);
-		while(scanNum==1){
+		while(scanf(" %c", &scanChar == 1)){
 			if(laser.doProcessSimple(scan, hardError )){
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
@@ -337,8 +336,6 @@ int main(int argc, char * argv[]) {
 			printf("\033[%d;%dH",1,1);//set cursor 0,0
 			printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 			allMap[pointY][pointX] = 3; //add departure
-			char charactor;
-			scanf("text:%c",&charactor);
 			//SSH print
 			printSSHmonitor(robotY,robotX);
 			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
@@ -374,7 +371,6 @@ int main(int argc, char * argv[]) {
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
-			scanf(" %d",&scanNum);
 		}
 		rate.sleep();
 		ros::spinOnce();
