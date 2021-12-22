@@ -38,7 +38,7 @@ int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
 
-int scanData = 0;
+char scanData = 0;
 
 const int	printSize						  =	170;
 //SSH print size 170 for laptop 100 for tablet
@@ -258,10 +258,10 @@ int main(int argc, char * argv[]) {
 		//mapping
 		//////////////////////////////////////////////////////////////////////////
 		printf("Start?");
-		scanf(" %c", &scanData);
+		scanf("%c", &scanData);
 		//while(scanChar != EOF){
 			
-		while(scanf(" %c", &scanData) != EOF){
+		while(scanf("%c", &scanData) != EOF){
 			if(laser.doProcessSimple(scan, hardError )){
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
