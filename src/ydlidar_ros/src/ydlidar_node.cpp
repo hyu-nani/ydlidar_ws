@@ -294,11 +294,11 @@ int main(int argc, char * argv[]) {
 				int Yvalue = round(-sin((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 				if(allMap[allMapSize/2+robotY+Yvalue][allMapSize/2+robotX+Xvalue] < 2)
 					allMap[allMapSize/2+robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
-				if( (difference < 0.015) &&	(difference != 0) && (YD_distance[i] > 0.15) && (YD_distance[i] < 8))
+				if( (difference < 0.010) &&	(difference != 0) && (YD_distance[i] > 0.15) && (YD_distance[i] < 8))
 					data_count[i]++;
 				else
 					data_count[i] = 0;
-				if(data_count[i] > 2){//wall sensitivity
+				if(data_count[i] > 4){//wall sensitivity
 					allMap[allMapSize/2+robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 					data_count[i] = 0;
 				}
@@ -374,7 +374,7 @@ int main(int argc, char * argv[]) {
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
-			//scanf("%s",scanData);
+			scanf("%s",scanData);
 			if(strcmp(scanData,"stop")==0){
 				printf("\033[45m\033[36m");
 				printf("--------------------------------stop--------------------------------");
