@@ -261,7 +261,7 @@ int main(int argc, char * argv[]) {
 		scanChar = getchar();
 		while(scanChar != EOF){}
 		//while(scanf(" %c", &scanChar) == 1){
-			if(scanChar == "n")
+			if(scanChar == 'n')
 				break;
 			scanChar = getchar();
 			if(laser.doProcessSimple(scan, hardError )){
