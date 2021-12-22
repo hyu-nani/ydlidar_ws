@@ -380,7 +380,7 @@ int main(int argc, char * argv[]) {
 				printf("\033[40m\033[97m");
 				break;
 			}
-			else if(strcmp(scanData,"goto")==0){
+			if(strcmp(scanData,"goto")==0){
 				printf("input the X Y :");
 				scanf("%d %d",&robotX,&robotY);
 				printf("go to robot X:%d / Y:%d",robotX,robotY);
