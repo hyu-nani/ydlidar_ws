@@ -258,7 +258,7 @@ int main(int argc, char * argv[]) {
 		//mapping
 		//////////////////////////////////////////////////////////////////////////
 		printf("Start?");
-		while(scanf(" %c", &scanChar == 1)){
+		while(scanf(" %c", &scanChar) == 1){
 			if(laser.doProcessSimple(scan, hardError )){
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
