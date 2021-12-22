@@ -373,7 +373,7 @@ int main(int argc, char * argv[]) {
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
-			gets(scanData);
+			scanf("%s",scanData);
 			if(strcmp(scanData,"stop")==0)
 				break;
 		}
