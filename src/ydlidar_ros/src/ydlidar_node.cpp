@@ -376,7 +376,7 @@ int main(int argc, char * argv[]) {
 			scanf("%s",scanData);
 			if(strcmp(scanData,"stop")==0){
 				printf("stop");
-				break;
+				return 0;
 			}
 		}
 		
