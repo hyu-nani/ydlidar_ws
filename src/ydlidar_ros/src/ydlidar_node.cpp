@@ -379,7 +379,7 @@ int main(int argc, char * argv[]) {
 				printf("--------------------------------stop--------------------------------");
 				printf("\033[40m\033[97m");
 				break;
-			}
+			}/*
 			if(strcmp(scanData,"goto")==0){
 				printf("input the X Y :");
 				scanf("%d %d",&robotX,&robotY);
@@ -391,7 +391,7 @@ int main(int argc, char * argv[]) {
 				perror("write failed - ");
 				close(fd);
 				///////////
-			}
+			}*/
 		}
 		break;
     }
