@@ -374,8 +374,10 @@ int main(int argc, char * argv[]) {
 			rate.sleep();
 			ros::spinOnce();
 			scanf("%s",scanData);
-			if(strcmp(scanData,"stop")==0)
+			if(strcmp(scanData,"stop")==0){
+				printf("stop");
 				break;
+			}
 		}
 		
     }
