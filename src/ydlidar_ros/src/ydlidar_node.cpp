@@ -39,7 +39,7 @@ int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
 
-char scanData = 0;
+char scanData[30];
 
 const int	printSize						  =	170;
 //SSH print size 170 for laptop 100 for tablet
@@ -373,10 +373,11 @@ int main(int argc, char * argv[]) {
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
-			scanf("%c", &scanData);
-			if(scanData == 'o')
+			gets(scanData);
+			if(strcmp(scanData,"stop")==0)
 				break;
 		}
+		
     }
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
