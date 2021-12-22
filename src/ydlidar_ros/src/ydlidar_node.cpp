@@ -51,7 +51,7 @@ unsigned int	allMap[allMapSize][allMapSize]      = {0};			//All map wall, sensin
 unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
 	
 //ROBOT data initial setting
-int		robotX = allMapSize/2, robotY = allMapSize/2;	//center
+int		robotX = 0, robotY = 0;	//center
 float	robotAngle = 90;
 
 void SerialPrint(char* strBuffer);
@@ -337,17 +337,17 @@ int main(int argc, char * argv[]) {
 			/////////////////////////////////////////////
 			printf("\033[%d;%dH",1,1);//set cursor 0,0
 			printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
-			allMap[pointY][pointX] = 3; //add departure
+			allMap[allMapSize/2+pointY][allMapSize/2+pointX] = 3; //add departure
 			//SSH print
-			printSSHmonitor(robotY,robotX);
+			printSSHmonitor(allMapSize/2+robotY,allMapSize/2+robotX);
 			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
 			printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 			//return sensing text to empty text 
 			for(int i=0;i<printSize;i++)
 				for(int j=0;j<printSize;j++){
-				  int a = allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX];
+				  int a = allMap[(i-printSize/2)*printScale+allMapSize/2+robotY][(j-printSize/2)*printScale+allMapSize/2+robotX];
 					if(a == 1 || a == 5) //sensing point or robot center
-						allMap[(i-printSize/2)*printScale+robotY][(j-printSize/2)*printScale+robotX] = 0;
+						allMap[(i-printSize/2)*printScale+allMapSize/2+robotY][(j-printSize/2)*printScale+allMapSize/2+robotX] = 0;
 				}
     
 			//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
@@ -377,7 +377,14 @@ int main(int argc, char * argv[]) {
 			if(strcmp(scanData,"stop")==0){
 				printf("\033[45m\033[36m");
 				printf("--------------------------------stop--------------------------------");
+				printf("\033[40m\033[97m");
 				break;
+			}
+			else if(strcmp(scanData,"goto")==0){
+				printf("input the X Y :");
+				scanf("%d %d",&robotX,&robotY);
+				printf("go to robot X:%d / Y:%d",robotX,robotY);
+				SerialPrint("10 10");
 			}
 		}
 		break;
