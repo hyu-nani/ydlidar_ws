@@ -23,6 +23,7 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
+#include <conio.h>
 //#include <iostream>
 using namespace ydlidar;
 
@@ -370,18 +371,21 @@ int main(int argc, char * argv[]) {
 				old_distance[i] = YD_distance[i];
 			///////////////////////////////////////////////////////////////////////////read
 			//SerialRead();
-  			//////////////////////////////////////////////////////////////////////////
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
-			scanf("%s",scanData);
-			if(strcmp(scanData,"stop")==0){
+			
+			//scanf("%s",scanData);
+			//while(!kbhit()) <<--
+			//gets(scanData);
+			
+			if(strcmp(scanData,"stop")==0){//
 				printf("\033[45m\033[36m");
 				printf("--------------------------------stop--------------------------------");
 				printf("\033[40m\033[97m");
 				break;
 			}
-			if(strcmp(scanData,"goto")==0){
+			if(strcmp(scanData,"goto")==0){//goto robot command
 				printf("input the X Y :");
 				scanf("%d %d",&robotX,&robotY);
 				printf("go to robot X:%d / Y:%d",robotX,robotY);
@@ -393,7 +397,7 @@ int main(int argc, char * argv[]) {
 				close(fd);
 				///////////
 			}
-			if(strcmp(scanData,"reset")==0){
+			if(strcmp(scanData,"reset")==0){//
 				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++){
 					allMap[i][j] = 0;
