@@ -322,7 +322,7 @@ int main(int argc, char * argv[]) {
 							for(int p=-pointRange;p<pointRange;p++)
 								allPointMap[k+i][p+j]++;
 						//print empty space
-						Line(allMapSize/2-robotX,allMapSize/2+robotY,i,j);
+						Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 					}
 				
 			//find score and record
