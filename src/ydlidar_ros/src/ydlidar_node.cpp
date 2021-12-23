@@ -340,15 +340,15 @@ int main(int argc, char * argv[]) {
 			printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 			allMap[pointY][pointX] = 3; //add departure
 			//SSH print
-			printSSHmonitor(allMapSize/2+robotY,allMapSize/2+robotX);
+			printSSHmonitor(allMapSize/2-robotY,allMapSize/2+robotX);
 			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
 			printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 			//return sensing text to empty text 
 			for(int i=0;i<printSize;i++)
 				for(int j=0;j<printSize;j++){
-				  int a = allMap[(i-printSize/2)*printScale+allMapSize/2+robotY][(j-printSize/2)*printScale+allMapSize/2+robotX];
+				  int a = allMap[(i-printSize/2)*printScale+allMapSize/2-robotY][(j-printSize/2)*printScale+allMapSize/2+robotX];
 					if(a == 1 || a == 5) //sensing point or robot center
-						allMap[(i-printSize/2)*printScale+allMapSize/2+robotY][(j-printSize/2)*printScale+allMapSize/2+robotX] = 0;
+						allMap[(i-printSize/2)*printScale+allMapSize/2-robotY][(j-printSize/2)*printScale+allMapSize/2+robotX] = 0;
 				}
     
 			//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
