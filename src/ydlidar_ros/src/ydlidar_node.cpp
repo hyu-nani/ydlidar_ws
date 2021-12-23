@@ -292,14 +292,14 @@ int main(int argc, char * argv[]) {
 				float difference = fabs(old_distance[i] - YD_distance[i]);
 				int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 				int Yvalue = round(-sin((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
-				if(allMap[allMapSize/2+robotY-Yvalue][allMapSize/2+robotX+Xvalue] < 2)
-					allMap[allMapSize/2+robotY-Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
+				if(allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] < 2)
+					allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
 				if( (difference < 0.010) &&	(difference != 0) && (YD_distance[i] > 0.15) && (YD_distance[i] < 8))
 					data_count[i]++;
 				else
 					data_count[i] = 0;
 				if(data_count[i] > 4){//wall sensitivity
-					allMap[allMapSize/2+robotY-Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
+					allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 					data_count[i] = 0;
 				}
 			}
