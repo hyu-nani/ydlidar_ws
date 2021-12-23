@@ -393,6 +393,12 @@ int main(int argc, char * argv[]) {
 				close(fd);
 				///////////
 			}
+			if(strcmp(scanData,"reset")==0){
+				for(int i=0;i<allMapSize;i++)
+				for(int j=0;j<allMapSize;j++){
+					allMap[i][j] = 0;
+				}
+			}
 		}
 		break;
     }
