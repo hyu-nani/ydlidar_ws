@@ -465,6 +465,7 @@ int main(int argc, char * argv[]) {
 				printf("Command Please...\n input:");
 				scanf("%s",scanData);
 				if(strcmp(scanData,"stop")==0){//
+					system("clear");
 					printf("\033[45m\033[36m");
 					printf("--------------------------------stop--------------------------------");
 					printf("\033[40m\033[97m");
@@ -480,6 +481,7 @@ int main(int argc, char * argv[]) {
 					if(serial1 < 0)
 					perror("write failed - ");
 					close(fd);
+					system("clear");
 					///////////
 				}
 				if(strcmp(scanData,"reset")==0){//
@@ -487,9 +489,11 @@ int main(int argc, char * argv[]) {
 					for(int j=0;j<allMapSize;j++){
 						allMap[i][j] = 0;
 					}
+					system("clear");
 				}
 				else{
 					printf("nothing...");
+					system("clear");
 				}
 			}
 			
@@ -581,7 +585,6 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("\n");
 	printf("\033[0m");//white
 }
-
 void Line(int x0, int y0,int x1, int y1) {
 	int steep = abs(y1 - y0) > abs(x1 - x0);
 	int t;
