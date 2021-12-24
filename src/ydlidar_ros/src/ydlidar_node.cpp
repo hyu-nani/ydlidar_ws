@@ -71,45 +71,45 @@ int SNMP::_kbhit()
 	u_char  uchTime;
 	char  szBuf[10];
 	
-	// 표준 입력 상태파악
+	// scan input
 	ioctl( 0, TCGETA, &stTerm );
 	
-	// 값 변경
+	// change val
 	usFlag= stTerm.c_lflag;
 	uchMin= stTerm.c_cc[ VMIN ];
 	uchTime= stTerm.c_cc[ VTIME ];
 	
-	// low 모드로 설정
+	// set the low mode
 	stTerm.c_lflag &= ~ICANON;
-	// read호출시 0개문자 읽어들임
+	// if u call the read then reading 0 char
 	stTerm.c_cc[ VMIN ] = 0;
-	// 시간 지연 없음
+	// no delay
 	stTerm.c_cc[ VTIME ]= 0;
 	
-	// 상태 변경
+	// change state
 	ioctl( 0, TCSETA, &stTerm );
 	
-	// read() 호출
+	// read() call
 	if( read( 0, szBuf, 9 ) <= 0 )
 	{
-		// 원상태로 복구
+		// reset
 		stTerm.c_lflag = usFlag;
 		stTerm.c_cc[ VMIN ] = uchMin;
 		stTerm.c_cc[ VTIME ]= uchTime;
 		ioctl( 0, TCSETA, &stTerm );
 		
-		// 키가 안눌러졌음
+		// not push the key
 		return 0;
 	}
 	else
 	{
-		// 원상태로 복구
+		// reset
 		stTerm.c_lflag = usFlag;
 		stTerm.c_cc[ VMIN ]= uchMin;
 		stTerm.c_cc[ VTIME ]= uchTime;
 		ioctl(0, TCSETA, &stTerm);
 		
-		// 키가 눌러졌음을 알림
+		// push key
 		return 1;
 }
 
@@ -427,12 +427,9 @@ int main(int argc, char * argv[]) {
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
-			
-			//scanf("%s",scanData);
-			//while(!kbhit()) <<--
-			//gets(scanData);
+			//command 
 			if(_kbhit()){
-				printf("Command Please...");
+				printf("Command Please...\n input:");
 				gets(scanData);
 				if(strcmp(scanData,"stop")==0){//
 					printf("\033[45m\033[36m");
@@ -457,6 +454,9 @@ int main(int argc, char * argv[]) {
 					for(int j=0;j<allMapSize;j++){
 						allMap[i][j] = 0;
 					}
+				}
+				else{
+					printf("nothing...");
 				}
 			}
 			
