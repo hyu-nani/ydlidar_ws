@@ -378,7 +378,7 @@ int main(int argc, char * argv[]) {
 			//scanf("%s",scanData);
 			//while(!kbhit()) <<--
 			//gets(scanData);
-			if(kbhit()){
+			if(_kbhit()){
 				printf("Command Please...");
 				gets(scanData);
 				if(strcmp(scanData,"stop")==0){//
