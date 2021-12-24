@@ -432,7 +432,8 @@ int main(int argc, char * argv[]) {
 					printf("nothing...");
 					system("clear");
 				}
-				linux_kbhit();
+				for(int h=0;h<100;h++)
+					linux_kbhit();
 			}
 			
 		}
