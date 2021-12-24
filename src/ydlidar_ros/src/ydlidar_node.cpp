@@ -61,6 +61,7 @@ void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
+/*
 int linux_kbhit(void)
 {
 	struct termios oldt, newt;
@@ -72,6 +73,27 @@ int linux_kbhit(void)
 	ch = getchar();
 	tcsetattr( STDIN_FILENO, TCSANOW, &oldt );
 	return ch;
+}*/
+int linux_kbhit(void)
+{
+	struct termios oldt, newt;
+	int ch;
+	int oldf;
+	tcgetattr(STDIN_FILENO, &oldt);
+	newt = oldt;
+	newt.c_lflag &= ~(ICANON | ECHO);
+	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+	oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+	fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+	ch = getchar();
+	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+	fcntl(STDIN_FILENO, F_SETFL, oldf);
+	if(ch != EOF)
+	{
+		ungetc(ch, stdin);
+		return 1;
+	}
+	return 0;
 }
 /*
 int SNMP::_kbhit()//kbhit code
@@ -439,8 +461,7 @@ int main(int argc, char * argv[]) {
 			rate.sleep();
 			ros::spinOnce();
 			//command 
-			int kbhit = linux_kbhit();
-			if(kbhit == -1){
+			if(linux_kbhit()){
 				printf("Command Please...\n input:");
 				scanf("%s",scanData);
 				if(strcmp(scanData,"stop")==0){//
