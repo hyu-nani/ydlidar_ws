@@ -402,7 +402,7 @@ int main(int argc, char * argv[]) {
 			//command 
 			if(linux_kbhit()){
 				printf("Command Please...\n input:");
-				scanf(" %s\n",scanData);
+				scanf(" %s",scanData);
 				if(strcmp(scanData,"stop")==0){//
 					system("clear");
 					printf("\033[45m\033[36m");
