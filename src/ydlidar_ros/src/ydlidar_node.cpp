@@ -67,14 +67,16 @@ int linux_kbhit(void)
 	struct termios oldt, newt;
 	int ch;
 	int oldf;
-	tcgetattr(STDIN_FILENO, &oldt);
+	tcgetattr(STDIN_FILENO, &oldt);//read current setting
 	newt = oldt;
-	newt.c_lflag &= ~(ICANON | ECHO);
-	tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+	newt.c_lflag &= ~(ICANON | ECHO);//CANONICAL and ECHO off
+	tcsetattr(STDIN_FILENO, TCSANOW, &newt);//input setting on terminal
+	newt.c_cc[VMIN] = 1;//min input char num = 1
+	newt.c_cc[VTIME] = 0;//read wait time = 0
 	oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
 	fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
-	ch = getchar();
-	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+	ch = getchar();//read keyboard
+	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
 	fcntl(STDIN_FILENO, F_SETFL, oldf);
 	if(ch != EOF)
 	{
@@ -432,8 +434,6 @@ int main(int argc, char * argv[]) {
 					printf("nothing...");
 					system("clear");
 				}
-				for(int h=0;h<100;h++)
-					linux_kbhit();
 			}
 			
 		}
