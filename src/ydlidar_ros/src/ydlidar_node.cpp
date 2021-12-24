@@ -78,7 +78,7 @@ int linux_kbhit(void)
 	ch = getchar();//read keyboard
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
 	fcntl(STDIN_FILENO, F_SETFL, oldf);
-	if(ch == 27)
+	if(ch == 10)
 	{
 		ungetc(ch, stdin);
 		return 1;
