@@ -440,7 +440,7 @@ int main(int argc, char * argv[]) {
 			ros::spinOnce();
 			//command 
 			int kbhit = linux_kbhit();
-			if(kbhit() == -1){
+			if(kbhit == -1){
 				printf("Command Please...\n input:");
 				scanf("%s",scanData);
 				if(strcmp(scanData,"stop")==0){//
