@@ -432,6 +432,7 @@ int main(int argc, char * argv[]) {
 					printf("nothing...");
 					system("clear");
 				}
+				linux_kbhit();
 			}
 			
 		}
