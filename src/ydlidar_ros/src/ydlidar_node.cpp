@@ -61,19 +61,7 @@ void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
-/*
-int linux_kbhit(void)
-{
-	struct termios oldt, newt;
-	int ch;
-	tcgetattr( STDIN_FILENO, &oldt );
-	newt = oldt;
-	newt.c_lflag &= ~( ICANON | ECHO );
-	tcsetattr( STDIN_FILENO, TCSANOW, &newt );
-	ch = getchar();
-	tcsetattr( STDIN_FILENO, TCSANOW, &oldt );
-	return ch;
-}*/
+
 int linux_kbhit(void)
 {
 	struct termios oldt, newt;
@@ -95,57 +83,6 @@ int linux_kbhit(void)
 	}
 	return 0;
 }
-/*
-int SNMP::_kbhit()//kbhit code
-{
-	struct termio stTerm;
-	u_short  usFlag;
-	u_char  uchMin;
-	u_char  uchTime;
-	char  szBuf[10];
-	
-	// scan input
-	ioctl( 0, TCGETA, &stTerm );
-	
-	// change val
-	usFlag= stTerm.c_lflag;
-	uchMin= stTerm.c_cc[ VMIN ];
-	uchTime= stTerm.c_cc[ VTIME ];
-	
-	// set the low mode
-	stTerm.c_lflag &= ~ICANON;
-	// if u call the read then reading 0 char
-	stTerm.c_cc[ VMIN ] = 0;
-	// no delay
-	stTerm.c_cc[ VTIME ]= 0;
-	
-	// change state
-	ioctl( 0, TCSETA, &stTerm );
-	
-	// read() call
-	if( read( 0, szBuf, 9 ) <= 0 )
-	{
-		// reset
-		stTerm.c_lflag = usFlag;
-		stTerm.c_cc[ VMIN ] = uchMin;
-		stTerm.c_cc[ VTIME ]= uchTime;
-		ioctl( 0, TCSETA, &stTerm );
-		
-		// not push the key
-		return 0;
-	}
-	else
-	{
-		// reset
-		stTerm.c_lflag = usFlag;
-		stTerm.c_cc[ VMIN ]= uchMin;
-		stTerm.c_cc[ VTIME ]= uchTime;
-		ioctl(0, TCSETA, &stTerm);
-		
-		// push key
-		return 1;
-}
-*/
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
     std::stringstream ss(s);
