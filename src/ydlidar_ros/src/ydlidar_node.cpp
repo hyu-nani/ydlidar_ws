@@ -378,32 +378,37 @@ int main(int argc, char * argv[]) {
 			//scanf("%s",scanData);
 			//while(!kbhit()) <<--
 			//gets(scanData);
-			
-			if(strcmp(scanData,"stop")==0){//
-				printf("\033[45m\033[36m");
-				printf("--------------------------------stop--------------------------------");
-				printf("\033[40m\033[97m");
-				break;
-			}
-			if(strcmp(scanData,"goto")==0){//goto robot command
-				printf("input the X Y :");
-				scanf("%d %d",&robotX,&robotY);
-				printf("go to robot X:%d / Y:%d",robotX,robotY);
-				///////////
-				fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
-				serial1 = write(fd,"10 10 0",7);
-				if(serial1 < 0)
-				perror("write failed - ");
-				close(fd);
-				///////////
-			}
-			if(strcmp(scanData,"reset")==0){//
-				for(int i=0;i<allMapSize;i++)
-				for(int j=0;j<allMapSize;j++){
-					allMap[i][j] = 0;
+			if(kbhit()){
+				printf("Command Please...");
+				gets(scanData);
+				if(strcmp(scanData,"stop")==0){//
+					printf("\033[45m\033[36m");
+					printf("--------------------------------stop--------------------------------");
+					printf("\033[40m\033[97m");
+					break;
+				}
+				if(strcmp(scanData,"goto")==0){//goto robot command
+					printf("input the X Y :");
+					scanf("%d %d",&robotX,&robotY);
+					printf("go to robot X:%d / Y:%d",robotX,robotY);
+					///////////
+					fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
+					serial1 = write(fd,"10 10 0",7);
+					if(serial1 < 0)
+					perror("write failed - ");
+					close(fd);
+					///////////
+				}
+				if(strcmp(scanData,"reset")==0){//
+					for(int i=0;i<allMapSize;i++)
+					for(int j=0;j<allMapSize;j++){
+						allMap[i][j] = 0;
+					}
 				}
 			}
+			
 		}
+		
 		break;
     }
     laser.turnOff();
