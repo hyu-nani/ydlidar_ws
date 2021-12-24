@@ -73,6 +73,7 @@ int linux_kbhit(void)
 	tcsetattr( STDIN_FILENO, TCSANOW, &oldt );
 	return ch;
 }
+/*
 int SNMP::_kbhit()//kbhit code
 {
 	struct termio stTerm;
@@ -122,7 +123,7 @@ int SNMP::_kbhit()//kbhit code
 		// push key
 		return 1;
 }
-
+*/
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
     std::stringstream ss(s);
