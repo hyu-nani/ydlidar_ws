@@ -23,8 +23,11 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
-#include <conio.h>
-//#include <iostream>
+#include <sys/ioctl.h>
+#include <term.h>
+#include <curses.h>
+#include <unistd.h>
+
 using namespace ydlidar;
 
 #define RAD2DEG(x) ((x)*180./M_PI)
@@ -59,6 +62,56 @@ void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
+
+int SNMP::_kbhit()
+{
+	struct termio stTerm;
+	u_short  usFlag;
+	u_char  uchMin;
+	u_char  uchTime;
+	char  szBuf[10];
+	
+	// 표준 입력 상태파악
+	ioctl( 0, TCGETA, &stTerm );
+	
+	// 값 변경
+	usFlag= stTerm.c_lflag;
+	uchMin= stTerm.c_cc[ VMIN ];
+	uchTime= stTerm.c_cc[ VTIME ];
+	
+	// low 모드로 설정
+	stTerm.c_lflag &= ~ICANON;
+	// read호출시 0개문자 읽어들임
+	stTerm.c_cc[ VMIN ] = 0;
+	// 시간 지연 없음
+	stTerm.c_cc[ VTIME ]= 0;
+	
+	// 상태 변경
+	ioctl( 0, TCSETA, &stTerm );
+	
+	// read() 호출
+	if( read( 0, szBuf, 9 ) <= 0 )
+	{
+		// 원상태로 복구
+		stTerm.c_lflag = usFlag;
+		stTerm.c_cc[ VMIN ] = uchMin;
+		stTerm.c_cc[ VTIME ]= uchTime;
+		ioctl( 0, TCSETA, &stTerm );
+		
+		// 키가 안눌러졌음
+		return 0;
+	}
+	else
+	{
+		// 원상태로 복구
+		stTerm.c_lflag = usFlag;
+		stTerm.c_cc[ VMIN ]= uchMin;
+		stTerm.c_cc[ VTIME ]= uchTime;
+		ioctl(0, TCSETA, &stTerm);
+		
+		// 키가 눌러졌음을 알림
+		return 1;
+}
 
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
