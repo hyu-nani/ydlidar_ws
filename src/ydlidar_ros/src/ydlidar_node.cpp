@@ -23,10 +23,9 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
-#include <sys/ioctl.h>
-#include <term.h>
-#include <curses.h>
-#include <unistd.h>
+//#include <sys/ioctl.h>
+//#include <term.h>
+//#include <curses.h>
 
 using namespace ydlidar;
 
@@ -62,8 +61,19 @@ void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
-
-int SNMP::_kbhit()
+int linux_kbhit(void)
+{
+	struct termios oldt, newt;
+	int ch;
+	tcgetattr( STDIN_FILENO, &oldt );
+	newt = oldt;
+	newt.c_lflag &= ~( ICANON | ECHO );
+	tcsetattr( STDIN_FILENO, TCSANOW, &newt );
+	ch = getchar();
+	tcsetattr( STDIN_FILENO, TCSANOW, &oldt );
+	return ch;
+}
+int SNMP::_kbhit()//kbhit code
 {
 	struct termio stTerm;
 	u_short  usFlag;
@@ -428,7 +438,7 @@ int main(int argc, char * argv[]) {
 			rate.sleep();
 			ros::spinOnce();
 			//command 
-			if(_kbhit()){
+			if(linux_kbhit()){
 				printf("Command Please...\n input:");
 				gets(scanData);
 				if(strcmp(scanData,"stop")==0){//
