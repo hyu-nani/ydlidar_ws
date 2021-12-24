@@ -73,12 +73,12 @@ int linux_kbhit(void)
 	tcsetattr(STDIN_FILENO, TCSANOW, &newt);//input setting on terminal
 	newt.c_cc[VMIN] = 1;//min input char num = 1
 	newt.c_cc[VTIME] = 0;//read wait time = 0
-	//oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
-	//fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+	oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+	fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
 	ch = getchar();//read keyboard
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
-	//fcntl(STDIN_FILENO, F_SETFL, oldf);
-	if(ch != EOF)
+	fcntl(STDIN_FILENO, F_SETFL, oldf);
+	if(ch == 27)
 	{
 		ungetc(ch, stdin);
 		return 1;
