@@ -425,7 +425,7 @@ int main(int argc, char * argv[]) {
 						allMap[i][j] = 0;
 					}
 				}
-				else if(strcmp(scanData,"")==0){
+				else if(strcmp(scanData,"mapping")==0){
 				}
 				else{
 					printf("nothing...");
