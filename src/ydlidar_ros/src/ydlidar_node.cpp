@@ -23,11 +23,12 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
-#include <fstream.h>
+#include <fstream>
 
 using namespace ydlidar;
+using namespace std;
 
-
+ofstream myfile;
 
 #define RAD2DEG(x) ((x)*180./M_PI)
 #define ROSVerision "1.4.6"
@@ -44,14 +45,14 @@ int		lidarReadCount;
 
 char scanData[30];
 
-const int	printSize						  =	170;
+const int	printSize								=	170;
 //SSH print size 170 for laptop 100 for tablet
-int			pinMap[printSize][printSize]	=	{0};//SSH print map
-int			printScale						  =	1;	//scale
-float		unitScale						    =	5.0;//1-unit cm
-const int	allMapSize						=	2000;
-unsigned int	allMap[allMapSize][allMapSize]      = {0};			//All map wall, sensing, robot
-unsigned int	allPointMap[allMapSize][allMapSize] = {0};		//score, departure point
+int			pinMap[printSize][printSize]			=	{0};//SSH print map
+int			printScale								=	1;	//scale
+float		unitScale								=	5.0;//1-unit cm
+const int	allMapSize								=	2000;
+unsigned int	allMap[allMapSize][allMapSize]      =	{0};			//All map wall, sensing, robot
+unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
 	
 //ROBOT data initial setting
 int		robotX = 0, robotY = 0;	//center
@@ -61,9 +62,6 @@ void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
-
-std::ofstream ofile("test.txt");
-std::string str = "Write test";
 
 int linux_kbhit(void)
 {
@@ -442,10 +440,6 @@ int main(int argc, char * argv[]) {
 					
 				}
 				else if(strcmp(scanData,"save")==0){
-					if(ofile.is_open()){
-						ofile<<"write test";
-						ofile.close();
-					}
 				}
 				else{
 					printf("nothing...");
