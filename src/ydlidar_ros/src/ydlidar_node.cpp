@@ -39,6 +39,8 @@ int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
 
+bool mappingActive = false;
+
 char scanData[30];
 
 const int	printSize								=	170;
@@ -324,7 +326,7 @@ int main(int argc, char * argv[]) {
 					data_count[i]++;
 				else
 					data_count[i] = 0;
-				if(data_count[i] > 2){//wall sensitivity
+				if(data_count[i] > 2 && mappingActive = true){//wall sensitivity
 					allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 					data_count[i] = 0;
 				}
@@ -426,10 +428,11 @@ int main(int argc, char * argv[]) {
 						allMap[i][j] = 0;
 					}
 				}
+				else if(strcmp(scanData,"mapping")==0){
+					mappingActive = !mappingActive;
+				}
 				else if(strcmp(scanData,"filter")==0){
-					printf("\033[45m\033[36m");
 					printf("Filtering.............................\n");
-					printf("\033[40m\033[97m");
 					int filterPoint=0;
 					for(int m=0;m<10;m++)//10 times
 						for(int i=1;i<allMapSize;i++)
