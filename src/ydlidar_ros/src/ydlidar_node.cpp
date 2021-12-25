@@ -427,10 +427,11 @@ int main(int argc, char * argv[]) {
 					}
 				}
 				else if(strcmp(scanData,"filter")==0){
-					printf("\033[45m\033[36m Filtering.............................\n");
+					printf("\033[45m\033[36m");
+					printf("Filtering.............................\n");
 					printf("\033[40m\033[97m");
 					int filterPoint=0;
-					for(int m=0;m<10;m++)
+					for(int m=0;m<10;m++)//10 times
 						for(int i=1;i<allMapSize;i++)
 							for(int j=1;j<allMapSize;j++)
 								if(allMap[i][j]==0){
