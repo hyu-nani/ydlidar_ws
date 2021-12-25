@@ -23,8 +23,11 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
+#include <fstream.h>
 
 using namespace ydlidar;
+
+
 
 #define RAD2DEG(x) ((x)*180./M_PI)
 #define ROSVerision "1.4.6"
@@ -58,6 +61,9 @@ void SerialPrint(char* strBuffer);
 void SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
+
+std::ofstream ofile("test.txt");
+std::string str = "Write test";
 
 int linux_kbhit(void)
 {
@@ -408,9 +414,9 @@ int main(int argc, char * argv[]) {
 				printf("\033[40m\033[97m");
 				printf("\nCommand Please...\n input:");
 				scanf(" %s",scanData);
-				if(strcmp(scanData,"stop")==0){//
+				if(strcmp(scanData,"stop")==0){//all stop
 					printf("\033[45m\033[36m");
-					printf("STOP....");
+					printf("STOP....\n");
 					printf("\033[40m\033[97m");
 					break;
 				}
@@ -436,7 +442,10 @@ int main(int argc, char * argv[]) {
 					
 				}
 				else if(strcmp(scanData,"save")==0){
-					
+					if(ofile.is_open()){
+						ofile<<"write test";
+						ofile.close();
+					}
 				}
 				else{
 					printf("nothing...");
