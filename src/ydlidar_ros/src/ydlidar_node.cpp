@@ -372,14 +372,14 @@ int main(int argc, char * argv[]) {
 							for(int p=0;p<3;p++)
 								if(allMap[i-1+k][j-1+p]==4)
 									filterPoint++;
-						if(filterPoint>6)
+						if(filterPoint>5)
 							allMap[i][j] = 4;
 						filterPoint=0;
 						for(int k=0;k<3;k++)
 							for(int p=0;p<3;p++)
 								if(allMap[i-1+k][j-1+p]==2)
 									filterPoint++;
-						if(filterPoint>6)
+						if(filterPoint>5)
 							allMap[i][j] = 2;
 						filterPoint=0;
 					}
