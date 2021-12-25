@@ -28,8 +28,6 @@
 using namespace ydlidar;
 using namespace std;
 
-ofstream myfile;
-
 #define RAD2DEG(x) ((x)*180./M_PI)
 #define ROSVerision "1.4.6"
 float	YD_distance[500];
