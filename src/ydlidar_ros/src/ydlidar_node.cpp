@@ -23,9 +23,6 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
-//#include <sys/ioctl.h>
-//#include <term.h>
-//#include <curses.h>
 
 using namespace ydlidar;
 
