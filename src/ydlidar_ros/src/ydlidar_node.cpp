@@ -367,13 +367,24 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/* filter                                                               */
 			/************************************************************************/
+			int filterPoint=0;
 			for(int i=1;i<allMapSize;i++)
 				for(int j=1;j<allMapSize;j++){
 					if(allMap[i][j]==0)
-						if(allMap[i-1][j]==2&&allMap[i+1][j]==2&&allMap[i][j-1]==2&&allMap[i][j+1]==2)
-							allMap[i][j] = 2;
-						else if(allMap[i-1][j]==4&&allMap[i+1][j]==4&&allMap[i][j-1]==4&&allMap[i][j+1]==4)
+						for(int k=0;k<3;k++)
+							for(int p=0;p<3;p++)
+								if(allMap[i-1+k][j-1+p]==4)
+									filterPoint++;
+						if(filterPoint>6)
 							allMap[i][j] = 4;
+						filterPoint=0;
+						for(int k=0;k<3;k++)
+							for(int p=0;p<3;p++)
+								if(allMap[i-1+k][j-1+p]==2)
+									filterPoint++;
+						if(filterPoint>6)
+							allMap[i][j] = 2;
+						filterPoint=0;
 					}
 			/************************************************************************/
 			/* print monitor                                                        */
