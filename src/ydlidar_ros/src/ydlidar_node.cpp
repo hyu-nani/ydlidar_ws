@@ -417,20 +417,20 @@ int main(int argc, char * argv[]) {
 					if(serial1 < 0)
 					perror("write failed - ");
 					close(fd);
-					system("clear");
 					///////////
 				}
-				if(strcmp(scanData,"reset")==0){//
+				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
 					for(int j=0;j<allMapSize;j++){
 						allMap[i][j] = 0;
 					}
-					system("clear");
+				}
+				else if(strcmp(scanData,"")==0){
 				}
 				else{
 					printf("nothing...");
-					system("clear");
 				}
+				system("clear");
 			}
 			
 		}
