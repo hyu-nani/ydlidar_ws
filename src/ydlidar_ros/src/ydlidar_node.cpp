@@ -23,10 +23,8 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
-#include <fstream>
 
 using namespace ydlidar;
-using namespace std;
 
 #define RAD2DEG(x) ((x)*180./M_PI)
 #define ROSVerision "1.4.6"
@@ -438,14 +436,12 @@ int main(int argc, char * argv[]) {
 					
 				}
 				else if(strcmp(scanData,"save")==0){
-					ofstream myfile ("example.txt");
-					if (myfile.is_open())
-					{
-						myfile << "This is a line.\n";
-						myfile << "This is another line.\n";
-						myfile.close();
-					}
-					else cout << "Unable to open file";
+					FILE *fp;
+					char ch;
+					fp-fopen("test.txt","w");
+					printf("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+					fprintf(fp,"lasdkfmalsmdfaldmfalk");
+					fclose(fp);
 					return 0;
 				}
 				else{
