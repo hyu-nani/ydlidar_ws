@@ -282,7 +282,7 @@ int main(int argc, char * argv[]) {
 		//////////////////////////////////////////////////////////////////////////
 		//while(scanChar != EOF){
 			
-		while(1){
+		while(true){
 			LaserScan scan;
 			if(laser.doProcessSimple(scan, hardError )){
 				sensor_msgs::LaserScan scan_msg;
@@ -311,6 +311,9 @@ int main(int argc, char * argv[]) {
 				}
 				scan_pub.publish(scan_msg);
 			}
+			/************************************************************************/
+			/* Writing sensing, wall, empty                                         */
+			/************************************************************************/
 			for(int i=0;i<500;i++){
 				float difference = fabs(old_distance[i] - YD_distance[i]);
 				int Xvalue = round(cos((YD_angle[i]+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
@@ -326,7 +329,14 @@ int main(int argc, char * argv[]) {
 					data_count[i] = 0;
 				}
 			}
-			
+			//print empty space
+			for(int i=0;i<allMapSize;i++)
+				for(int j=0;j<allMapSize;j++)
+					if(allMap[i][j]==2) //find wall place
+						Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
+			/************************************************************************/
+			/* point map                                                            */
+			/************************************************************************/
 			//reset point map
 			for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++){
@@ -334,20 +344,18 @@ int main(int argc, char * argv[]) {
 					if (allMap[i][j] == 3) //departure 
 						allMap[i][j] = 0;
 				}
-		
+			//add point
 			int pointRange = 50;
 			unsigned int pointMax=0,pointX=0,pointY=0;
 			for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++)
 					if(allMap[i][j]==2){ //find wall place
-					  //add point at the around the wall place
 						for(int k=-pointRange;k<pointRange;k++)
 							for(int p=-pointRange;p<pointRange;p++)
 								allPointMap[k+i][p+j]++;
-						//print empty space
-						Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 					}
-				
+					else if(allMap[i][j]==4) //find empty place
+						allPointMap[i][j]+=5;
 			//find score and record
 			for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++)
@@ -385,20 +393,6 @@ int main(int argc, char * argv[]) {
 						allMap[(i-printSize/2)*printScale+allMapSize/2-robotY][(j-printSize/2)*printScale+allMapSize/2+robotX] = 0;
 				}
     
-			//printf("angle-distance[%f - %f]253\n",YD_angle[253],YD_distance[253]);
-			/*
-			if(active == true){
-				time_t now;
-				time(&now);
-				printf("---------------------------------------------\n");
-				printf("Corrent Time :%s", asctime(localtime(&now)));
-				printf("%d\tScan! Angle:%f\n",printCount,YD_angle[angleNum]);
-				printCount++;
-			}
-			if(data_average[252] < 0.4){	//trans MS
-				SerialPrint("10 0 90"); //X Y angle
-			}
-			*/
 			count++;
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
@@ -407,7 +401,9 @@ int main(int argc, char * argv[]) {
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
-			//command 
+			/************************************************************************/
+			/* Command Line                                                         */
+			/************************************************************************/
 			if(linux_kbhit()){
 				printf("\033[45m\033[36m");
 				for(int i=0;i<printSize/2-1;i++)
