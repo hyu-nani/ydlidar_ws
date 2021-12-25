@@ -439,10 +439,9 @@ int main(int argc, char * argv[]) {
 					FILE *fp;
 					char ch;
 					fp=fopen("test.txt","w");
-					printf("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 					fprintf(fp,"lasdkfmalsmdfaldmfalk");
-					fflush(fp);
 					fclose(fp);
+					printf("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 					return 0;
 				}
 				else{
