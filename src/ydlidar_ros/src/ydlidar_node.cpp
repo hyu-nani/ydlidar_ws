@@ -441,6 +441,7 @@ int main(int argc, char * argv[]) {
 					fp=fopen("test.txt","w");
 					printf("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 					fprintf(fp,"lasdkfmalsmdfaldmfalk");
+					fflush(fp);
 					fclose(fp);
 					return 0;
 				}
