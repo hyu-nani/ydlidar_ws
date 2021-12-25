@@ -438,7 +438,7 @@ int main(int argc, char * argv[]) {
 				else if(strcmp(scanData,"save")==0){
 					FILE *fp;
 					char ch;
-					fp-fopen("test.txt","w");
+					fp=fopen("test.txt","w");
 					printf("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 					fprintf(fp,"lasdkfmalsmdfaldmfalk");
 					fclose(fp);
