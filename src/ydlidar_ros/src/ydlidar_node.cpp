@@ -356,9 +356,20 @@ int main(int argc, char * argv[]) {
 						pointY=i;
 						pointX=j;
 					}
-			/////////////////////////////////////////////
-			//print monitor
-			/////////////////////////////////////////////
+			/************************************************************************/
+			/* filter                                                               */
+			/************************************************************************/
+			for(int i=1;i<allMapSize;i++)
+				for(int j=1;j<allMapSize;j++){
+					if(allMap[i][j]==0)
+						if(allMap[i-1][j]==2&&allMap[i+1][j]==2&&allMap[i][j-1]==2&&allMap[i][j+1]==2)
+							allMap[i][j] = 2;
+						else if(allMap[i-1][j]==4&&allMap[i+1][j]==4&&allMap[i][j-1]==4&&allMap[i][j+1]==4)
+							allMap[i][j] = 4;
+					}
+			/************************************************************************/
+			/* print monitor                                                        */
+			/************************************************************************/
 			printf("\033[%d;%dH",1,1);//set cursor 0,0
 			printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 			allMap[pointY][pointX] = 3; //add departure
