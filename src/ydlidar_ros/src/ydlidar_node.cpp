@@ -399,9 +399,14 @@ int main(int argc, char * argv[]) {
 			//command 
 			if(linux_kbhit()){
 				printf("\033[45m\033[36m");
-				printf("----------------------------------------------------------------PAUSE----------------------------------------------------------------");
+				for(int i=0;i<printSize/2-1;i++)
+					printf("--");
+				printf("PAUSE");
+				for(int i=0;i<printSize/2-1;i++)
+					printf("--");
+				printf("-\n");
 				printf("\033[40m\033[97m");
-				printf("Command Please...\n input:");
+				printf("\nCommand Please...\n input:");
 				scanf(" %s",scanData);
 				if(strcmp(scanData,"stop")==0){//
 					printf("\033[45m\033[36m");
