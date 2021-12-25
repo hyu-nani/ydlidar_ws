@@ -440,6 +440,9 @@ int main(int argc, char * argv[]) {
 					
 				}
 				else if(strcmp(scanData,"save")==0){
+					myfile.open("example.txt");
+					myfile<<"Writing this to a file\n";
+					myfile.close();
 				}
 				else{
 					printf("nothing...");
