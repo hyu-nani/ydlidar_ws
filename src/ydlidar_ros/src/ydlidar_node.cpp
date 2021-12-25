@@ -312,7 +312,7 @@ int main(int argc, char * argv[]) {
 				scan_pub.publish(scan_msg);
 			}
 			/************************************************************************/
-			/* Writing sensing, wall, empty                                         */
+			/* Writing sensing, wall                                                */
 			/************************************************************************/
 			for(int i=0;i<500;i++){
 				float difference = fabs(old_distance[i] - YD_distance[i]);
@@ -329,11 +329,6 @@ int main(int argc, char * argv[]) {
 					data_count[i] = 0;
 				}
 			}
-			//print empty space
-			for(int i=0;i<allMapSize;i++)
-				for(int j=0;j<allMapSize;j++)
-					if(allMap[i][j]==2) //find wall place
-						Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 			/************************************************************************/
 			/* point map                                                            */
 			/************************************************************************/
@@ -343,6 +338,8 @@ int main(int argc, char * argv[]) {
 					allPointMap[i][j] = 0;
 					if (allMap[i][j] == 3) //departure 
 						allMap[i][j] = 0;
+					else if(allMap[i][j] == 2) //find wall place
+						Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 				}
 			//add point
 			int pointRange = 50;
