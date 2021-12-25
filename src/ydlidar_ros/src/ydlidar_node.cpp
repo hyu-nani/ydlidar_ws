@@ -398,12 +398,14 @@ int main(int argc, char * argv[]) {
 			ros::spinOnce();
 			//command 
 			if(linux_kbhit()){
+				printf("\033[45m\033[36m");
+				printf("----------------------------------------------------------------PAUSE----------------------------------------------------------------");
+				printf("\033[40m\033[97m");
 				printf("Command Please...\n input:");
 				scanf(" %s",scanData);
 				if(strcmp(scanData,"stop")==0){//
-					system("clear");
 					printf("\033[45m\033[36m");
-					printf("--------------------------------stop--------------------------------");
+					printf("STOP....");
 					printf("\033[40m\033[97m");
 					break;
 				}
@@ -426,6 +428,10 @@ int main(int argc, char * argv[]) {
 					}
 				}
 				else if(strcmp(scanData,"mapping")==0){
+					
+				}
+				else if(strcmp(scanData,"save")==0){
+					
 				}
 				else{
 					printf("nothing...");
