@@ -57,7 +57,7 @@ int		robotX = 0, robotY = 0;	//center
 float	robotAngle = 90;
 
 void SerialPrint(char* strBuffer);
-void SerialRead();
+int	 SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
 
