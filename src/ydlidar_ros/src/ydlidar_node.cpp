@@ -421,7 +421,13 @@ int main(int argc, char * argv[]) {
 					sprintf(buffer,"%d %d 0",moveX,moveY);
 					printf("ARDUINO SENDING : %s",buffer);
 					SerialPrint(buffer);
-					
+					while(SerialRead()==0){
+						int b=0;
+						for(int i=1;i<allMapSize;i++)
+							for(int j=1;j<allMapSize;j++)
+								b++;
+						printf("waiting");
+					}
 				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
@@ -491,19 +497,26 @@ void SerialPrint(const char* format)
 	close(fd);
 }
 
-void SerialRead()
+int SerialRead()
 {
 	char buf[256];
 	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
 		perror("Read failed - ");
+		close(fd);
+		return 0;
 	}
-	else if (serial1 == 0) printf("No data on port\n");
+	else if (serial1 == 0){
+		 printf("No data on port\n");
+		 close(fd);
+		 return 0;
+	}
 	else {
 		buf[serial1] = '\0';
 		printf("%i bytes read : %s", serial1, buf);
+		close(fd);
+		return 1;
 	}
-	close(fd);
 }
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
