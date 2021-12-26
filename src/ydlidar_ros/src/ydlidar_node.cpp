@@ -412,7 +412,10 @@ int main(int argc, char * argv[]) {
 				}
 				if(strcmp(scanData,"goto")==0){//goto robot command
 					printf("input the X Y :");
-					scanf("%d %d",&robotX,&robotY);
+					int moveX,moveY;
+					scanf("%d %d",&moveX,&moveY);
+					robotX += moveX;
+					robotY += moveY;
 					printf("go to robot X:%d / Y:%d",robotX,robotY);
 					///////////
 					fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
