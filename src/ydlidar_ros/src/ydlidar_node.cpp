@@ -421,26 +421,24 @@ int main(int argc, char * argv[]) {
 					sprintf(buffer,"%d %d 0",moveX,moveY);
 					printf("ARDUINO SENDING : %s",buffer);
 					SerialPrint(buffer);
-					while(1){
-						for(int m=0;m<10;m++)//10 times
-						for(int i=1;i<allMapSize;i++)
-						for(int j=1;j<allMapSize;j++)
-						if(allMap[i][j]==0){
-							for(int k=0;k<3;k++)
-							for(int p=0;p<3;p++)
-							if(allMap[i-1+k][j-1+p]==4)
-							filterPoint++;
-							if(filterPoint>4)
-							allMap[i][j] = 4;
-							filterPoint=0;
-							for(int k=0;k<3;k++)
-							for(int p=0;p<3;p++)
-							if(allMap[i-1+k][j-1+p]==2)
-							filterPoint++;
-							if(filterPoint>4)
-							allMap[i][j] = 2;
-							filterPoint=0;
-						}
+					for(int m=0;m<10;m++)//10 times
+					for(int i=1;i<allMapSize;i++)
+					for(int j=1;j<allMapSize;j++)
+					if(allMap[i][j]==0){
+						for(int k=0;k<3;k++)
+						for(int p=0;p<3;p++)
+						if(allMap[i-1+k][j-1+p]==4)
+						filterPoint++;
+						if(filterPoint>4)
+						allMap[i][j] = 4;
+						filterPoint=0;
+						for(int k=0;k<3;k++)
+						for(int p=0;p<3;p++)
+						if(allMap[i-1+k][j-1+p]==2)
+						filterPoint++;
+						if(filterPoint>4)
+						allMap[i][j] = 2;
+						filterPoint=0;
 					}
 				}
 				else if(strcmp(scanData,"reset")==0){//
