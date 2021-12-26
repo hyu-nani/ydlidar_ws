@@ -421,12 +421,11 @@ int main(int argc, char * argv[]) {
 					sprintf(buffer,"%d %d 0",moveX,moveY);
 					printf("ARDUINO SENDING : %s",buffer);
 					SerialPrint(buffer);
-					while(SerialRead()==0){
+					while(1){
 						int b=0;
 						for(int i=1;i<allMapSize;i++)
 							for(int j=1;j<allMapSize;j++)
 								b++;
-						printf("waiting");
 					}
 				}
 				else if(strcmp(scanData,"reset")==0){//
