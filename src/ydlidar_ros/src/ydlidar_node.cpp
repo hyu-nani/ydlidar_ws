@@ -417,7 +417,11 @@ int main(int argc, char * argv[]) {
 					robotX += moveX;
 					robotY += moveY;
 					printf("go to robot X:%d / Y:%d",robotX,robotY);
-					SerialPrint("%d %d %d");
+					char buffer[20];
+					sprintf(buffer,"%d %d 0",moveX,moveY);
+					printf("ARDUINO SENDING : %s",buffer);
+					SerialPrint(buffer);
+					
 				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
@@ -478,7 +482,7 @@ int main(int argc, char * argv[]) {
     return 0;
 }
 
-void SerialPrint(char* format)
+void SerialPrint(const char* format)
 {
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
 	serial1 = write(fd,format,strlen(format));
