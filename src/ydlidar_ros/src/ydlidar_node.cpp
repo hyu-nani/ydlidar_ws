@@ -430,6 +430,8 @@ int main(int argc, char * argv[]) {
 					for(int j=0;j<allMapSize;j++){
 						allMap[i][j] = 0;
 					}
+					robotX	=	0;
+					robotY	=	0;
 				}
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
