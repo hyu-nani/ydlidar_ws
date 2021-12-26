@@ -414,24 +414,21 @@ int main(int argc, char * argv[]) {
 					printf("input the X Y :");
 					int moveX=0,moveY=0;
 					scanf("%d %d",&moveX,&moveY);
-					robotX += moveX;
-					robotY += moveY;
+					robotX += moveX;				    
+					robotY += moveY;				    
 					printf("go to robot X:%d / Y:%d\n",robotX,robotY);
 					char buffer[20];
 					sprintf(buffer,"%d %d 0",moveX,moveY);
 					printf("ARDUINO SENDING : %s",buffer);
 					SerialPrint(buffer);
+					int a = 0;
 					for(int m=0;m<10;m++)//10 times
 						for(int i=1;i<allMapSize;i++)
 							for(int j=1;j<allMapSize;j++)
-								if(allMap[i][j]==0){
+								if(allMap[i][j]==0)
 									for(int k=0;k<3;k++)
 										for(int p=0;p<3;p++)
-											if(allMap[i-1+k][j-1+p]==4)
-									for(int k=0;k<3;k++)
-										for(int p=0;p<3;p++)
-											if(allMap[i-1+k][j-1+p]==2)
-								}
+											a=0;
 				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
