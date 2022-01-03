@@ -536,9 +536,9 @@ void printSSHmonitor(int currentY,int currentX){
 		printf(" |");
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1){        //sensing
-				printf("\033[33m");//orange
+				printf("\033[43m\033[33m");//orange
 				printf("::");
-				printf("\033[97m");//white
+				printf("\033[40m\033[97m");//white
 			}
 			else if(pinMap[i][j] == 2){   //hold , wall
 				printf("\033[41m");//red BG
