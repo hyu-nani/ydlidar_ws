@@ -43,7 +43,7 @@ bool mappingActive = false;
 
 char scanData[30];
 
-const int	printSize								=	100;
+const int	printSize								=	170;
 //SSH print size 170 for laptop 100 for tablet
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
 int			printScale								=	1;	//scale
@@ -434,6 +434,7 @@ int main(int argc, char * argv[]) {
 					printf("Serial waiting");
 					while(SerialRead()==0)
 						usleep(10);
+					printf("read!");
 				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
