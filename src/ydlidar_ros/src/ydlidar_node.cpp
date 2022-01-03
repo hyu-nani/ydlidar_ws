@@ -385,7 +385,7 @@ int main(int argc, char * argv[]) {
 			count++;
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
-			///////////////////////////////////////////////////////////////////////////read
+			/////////////////////////////////////////////////////////////////////////read
 			//SerialRead();
 			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
@@ -470,7 +470,7 @@ int main(int argc, char * argv[]) {
 					fp=fopen("test.txt","w");
 					fprintf(fp,"lasdkfmalsmdfaldmfalk");
 					fclose(fp);
-					printf("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+					ptinf("Save the file...");
 					return 0;
 				}
 				else{
