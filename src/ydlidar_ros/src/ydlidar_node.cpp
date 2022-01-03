@@ -411,16 +411,17 @@ int main(int argc, char * argv[]) {
 					break;
 				}
 				if(strcmp(scanData,"goto")==0){//goto robot command
-					printf("input the X Y :");
-					int moveX=0,moveY=0;
-					scanf("%d %d",&moveX,&moveY);
+					printf("input the X Y :");			
+					int moveX=0, moveY=0;				
+					scanf("%d %d", &moveX, &moveY);		
 					robotX += moveX;				    
 					robotY += moveY;				    
-					printf("go to robot X:%d / Y:%d\n",robotX,robotY);
+					printf("go to robot X:%d / Y:%d\n", robotX, robotY);
 					char buffer[20];
-					sprintf(buffer,"%d %d 0",moveX,moveY);
-					printf("ARDUINO SENDING : %s",buffer);
+					sprintf(buffer, "%d %d 0", moveX, moveY);
+					printf("ARDUINO SENDING : %s", buffer);
 					SerialPrint(buffer);
+					/*//delay
 					int a = 0;
 					for(int m=0;m<10;m++)//10 times
 						for(int i=1;i<allMapSize;i++)
@@ -429,22 +430,29 @@ int main(int argc, char * argv[]) {
 									for(int k=0;k<3;k++)
 										for(int p=0;p<3;p++)
 											a=0;
+					*/
+					printf("Serial waiting");
+					while(SerialRead()==0)
+						usleep(10);
 				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
-					for(int j=0;j<allMapSize;j++){
-						allMap[i][j] = 0;
-					}
+						for(int j=0;j<allMapSize;j++)
+							allMap[i][j] = 0;
 					robotX	=	0;
 					robotY	=	0;
 				}
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
+					if(mappingActive == false)
+						for(int i=0;i<allMapSize;i++)
+							for(int j=0;j<allMapSize;j++)
+								allMap[i][j] = 0;	
 				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
 					int filterPoint=0;
-					for(int m=0;m<10;m++)//10 times
+					for(int m=0;m<10;m++)	//10 times
 						for(int i=1;i<allMapSize;i++)
 							for(int j=1;j<allMapSize;j++)
 								if(allMap[i][j]==0){
@@ -503,12 +511,12 @@ int SerialRead()
 	char buf[256];
 	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
-		perror("Read failed - ");
+		//perror("Read failed - ");
 		close(fd);
 		return 0;
 	}
 	else if (serial1 == 0){
-		 printf("No data on port\n");
+		 //printf("No data on port\n");
 		 close(fd);
 		 return 0;
 	}
