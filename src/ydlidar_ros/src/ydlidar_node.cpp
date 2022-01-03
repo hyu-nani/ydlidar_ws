@@ -419,7 +419,7 @@ int main(int argc, char * argv[]) {
 					printf("go to robot X:%d / Y:%d\n", robotX, robotY);
 					char buffer[20];
 					sprintf(buffer, "%d %d 0", moveX, moveY);
-					printf("ARDUINO SENDING : %s", buffer);
+					printf("ARDUINO SENDING : %s\n", buffer);
 					SerialPrint(buffer);
 					/*//delay
 					int a = 0;
@@ -431,10 +431,10 @@ int main(int argc, char * argv[]) {
 										for(int p=0;p<3;p++)
 											a=0;
 					*/
-					printf("Serial waiting");
+					printf("Serial waiting\n");
 					while(SerialRead()==0)
 						usleep(10);
-					printf("read!");
+					printf("read!\n");
 				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
