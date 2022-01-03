@@ -43,7 +43,7 @@ bool mappingActive = false;
 
 char scanData[30];
 
-const int	printSize								=	170;
+const int	printSize								=	100;
 //SSH print size 170 for laptop 100 for tablet
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
 int			printScale								=	1;	//scale
@@ -470,7 +470,7 @@ int main(int argc, char * argv[]) {
 					fp=fopen("test.txt","w");
 					fprintf(fp,"lasdkfmalsmdfaldmfalk");
 					fclose(fp);
-					ptinf("Save the file...");
+					printf("Save the file...");
 					return 0;
 				}
 				else{
