@@ -418,7 +418,7 @@ int main(int argc, char * argv[]) {
 					robotY += moveY;				    
 					printf("go to robot X:%d / Y:%d\n", robotX, robotY);
 					char buffer[20];
-					sprintf(buffer, "%d %d 0", moveX, moveY);
+					sprintf(buffer, "%d %d\n", moveX, moveY);
 					printf("ARDUINO SENDING : %s\n", buffer);
 					SerialPrint(buffer);
 					/*//delay
