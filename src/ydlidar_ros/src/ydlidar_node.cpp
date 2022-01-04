@@ -432,8 +432,8 @@ int main(int argc, char * argv[]) {
 											a=0;
 					*/
 					printf("Serial waiting\n");
-					while(SerialRead()==0)
-						usleep(10);
+					//while(SerialRead()==0)
+					usleep(100);
 					printf("read!\n");
 				}
 				else if(strcmp(scanData,"reset")==0){//
