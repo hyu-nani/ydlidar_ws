@@ -475,13 +475,11 @@ int main(int argc, char * argv[]) {
 								}
 				}
 				else if(strcmp(scanData,"save")==0){
-					ofstream out("textfile.txt");
-					if(!out){
-						printf("Couldn't open file.\n");
-						return 1;
-					}
-					printf("This is output to the file.\n");
-					out.close();
+					ofstream savefile;
+					savefile.open("example.txt");
+					savefile << "Writing this to a file.\n";
+					savefile.close();
+					return 0;
 				}
 				else{
 					printf("nothing...");
