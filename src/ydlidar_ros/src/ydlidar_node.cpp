@@ -24,8 +24,9 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
-using namespace std;
+
 using namespace ydlidar;
+using namespace std;
 
 #define RAD2DEG(x) ((x)*180./M_PI)
 #define ROSVerision "1.4.6"
@@ -477,7 +478,7 @@ int main(int argc, char * argv[]) {
 				else if(strcmp(scanData,"save")==0){
 					ofstream savefile;
 					savefile.open("example.txt");
-					savefile << "Writing this to a file.\n";
+					savefile << "Writing this to a file."<< endl;
 					savefile.close();
 					return 0;
 				}
