@@ -13,6 +13,7 @@
 #include <time.h>
 #include <vector>
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <signal.h>
 #include <csignal>
@@ -474,13 +475,13 @@ int main(int argc, char * argv[]) {
 								}
 				}
 				else if(strcmp(scanData,"save")==0){
-					FILE *fp;
-					char ch;
-					fp=fopen("test.txt","w");
-					fprintf(fp,"lasdkfmalsmdfaldmfalk");
-					fclose(fp);
-					printf("Save the file...");
-					return 0;
+					ofstream out("textfile.txt");
+					if(!out){
+						printf("Couldn't open file.\n");
+						return 1;
+					}
+					printf("This is output to the file.\n");
+					out.close();
 				}
 				else{
 					printf("nothing...");
