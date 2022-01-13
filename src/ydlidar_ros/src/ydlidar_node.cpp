@@ -24,7 +24,7 @@
 #include <termios.h>
 #include <math.h>
 #include <stdlib.h>
-
+using namespace std;
 using namespace ydlidar;
 
 #define RAD2DEG(x) ((x)*180./M_PI)
