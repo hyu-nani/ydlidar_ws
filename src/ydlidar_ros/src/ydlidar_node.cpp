@@ -480,18 +480,18 @@ int main(int argc, char * argv[]) {
 					ifstream loadfile;
 					loadfile.open("map.c");
 					char ch[allMapSize];
-					if(loadfile.is_open()){
-						for(int k=0;k<allMapSize;k++){
-							loadfile.getline(ch,allMapSize);
+					while(loadfile.good()){
+						getline(loadfile,ch);
+						for(int i=0;i<allMapSize;i++){
 							for(int j=0;j<allMapSize;j++){
-								allMap[k][j] = (int)ch[j] - 48;
-								printf("%d",allMap[k][j]);
+								allMap[i][j] = (int)ch[j];
+								printf("%d",allMap[i][j]);
 							}
 							printf("\n");
 						}
-						usleep(5000000);
 					}
 					loadfile.close();  
+					usleep(5000000);
 				}
 				else{
 					printf("nothing...");
