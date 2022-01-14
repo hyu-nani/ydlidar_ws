@@ -485,12 +485,12 @@ int main(int argc, char * argv[]) {
 				else if(strcmp(scanData,"load")==0){
 					ifstream loadfile;
 					loadfile.open("map.c");
-					char ch;
+					char ch[allMapSize];
 					if(loadfile.is_open()){
 						for(int k=0;k<allMapSize;k++){
+							loadfile.getline(ch,allMapSize);
 							for(int j=0;j<allMapSize;j++){
-								loadfile.getline(ch,1);
-								allMap[k][j] = ch - 48;   
+								allMap[k][j] = ch[j] - 48;   
 							}
 						}
 						printf("load");
