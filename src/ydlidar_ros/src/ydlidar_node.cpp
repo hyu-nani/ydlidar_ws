@@ -470,7 +470,7 @@ int main(int argc, char * argv[]) {
 					savefile.open("map.c");
 					for(int k = 0; k< allMapSize ; k++){
 						for(int j=0;j<allMapSize;j++){
-							savefile << allMap[k][j];
+							savefile << (char)allMap[k][j];
 						}
 						savefile << endl;
 					}
