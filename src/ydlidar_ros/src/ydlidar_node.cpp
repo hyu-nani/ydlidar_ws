@@ -492,8 +492,8 @@ int main(int argc, char * argv[]) {
 							for(int j=0;j<allMapSize;j++){
 								printf("%c",ch[j]);
 								allMap[k][j] = (int)ch[j] - 48;
-								printf("%c",allMap[k][j]);
-								usleep(1000);
+								printf("%d",allMap[k][j]);
+								usleep(500);
 							}
 							printf("\n");
 						}
