@@ -490,7 +490,7 @@ int main(int argc, char * argv[]) {
 						for(int k=0;k<allMapSize;k++){
 							loadfile.getline(buffer,allMapSize);
 							for(int j=0;j<allMapSize;j++){
-								allMap[k][j] = buffer[j];   
+								allMap[k][j] = (int)buffer[j];   
 							}
 							printf("%s",buffer);
 						}
