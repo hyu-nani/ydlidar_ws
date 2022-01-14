@@ -480,7 +480,11 @@ int main(int argc, char * argv[]) {
 					savefile.open("map.txt");
 					for(int k = 0; k< allMapSize ; k++){
 						char buffer[allMapSize] = {'\0'};
-						sprintf(buffer,"%s",allMap[k]);
+						for(int j=0;j<allMapSize;j++){
+							char c;
+							sprintf(c,"%c",allMap[k][j]);
+							buffer[j] = c;
+						}
 						savefile << buffer << endl;
 					}
 					savefile.close();
