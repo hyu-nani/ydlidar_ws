@@ -485,13 +485,12 @@ int main(int argc, char * argv[]) {
 							getline(loadfile,ch);
 							for(int j=0;j<allMapSize;j++){
 								allMap[i][j] = (int)ch[j];
-								printf("%d",allMap[i][j]);
 							}
-							printf("\n");
 						}
 					}
 					loadfile.close();  
-					usleep(5000000);
+					printf("loading......");
+					usleep(2000000);
 				}
 				else{
 					printf("nothing...");
