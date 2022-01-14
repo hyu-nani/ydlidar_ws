@@ -493,6 +493,7 @@ int main(int argc, char * argv[]) {
 								allMap[k][j] = ch[j] - 48;  
 								if(allMap[k][j]==4)
 									printf("%d\n",allMap[k][j]);
+									usleep(1000000);
 							}
 						}
 					}
