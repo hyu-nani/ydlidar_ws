@@ -496,6 +496,7 @@ int main(int argc, char * argv[]) {
 									printf("%d\n",allMap[k][j]);
 									usleep(1000000);
 								}
+								usleep(10000);
 							}
 							printf("\n");
 						}
