@@ -447,10 +447,6 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
-					if(mappingActive == false)
-						for(int i=0;i<allMapSize;i++)
-							for(int j=0;j<allMapSize;j++)
-								allMap[i][j] = 0;	
 				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
@@ -485,6 +481,15 @@ int main(int argc, char * argv[]) {
 						savefile << endl;
 					}
 					savefile.close();
+				}
+				else if(strcmp(scanData,"load")==0){
+					ifstream loadfile;
+					loadfile.open("map.txt");
+					if(loadfile.is_open()){
+						char buffer[allMapSize];
+						readFromFile.getline(buffer,256);
+						printf("%s",buffer);
+					}
 				}
 				else{
 					printf("nothing...");
