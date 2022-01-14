@@ -486,9 +486,9 @@ int main(int argc, char * argv[]) {
 					ifstream loadfile;
 					loadfile.open("map.txt");
 					if(loadfile.is_open()){
-						char buffer[allMapSize];
+						char buffer[allMapSize]={'0'};
 						for(int k=0;k<allMapSize;k++){
-							loadfile.getline(buffer,allMapSize);
+							getline(loadfile,buffer);
 							for(int j=0;j<allMapSize;j++){
 								allMap[k][j] = buffer[j]-'0';   
 							}
