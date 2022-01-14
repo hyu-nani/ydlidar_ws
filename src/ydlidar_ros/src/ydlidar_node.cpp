@@ -479,6 +479,7 @@ int main(int argc, char * argv[]) {
 				else if(strcmp(scanData,"load")==0){
 					ifstream loadfile("map.c");
 					string ch;
+					printf("\033[%d;%dH",1,1);//set cursor 0,0
 					while(loadfile.good()){
 						for(int i=0;i<allMapSize;i++){
 							getline(loadfile,ch);
