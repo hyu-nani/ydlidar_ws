@@ -479,11 +479,10 @@ int main(int argc, char * argv[]) {
 					ofstream savefile;
 					savefile.open("map.txt");
 					for(int k = 0; k< allMapSize ; k++){
-						char buffer[allMapSize] = {'\0'};
 						for(int j=0;j<allMapSize;j++){
-							buffer[j] = (char)allMap[k][j];
+							savefile << (char)allMap[k][j];
 						}
-						savefile << buffer << endl;
+						savefile << endl;
 					}
 					savefile.close();
 				}
