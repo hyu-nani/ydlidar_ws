@@ -373,7 +373,7 @@ int main(int argc, char * argv[]) {
 			printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
 			allMap[pointY][pointX] = 3; //add departure
 			//SSH print
-			printSSHmonitor(allMapSize/2-robotY,allMapSize/2+robotX);
+			printSSHmonitor(robotY,robotX);
 			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
 			printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 			//return sensing text to empty text 
