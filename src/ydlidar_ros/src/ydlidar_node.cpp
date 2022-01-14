@@ -480,7 +480,7 @@ int main(int argc, char * argv[]) {
 					savefile.open("map.txt");
 					for(int k = 0; k< allMapSize ; k++){
 						for(int j=0;j<allMapSize;j++){
-							savefile << (char)allMap[k][j];
+							savefile << allMap[k][j];
 						}
 						savefile << endl;
 					}
