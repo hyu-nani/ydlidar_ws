@@ -50,7 +50,7 @@ const int	printSize								=	170;
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
 int			printScale								=	1;	//scale
 float		unitScale								=	5;//1-unit cm
-const int	allMapSize								=	500;//maximum 2000
+const int	allMapSize								=	200;//maximum 2000
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
 	
