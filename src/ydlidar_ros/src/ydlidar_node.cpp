@@ -479,13 +479,13 @@ int main(int argc, char * argv[]) {
 					ofstream savefile;
 					savefile.open("map.txt");
 					for(int k = 0; k< allMapSize ; k++){
-					char buffer[allMapSize] = {'\0'};
-					for(int j=0; j < allMapSize;j++){
-						printf(buffer[j],"%c",allMap[k][j])
+						char buffer[allMapSize] = {'\0'};
+						for(int j=0; j < allMapSize;j++){
+							printf(buffer[j],"%c",allMap[k][j])
+						}
+						savefile << buffer << endl;
 					}
-					savefile << buffer << endl;
 					savefile.close();
-					return 0;
 				}
 				else{
 					printf("nothing...");
