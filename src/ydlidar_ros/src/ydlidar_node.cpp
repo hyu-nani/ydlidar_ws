@@ -477,8 +477,7 @@ int main(int argc, char * argv[]) {
 					savefile.close();
 				}
 				else if(strcmp(scanData,"load")==0){
-					ifstream loadfile;
-					loadfile.open("map.c");
+					ifstream loadfile("map.c");
 					char ch[allMapSize];
 					while(loadfile.good()){
 						getline(loadfile,ch);
