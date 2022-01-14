@@ -331,7 +331,7 @@ int main(int argc, char * argv[]) {
 				if(data_count[i] > 2 && mappingActive == true){//wall sensitivity
 					allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 					data_count[i] = 0;
-				}
+				} 
 			}
 			/************************************************************************/
 			/* point map                                                            */
@@ -486,7 +486,7 @@ int main(int argc, char * argv[]) {
 							}
 							printf("\n");
 						}
-						usleep(50000000);
+						usleep(5000000);
 					}
 					loadfile.close();  
 				}
@@ -539,7 +539,7 @@ int SerialRead()
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
-			pinMap[i][j] = allMap[(allMapSize/2)+(i-printSize/2)+currentY][(allMapSize/2)+(j-printSize/2)+currentX];
+			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)+currentY][(allMapSize/2+j-printSize/2)+currentX];
 	pinMap[printSize/2][printSize/2] = 5;
 	printf("\n ");
 	printf("\033[97m");//white
