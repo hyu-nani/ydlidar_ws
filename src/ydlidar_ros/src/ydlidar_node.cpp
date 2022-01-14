@@ -481,7 +481,7 @@ int main(int argc, char * argv[]) {
 					string ch;
 					printf("\033[%d;%dH",1,1);//set cursor 0,0
 					while(loadfile.good()){
-						for(int i=0;i<allMapSize;i++){
+						for(int i=0;i<allMapSize/2;i++){
 							getline(loadfile,ch);
 							for(int j=0;j<allMapSize;j++){
 								allMap[i][j] = (int)ch[j];
