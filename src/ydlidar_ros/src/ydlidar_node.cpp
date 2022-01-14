@@ -487,7 +487,7 @@ int main(int argc, char * argv[]) {
 					loadfile.open("map.txt");
 					if(loadfile.is_open()){
 						char buffer[allMapSize];
-						readFromFile.getline(buffer,256);
+						loadfile.getline(buffer,256);
 						printf("%s",buffer);
 					}
 					loadfile.close();
