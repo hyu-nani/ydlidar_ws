@@ -486,6 +486,7 @@ int main(int argc, char * argv[]) {
 						int j=0;
 						while(buffer[j]!='\0'){
 							savefile << buffer[j];
+							j++;
 						}
 						savefile<< endl;
 					savefile.close();
