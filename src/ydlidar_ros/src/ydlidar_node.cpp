@@ -329,7 +329,9 @@ int main(int argc, char * argv[]) {
 				else
 					data_count[i] = 0;
 				if(data_count[i] > 2){// && mappingActive == true){//wall sensitivity
-					allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
+					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2-robotY+Yvalue)<allMapSize)
+						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize)
+							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 					data_count[i] = 0;
 				} 
 			}
