@@ -487,11 +487,15 @@ int main(int argc, char * argv[]) {
 					loadfile.open("map.txt");
 					if(loadfile.is_open()){
 						char buffer[allMapSize];
-						loadfile.getline(buffer,256);
-						printf("%s",buffer);
+						for(int k=0;k<allMapSize;k++){
+							loadfile.getline(buffer,allMapSize);
+							for(int j=0;j<allMapSize;j++){
+								allMap[k][j] = buffer[j];
+							}
+						}
+						printf("load");
 					}
 					loadfile.close();
-					return 0;
 				}
 				else{
 					printf("nothing...");
