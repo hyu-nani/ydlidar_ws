@@ -50,7 +50,7 @@ const int	printSize								=	170;
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
 int			printScale								=	1;	//scale
 float		unitScale								=	5;//1-unit cm
-const int	allMapSize								=	340;//maximum 2000
+const int	allMapSize								=	200;//maximum 2000
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
 	
@@ -483,10 +483,10 @@ int main(int argc, char * argv[]) {
 							for(int j=0;j<allMapSize;j++){
 								allMap[k][j] = (int)ch[j] - 48;
 								printf("%d",allMap[k][j]);
-								usleep(100);
 							}
 							printf("\n");
 						}
+						usleep(50000000);
 					}
 					loadfile.close();  
 				}
