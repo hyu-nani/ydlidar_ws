@@ -494,6 +494,7 @@ int main(int argc, char * argv[]) {
 								allMap[k][j] = (int)oneLine[j] - 48;   
 							}
 							printf("%s",oneLine);
+							scanf();
 						}
 						printf("load");
 					}
