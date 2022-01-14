@@ -537,9 +537,9 @@ int SerialRead()
 	}
 }
 void printSSHmonitor(int currentY,int currentX){
-	for(int i = 0 ; i<printSize;i++)
-		for(int j = 0; j<printSize;j++)
-			pinMap[i][j] = allMap[(i-printSize/2)*printScale+currentY][(j-printSize/2)*printScale+currentX];
+	for(int i = -(printSize/2) ; i<(printSize/2);i++)
+		for(int j = -(printSize/2); j<(printSize/2);j++)
+			pinMap[i][j] = allMap[allMapSize+i+currentY][allMapSize+j+currentX];
 	pinMap[printSize/2][printSize/2] = 5;
 	printf("\n ");
 	printf("\033[97m");//white
