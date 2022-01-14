@@ -490,10 +490,10 @@ int main(int argc, char * argv[]) {
 						for(int k=0;k<allMapSize;k++){
 							loadfile.getline(ch,allMapSize);
 							for(int j=0;j<allMapSize;j++){
-								allMap[k][j] = ch[j] - 48;   
+								allMap[k][j] = ch[j] - 48;  
+								printf("%d\n",allMap[k][j]);
 							}
 						}
-						printf("load");
 					}
 					loadfile.close();  
 				}
