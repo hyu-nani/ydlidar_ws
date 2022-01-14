@@ -491,6 +491,7 @@ int main(int argc, char * argv[]) {
 						printf("%s",buffer);
 					}
 					loadfile.close();
+					return 0;
 				}
 				else{
 					printf("nothing...");
