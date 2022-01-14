@@ -477,9 +477,14 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"save")==0){
 					ofstream savefile;
-					savefile.open("example.txt");
-					for(int k = 0; k< allMapSize ; k++)
-						savefile << allMap[k]<< endl;
+					savefile.open("map.txt");
+					for(int k = 0; k< allMapSize ; k++){
+						char buffer[allMapSize] = {'\0'};
+						//for(int j=0; j<allMapSize;j++){
+						printf(buffer,"%c",allMap[k])
+						//}
+						savefile << buffer << endl;
+					}
 					savefile.close();
 					return 0;
 				}
