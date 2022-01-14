@@ -473,7 +473,7 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"save")==0){
 					ofstream savefile;
-					savefile.open("map.txt");
+					savefile.open("map.c");
 					for(int k = 0; k< allMapSize ; k++){
 						for(int j=0;j<allMapSize;j++){
 							savefile << allMap[k][j];
