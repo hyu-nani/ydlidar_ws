@@ -490,6 +490,7 @@ int main(int argc, char * argv[]) {
 						readFromFile.getline(buffer,256);
 						printf("%s",buffer);
 					}
+					loadfile.close();
 				}
 				else{
 					printf("nothing...");
