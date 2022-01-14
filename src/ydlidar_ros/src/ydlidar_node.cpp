@@ -483,12 +483,11 @@ int main(int argc, char * argv[]) {
 						//for(int j=0; j<allMapSize;j++){
 						printf(buffer,"%c",allMap[k])
 						//}
-						int j=0;
-						while(buffer[j]!='\0'){
+						for(int j=0;j<allMapSize;j++){
 							savefile << buffer[j];
 							j++;
 						}
-						savefile<< endl;
+						savefile << endl;
 					savefile.close();
 					return 0;
 				}
