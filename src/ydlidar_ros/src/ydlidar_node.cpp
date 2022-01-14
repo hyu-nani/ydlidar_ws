@@ -342,8 +342,8 @@ int main(int argc, char * argv[]) {
 					allPointMap[i][j] = 0;
 					if (allMap[i][j] == 3) //departure 
 						allMap[i][j] = 0;
-					//else if(allMap[i][j] == 2) //find wall place
-						//Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
+					else if(allMap[i][j] == 2) //find wall place
+						Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 				}
 			//add point
 			int pointRange = 50;
@@ -353,7 +353,8 @@ int main(int argc, char * argv[]) {
 					if(allMap[i][j]==2){ //find wall place
 						for(int k=-pointRange;k<pointRange;k++)
 							for(int p=-pointRange;p<pointRange;p++)
-								allPointMap[k+i][p+j]++;
+								if(k+i>0&&p+j>0&&k+i<allMapSize&&p+j<allMapSize)
+									allPointMap[k+i][p+j]++;
 					}
 					else if(allMap[i][j]==4) //find empty place
 						allPointMap[i][j]+=5;
