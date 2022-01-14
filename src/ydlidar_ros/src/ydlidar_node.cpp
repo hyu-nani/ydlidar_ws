@@ -50,7 +50,7 @@ const int	printSize								=	170;
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
 int			printScale								=	1;	//scale
 float		unitScale								=	5;//1-unit cm
-const int	allMapSize								=	200;//maximum 2000
+const int	allMapSize								=	340;//maximum 2000
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
 	
@@ -423,20 +423,11 @@ int main(int argc, char * argv[]) {
 					sprintf(buffer, "%d %d\n", moveX, moveY);
 					printf("ARDUINO SENDING : %s\n", buffer);
 					SerialPrint(buffer);
-					/*//delay
-					int a = 0;
-					for(int m=0;m<10;m++)//10 times
-						for(int i=1;i<allMapSize;i++)
-							for(int j=1;j<allMapSize;j++)
-								if(allMap[i][j]==0)
-									for(int k=0;k<3;k++)
-										for(int p=0;p<3;p++)
-											a=0;
-					*/
 					printf("Serial waiting\n");
 					//while(SerialRead()==0)
-					usleep(100);
+					usleep(1000000);
 					printf("read!\n");
+					usleep(1000000);
 				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
