@@ -481,7 +481,6 @@ int main(int argc, char * argv[]) {
 						for(int k=0;k<allMapSize;k++){
 							loadfile.getline(ch,allMapSize);
 							for(int j=0;j<allMapSize;j++){
-								printf("%c",ch[j]);
 								allMap[k][j] = (int)ch[j] - 48;
 								printf("%d",allMap[k][j]);
 								usleep(100);
