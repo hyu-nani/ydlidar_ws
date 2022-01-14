@@ -491,12 +491,9 @@ int main(int argc, char * argv[]) {
 							loadfile.getline(ch,allMapSize);
 							for(int j=0;j<allMapSize;j++){
 								printf("%c",ch[j]);
-								allMap[k][j] = ch[j] - 48;  
-								if(allMap[k][j]=='4'){
-									printf("%d\n",allMap[k][j]);
-									usleep(1000000);
-								}
-								usleep(10000);
+								allMap[k][j] = (int)ch[j] - 48;
+								printf("%c",allMap[k][j]);
+								usleep(1000);
 							}
 							printf("\n");
 						}
