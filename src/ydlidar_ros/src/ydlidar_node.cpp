@@ -484,11 +484,12 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"load")==0){
 					ifstream loadfile;
-					loadfile.open("map.txt");
+					loadfile.open("map.c");
 					if(loadfile.is_open()){
 						char oneLine[allMapSize]={'0'};
 						for(int k=0;k<allMapSize;k++){
 							loadfile.getline(oneLine,allMapSize);
+							
 							for(int j=0;j<allMapSize;j++){
 								allMap[k][j] = (int)oneLine[j] - 48;   
 							}
