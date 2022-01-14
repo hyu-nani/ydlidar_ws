@@ -486,13 +486,13 @@ int main(int argc, char * argv[]) {
 					ifstream loadfile;
 					loadfile.open("map.txt");
 					if(loadfile.is_open()){
-						char buffer[allMapSize]={'0'};
+						char oneLine[allMapSize]={'0'};
 						for(int k=0;k<allMapSize;k++){
-							getline(loadfile,buffer);
+							loadfile.getline(oneLine,allMapSize);
 							for(int j=0;j<allMapSize;j++){
-								allMap[k][j] = buffer[j]-'0';   
+								allMap[k][j] = (int)oneLine[j] - 48;   
 							}
-							printf("%s",buffer);
+							printf("%s",oneLine);
 						}
 						printf("load");
 					}
