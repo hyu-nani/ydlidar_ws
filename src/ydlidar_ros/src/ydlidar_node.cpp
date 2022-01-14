@@ -483,7 +483,7 @@ int main(int argc, char * argv[]) {
 						for(int i=0;i<allMapSize;i++){
 							getline(loadfile,ch);
 							for(int j=0;j<allMapSize;j++){
-								allMap[i][j] = (int)ch[j]-'0';
+								allMap[i][j] = (int)(ch[j]-'0');
 								printf("%d",allMap[i][j]);
 							}
 							printf("\n");
