@@ -478,7 +478,8 @@ int main(int argc, char * argv[]) {
 				else if(strcmp(scanData,"save")==0){
 					ofstream savefile;
 					savefile.open("example.txt");
-					savefile << "Writing this to a file."<< endl;
+					for(int k = 0; k< allMapSize ; k++)
+						savefile << allMap[k]<< endl;
 					savefile.close();
 					return 0;
 				}
