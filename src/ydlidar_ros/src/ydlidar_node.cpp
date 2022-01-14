@@ -482,7 +482,7 @@ int main(int argc, char * argv[]) {
 						char buffer[allMapSize] = {'\0'};
 						for(int j=0;j<allMapSize;j++){
 							char c;
-							sprintf(c,"%c",allMap[k][j]);
+							sprintf(c,"%d",allMap[k][j]);
 							buffer[j] = c;
 						}
 						savefile << buffer << endl;
