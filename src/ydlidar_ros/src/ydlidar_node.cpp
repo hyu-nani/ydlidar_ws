@@ -45,7 +45,7 @@ bool mappingActive = false;
 
 char scanData[30];
 
-const int	printSize								=	170;
+const int	printSize								=	180;
 //SSH print size 170 for laptop 100 for tablet
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
 int			printScale								=	1;	//scale
@@ -490,7 +490,7 @@ int main(int argc, char * argv[]) {
 					}
 					loadfile.close();  
 					printf("loading......");
-					usleep(2000000);
+					//usleep(2000000);
 				}
 				else{
 					printf("nothing...");
