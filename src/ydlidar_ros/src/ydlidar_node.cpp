@@ -45,7 +45,7 @@ bool mappingActive = false;
 
 char scanData[30];
 
-const int	printSize								=	190;
+const int	printSize								=	185;
 //SSH print size 170 for laptop 100 for tablet
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
 int			printScale								=	1;	//scale
