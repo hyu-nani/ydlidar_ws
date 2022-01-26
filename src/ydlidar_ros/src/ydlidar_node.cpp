@@ -339,45 +339,50 @@ int main(int argc, char * argv[]) {
 				} 
 			}
 			/************************************************************************/
-			/* point map                                                            */
+			/* system                                                               */
 			/************************************************************************/
-			//reset point map
-			for(int i=0;i<allMapSize;i++)
+			if(systemMode == 0){//default(point map)
+				//reset point map
+				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++){
 					allPointMap[i][j] = 0;
-					if (allMap[i][j] == 3) //departure 
-						allMap[i][j] = 0;
+					if (allMap[i][j] == 3) //departure
+					allMap[i][j] = 0;
 					else if(allMap[i][j] == 2) //find wall place
-						Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
+					Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 				}
-			//add point
-			int pointRange = 50;
-			unsigned int pointMax=0,pointX=0,pointY=0;
-			for(int i=0;i<allMapSize;i++)
+				//add point
+				int pointRange = 50;
+				unsigned int pointMax=0,pointX=0,pointY=0;
+				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++)
-					if(allMap[i][j]==2){ //find wall place
-						for(int k=-pointRange;k<pointRange;k++)
-							for(int p=-pointRange;p<pointRange;p++)
-								if(k+i>0&&p+j>0&&k+i<allMapSize&&p+j<allMapSize)
-									allPointMap[k+i][p+j]++;
-					}
-					else if(allMap[i][j]==4) //find empty place
-						allPointMap[i][j]+=5;
-			//find score and record
-			for(int i=0;i<allMapSize;i++)
+				if(allMap[i][j]==2){ //find wall place
+					for(int k=-pointRange;k<pointRange;k++)
+					for(int p=-pointRange;p<pointRange;p++)
+					if(k+i>0&&p+j>0&&k+i<allMapSize&&p+j<allMapSize)
+					allPointMap[k+i][p+j]++;
+				}
+				else if(allMap[i][j]==4) //find empty place
+				allPointMap[i][j]+=5;
+				//find score and record
+				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++)
-					if(allPointMap[i][j] > pointMax){
-						pointMax = allPointMap[i][j];
-						pointY=i;
-						pointX=j;
-					}
-		
+				if(allPointMap[i][j] > pointMax){
+					pointMax = allPointMap[i][j];
+					pointY=i;
+					pointX=j;
+				}
+				printf("\033[%d;%dH",1,1);//set cursor 0,0
+				printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
+				allMap[pointY][pointX] = 3; //add departure
+			}
+			else if(systemMode == 1){//deadrocking
+				
+			}
 			/************************************************************************/
 			/* print monitor                                                        */
 			/************************************************************************/
-			printf("\033[%d;%dH",1,1);//set cursor 0,0
-			printf("pointMax:%d / X:%d / Y:%d ",pointMax,pointX,pointY);
-			allMap[pointY][pointX] = 3; //add departure
+			printf("\033[%d;%dH",1,3);//set cursor 0,2
 			//SSH print
 			printSSHmonitor(robotY,robotX);
 			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
@@ -393,11 +398,9 @@ int main(int argc, char * argv[]) {
 			count++;
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
-			/////////////////////////////////////////////////////////////////////////read
-			//SerialRead();
-			//////////////////////////////////////////////////////////////////////////END
 			rate.sleep();
 			ros::spinOnce();
+			
 			/************************************************************************/
 			/* Command Line                                                         */
 			/************************************************************************/
@@ -493,7 +496,6 @@ int main(int argc, char * argv[]) {
 					}
 					loadfile.close();  
 					printf("loading......");
-					//usleep(2000000);
 				}
 				else if(strcmp(scanData,"mode")==0){
 					printf("Setting mode!");
