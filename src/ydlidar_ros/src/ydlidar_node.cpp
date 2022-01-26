@@ -418,7 +418,7 @@ int main(int argc, char * argv[]) {
 					printf("\033[40m\033[97m");
 					break;
 				}
-				if(strcmp(scanData,"goto")==0){//goto robot command
+				else if(strcmp(scanData,"goto")==0){//goto robot command
 					printf("input the X Y :");			
 					int moveX=0, moveY=0;				
 					scanf("%d %d", &moveX, &moveY);		
@@ -494,6 +494,10 @@ int main(int argc, char * argv[]) {
 					loadfile.close();  
 					printf("loading......");
 					//usleep(2000000);
+				}
+				else if(strcmp(scanData,"mode")==0){
+					printf("Setting mode!");
+					scanf("%d",&systemMode);
 				}
 				else{
 					printf("nothing...");
