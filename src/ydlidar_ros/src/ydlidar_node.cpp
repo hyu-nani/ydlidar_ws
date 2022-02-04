@@ -56,7 +56,7 @@ float		unitScale								=	5;//1-unit cm
 const int	allMapSize								=	200;//maximum 2000
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
-	
+unsigned int	oldMap[allMapSize][allMapSize]		=	{0};		//short-term map
 //ROBOT data initial setting
 int		robotX = 0, robotY = 0;	//center
 float	robotAngle = 90;//initial angle
@@ -376,9 +376,9 @@ int main(int argc, char * argv[]) {
 				printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
 				allMap[pointY][pointX] = 3; //add departure
 			}
-			else if(systemMode == 1){//deadrocking
-				
+			else if(systemMode == 1){// Tracking map point
 			}
+			
 			/************************************************************************/
 			/* print monitor                                                        */
 			/************************************************************************/
@@ -394,13 +394,21 @@ int main(int argc, char * argv[]) {
 					if(a == 1 || a == 5) //sensing point or robot center
 						allMap[(i-printSize/2)*printScale+allMapSize/2-robotY][(j-printSize/2)*printScale+allMapSize/2+robotX] = 0;
 				}
-    
 			count++;
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
 			rate.sleep();
 			ros::spinOnce();
-			
+			/************************************************************************/
+			/* end system                                                           */
+			/************************************************************************/
+			if(systemMode == 1){// Tracking map point
+				for(int i=0;i<allMapSize;i++){//save short term storage
+					for(int j=0;j<allMapSize;j++){
+						oldMap[i][j]=allMap[i][j];
+					}
+				}
+			}
 			/************************************************************************/
 			/* Command Line                                                         */
 			/************************************************************************/
