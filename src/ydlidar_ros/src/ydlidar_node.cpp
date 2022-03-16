@@ -45,7 +45,7 @@ bool mappingActive = false;
 
 char scanData[30];
 
-const int	systemMode	=	0;	// 0 = deadrocking mode
+const int	systemMode	=	0;	// 0 = deadrocking mode 1, point map mode
 
 const int	printSize								=	185;
 //SSH print size 170 for laptop 100 for tablet
@@ -513,7 +513,7 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"mode")==0){
 					printf("Setting mode!");
-					scanf("%d",&systemMode);
+					scanf("%d", &systemMode);
 				}
 				else{
 					printf("nothing...");
