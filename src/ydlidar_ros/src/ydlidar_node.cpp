@@ -185,7 +185,12 @@ int main(int argc, char * argv[]) {
 	printf("\n");
 	printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
     fflush(stdout);
-  
+	if(systemMode==1){
+		printf("Run mode 1! test.");
+	}
+	else if(systemMode==2){
+		printf("Run mode 2! basic");
+	}
     std::string port;
     int baudrate=230400;
     std::string frame_id;
@@ -377,6 +382,7 @@ int main(int argc, char * argv[]) {
 				allMap[pointY][pointX] = 3; //add departure
 			}
 			else if(systemMode == 1){// Tracking map point
+				
 			}
 			
 			/************************************************************************/
