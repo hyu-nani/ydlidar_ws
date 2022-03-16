@@ -346,7 +346,7 @@ int main(int argc, char * argv[]) {
 				} 
 			}
 			/************************************************************************/
-			/* system                                                               */
+			/* system  0                                                            */
 			/************************************************************************/
 			if(systemMode == 0){//default(point map)
 				//reset point map
@@ -383,6 +383,7 @@ int main(int argc, char * argv[]) {
 				printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
 				allMap[pointY][pointX] = 3; //add departure
 			}
+			/////////////////////////////////////////////////////////////////////////
 			else if(systemMode == 1){// Tracking map point
 				
 			}
@@ -410,7 +411,7 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/* end system                                                           */
 			/************************************************************************/
-			if(systemMode == 1){// Tracking map point
+			if(systemMode == 2){// Tracking map point
 				for(int i=0;i<allMapSize;i++){//save short term storage
 					for(int j=0;j<allMapSize;j++){
 						oldMap[i][j]=allMap[i][j];
