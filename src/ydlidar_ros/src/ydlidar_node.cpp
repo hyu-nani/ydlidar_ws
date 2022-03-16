@@ -45,7 +45,7 @@ bool mappingActive = false;
 
 char scanData[30];
 
-const int	systemMode	=	0;	// 0 = deadrocking mode 1, point map mode
+int	systemMode	=	0;	// 0 = deadrocking mode 1, point map mode
 
 const int	printSize								=	185;
 //SSH print size 170 for laptop 100 for tablet
