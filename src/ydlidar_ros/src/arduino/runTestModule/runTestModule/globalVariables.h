@@ -12,3 +12,7 @@ String	SerialData = "";
 //wheel
 int speedLeft = 50;
 int SpeedRight= 50;
+
+//robot
+int robotX	=	0;
+int robotY	=	0;

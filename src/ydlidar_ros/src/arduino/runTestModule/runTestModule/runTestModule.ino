@@ -9,9 +9,11 @@
 #include "globalVariables.h"
 #include "interrupt.h"
 #include <math.h>
+#include "calculate.h"
 
-bool testMode = ture;
-//interrupt code
+bool testMode = true;
+
+
 void setup()
 {
 	Serial.begin(115200);
@@ -21,6 +23,7 @@ void setup()
 
 void loop()
 {
+	nowTime = millis();
 	if(testMode){
 		Serial.print("Left position:");
 		Serial.print(encoderPosLeft);
@@ -43,6 +46,11 @@ void loop()
 		else if(strcmp(SerialData,"right")==0){
 			driverSet(speedLeft,0,0,0,0,SpeedRight);
 		}
+		else{
+			if(testMode){
+				Serial.println("I don't understand");
+			}
+		}
 	}
-	
+	preTime = nowTime;
 }

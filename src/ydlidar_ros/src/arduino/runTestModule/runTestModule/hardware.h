@@ -11,10 +11,15 @@
 #define encoderPinC		18
 #define encoderPinD		19
 
-//information of wheel
+//information of robot
 #define wheel_radius		6
 #define	robot_wheel_pitch	37.5
 #define gear_ratio			100
+#define gear		0.2
+#define volume		0.25
+#define diameter	12
+#define pulse		6400
+#define radius		6
 
 //motor driver pin
 #define driverPwmL	6
