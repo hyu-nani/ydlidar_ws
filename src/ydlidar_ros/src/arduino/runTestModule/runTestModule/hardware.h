@@ -20,6 +20,8 @@
 #define diameter	12
 #define pulse		6400
 #define radius		6
+#define encoderPPR	28
+#define quardature	2
 
 //motor driver pin
 #define driverPwmL	6
