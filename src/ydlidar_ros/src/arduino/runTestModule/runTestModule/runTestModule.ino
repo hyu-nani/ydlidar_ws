@@ -36,7 +36,7 @@ void loop()
 			SerialData[i] = Serial.read();
 			i++;
 		}
-		int datalength = i;
+		//int datalength = i;
 		if(strcmp(SerialData,"stop")==0){
 			driverSet(speedLeft,0,0,0,0,SpeedRight);
 		}
