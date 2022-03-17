@@ -45,7 +45,7 @@ bool mappingActive = false;
 
 char scanData[30];
 
-int	systemMode	=	1;	// 0 = deadrocking mode 1, no arduino test mode
+int	systemMode	=	0;	// 0 = deadrocking mode 1, no arduino test mode
 
 const int	printSize								=	185;
 //SSH print size 170 for laptop 100 for tablet
