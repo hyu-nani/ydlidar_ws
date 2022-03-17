@@ -10,9 +10,9 @@ void positionCalculate(float nowPosL, float nowPosR, float setha){
 	float vel_motorR = ((nowPosR-oldPosR) / encoderPPR * TWO_PI) / (quardature * gear_ratio);
 	
 	//속도
-	float vel_robot = (wheel_radius * (vel_motorL+vel_motorR)) / 2;
+	//float vel_robot = (wheel_radius * (vel_motorL+vel_motorR)) / 2;
 	//각속도
-	float d_robot	= (wheel_radius * (vel_motorL-vel_motorR)) / robot_wheel_pitch;
+	//float d_robot	= (wheel_radius * (vel_motorL-vel_motorR)) / robot_wheel_pitch;
  	
 	oldPosL = nowPosL;
 	oldPosR = nowPosR;
