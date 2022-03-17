@@ -384,8 +384,11 @@ int main(int argc, char * argv[]) {
 				allMap[pointY][pointX] = 3; //add departure
 			}
 			/////////////////////////////////////////////////////////////////////////
-			else if(systemMode == 1){// Tracking map point
-				
+			else if(systemMode == 1){// 
+				for(int j=0;j<allMapSize;j++){
+					if(allMap[i][j] == 2) //find wall place
+					Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
+				}
 			}
 			
 			/************************************************************************/
