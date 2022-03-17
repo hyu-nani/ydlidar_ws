@@ -547,7 +547,7 @@ void SerialPrint(const char* format)
 	close(fd);
 }
 
-int SerialRead()
+int SerialRead(char* buffer)
 {
 	char buf[256];
 	serial1 = read(fd, (void*)buf, 255);
@@ -562,7 +562,7 @@ int SerialRead()
 		 return 0;
 	}
 	else {
-		buf[serial1] = '\0';
+		//buf[serial1] = '\0';
 		printf("%i bytes read : %s", serial1, buf);
 		close(fd);
 		return 1;
