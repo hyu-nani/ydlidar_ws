@@ -8,7 +8,7 @@ long	nowTime	=	millis();
 long	preTime	=	nowTime;
 
 //Serial
-String	SerialData = "";
+char	SerialData[256] = "";
 
 //wheel
 int speedLeft = 50;
