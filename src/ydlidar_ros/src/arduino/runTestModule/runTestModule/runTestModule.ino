@@ -5,13 +5,13 @@
  * Author: 배현한
  * ROS 아두이노 테스트 코드
  */ 
+bool testMode = true;
+
 #include "hardware.h"
 #include "globalVariables.h"
 #include "interrupt.h"
 #include <math.h>
 #include "calculate.h"
-
-bool testMode = true;
 
 
 void setup()
@@ -31,9 +31,12 @@ void loop()
 		Serial.println(encoderPosRight);
 	}
 	if(Serial.available()){
+		int i = 0;
 		while(Serial.available()){
-			SerialData += Serial.read();
+			SerialData[i] = Serial.read();
+			i++;
 		}
+		int datalength = i;
 		if(strcmp(SerialData,"stop")==0){
 			driverSet(speedLeft,0,0,0,0,SpeedRight);
 		}
