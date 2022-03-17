@@ -153,7 +153,6 @@ int main(int argc, char * argv[]) {
     printf("  |_| |____/|_____|___|____/_/   \\_\\_| \\_\\ \n");
 	printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
 	printf("\n");
-	printf("\n");
 	printf("                 -/oo    .oo+ \n");
 	printf("               `dMMNd    -MMN \n");
 	printf("              .+MMm..    -MMN         -:::.     \n");
@@ -184,7 +183,6 @@ int main(int argc, char * argv[]) {
 	printf("                                                              sMMms+sdMMM:    :NMmoomMM/ \n");
 	printf("                                                               -shdhs/oss-     .+yddho.  \n");
     printf("\n");
-	printf("\n");
 	printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
     fflush(stdout);
 	if(systemMode==1){
