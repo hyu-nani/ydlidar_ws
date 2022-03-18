@@ -559,59 +559,23 @@ int main(int argc, char * argv[]) {
 
 void SerialPrint(const char* format)
 {
-	/*
-	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
-	if (fd == -1) {
-		printf("doesn't connected arduino");
-		perror("open_port: Unable to open /dev/ttyACM0 - ");
-	}
-	struct termios options;
-	tcgetattr(fd, &options);
-	options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;         //<Set baud rate
-	options.c_iflag = IGNPAR;
-	options.c_oflag = 0;
-	options.c_lflag = 0;
-	tcflush(fd, TCIFLUSH);
-	tcsetattr(fd, TCSANOW, &options);
-	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
-	fcntl(fd, F_SETFL, 0);
-	*/
 	serial1 = write(fd,format,int(strlen(format)));
 	//printf("\n %s %d\n",format,int(strlen(format)));
 	//serial1 = write(fd,"front",5);
 	if(serial1 < 0)
 		perror("write failed - ");
-	//close(fd);
 	
 }
 
 int SerialRead()
 {
 	char buf[256] ="";
-	/*
-	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
-	if (fd == -1) {
-		printf("doesn't connected arduino");
-		perror("open_port: Unable to open /dev/ttyACM0 - ");
-	}
-	struct termios options;
-	tcgetattr(fd, &options);
-	options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;         //<Set baud rate
-	options.c_iflag = IGNPAR;
-	options.c_oflag = 0;
-	options.c_lflag = 0;
-	tcflush(fd, TCIFLUSH);
-	tcsetattr(fd, TCSANOW, &options);
-	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
-	fcntl(fd, F_SETFL, 0);
-	*/
 	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
 		printf("Read failed - ");
-		//close(fd);
 	}
 	else if (serial1 == 0){
-		 printf("No data on port\n");
+		 printf("No data on port\n")
 		 //close(fd);
 	}
 	else {
@@ -619,7 +583,6 @@ int SerialRead()
 		//for(int i=0;i<=25;i++)
 		//	printf("[%c]",buf[i]);
 		printf("%i bytes read :\n[%s]", serial1, buf);
-		//close(fd);
 	}
 	if(strcmp(buf,"OK")==0){
 		return 1;

@@ -25,10 +25,10 @@ void loop()
 {
 	nowTime = millis();
 	if(testMode){
-		if(nowTime - preTime > 1000){
-			Serial.print("Left position:");
+		if(nowTime - preTime > 100){
+			Serial.print("Left position: ");
 			Serial.print(encoderPosLeft);
-			Serial.print("\t Right position:");
+			Serial.print("\t\t Right position: ");
 			Serial.print(encoderPosRight);
 			preTime = nowTime;
 		}
