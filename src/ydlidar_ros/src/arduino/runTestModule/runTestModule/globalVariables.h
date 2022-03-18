@@ -1,6 +1,6 @@
 
 // encoder position R, L
-float encoderPosLeft, encoderPosRight;
+int encoderPosLeft, encoderPosRight;
 float oldPosL, oldPosR;
 
 //time

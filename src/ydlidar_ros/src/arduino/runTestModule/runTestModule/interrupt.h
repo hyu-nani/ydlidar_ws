@@ -18,8 +18,8 @@ void doEncoderD(){
 	encoderPosRight	+= (digitalRead(encoderPinC)==digitalRead(encoderPinD)) ? 1 : -1;
 }
 void interruptInit(){
-	attachInterrupt(0, doEncoderA, CHANGE);
-	attachInterrupt(1, doEncoderB, CHANGE);
-	attachInterrupt(4, doEncoderC, CHANGE);
-	attachInterrupt(5, doEncoderD, CHANGE);
+	attachInterrupt(0, doEncoderA, CHANGE);		//mega pin 2
+	attachInterrupt(1, doEncoderB, CHANGE);		//mega pin 3
+	attachInterrupt(4, doEncoderC, CHANGE);		//mega pin 19
+	attachInterrupt(5, doEncoderD, CHANGE);		//mega pin 18
 }
