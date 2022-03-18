@@ -467,7 +467,7 @@ int main(int argc, char * argv[]) {
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
 				}
-				else if(strcmp(scanData,"front")==0){
+				else if(strcmp(scanData,"go")==0){
 					SerialPrint("front");
 				}
 				else if(strcmp(scanData,"filter")==0){
@@ -600,7 +600,7 @@ int SerialRead()
 	}
 	else {
 		buf[serial1] = '\0';
-		printf("%i bytes read : %s", serial1, buf);
+		printf("%i bytes read :\n%s", serial1, buf);
 		//close(fd);
 		return 1;
 	}
