@@ -62,6 +62,8 @@ void loop()
 				Serial.println("I don't understand");
 			}
 		}
+		for(int j=0;j<256;j++)
+			SerialData[j] = '\0';
 	}
 	
 }
