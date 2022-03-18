@@ -603,8 +603,9 @@ int SerialRead()
 	else {
 		buf[serial1] = '\0';
 		printf("%i bytes read :\n%s", serial1, buf);
-		if(strcmp(buf,"OK")==0)
+		if(strcmp(buf,"OK")==0){
 			return 1;
+		}
 		//close(fd);
 	}
 }
