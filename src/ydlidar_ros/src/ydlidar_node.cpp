@@ -487,6 +487,16 @@ int main(int argc, char * argv[]) {
 							break;
 					}
 				}
+				else if(strcmp(scanData,"back")==0){
+					int count=0;
+					while(SerialRead()!=1){
+						SerialPrint("back");
+						usleep(10000);
+						count++;
+						if(count>100)
+						break;
+					}
+				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
 					int filterPoint=0;
