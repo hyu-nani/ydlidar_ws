@@ -62,7 +62,7 @@ void loop()
 		}
 		else{
 			if(testMode){
-				Serial.println("NotOK");
+				Serial.println("OK");
 			}
 		}
 		for(int j=0;j<256;j++)
