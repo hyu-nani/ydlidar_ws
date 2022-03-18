@@ -575,8 +575,8 @@ int SerialRead()
 		printf("Read failed - ");
 	}
 	else if (serial1 == 0){
-		 printf("No data on port\n")
-		 //close(fd);
+		printf("No data on port\n");
+		//close(fd);
 	}
 	else {
 		buf[serial1] = '\0';
