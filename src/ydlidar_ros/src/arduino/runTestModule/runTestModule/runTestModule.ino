@@ -52,7 +52,7 @@ void loop()
 			driverSet(speedLeft,0,0,0,0,SpeedRight);
 		}
 		else if(strcmp(SerialData,"front")==0){
-			driverSet(speedLeft,0,0,0,0,SpeedRight);
+			driverSet(speedLeft,1,0,1,0,SpeedRight);
 		}
 		else if(strcmp(SerialData,"left")==0){
 			driverSet(speedLeft,0,0,0,0,SpeedRight);

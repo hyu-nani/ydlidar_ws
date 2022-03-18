@@ -419,6 +419,8 @@ int main(int argc, char * argv[]) {
 						oldMap[i][j]=allMap[i][j];
 					}
 				}
+				SerialPrint("front");
+				SerialRead();
 			}
 			/************************************************************************/
 			/* Command Line                                                         */
@@ -545,7 +547,7 @@ void SerialPrint(const char* format)
 	close(fd);
 }
 
-int SerialRead(char* buffer)
+int SerialRead()
 {
 	char buf[256];
 	serial1 = read(fd, (void*)buf, 255);
