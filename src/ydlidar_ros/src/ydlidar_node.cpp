@@ -541,6 +541,21 @@ int main(int argc, char * argv[]) {
 void SerialPrint(const char* format)
 {
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
+	if (fd == -1) {
+		printf("doesn't connected arduino");
+		perror("open_port: Unable to open /dev/ttyACM0 - ");
+		return(-1);
+	}
+	struct termios options;
+	tcgetattr(fd, &options);
+	options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;         //<Set baud rate
+	options.c_iflag = IGNPAR;
+	options.c_oflag = 0;
+	options.c_lflag = 0;
+	tcflush(fd, TCIFLUSH);
+	tcsetattr(fd, TCSANOW, &options);
+	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
+	fcntl(fd, F_SETFL, 0);
 	//serial1 = write(fd,format,strlen(format));
 	serial1 = write(fd,"front",5);
 	if(serial1 < 0)
