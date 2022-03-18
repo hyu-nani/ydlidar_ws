@@ -97,6 +97,8 @@ char linux_kbhit(void)
 		return 'R';
 	else if(pre2 == 27 && pre1 == 91 && ch == 66)
 		return 'D';
+	else
+		return 'N';
 }
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
