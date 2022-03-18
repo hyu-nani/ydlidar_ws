@@ -468,8 +468,10 @@ int main(int argc, char * argv[]) {
 					mappingActive = !mappingActive;
 				}
 				else if(strcmp(scanData,"go")==0){
-					while(SerialRead()!=1){
+					int answer = 0;
+					while(answer!=1){
 						SerialPrint("front\n");
+						answer = SerialRead();
 					}
 				}
 				else if(strcmp(scanData,"filter")==0){
@@ -562,7 +564,7 @@ void SerialPrint(const char* format)
 	fcntl(fd, F_SETFL, 0);
 	*/
 	serial1 = write(fd,format,int(strlen(format)));
-	printf("\n %s %d\n",format,int(strlen(format)));
+	//printf("\n %s %d\n",format,int(strlen(format)));
 	//serial1 = write(fd,"front",5);
 	if(serial1 < 0)
 		perror("write failed - ");
