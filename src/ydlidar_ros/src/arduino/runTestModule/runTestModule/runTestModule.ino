@@ -46,19 +46,19 @@ void loop()
 		else if(strcmp(SerialData,"front")==0){
 			digitalWrite(led,HIGH);
 			driverSet(speedLeft,1,0,1,0,SpeedRight);
-			Serial.println("OK");
+			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"left")==0){
 			driverSet(speedLeft,0,0,0,0,SpeedRight);
-			Serial.println("OK");
+			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"right")==0){
 			driverSet(speedLeft,0,0,0,0,SpeedRight);
-			Serial.println("OK");
+			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"back")==0){
 			driverSet(speedLeft,0,1,0,1,SpeedRight);
-			Serial.println("OK");
+			Serial.print("OK");
 		}
 		else{
 			if(testMode){
