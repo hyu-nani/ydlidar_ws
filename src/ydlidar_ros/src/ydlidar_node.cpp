@@ -556,6 +556,7 @@ void SerialPrint(const char* format)
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
+	
 	serial1 = write(fd,format,int(strlen(format)));
 	//printf("\n %s %d",format,int(strlen(format)));
 	//serial1 = write(fd,"front",5);
@@ -582,6 +583,7 @@ int SerialRead()
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
+	
 	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
 		printf("Read failed - ");
@@ -599,7 +601,6 @@ int SerialRead()
 		close(fd);
 		return 1;
 	}
-	close(fd);
 }
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
