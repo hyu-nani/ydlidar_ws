@@ -620,7 +620,7 @@ int SerialRead()
 		int i=0;
 		//close(fd);
 	}
-	if(strcmp(buf,"OK\n\0")==0){
+	if(strcmp(buf,"OK\n\0\0")==0){
 		return 1;
 	}else{
 		//printf("%s",buf);
