@@ -603,11 +603,16 @@ int SerialRead()
 		 //close(fd);
 	}
 	else {
+		char readData[20];
 		buf[serial1] = '\0';
 		printf("%i bytes read :\n%s", serial1, buf);
+		int i=0;
+		while(buf[i]!='\0'){
+			readData[i] = buf[i];
+		}
 		//close(fd);
 	}
-	if(strcmp(buf," OK")==0){
+	if(strcmp(readData,"OK")==0){
 		return 1;
 	}else{
 		//printf("%s",buf);
