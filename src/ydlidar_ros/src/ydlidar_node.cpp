@@ -574,6 +574,7 @@ int main(int argc, char * argv[]) {
 					if(count>100)
 					break;
 				}
+				system("clear");
 			}
 			else if(kb == 'L'){
 				int count=0;
@@ -584,6 +585,7 @@ int main(int argc, char * argv[]) {
 					if(count>100)
 					break;
 				}
+				system("clear");
 			}
 			else if(kb == 'R'){
 				int count=0;
@@ -594,6 +596,7 @@ int main(int argc, char * argv[]) {
 					if(count>100)
 					break;
 				}
+				system("clear");
 			}
 			else if(kb == 'D'){
 				int count=0;
@@ -604,6 +607,7 @@ int main(int argc, char * argv[]) {
 					if(count>100)
 					break;
 				}
+				system("clear");
 			}
 		}
 		
