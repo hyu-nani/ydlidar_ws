@@ -604,8 +604,7 @@ int SerialRead()
 	}
 	else {
 		buf[serial1] = '\0';
-		printf("%i bytes read :\n%s", serial1, buf);
-		printf("A");
+		printf("%i bytes read :\n%s A", serial1, buf);
 		int i=0;
 		//close(fd);
 	}
