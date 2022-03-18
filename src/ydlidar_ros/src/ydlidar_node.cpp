@@ -82,9 +82,9 @@ char linux_kbhit(void)
 	ch = getchar();//read keyboard
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
 	fcntl(STDIN_FILENO, F_SETFL, oldf);
-	//if(ch != -1)
-	//for(int i=0 ;i<10000;i++)
-	//	printf("%d\n",ch);
+	if(ch != -1)
+	for(int i=0 ;i<10000;i++)
+		printf("%d\n",ch);
 	if(ch == 32)
 		return 'S';
 	pre2 = pre1;
