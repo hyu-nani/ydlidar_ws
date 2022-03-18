@@ -72,7 +72,7 @@ void driverSet(int Lpwm, int in1, int in2, int in3, int in4, int Rpwm){
 	digitalWrite(driverIn4,in4);
 	analogWrite(driverPwmL,Lpwm);
 	analogWrite(driverPwmR,Rpwm);
-	if(testMode == true){
+	if(testMode){
 		Serial.println("motor driver Setting..");
 		Serial.print("in1:");
 		Serial.print(in1);

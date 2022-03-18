@@ -555,7 +555,7 @@ void SerialPrint(const char* format)
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
-	serial1 = write(fd,format,strlen(format));
+	serial1 = write(fd,&format,strlen(&format));
 	//serial1 = write(fd,"front",5);
 	if(serial1 < 0)
 		perror("write failed - ");
