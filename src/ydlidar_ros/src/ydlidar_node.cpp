@@ -570,12 +570,12 @@ int SerialRead()
 	char buf[256];
 	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
-		//perror("Read failed - ");
+		printf("Read failed - ");
 		close(fd);
 		return 0;
 	}
 	else if (serial1 == 0){
-		 //printf("No data on port\n");
+		 printf("No data on port\n");
 		 close(fd);
 		 return 0;
 	}
