@@ -593,7 +593,7 @@ int SerialRead()
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
 	*/
-	serial1 = read(fd, (void*)buf, 5);
+	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
 		printf("Read failed - ");
 		//close(fd);
