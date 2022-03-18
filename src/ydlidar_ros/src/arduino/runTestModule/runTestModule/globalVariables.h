@@ -11,8 +11,8 @@ long	preTime	=	nowTime;
 char	SerialData[256] = "";
 
 //wheel
-int speedLeft = 50;
-int SpeedRight= 50;
+int speedLeft = 100;
+int SpeedRight= 100;
 
 //robot
 int robotX	=	0;

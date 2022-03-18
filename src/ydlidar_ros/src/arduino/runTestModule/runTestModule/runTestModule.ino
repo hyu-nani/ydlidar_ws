@@ -19,6 +19,8 @@ void setup()
 	Serial.begin(115200);
 	boardInitial();
 	interruptInit();
+	driverSet(speedLeft,1,0,1,0,SpeedRight);
+	delay(1000);
 }
 
 void loop()
