@@ -20,9 +20,9 @@ void setup()
 	boardInitial();
 	interruptInit();
 	driverSet(speedLeft,1,0,1,0,SpeedRight);
-	delay(100);
+	delay(1000);
 	driverSet(speedLeft,0,1,0,1,SpeedRight);
-	delay(100);
+	delay(1000);
 	driverSet(speedLeft,0,0,0,0,SpeedRight);
 }
 
@@ -30,12 +30,6 @@ void loop()
 {
 	nowTime = millis();
 	if(testMode){
-		digitalWrite(led,HIGH);
-		delay(100);
-		digitalWrite(led,LOW);
-		driverSet(speedLeft,1,0,1,0,SpeedRight);
-		delay(100);
-		driverSet(speedLeft,0,0,0,0,SpeedRight);
 		Serial.print("Left position:");
 		Serial.print(encoderPosLeft);
 		Serial.print("\t Right position:");
