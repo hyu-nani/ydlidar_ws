@@ -533,6 +533,7 @@ int main(int argc, char * argv[]) {
 		
 		break;
     }
+	close(fd);
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
     laser.disconnecting();
@@ -541,6 +542,7 @@ int main(int argc, char * argv[]) {
 
 void SerialPrint(const char* format)
 {
+	/*
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
 	if (fd == -1) {
 		printf("doesn't connected arduino");
@@ -556,18 +558,19 @@ void SerialPrint(const char* format)
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
-	
+	*/
 	serial1 = write(fd,format,int(strlen(format)));
 	//printf("\n %s %d",format,int(strlen(format)));
 	//serial1 = write(fd,"front",5);
 	if(serial1 < 0)
 		perror("write failed - ");
-	close(fd);
+	//close(fd);
 }
 
 int SerialRead()
 {
 	char buf[256];
+	/*
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
 	if (fd == -1) {
 		printf("doesn't connected arduino");
@@ -583,22 +586,22 @@ int SerialRead()
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
-	
+	*/
 	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
 		printf("Read failed - ");
-		close(fd);
+		//close(fd);
 		return 0;
 	}
 	else if (serial1 == 0){
 		 printf("No data on port\n");
-		 close(fd);
+		 //close(fd);
 		 return 0;
 	}
 	else {
 		buf[serial1] = '\0';
 		printf("%i bytes read : %s", serial1, buf);
-		close(fd);
+		//close(fd);
 		return 1;
 	}
 }
