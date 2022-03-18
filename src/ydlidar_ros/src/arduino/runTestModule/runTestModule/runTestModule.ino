@@ -19,11 +19,6 @@ void setup()
 	Serial.begin(115200);
 	boardInitial();
 	interruptInit();
-	driverSet(speedLeft,1,0,1,0,SpeedRight);
-	delay(1000);
-	driverSet(speedLeft,0,1,0,1,SpeedRight);
-	delay(1000);
-	driverSet(speedLeft,0,0,0,0,SpeedRight);
 }
 
 void loop()
@@ -56,6 +51,9 @@ void loop()
 		}
 		else if(strcmp(SerialData,"right")==0){
 			driverSet(speedLeft,0,0,0,0,SpeedRight);
+		}
+		else if(strcmp(SerialData,"back")==0){
+			driverSet(speedLeft,0,1,0,1,SpeedRight);
 		}
 		else{
 			if(testMode){
