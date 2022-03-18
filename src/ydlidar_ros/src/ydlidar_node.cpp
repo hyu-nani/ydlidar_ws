@@ -66,6 +66,7 @@ int	 SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
 
+char linux_kbhit(void)
 {
 	struct termios oldt, newt;
 	int ch;
@@ -430,7 +431,8 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/* Command Line                                                         */
 			/************************************************************************/
-			if(linux_kbhit()=='N'){
+			char kb = linux_kbhit();
+			if(kb=='S'){
 				printf("\033[45m\033[36m");
 				for(int i=0;i<printSize/2-1;i++)
 					printf("--");
