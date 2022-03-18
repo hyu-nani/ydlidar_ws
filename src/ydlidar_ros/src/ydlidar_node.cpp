@@ -47,7 +47,7 @@ char scanData[30];
 
 int	systemMode	=	1;	// 0 = deadrocking mode 1, no arduino test mode
 
-const int	printSize								=	120;//185
+const int	printSize								=	100;//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};//SSH print map

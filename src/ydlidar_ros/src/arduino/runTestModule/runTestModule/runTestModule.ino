@@ -29,7 +29,7 @@ void loop()
 			Serial.print("Left position:");
 			Serial.print(encoderPosLeft);
 			Serial.print("\t Right position:");
-			Serial.println(encoderPosRight);
+			Serial.print(encoderPosRight);
 			preTime = nowTime;
 		}
 	}
