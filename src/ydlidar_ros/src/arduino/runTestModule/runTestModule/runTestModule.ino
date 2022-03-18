@@ -26,10 +26,10 @@ void loop()
 	nowTime = millis();
 	if(testMode){
 		digitalWrite(led,HIGH);
-		delay(500);
+		delay(100);
 		digitalWrite(led,LOW);
-		driverSet(speedLeft,1,1,0,0,SpeedRight);
-		delay(500);
+		driverSet(speedLeft,1,0,1,0,SpeedRight);
+		delay(100);
 		Serial.print("Left position:");
 		Serial.print(encoderPosLeft);
 		Serial.print("\t Right position:");
