@@ -546,7 +546,7 @@ int main(int argc, char * argv[]) {
 
 void SerialPrint(const char* format)
 {
-	
+	/*
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
 	if (fd == -1) {
 		printf("doesn't connected arduino");
@@ -562,13 +562,13 @@ void SerialPrint(const char* format)
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
-	
+	*/
 	//serial1 = write(fd,format,int(strlen(format)));
 	printf("\n %s %d\n",format,int(strlen(format)));
 	serial1 = write(fd,"front",5);
 	if(serial1 < 0)
 		perror("write failed - ");
-	close(fd);
+	//close(fd);
 	
 }
 
