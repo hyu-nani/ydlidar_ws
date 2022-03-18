@@ -388,7 +388,6 @@ int main(int argc, char * argv[]) {
 					Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 				}
 				SerialRead();
-				SerialPrint("front");
 			}
 			
 			/************************************************************************/
@@ -469,7 +468,8 @@ int main(int argc, char * argv[]) {
 					mappingActive = !mappingActive;
 				}
 				else if(strcmp(scanData,"go")==0){
-					SerialPrint("front");
+					while(SerialRead()!=1)
+						SerialPrint("front");
 				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
@@ -603,8 +603,9 @@ int SerialRead()
 	else {
 		buf[serial1] = '\0';
 		printf("%i bytes read :\n%s", serial1, buf);
+		if(strcmp(buf,"OK")==0)
+			return 1;
 		//close(fd);
-		return 1;
 	}
 }
 void printSSHmonitor(int currentY,int currentX){
