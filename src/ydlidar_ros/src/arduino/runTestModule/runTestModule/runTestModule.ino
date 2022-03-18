@@ -55,11 +55,11 @@ void loop()
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"left")==0){
-			driverSet(speedLeft,0,0,0,0,SpeedRight);
+			driverSet(speedLeft,0,1,1,0,SpeedRight);
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"right")==0){
-			driverSet(speedLeft,0,0,0,0,SpeedRight);
+			driverSet(speedLeft,1,0,0,1,SpeedRight);
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"back")==0){

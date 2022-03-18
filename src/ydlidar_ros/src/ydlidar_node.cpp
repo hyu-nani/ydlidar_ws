@@ -564,7 +564,46 @@ int main(int argc, char * argv[]) {
 				}
 				system("clear");
 			}
-			
+			else if(kb == 'U'){
+				int count=0;
+				while(SerialRead()!=1){
+					SerialPrint("front");
+					usleep(10000);
+					count++;
+					if(count>100)
+					break;
+				}
+			}
+			else if(kb == 'L'){
+				int count=0;
+				while(SerialRead()!=1){
+					SerialPrint("left");
+					usleep(10000);
+					count++;
+					if(count>100)
+					break;
+				}
+			}
+			else if(kb == 'R'){
+				int count=0;
+				while(SerialRead()!=1){
+					SerialPrint("right");
+					usleep(10000);
+					count++;
+					if(count>100)
+					break;
+				}
+			}
+			else if(kb == 'D'){
+				int count=0;
+				while(SerialRead()!=1){
+					SerialPrint("back");
+					usleep(10000);
+					count++;
+					if(count>100)
+					break;
+				}
+			}
 		}
 		
 		break;
@@ -600,6 +639,7 @@ int SerialRead()
 		buf[serial1] = '\0';
 		//for(int i=0;i<=25;i++)
 		//	printf("[%c]",buf[i]);
+		printf("\033[%d;%dH",1,printSize+10);//set cursor 0,2
 		printf("%i bytes read :\n[%s]", serial1, buf);
 	}
 	if(strcmp(buf,"OK")==0){
