@@ -44,6 +44,7 @@ void loop()
 			driverSet(speedLeft,0,0,0,0,SpeedRight);
 		}
 		else if(strcmp(SerialData,"front")==0){
+			digitalWrite(led,HIGH);
 			driverSet(speedLeft,1,0,1,0,SpeedRight);
 		}
 		else if(strcmp(SerialData,"left")==0){
