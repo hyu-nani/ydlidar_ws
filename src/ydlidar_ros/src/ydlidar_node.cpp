@@ -66,9 +66,9 @@ int	 SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
 
-int ch , pre1, pre2;
 char linux_kbhit(void)
 {
+	int ch;
 	struct termios oldt, newt;
 	int oldf;
 	tcgetattr(STDIN_FILENO, &oldt);//read current setting
@@ -82,14 +82,12 @@ char linux_kbhit(void)
 	ch = getchar();//read keyboard
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
 	fcntl(STDIN_FILENO, F_SETFL, oldf);
-	if(ch != -1)
-	for(int i=0 ;i<10000;i++)
-		printf("%d\n",ch);
-	if(ch == 32)
-		return 'M';//space key
-	pre2 = pre1;
-	pre1 = ch;
-	if(ch == 65)//up arrow
+	//if(ch != -1)
+	//for(int i=0 ;i<10000;i++)
+	//	printf("%d\n",ch);
+	if(ch == 32)//space key
+		return 'M';
+	else if(ch == 65)//up arrow
 		return 'U';
 	else if(ch == 68)//left arrow
 		return 'L';
@@ -448,7 +446,7 @@ int main(int argc, char * argv[]) {
 				printf("\033[40m\033[97m");
 				printf("\nCommand Please...\n input:");
 				scanf(" %s",scanData);
-				if(strcmp(scanData,"end")==0){//all stop
+				if(strcmp(scanData,"stop")==0){//all stop
 					printf("\033[45m\033[36m");
 					printf("STOP....\n");
 					printf("\033[40m\033[97m");
@@ -480,36 +478,6 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
-				}
-				else if(strcmp(scanData,"go")==0){
-					int count=0;
-					while(SerialRead()!=1){
-						SerialPrint("front");
-						usleep(10000);
-						count++;
-						if(count>100)
-							break;
-					}
-				}
-				else if(strcmp(scanData,"stop")==0){
-					int count=0;
-					while(SerialRead()!=1){
-						SerialPrint("stop");
-						usleep(10000);
-						count++;
-						if(count>100)
-							break;
-					}
-				}
-				else if(strcmp(scanData,"back")==0){
-					int count=0;
-					while(SerialRead()!=1){
-						SerialPrint("back");
-						usleep(10000);
-						count++;
-						if(count>100)
-						break;
-					}
 				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
