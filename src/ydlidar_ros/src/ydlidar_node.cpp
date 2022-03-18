@@ -639,7 +639,7 @@ int SerialRead()
 		buf[serial1] = '\0';
 		//for(int i=0;i<=25;i++)
 		//	printf("[%c]",buf[i]);
-		printf("\033[%d;%dH",1,printSize+10);//set cursor 0,2
+		printf("\033[%d;%dH",printSize*2+10,3);//set cursor 0,2
 		printf("%i bytes read :\n[%s]", serial1, buf);
 	}
 	if(strcmp(buf,"OK")==0){
