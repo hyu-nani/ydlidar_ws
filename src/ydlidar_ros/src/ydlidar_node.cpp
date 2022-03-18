@@ -618,17 +618,19 @@ int SerialRead()
 	char buf[256] ="";
 	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
+		printf("\033[%d;%dH",printSize+10,3);
 		printf("Read failed - ");
 	}
 	else if (serial1 == 0){
+		printf("\033[%d;%dH",printSize+10,3);
 		printf("No data on port\n");
 	}
 	else {
 		buf[serial1] = '\0';
 		//for(int i=0;i<=25;i++)
 		//	printf("[%c]",buf[i]);
-		printf("\033[%d;%dH",printSize+10,3);//set cursor 0,2
-		printf("%i bytes read :\n[     %s     ]", serial1, buf);
+		printf("\033[%d;%dH",printSize+10,3);
+		printf("%i bytes read :\n      [ %s ]      ", serial1, buf);
 	}
 	if(strcmp(buf,"OK")==0){
 		return 1;
