@@ -91,11 +91,11 @@ char linux_kbhit(void)
 	pre1 = ch;
 	if(ch == 65)
 		return 'U';
-	else if(pre2 == 27 && pre1 == 91 && ch == 68)
+	else if(ch == 68)
 		return 'L';
-	else if(pre2 == 27 && pre1 == 91 && ch == 67)
+	else if(ch == 67)
 		return 'R';
-	else if(pre2 == 27 && pre1 == 91 && ch == 66)
+	else if(ch == 66)
 		return 'D';
 	else
 		return 'N';
