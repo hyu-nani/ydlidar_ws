@@ -28,9 +28,8 @@ void loop()
 		if(nowTime - preTime > 100){
 			Serial.print("Left position: ");
 			Serial.print(encoderPosLeft);
-			Serial.print("        Right position: ");
+			Serial.print("     Right position: ");
 			Serial.print(encoderPosRight);
-			Serial.print("               ");
 			preTime = nowTime;
 		}
 	}

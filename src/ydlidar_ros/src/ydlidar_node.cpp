@@ -628,7 +628,7 @@ int SerialRead()
 		//for(int i=0;i<=25;i++)
 		//	printf("[%c]",buf[i]);
 		printf("\033[%d;%dH",printSize+10,3);//set cursor 0,2
-		printf("%i bytes read :\n[%s]", serial1, buf);
+		printf("%i bytes read :\n[     %s     ]", serial1, buf);
 	}
 	if(strcmp(buf,"OK")==0){
 		return 1;
