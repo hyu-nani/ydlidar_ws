@@ -66,10 +66,10 @@ int	 SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
 
+int ch , pre1, pre2;
 char linux_kbhit(void)
 {
 	struct termios oldt, newt;
-	int ch;
 	int oldf;
 	tcgetattr(STDIN_FILENO, &oldt);//read current setting
 	newt = oldt;
@@ -82,23 +82,21 @@ char linux_kbhit(void)
 	ch = getchar();//read keyboard
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
 	fcntl(STDIN_FILENO, F_SETFL, oldf);
-	if(ch != -1)
-	for(int i=0 ;i<10000;i++)
-		printf("%d\n",ch);
-	switch(ch){
-		case 32:
-			return 'S';break;//space
-		case 72:
-			return 'U';break;//up arrow
-		case 75:
-			return 'L';break;//left arrow
-		case 77:
-			return 'R';break;//right arrow
-		case 80:
-			return 'D';break;//down arrow
-		default:
-			return 'N';break;//nothing
-	}
+	//if(ch != -1)
+	//for(int i=0 ;i<10000;i++)
+	//	printf("%d\n",ch);
+	if(ch == 32)
+		return 'S';
+	pre2 = pre1;
+	pre1 = ch;
+	if(pre2 == 27 && pre1 == 91 && ch == 65)
+		return 'U';
+	else if(pre2 == 27 && pre1 == 91 && ch == 68)
+		return 'L';
+	else if(pre2 == 27 && pre1 == 91 && ch == 67)
+		return 'R';
+	else if(pre2 == 27 && pre1 == 91 && ch == 66)
+		return 'D';
 }
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
