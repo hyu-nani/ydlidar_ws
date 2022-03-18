@@ -453,9 +453,9 @@ int main(int argc, char * argv[]) {
 					SerialPrint(buffer);
 					printf("Serial waiting\n");
 					//while(SerialRead()==0)
-					usleep(1000000);
+					usleep(100000);
 					printf("read!\n");
-					usleep(1000000);
+					usleep(100000);
 				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
@@ -470,13 +470,13 @@ int main(int argc, char * argv[]) {
 				else if(strcmp(scanData,"go")==0){
 					while(SerialRead()!=1){
 						SerialPrint("front");
-						usleep(1000000);
+						usleep(100000);
 					}
 				}
 				else if(strcmp(scanData,"stop")==0){
 					while(SerialRead()!=1){
 						SerialPrint("stop");
-						usleep(1000000);
+						usleep(100000);
 					}
 				}
 				else if(strcmp(scanData,"filter")==0){
