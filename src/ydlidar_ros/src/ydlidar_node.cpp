@@ -469,13 +469,13 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"go")==0){
 					while(SerialRead()!=1){
-						SerialPrint("front");
+						SerialPrint("front\n");
 						usleep(100000);
 					}
 				}
 				else if(strcmp(scanData,"stop")==0){
 					while(SerialRead()!=1){
-						SerialPrint("stop");
+						SerialPrint("stop\n");
 						usleep(100000);
 					}
 				}
