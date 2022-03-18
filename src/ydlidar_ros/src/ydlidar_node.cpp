@@ -568,6 +568,21 @@ void SerialPrint(const char* format)
 int SerialRead()
 {
 	char buf[256];
+	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
+	if (fd == -1) {
+		printf("doesn't connected arduino");
+		perror("open_port: Unable to open /dev/ttyACM0 - ");
+	}
+	struct termios options;
+	tcgetattr(fd, &options);
+	options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;         //<Set baud rate
+	options.c_iflag = IGNPAR;
+	options.c_oflag = 0;
+	options.c_lflag = 0;
+	tcflush(fd, TCIFLUSH);
+	tcsetattr(fd, TCSANOW, &options);
+	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
+	fcntl(fd, F_SETFL, 0);
 	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
 		printf("Read failed - ");
@@ -585,6 +600,7 @@ int SerialRead()
 		close(fd);
 		return 1;
 	}
+	close(fd);
 }
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
