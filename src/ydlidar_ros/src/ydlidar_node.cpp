@@ -82,6 +82,7 @@ char linux_kbhit(void)
 	ch = getchar();//read keyboard
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
 	fcntl(STDIN_FILENO, F_SETFL, oldf);
+	printf(ch);
 	switch(ch){
 		case 32:
 			return 'S';break;//space
