@@ -86,17 +86,19 @@ char linux_kbhit(void)
 	for(int i=0 ;i<10000;i++)
 		printf("%d\n",ch);
 	if(ch == 32)
-		return 'S';
+		return 'M';//space key
 	pre2 = pre1;
 	pre1 = ch;
-	if(ch == 65)
+	if(ch == 65)//up arrow
 		return 'U';
-	else if(ch == 68)
+	else if(ch == 68)//left arrow
 		return 'L';
-	else if(ch == 67)
+	else if(ch == 67)//right arrow
 		return 'R';
-	else if(ch == 66)
+	else if(ch == 66)//down arrow
 		return 'D';
+	else if(ch == 47)// / key
+		return 'S';
 	else
 		return 'N';
 }
@@ -435,7 +437,7 @@ int main(int argc, char * argv[]) {
 			/* Command Line                                                         */
 			/************************************************************************/
 			char kb = linux_kbhit();
-			if(kb=='S'){
+			if(kb=='M'){
 				printf("\033[45m\033[36m");
 				for(int i=0;i<printSize/2-1;i++)
 					printf("--");
@@ -604,6 +606,17 @@ int main(int argc, char * argv[]) {
 				int count=0;
 				while(SerialRead()!=1){
 					SerialPrint("back");
+					usleep(10000);
+					count++;
+					if(count>100)
+					break;
+				}
+				system("clear");
+			}
+			else if(kb == 'S'){
+				int count=0;
+				while(SerialRead()!=1){
+					SerialPrint("stop");
 					usleep(10000);
 					count++;
 					if(count>100)
