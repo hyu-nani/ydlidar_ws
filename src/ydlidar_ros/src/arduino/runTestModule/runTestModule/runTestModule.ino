@@ -40,7 +40,9 @@ void loop()
 			i++;
 		}
 		//int datalength = i;
+		Serial.print("[");
 		Serial.print(SerialData);
+		Serial.println("]");
 		if(strcmp(SerialData,"stop")==0){
 			digitalWrite(led,LOW);
 			driverSet(speedLeft,0,0,0,0,SpeedRight);

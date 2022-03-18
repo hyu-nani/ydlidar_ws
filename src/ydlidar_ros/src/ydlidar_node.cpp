@@ -473,7 +473,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("front");
 						usleep(100000);
 						count++;
-						if(count>30)
+						if(count>100)
 							break;
 					}
 				}
@@ -483,7 +483,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("stop");
 						usleep(100000);
 						count++;
-						if(count>30)
+						if(count>100)
 							break;
 					}
 				}
