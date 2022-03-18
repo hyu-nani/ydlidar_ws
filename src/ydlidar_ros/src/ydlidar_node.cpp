@@ -597,22 +597,21 @@ int SerialRead()
 	if (serial1 < 0) {
 		printf("Read failed - ");
 		//close(fd);
-		return 0;
 	}
 	else if (serial1 == 0){
 		 printf("No data on port\n");
 		 //close(fd);
-		 return 0;
 	}
 	else {
 		buf[serial1] = '\0';
 		printf("%i bytes read :\n%s", serial1, buf);
-		if(strcmp(buf,"OK\n")==0){
-			return 1;
-		}else{
-			return 0;
-		}
 		//close(fd);
+	}
+	if(strcmp(buf,"OK")==0){
+		return 1;
+	}else{
+		printf("%s",buf);
+		return 0;
 	}
 }
 void printSSHmonitor(int currentY,int currentX){
