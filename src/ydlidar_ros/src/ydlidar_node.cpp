@@ -469,6 +469,10 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"go")==0){
 					SerialPrint("front");
+					SerialPrint("front");
+					SerialPrint("front");
+					SerialPrint("front");
+					SerialPrint("front");
 				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
