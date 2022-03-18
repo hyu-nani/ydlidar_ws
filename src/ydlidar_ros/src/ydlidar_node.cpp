@@ -471,7 +471,7 @@ int main(int argc, char * argv[]) {
 					int count=0;
 					while(SerialRead()!=1){
 						SerialPrint("front");
-						usleep(100000);
+						usleep(10000);
 						count++;
 						if(count>100)
 							break;
@@ -481,7 +481,7 @@ int main(int argc, char * argv[]) {
 					int count=0;
 					while(SerialRead()!=1){
 						SerialPrint("stop");
-						usleep(100000);
+						usleep(10000);
 						count++;
 						if(count>100)
 							break;
@@ -576,7 +576,6 @@ int SerialRead()
 	}
 	else if (serial1 == 0){
 		printf("No data on port\n");
-		//close(fd);
 	}
 	else {
 		buf[serial1] = '\0';
