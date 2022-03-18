@@ -9,13 +9,13 @@ void doEncoderA(){
 	encoderPosLeft	+= (digitalRead(encoderPinA)==digitalRead(encoderPinB)) ? 1 : -1;
 }
 void doEncoderB(){
-	encoderPosLeft	+= (digitalRead(encoderPinA)==digitalRead(encoderPinB)) ? 1 : -1;
+	encoderPosLeft	+= (digitalRead(encoderPinA)==digitalRead(encoderPinB)) ? -1 : 1;
 }
 void doEncoderC(){
 	encoderPosRight	+= (digitalRead(encoderPinC)==digitalRead(encoderPinD)) ? 1 : -1;
 }
 void doEncoderD(){
-	encoderPosRight	+= (digitalRead(encoderPinC)==digitalRead(encoderPinD)) ? 1 : -1;
+	encoderPosRight	+= (digitalRead(encoderPinC)==digitalRead(encoderPinD)) ? -1 : 1;
 }
 void interruptInit(){
 	attachInterrupt(0, doEncoderA, CHANGE);		//mega pin 2
