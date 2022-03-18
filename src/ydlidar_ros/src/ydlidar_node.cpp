@@ -606,11 +606,12 @@ int SerialRead()
 		printf("%i bytes read :\n%s", serial1, buf);
 		if(strcmp(buf,"OK")==0){
 			return 1;
+		}else{
+			return 0;
 		}
 		//close(fd);
 	}
 }
-	}
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
