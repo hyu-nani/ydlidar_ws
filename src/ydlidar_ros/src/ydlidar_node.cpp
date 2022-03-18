@@ -608,7 +608,7 @@ int SerialRead()
 		int i=0;
 		//close(fd);
 	}
-	if(strcmp(buf,"\nOK\n")==0){
+	if(strcmp(buf,"\nOK \n")==0){
 		return 1;
 	}else{
 		//printf("%s",buf);
