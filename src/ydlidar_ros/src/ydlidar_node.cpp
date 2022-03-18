@@ -434,7 +434,7 @@ int main(int argc, char * argv[]) {
 				printf("\033[40m\033[97m");
 				printf("\nCommand Please...\n input:");
 				scanf(" %s",scanData);
-				if(strcmp(scanData,"stop")==0){//all stop
+				if(strcmp(scanData,"end")==0){//all stop
 					printf("\033[45m\033[36m");
 					printf("STOP....\n");
 					printf("\033[40m\033[97m");
@@ -470,6 +470,10 @@ int main(int argc, char * argv[]) {
 				else if(strcmp(scanData,"go")==0){
 					while(SerialRead()!=1)
 						SerialPrint("front\n");
+				}
+				else if(strcmp(scanData,"stop")==0){
+					while(SerialRead()!=1)
+						SerialPrint("stop\n");
 				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
