@@ -468,15 +468,23 @@ int main(int argc, char * argv[]) {
 					mappingActive = !mappingActive;
 				}
 				else if(strcmp(scanData,"go")==0){
+					int count=0;
 					while(SerialRead()!=1){
-						SerialPrint("front\n");
+						SerialPrint("front");
 						usleep(100000);
+						count++;
+						if(count>30)
+							break;
 					}
 				}
 				else if(strcmp(scanData,"stop")==0){
+					int count=0;
 					while(SerialRead()!=1){
-						SerialPrint("stop\n");
+						SerialPrint("stop");
 						usleep(100000);
+						count++;
+						if(count>30)
+							break;
 					}
 				}
 				else if(strcmp(scanData,"filter")==0){
