@@ -89,7 +89,7 @@ char linux_kbhit(void)
 		return 'S';
 	pre2 = pre1;
 	pre1 = ch;
-	if(pre2 == 27 && pre1 == 91 && ch == 65)
+	if(ch == 65)
 		return 'U';
 	else if(pre2 == 27 && pre1 == 91 && ch == 68)
 		return 'L';
