@@ -616,11 +616,11 @@ int SerialRead()
 	}
 	else {
 		buf[serial1] = '\0';
-		printf("%i bytes read :\n%s A", serial1, buf);
+		printf("%i bytes read :\n[%s]", serial1, buf);
 		int i=0;
 		//close(fd);
 	}
-	if(strcmp(buf,"\nOK")==0){
+	if(strcmp(buf,"OK")==0){
 		return 1;
 	}else{
 		//printf("%s",buf);
