@@ -382,8 +382,8 @@ int main(int argc, char * argv[]) {
 			}
 			/////////////////////////////////////////////////////////////////////////
 			else if(systemMode == 1){// 
-				for(int i=allMapSize/2-printScale;i<allMapSize/2+allMapSize;i++)
-				for(int j=allMapSize/2-printScale;j<allMapSize/2+allMapSize;j++){
+				for(int i=((allMapSize/2)-printScale);i<((allMapSize/2)+printScale);i++)
+				for(int j=((allMapSize/2)-printScale);j<((allMapSize/2)+printScale);j++){
 					if(allMap[i][j] == 2) //find wall place
 					Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 				}
