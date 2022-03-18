@@ -82,7 +82,8 @@ char linux_kbhit(void)
 	ch = getchar();//read keyboard
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
 	fcntl(STDIN_FILENO, F_SETFL, oldf);
-	for(int i=0 ;i<200;i++)
+	if(ch != -1)
+	for(int i=0 ;i<10000;i++)
 		printf("%d\n",ch);
 	switch(ch){
 		case 32:
