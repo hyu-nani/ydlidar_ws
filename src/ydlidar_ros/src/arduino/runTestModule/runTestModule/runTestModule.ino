@@ -59,8 +59,7 @@ void loop()
 		else if(strcmp(SerialData,"back")==0){
 			driverSet(speedLeft,0,1,0,1,SpeedRight);
 			Serial.print("OK\n");
-		}
-		else{
+		}else{
 			if(testMode){
 				Serial.println("OK");
 			}

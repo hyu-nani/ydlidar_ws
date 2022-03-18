@@ -576,7 +576,6 @@ void SerialPrint(const char* format)
 int SerialRead()
 {
 	char buf[256];
-	char readData[20];
 	/*
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);	//detect USB for arduino
 	if (fd == -1) {
@@ -594,7 +593,7 @@ int SerialRead()
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
 	*/
-	serial1 = read(fd, (void*)buf, 255);
+	serial1 = read(fd, (void*)buf, 5);
 	if (serial1 < 0) {
 		printf("Read failed - ");
 		//close(fd);
@@ -607,13 +606,9 @@ int SerialRead()
 		buf[serial1] = '\0';
 		printf("%i bytes read :\n%s", serial1, buf);
 		int i=0;
-		while(buf[i]!='\0'){
-			readData[i] = buf[i];
-			i++;
-		}
 		//close(fd);
 	}
-	if(strcmp(readData,"OK")==0){
+	if(strcmp(buf,"OK   ")==0){
 		return 1;
 	}else{
 		//printf("%s",buf);
