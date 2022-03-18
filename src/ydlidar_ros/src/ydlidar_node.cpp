@@ -45,7 +45,7 @@ bool mappingActive = false;
 
 char scanData[30];
 
-int	systemMode	=	2;	// 0 = deadrocking mode 1, no arduino test mode
+int	systemMode	=	1;	// 0 = deadrocking mode 1, no arduino test mode
 
 const int	printSize								=	185;
 //SSH print size 170 for laptop 100 for tablet
@@ -125,24 +125,23 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 int main(int argc, char * argv[]) {
     printf("serial connecting,.....\n");
     //////////////////////////////////////////////////////////////// usb arduino
-	if(systemMode != 1){
-		fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
-		if (fd == -1) {
-    		printf("doesn't connected arduino");
-  			perror("open_port: Unable to open /dev/ttyACM0 - ");
-    		return(-1);
-		}
-		struct termios options;
-		tcgetattr(fd, &options);
-		options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;         //<Set baud rate
-		options.c_iflag = IGNPAR;
-		options.c_oflag = 0;
-		options.c_lflag = 0;
-		tcflush(fd, TCIFLUSH);
-		tcsetattr(fd, TCSANOW, &options);
-		//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
-		fcntl(fd, F_SETFL, 0);
+	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
+	if (fd == -1) {
+    	printf("doesn't connected arduino");
+  		perror("open_port: Unable to open /dev/ttyACM0 - ");
+    	return(-1);
 	}
+	struct termios options;
+	tcgetattr(fd, &options);
+	options.c_cflag = B115200 | CS8 | CLOCAL | CREAD;         //<Set baud rate
+	options.c_iflag = IGNPAR;
+	options.c_oflag = 0;
+	options.c_lflag = 0;
+	tcflush(fd, TCIFLUSH);
+	tcsetattr(fd, TCSANOW, &options);
+	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
+	fcntl(fd, F_SETFL, 0);
+	
     /////////////////////////////////////////////////////////////////
    
     ros::init(argc, argv, "ydlidar_node"); 
@@ -388,6 +387,7 @@ int main(int argc, char * argv[]) {
 					if(allMap[i][j] == 2) //find wall place
 					Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 				}
+				SerialRead();
 			}
 			
 			/************************************************************************/
@@ -419,7 +419,6 @@ int main(int argc, char * argv[]) {
 						oldMap[i][j]=allMap[i][j];
 					}
 				}
-				SerialRead();
 			}
 			/************************************************************************/
 			/* Command Line                                                         */
