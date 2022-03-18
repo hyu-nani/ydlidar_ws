@@ -560,7 +560,7 @@ void SerialPrint(const char* format)
 	fcntl(fd, F_SETFL, 0);
 	*/
 	//serial1 = write(fd,format,int(strlen(format)));
-	printf("\n %s %d",format,int(strlen(format)));
+	printf("\n %s %d\n",format,int(strlen(format)));
 	serial1 = write(fd,"front",5);
 	if(serial1 < 0)
 		perror("write failed - ");
