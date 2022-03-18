@@ -388,6 +388,7 @@ int main(int argc, char * argv[]) {
 					Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 				}
 				SerialRead();
+				SerialPrint("front");
 			}
 			
 			/************************************************************************/
@@ -468,10 +469,6 @@ int main(int argc, char * argv[]) {
 					mappingActive = !mappingActive;
 				}
 				else if(strcmp(scanData,"go")==0){
-					SerialPrint("front");
-					SerialPrint("front");
-					SerialPrint("front");
-					SerialPrint("front");
 					SerialPrint("front");
 				}
 				else if(strcmp(scanData,"filter")==0){
