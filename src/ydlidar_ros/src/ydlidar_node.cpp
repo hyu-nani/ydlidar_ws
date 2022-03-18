@@ -609,6 +609,7 @@ int SerialRead()
 		int i=0;
 		while(buf[i]!='\0'){
 			readData[i] = buf[i];
+			i++;
 		}
 		//close(fd);
 	}
