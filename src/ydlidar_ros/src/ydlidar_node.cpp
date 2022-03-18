@@ -419,7 +419,6 @@ int main(int argc, char * argv[]) {
 						oldMap[i][j]=allMap[i][j];
 					}
 				}
-				SerialPrint("front");
 				SerialRead();
 			}
 			/************************************************************************/
@@ -468,6 +467,9 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
+				}
+				else if(strcmp(scanData,"front")==0){
+					SerialPrint("front");
 				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
