@@ -468,8 +468,9 @@ int main(int argc, char * argv[]) {
 					mappingActive = !mappingActive;
 				}
 				else if(strcmp(scanData,"go")==0){
-					while(SerialRead()!=1)
+					while(SerialRead()!=1){
 						SerialPrint("front\n");
+					}
 				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
