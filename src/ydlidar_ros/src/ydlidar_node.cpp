@@ -66,7 +66,6 @@ int	 SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
 
-int linux_kbhit(void)
 {
 	struct termios oldt, newt;
 	int ch;
@@ -82,12 +81,20 @@ int linux_kbhit(void)
 	ch = getchar();//read keyboard
 	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
 	fcntl(STDIN_FILENO, F_SETFL, oldf);
-	if(ch == 32)//key space bar
-	{
-		ungetc(ch, stdin);
-		return 1;
+	switch(ch){
+		case 32:
+			return 'S';break;//space
+		case 72:
+			return 'U';break;//up arrow
+		case 75:
+			return 'L';break;//left arrow
+		case 77:
+			return 'R';break;//right arrow
+		case 80:
+			return 'D';break;//down arrow
+		default:
+			return 'N';break;//nothing
 	}
-	return 0;
 }
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
@@ -423,7 +430,7 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/* Command Line                                                         */
 			/************************************************************************/
-			if(linux_kbhit()){
+			if(linux_kbhit()=='N'){
 				printf("\033[45m\033[36m");
 				for(int i=0;i<printSize/2-1;i++)
 					printf("--");
@@ -527,7 +534,7 @@ int main(int argc, char * argv[]) {
 						for(int j=0;j<allMapSize;j++){
 							savefile << (char)allMap[k][j];
 						}
-						savefile << endl;
+						savefile << endl; 
 					}
 					savefile.close();
 				}
