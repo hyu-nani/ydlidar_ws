@@ -37,6 +37,7 @@ void loop()
 		int i = 0;
 		while(Serial.available()){
 			SerialData[i] = Serial.read();
+			delay(1);
 			i++;
 		}
 		//int datalength = i;
