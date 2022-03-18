@@ -11,6 +11,7 @@
 #define encoderPinC		18
 #define encoderPinD		19
 
+#define led			13
 //information of robot
 #define wheel_radius		6
 #define	robot_wheel_pitch	37.5
@@ -38,7 +39,7 @@ void boardInitial(){
 	pinMode(driverIn2,OUTPUT);
 	pinMode(driverIn3,OUTPUT);
 	pinMode(driverIn4,OUTPUT);
-	
+	pinMode(led,OUTPUT);
 	pinMode(encoderPinA,INPUT_PULLUP);
 	pinMode(encoderPinB,INPUT_PULLUP);
 	pinMode(encoderPinC,INPUT_PULLUP);
