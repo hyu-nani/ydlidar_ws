@@ -544,7 +544,6 @@ void SerialPrint(const char* format)
 	if (fd == -1) {
 		printf("doesn't connected arduino");
 		perror("open_port: Unable to open /dev/ttyACM0 - ");
-		return(-1);
 	}
 	struct termios options;
 	tcgetattr(fd, &options);
