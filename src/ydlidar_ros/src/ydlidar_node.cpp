@@ -469,11 +469,11 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"go")==0){
 					while(SerialRead()!=1)
-						SerialPrint("front\n");
+						SerialPrint("front");
 				}
 				else if(strcmp(scanData,"stop")==0){
 					while(SerialRead()!=1)
-						SerialPrint("stop\n");
+						SerialPrint("stop");
 				}
 				else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
