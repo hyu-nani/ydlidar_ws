@@ -27,13 +27,13 @@ void loop()
 	positionCalculate(encoderPosLeft,encoderPosRight,robot_angle);
 	if(testMode){
 		if(nowTime - preTime > 100){
-			Serial.print("X: ");
+			Serial.print("Pos X:");
 			Serial.print(int(robotX/unitScale));
-			Serial.print("  Y: ");
+			Serial.print(" Y:");
 			Serial.print(int(robotY/unitScale));
-			Serial.print("  angle :");
+			Serial.print(" A:");
 			Serial.print(float(robot_angle));
-			Serial.print("\n");
+			Serial.print("\n\0");
 			preTime = nowTime;
 		}
 	}

@@ -624,13 +624,8 @@ int SerialRead()
 	else if (serial1 == 0){
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("No data on port\n");
+		for(int i=0;i<10;i++)
 		printf("                                                                                                    \n");
-		printf("                                                                                                    \n");
-		printf("                                                                                                    \n");
-		printf("                                                                                                    \n");
-		printf("                                                                                                    \n");
-		printf("                                                                                                    \n");
-	}
 	else {
 		buf[serial1] = '\0';
 		//for(int i=0;i<=25;i++)
@@ -641,7 +636,8 @@ int SerialRead()
 	if(strcmp(buf,"OK")==0){
 		return 1;
 	}else{
-		//printf("%s",buf);
+		if(buf[0]=='P' && buf[1]=='o' && buf[2]=='s')
+			sscanf("Pos X:%d Y:%d A:%f\n\0",&robotX,&robotY,&robot_angle);
 		return 0;
 	}
 }
