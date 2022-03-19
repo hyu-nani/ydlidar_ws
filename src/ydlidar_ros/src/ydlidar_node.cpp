@@ -399,6 +399,7 @@ int main(int argc, char * argv[]) {
 							if(allMap[i][j] == 2) //find wall place
 								Line(allMapSize/2+robotY,allMapSize/2+robotX,i,j);
 					}
+				SerialPrint("Pos");
 				SerialRead();
 			}
 			

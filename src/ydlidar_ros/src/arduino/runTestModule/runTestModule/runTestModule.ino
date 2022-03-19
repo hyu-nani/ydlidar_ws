@@ -5,7 +5,7 @@
  * Author: 배현한
  * ROS 아두이노 테스트 코드
  */ 
-bool testMode = true;
+bool testMode = false;
 
 #include "hardware.h"
 #include "globalVariables.h"
@@ -68,7 +68,16 @@ void loop()
 		else if(strcmp(SerialData,"back")==0){
 			driverSet(speedLeft,0,1,0,1,SpeedRight);
 			Serial.print("OK");
-		}else{
+		}
+		else if(strcmp(SerialData,"Pos")==0){
+			Serial.print("Pos/");
+			Serial.print(int(robotX/unitScale));
+			Serial.print("/");
+			Serial.print(int(robotY/unitScale));
+			Serial.print("/");
+			Serial.print(float(robot_angle));
+		}
+		else{
 			if(testMode){
 				//Serial.println("OK");
 			}
