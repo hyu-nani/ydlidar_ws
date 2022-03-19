@@ -658,36 +658,51 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i=0;i<printSize/2-1;i++)
 	printf("--");
 	printf("-\n");
+	int prePixel = 0;
 	for(int i=0;i<printSize;i++){
 		printf(" |");
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1){        //sensing
-				printf("\033[43m\033[33m");//orange
+				if(prePixel != 1)
+					printf("\033[43m\033[33m");//orange
 				printf("  ");
-				printf("\033[40m\033[97m");//white
+				//printf("\033[40m\033[97m");//black BG & white
+				prePixel = 1;
 			}
 			else if(pinMap[i][j] == 2){   //hold , wall
-				printf("\033[41m");//red BG
+				if(prePixel != 2)
+					printf("\033[41m");//red BG
 				printf("  ");
-				printf("\033[40m\033[97m"); //black BG & white
+				//printf("\033[40m\033[97m"); //black BG & white
+				prePixel = 2;
 			}
 			else if(pinMap[i][j] == 3){   //departure
-				printf("\033[44m");//blue BG
+				if(prePixel != 3)
+					printf("\033[44m");//blue BG
 				printf("  ");
-				printf("\033[40m\033[97m");//black BG & white
+				//printf("\033[40m\033[97m");//black BG & white
+				prePixel = 3;
 			}
 			else if(pinMap[i][j] == 4){   //empty space
-				printf("\033[47m");//blue BG
+				if(prePixel != 4)
+					printf("\033[47m");//blue BG
 				printf("  ");
-				printf("\033[40m\033[97m");//black BG & white
+				//printf("\033[40m\033[97m");//black BG & white
+				prePixel = 4;
 			}
 			else if(pinMap[i][j] == 5){   //center
-				printf("\033[45m\033[36m");//magenta BG & cyan
+				if(prePixel != 5)
+					printf("\033[45m\033[36m");//magenta BG & cyan
 				printf("<>");
-				printf("\033[40m\033[97m");//black BG & white
+				//printf("\033[40m\033[97m");//black BG & white
+				prePixel = 5;
 			}
-			else//nothing
-			printf("  ");
+			else{//nothing
+				if(prePixel != 0)
+					printf("\033[40m\033[97m");//black BG & white
+				printf("  ");
+				prePixel = 0;
+			}
 		}
 		printf("|\n");
 	}
