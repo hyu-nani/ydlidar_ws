@@ -14,8 +14,10 @@ void positionCalculate(double nowPosL, double nowPosR, double nowAngle){
 	else if(robot_angle < -180)
 		robot_angle = robot_angle + 360;
 	//x, y °è»ê
-	robotX += sin(angle/2)*(nowPosL-oldPosL+nowPosR-oldPosR)/2;
-	robotY += cos(angle/2)*(nowPosL-oldPosL+nowPosR-oldPosR)/2;
+	double distanceL = diameter*PI/pulse*(nowPosL-oldPosL);
+	double distanceR = diameter*PI/pulse*(nowPosR-oldPosR);
+	robotX += sin(angle/2)*(distanceL+distanceR)/2;
+	robotY += cos(angle/2)*(distanceL+distanceR)/2;
 	
 	oldPosL = nowPosL;
 	oldPosR = nowPosR;
