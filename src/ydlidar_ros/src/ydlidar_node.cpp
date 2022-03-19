@@ -412,9 +412,9 @@ int main(int argc, char * argv[]) {
 			//return sensing text to empty text 
 			for(int i= -printSize/2;i<printSize/2;i++)
 				for(int j= -printSize/2;j<printSize/2;j++){
-				  int a = allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2+robotX];
+				  int a = allMap[i*printScale+allMapSize/2+robotY][j*printScale+allMapSize/2+robotX];
 					if(a == 1 || a == 5) //sensing point or robot center
-						allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2+robotX] = 0;
+						allMap[i*printScale+allMapSize/2+robotY][j*printScale+allMapSize/2+robotX] = 0;
 				}
 			count++;
 			for(int i=0;i<500;i++)
