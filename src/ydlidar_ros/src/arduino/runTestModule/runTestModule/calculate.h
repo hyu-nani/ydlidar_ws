@@ -16,8 +16,8 @@ void positionCalculate(double nowPosL, double nowPosR, double nowAngle){
 	//x, y °è»ê
 	double distanceL = diameter*PI/pulse*(nowPosL-oldPosL);
 	double distanceR = diameter*PI/pulse*(nowPosR-oldPosR);
-	robotX += sin(robot_angle/2)*(distanceL+distanceR)/2;
-	robotY += cos(robot_angle/2)*(distanceL+distanceR)/2;
+	robotX += sin((angle+robot_angle)/2)*(distanceL+distanceR)/2;
+	robotY += cos((angle+robot_angle)/2)*(distanceL+distanceR)/2;
 	
 	oldPosL = nowPosL;
 	oldPosR = nowPosR;
