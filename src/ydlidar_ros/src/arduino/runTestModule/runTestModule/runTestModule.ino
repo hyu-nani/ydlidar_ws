@@ -33,7 +33,7 @@ void loop()
 			Serial.print(encoderPosRight);
 			Serial.print("  angle :");
 			Serial.print(robot_angle);
-			Serial.print("\0");
+			Serial.print("\n");
 			preTime = nowTime;
 		}
 	}
