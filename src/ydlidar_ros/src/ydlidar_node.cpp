@@ -624,7 +624,12 @@ int SerialRead()
 	else if (serial1 == 0){
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("No data on port\n");
-		printf("                                                                                                    ");
+		printf("                                                                                                    \n");
+		printf("                                                                                                    \n");
+		printf("                                                                                                    \n");
+		printf("                                                                                                    \n");
+		printf("                                                                                                    \n");
+		printf("                                                                                                    \n");
 	}
 	else {
 		buf[serial1] = '\0';
