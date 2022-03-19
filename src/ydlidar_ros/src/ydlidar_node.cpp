@@ -660,6 +660,7 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("-\n");
 	int prePixel = 0;
 	for(int i=0;i<printSize;i++){
+		printf("\033[40m\033[97m");//black BG & white
 		printf(" |");
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1){        //sensing
@@ -704,6 +705,7 @@ void printSSHmonitor(int currentY,int currentX){
 				prePixel = 0;
 			}
 		}
+		printf("\033[40m\033[97m");//black BG & white
 		printf("|\n");
 	}
 	printf(" ");
