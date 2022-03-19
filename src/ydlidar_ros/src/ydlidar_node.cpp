@@ -340,8 +340,8 @@ int main(int argc, char * argv[]) {
 				float difference = fabs(old_distance[i] - YD_distance[i]);
 				int Xvalue = round(cos((YD_angle[i]+robotAngle+90)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 				int Yvalue = round(-sin((YD_angle[i]+robotAngle+90)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
-				if(allMap[allMapSize/2+robotY+Yvalue][allMapSize/2+robotX+Xvalue] == 0)
-					allMap[allMapSize/2+robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
+				if(allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] == 0)
+					allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
 				if( (difference < 0.02) &&	(difference != 0) && (YD_distance[i] > 0.15) && (YD_distance[i] < 8))//[M]
 					data_count[i]++;
 				else
