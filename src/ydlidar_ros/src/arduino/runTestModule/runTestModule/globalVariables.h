@@ -1,7 +1,7 @@
 
 // encoder position R, L
 float encoderPosLeft, encoderPosRight;
-float oldPosL, oldPosR;
+double oldPosL, oldPosR;
 
 //time
 long	nowTime	=	millis(); 
