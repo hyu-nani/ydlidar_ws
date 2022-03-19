@@ -10,6 +10,8 @@ long	preTime	=	nowTime;
 //Serial
 char	SerialData[256] = "";
 
+int		unitScale	=	5;//cm
+
 //wheel
 int speedLeft	=	80;
 int SpeedRight	=	80;

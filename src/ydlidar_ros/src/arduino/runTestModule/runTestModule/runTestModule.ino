@@ -28,9 +28,9 @@ void loop()
 	if(testMode){
 		if(nowTime - preTime > 100){
 			Serial.print("X: ");
-			Serial.print(robotX);
+			Serial.print(int(robotX/unitScale));
 			Serial.print("  Y: ");
-			Serial.print(robotY);
+			Serial.print(int(robotY/unitScale));
 			Serial.print("  angle :");
 			Serial.print(float(robot_angle));
 			Serial.print("\n");
