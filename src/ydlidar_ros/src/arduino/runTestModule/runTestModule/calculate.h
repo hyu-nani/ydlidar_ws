@@ -13,11 +13,10 @@ void positionCalculate(double nowPosL, double nowPosR, double nowAngle){
 		robot_angle = robot_angle - 360;
 	else if(robot_angle < -180)
 		robot_angle = robot_angle + 360;
-	//속도
-	//float vel_robot = (wheel_radius * (vel_motorL+vel_motorR)) / 2;
-	//각속도
-	//float d_robot	= (wheel_radius * (vel_motorL-vel_motorR)) / robot_wheel_pitch;
- 	
+	//x, y 계산
+	robotX += sin(angle/2)*(nowPosL-oldPosL+nowPosR-oldPosR)/2;
+	robotY += cos(angle/2)*(nowPosL-oldPosL+nowPosR-oldPosR)/2;
+	
 	oldPosL = nowPosL;
 	oldPosR = nowPosR;
 }
