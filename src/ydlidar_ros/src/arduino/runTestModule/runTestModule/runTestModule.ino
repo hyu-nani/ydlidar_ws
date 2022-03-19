@@ -33,7 +33,6 @@ void loop()
 			Serial.print(int(robotY/unitScale));
 			Serial.print("/");
 			Serial.print(float(robot_angle));
-			Serial.print("\n\0");
 			preTime = nowTime;
 		}
 	}
