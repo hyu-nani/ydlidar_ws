@@ -6,7 +6,7 @@
  */ 
 void positionCalculate(double nowPosL, double nowPosR, double nowAngle){
 	//이동각도 계산
-	double c = ((nowPosL-oldPosL)-(nowPosR-oldPosR))/2;
+	double c = abs(((nowPosL-oldPosL)-(nowPosR-oldPosR))/2);
 	double angle = 2*asin(c/robot_wheel_pitch);
 	//x, y 계산
 	double distanceL = diameter*PI/pulse*(nowPosL-oldPosL);
