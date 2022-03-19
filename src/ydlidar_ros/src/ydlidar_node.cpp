@@ -624,13 +624,14 @@ int SerialRead()
 	else if (serial1 == 0){
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("No data on port\n");
+		printf("                                                                                                    ");
 	}
 	else {
 		buf[serial1] = '\0';
 		//for(int i=0;i<=25;i++)
 		//	printf("[%c]",buf[i]);
 		printf("\033[%d;%dH",printSize+10,3);
-		printf("%i bytes read :\n      [ %s ]      ", serial1, buf);
+		printf("%i bytes read :\n   [ %s ]   ", serial1, buf);
 	}
 	if(strcmp(buf,"OK")==0){
 		return 1;

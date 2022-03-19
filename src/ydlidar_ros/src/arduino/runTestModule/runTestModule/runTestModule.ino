@@ -26,7 +26,7 @@ void loop()
 	nowTime = millis();
 	positionCalculate(encoderPosLeft,encoderPosRight,robot_angle);
 	if(testMode){
-		if(nowTime - preTime > 200){
+		if(nowTime - preTime > 100){
 			Serial.print("Left: ");
 			Serial.print(encoderPosLeft);
 			Serial.print("  Right: ");
