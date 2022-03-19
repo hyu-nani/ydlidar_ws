@@ -24,12 +24,15 @@ void setup()
 void loop()
 {
 	nowTime = millis();
+	positionCalculate(encoderPosLeft,encoderPosRight,robot_angle);
 	if(testMode){
 		if(nowTime - preTime > 100){
 			Serial.print("Left position: ");
 			Serial.print(encoderPosLeft);
 			Serial.print("     Right position: ");
 			Serial.print(encoderPosRight);
+			Serial.print("     angle :");
+			Serial.print(robot_angle);
 			preTime = nowTime;
 		}
 	}
