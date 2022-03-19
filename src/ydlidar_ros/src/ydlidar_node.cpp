@@ -637,7 +637,7 @@ int SerialRead()
 		return 1;
 	}else{
 		if(buf[0]=='P' && buf[1]=='o' && buf[2]=='s'){
-			sscanf("Pos/%d/%d/%f\n\0",&robotX,&robotY,&robotAngle);
+			sscanf(buf,"Pos/%d/%d/%f\n\0",&robotX,&robotY,&robotAngle);
 			printf("reading....");
 		}
 		return 0;
