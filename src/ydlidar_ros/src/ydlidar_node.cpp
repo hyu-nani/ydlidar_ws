@@ -47,7 +47,7 @@ char scanData[30];
 
 int	systemMode	=	1;	// 0 = deadrocking mode 1, no arduino test mode
 
-const int	printSize								=	140;//185
+const int	printSize								=	185;//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
@@ -662,6 +662,7 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i=0;i<printSize;i++){
 		printf("\033[40m\033[97m");//black BG & white
 		printf(" |");
+		prePixel = 0;
 		for(int j=0;j<printSize;j++){
 			if(pinMap[i][j] == 1){        //sensing
 				if(prePixel != 1)
