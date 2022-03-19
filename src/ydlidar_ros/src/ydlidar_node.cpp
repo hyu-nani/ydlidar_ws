@@ -396,7 +396,7 @@ int main(int argc, char * argv[]) {
 				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
 					for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++){
 						if(allMap[i][j] == 2) //find wall place
-							Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
+							Line(allMapSize/2-robotX,allMapSize/2+robotY,i,j);
 				}
 				SerialRead();
 			}
