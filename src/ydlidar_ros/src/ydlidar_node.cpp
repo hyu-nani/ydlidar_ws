@@ -53,7 +53,7 @@ const int	printSize								=	185;//185
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
 int			printScale								=	1;	//scale
 float		unitScale								=	5;//1-unit cm
-const int	allMapSize								=	200;//maximum 2000
+const int	allMapSize								=	500;//maximum 2000
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
 unsigned int	oldMap[allMapSize][allMapSize]		=	{0};		//short-term map
@@ -393,8 +393,8 @@ int main(int argc, char * argv[]) {
 			}
 			/////////////////////////////////////////////////////////////////////////
 			else if(systemMode == 1){// 
-				for(int i=0;i<allMapSize;i++)
-					for(int j=0;j<allMapSize;j++){
+				for(int i=allMapSize/2-printScale;i<allMapSize/2+printScale;i++)
+					for(int j=allMapSize/2-printScale;j<allMapSize/2+printScale;j++){
 						if(allMap[i][j] == 2) //find wall place
 							Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 				}
