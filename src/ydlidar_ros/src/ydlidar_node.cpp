@@ -332,6 +332,8 @@ int main(int argc, char * argv[]) {
 				}
 				scan_pub.publish(scan_msg);
 			}
+			SerialPrint("Pos");
+			SerialRead();
 			/************************************************************************/
 			/* Writing sensing, wall                                                */
 			/************************************************************************/
