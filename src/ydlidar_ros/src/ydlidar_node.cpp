@@ -58,7 +58,7 @@ unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure poin
 unsigned int	oldMap[allMapSize][allMapSize]		=	{0};		//short-term map
 //ROBOT data initial setting
 int		robotX = 0, robotY = 0;	//center
-float	robotAngle = 0;//initial angle
+double	robotAngle = 0;//initial angle
 
 void SerialPrint(const char* format);
 int	 SerialRead();
@@ -638,7 +638,7 @@ int SerialRead()
 	}
 	else{
 		if(buf[0]=='P' && buf[1]=='o' && buf[2]=='s'){
-			sscanf(buf,"Pos/%d/%d/%f",&robotX,&robotY,&robotAngle);
+			sscanf(buf,"Pos/%d/%d/%lf",&robotX,&robotY,&robotAngle);
 			printf("reading....");
 		}
 		return 0;
