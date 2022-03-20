@@ -20,7 +20,7 @@
 #define gear		0.2
 #define volume		0.25
 #define diameter	12.8
-#define pulse		6400
+#define pulse		8000//6400
 #define radius		6
 #define encoderPPR	28
 #define quardature	2
