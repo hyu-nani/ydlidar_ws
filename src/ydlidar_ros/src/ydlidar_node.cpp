@@ -595,6 +595,7 @@ int main(int argc, char * argv[]) {
 		
 		break;
     }
+	SerialPrint("stop");
 	close(fd);
     laser.turnOff();
     ROS_INFO("[YDLIDAR INFO] Now YDLIDAR is stopping .......");
