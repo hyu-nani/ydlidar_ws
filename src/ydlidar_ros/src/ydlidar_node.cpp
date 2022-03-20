@@ -62,7 +62,7 @@ double	robotAngle = 0;//initial angle
 
 void SerialPrint(const char* format);
 int	 SerialRead();
-void printSSHmonitor(int currentY,int currentX, float angle);
+void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
 
 char linux_kbhit(void)
@@ -645,7 +645,7 @@ int SerialRead()
 		return 0;
 	}
 }
-void printSSHmonitor(int currentY,int currentX, float angle){
+void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)+currentY][(allMapSize/2+j-printSize/2)+currentX];
