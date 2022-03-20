@@ -10,7 +10,7 @@ void positionCalculate(double nowPosL, double nowPosR){
 	oldPosL = nowPosL;
 	oldPosR = nowPosR;
 	//이동각도 계산
-	double c = (distanceL-distanceR)/2;
+	double c = abs(distanceL-distanceR)/2;
 	double angle = asin(2*sin(c/robot_wheel_pitch)*cos(c/robot_wheel_pitch))*(180/PI);
 	//double angle = 2*asin(c/robot_wheel_pitch)*(180/PI));
 	
