@@ -11,8 +11,8 @@ void positionCalculate(double nowPosL, double nowPosR, double nowAngle){
 	double c = -(distanceL-distanceR)/2;
 	double angle = asin(2*sin(c/robot_wheel_pitch)*cos(c/robot_wheel_pitch))*(180/PI);
 	//x, y °è»ê
-	robotX += -sin((angle/2+nowAngle)*(PI/180))*(distanceL+distanceR)/2;
-	robotY += cos((angle/2+nowAngle)*(PI/180))*(distanceL+distanceR)/2;
+	robotX += cos((angle/2+90+nowAngle)*(PI/180))*(distanceL+distanceR)/2;
+	robotY += -sin((angle/2+90+nowAngle)*(PI/180))*(distanceL+distanceR)/2;
 	
 	nowAngle += angle;
 	if(nowAngle > 180)
