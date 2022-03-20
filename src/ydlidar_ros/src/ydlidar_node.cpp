@@ -63,7 +63,7 @@ float	robotAngle = 0;//initial angle
 
 void SerialPrint(const char* format);
 int	 SerialRead();
-void printSSHmonitor(int currentY,int currentX);
+void printSSHmonitor(int currentY,int currentX, float angle);
 void Line(int x0, int y0,int x1, int y1);
 
 char linux_kbhit(void)
@@ -347,7 +347,7 @@ int main(int argc, char * argv[]) {
 				else
 					data_count[i] = 0;
 				if(data_count[i] > 4 && mappingActive == true){//wall sensitivity
-					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2-robotY+Yvalue)<allMapSize)
+					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2+robotY+Yvalue)<allMapSize)
 						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize)
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 					data_count[i] = 0;
@@ -408,7 +408,7 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			printf("\033[%d;%dH",1,3);//set cursor 0,2
 			//SSH print
-			printSSHmonitor(robotY,robotX);
+			printSSHmonitor(robotY,robotX,robotAngle);
 			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
 			printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 			//return sensing text to empty text 
@@ -645,7 +645,7 @@ int SerialRead()
 		return 0;
 	}
 }
-void printSSHmonitor(int currentY,int currentX){
+void printSSHmonitor(int currentY,int currentX, float angle){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)+currentY][(allMapSize/2+j-printSize/2)+currentX];
