@@ -540,7 +540,7 @@ int main(int argc, char * argv[]) {
 				int count=0;
 				while(SerialRead()!=1){
 					SerialPrint("front");
-					usleep(10000);
+					usleep(50000);
 					count++;
 					if(count>100)
 					break;
@@ -551,7 +551,7 @@ int main(int argc, char * argv[]) {
 				int count=0;
 				while(SerialRead()!=1){
 					SerialPrint("left");
-					usleep(10000);
+					usleep(50000);
 					count++;
 					if(count>100)
 					break;
@@ -562,7 +562,7 @@ int main(int argc, char * argv[]) {
 				int count=0;
 				while(SerialRead()!=1){
 					SerialPrint("right");
-					usleep(10000);
+					usleep(50000);
 					count++;
 					if(count>100)
 					break;
@@ -573,7 +573,7 @@ int main(int argc, char * argv[]) {
 				int count=0;
 				while(SerialRead()!=1){
 					SerialPrint("back");
-					usleep(10000);
+					usleep(50000);
 					count++;
 					if(count>100)
 					break;
@@ -584,7 +584,7 @@ int main(int argc, char * argv[]) {
 				int count=0;
 				while(SerialRead()!=1){
 					SerialPrint("stop");
-					usleep(10000);
+					usleep(50000);
 					count++;
 					if(count>100)
 					break;
