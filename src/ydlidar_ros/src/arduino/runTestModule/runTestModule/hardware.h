@@ -15,11 +15,11 @@
 
 //information of robot
 #define wheel_radius		6
-#define	robot_wheel_pitch	45.2
+#define	robot_wheel_pitch	45.4
 #define gear_ratio			100
 #define gear		0.2
 #define volume		0.25
-#define diameter	12.2
+#define diameter	12.3
 #define pulse		6400
 #define radius		6
 #define encoderPPR	28
