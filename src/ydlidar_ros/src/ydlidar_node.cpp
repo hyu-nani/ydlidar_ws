@@ -479,6 +479,15 @@ int main(int argc, char * argv[]) {
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
 							allMap[i][j] = 0;
+					int count=0;
+					while(SerialRead()!=1){
+						SerialPrint("reset");
+						usleep(50000);
+						count++;
+						if(count>100)
+						break;
+					}
+					system("clear");
 				}
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
