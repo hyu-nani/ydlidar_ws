@@ -46,12 +46,12 @@ char scanData[30];
 
 int	systemMode	=	1;	// 0 = deadrocking mode 1, no arduino test mode
 
-const int	printSize								=	185;//185
+const int	printSize								=	80;//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};//SSH print map
 int			printScale								=	1;	//scale
-float		unitScale								=	5;//1-unit cm
+float		unitScale								=	10;//1-unit cm
 const int	allMapSize								=	500;//maximum 2000
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};			//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
