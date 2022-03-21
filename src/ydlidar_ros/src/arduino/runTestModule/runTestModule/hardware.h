@@ -55,6 +55,10 @@ void boardInitial(){
 }
 
 void driverSet(int Lpwm, int in1, int in2, int in3, int in4, int Rpwm){
+	digitalWrite(driverIn1,LOW);
+	digitalWrite(driverIn2,LOW);
+	digitalWrite(driverIn3,LOW);
+	digitalWrite(driverIn4,LOW);
 	in1 = (in1>1) ? 1 : in1;
 	in2	= (in2>1) ? 1 : in2;
 	in3	= (in3>1) ? 1 : in3;
@@ -67,6 +71,7 @@ void driverSet(int Lpwm, int in1, int in2, int in3, int in4, int Rpwm){
 	Rpwm= (Rpwm>255) ? 255 : Rpwm;
 	Lpwm= (Lpwm<0) ? 0 : Lpwm;
 	Rpwm= (Rpwm<0) ? 0 : Rpwm;
+	delay(10);
 	digitalWrite(driverIn1,in1);
 	digitalWrite(driverIn2,in2);
 	digitalWrite(driverIn3,in3);
