@@ -692,7 +692,7 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("-\n");
 	int prePixel = 0;
 	for(int i=0;i<printSize;i++){
-		printf("\033[40m\033[97m");//black BG & white
+		//printf("\033[40m\033[97m");//black BG & white
 		printf(" |");
 		prePixel = 0;
 		for(int j=0;j<printSize;j++){
@@ -737,7 +737,6 @@ void printSSHmonitor(int currentY,int currentX){
 				printf("  ");
 				prePixel = 0;
 			}
-			usleep(1);
 		}
 		printf("\033[40m\033[97m");//black BG & white
 		printf("|\n");
