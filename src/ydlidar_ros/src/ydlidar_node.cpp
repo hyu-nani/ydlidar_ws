@@ -405,7 +405,6 @@ int main(int argc, char * argv[]) {
 						for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++){
 							if(allMap[i][j] == 2) //find wall place
 								Line(allMapSize/2-robotY,allMapSize/2+robotX,i,j);
-								usleep(10);
 					}
 				SerialPrint("Pos");
 				usleep(1000);
