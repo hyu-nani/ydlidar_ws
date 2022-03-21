@@ -544,48 +544,68 @@ int main(int argc, char * argv[]) {
 				system("clear");
 			}
 			else if(kb == 'U'){
-				int count=0;
-				while(SerialRead()!=1){
-					SerialPrint("front");
-					usleep(50000);
-					count++;
-					if(count>100)
-					break;
+				if(integration){
+					int count=0;
+					while(SerialRead()!=1){
+						SerialPrint("front");
+						usleep(50000);
+						count++;
+						if(count>100)
+						break;
+					}
+					system("clear");
 				}
-				system("clear");
+				else{
+					cursorY++;
+				}
 			}
 			else if(kb == 'L'){
-				int count=0;
-				while(SerialRead()!=1){
-					SerialPrint("left");
-					usleep(50000);
-					count++;
-					if(count>100)
-					break;
+				if(integration){
+					int count=0;
+					while(SerialRead()!=1){
+						SerialPrint("left");
+						usleep(50000);
+						count++;
+						if(count>100)
+						break;
+					}
+					system("clear");
 				}
-				system("clear");
+				else{
+					cursorX--;
+				}
 			}
 			else if(kb == 'R'){
-				int count=0;
-				while(SerialRead()!=1){
-					SerialPrint("right");
-					usleep(50000);
-					count++;
-					if(count>100)
-					break;
+				if(integration){
+					int count=0;
+					while(SerialRead()!=1){
+						SerialPrint("right");
+						usleep(50000);
+						count++;
+						if(count>100)
+						break;
+					}
+					system("clear");
 				}
-				system("clear");
+				else{
+					cursorX++;
+				}
 			}
 			else if(kb == 'D'){
-				int count=0;
-				while(SerialRead()!=1){
-					SerialPrint("back");
-					usleep(50000);
-					count++;
-					if(count>100)
-					break;
+				if(integration){
+					int count=0;
+					while(SerialRead()!=1){
+						SerialPrint("back");
+						usleep(50000);
+						count++;
+						if(count>100)
+						break;
+					}
+					system("clear");
 				}
-				system("clear");
+				else{
+					cursorY--;
+				}
 			}
 			else if(kb == 'S'){
 				int count=0;
