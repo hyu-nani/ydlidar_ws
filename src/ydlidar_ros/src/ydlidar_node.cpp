@@ -354,8 +354,8 @@ int main(int argc, char * argv[]) {
 					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2+robotY+Yvalue)<allMapSize)
 						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize){
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
-							usleep(1);
 						}
+					usleep(1);
 					data_count[i] = 0;
 				} 
 			}
