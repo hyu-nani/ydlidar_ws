@@ -13,17 +13,17 @@
 
 #define led			13
 
-//information of robot
-#define wheel_radius		6
+//information of robo
+//#define wheel_radius		6
 #define	robot_wheel_pitch	45.25
-#define gear_ratio			100
-#define gear		0.2
-#define volume		0.25
+//#define gear_ratio			100
+//#define gear		0.2
+//#define volume		0.25
 #define diameter	12.2
 #define pulse		6400
-#define radius		6
-#define encoderPPR	28
-#define quardature	2
+//#define radius		6
+//#define encoderPPR	28
+//#define quardature	2
 
 //motor driver pin
 #define driverPwmL	6
