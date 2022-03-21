@@ -4,13 +4,13 @@ float encoderPosLeft, encoderPosRight;
 double oldPosL, oldPosR;
 
 //time
-long	nowTime	=	millis(); 
-long	preTime	=	nowTime;
+long	nowTime		=	millis(); 
+long	preTime		=	nowTime;
 
 //Serial
 char	SerialData[256] = "";
 
-int		unitScale	=	10;//cm
+int		unitScale	=	5;//cm
 
 //wheel
 int speedLeft	=	114;
