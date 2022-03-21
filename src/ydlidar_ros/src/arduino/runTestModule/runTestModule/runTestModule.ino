@@ -69,6 +69,12 @@ void loop()
 			driverSet(speedLeft,0,1,0,1,SpeedRight);
 			Serial.print("OK");
 		}
+		else if(strcmp(SerialData,"reset")==0){
+			robot_angle =0;
+			robotX =0;
+			robotY =0;
+			Serial.print("OK");
+		}
 		else if(strcmp(SerialData,"Pos")==0){
 			Serial.print("Pos/");
 			Serial.print(int(robotX/unitScale));
