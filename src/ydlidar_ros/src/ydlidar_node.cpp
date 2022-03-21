@@ -556,7 +556,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 				}
 				else{
-					cursorY++;
+					cursorY+=3;
 				}
 			}
 			else if(kb == 'L'){
@@ -572,7 +572,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 				}
 				else{
-					cursorX--;
+					cursorX-=3;
 				}
 			}
 			else if(kb == 'R'){
@@ -588,7 +588,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 				}
 				else{
-					cursorX++;
+					cursorX+=3;
 				}
 			}
 			else if(kb == 'D'){
@@ -604,7 +604,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 				}
 				else{
-					cursorY--;
+					cursorY=3;
 				}
 			}
 			else if(kb == 'S'){
