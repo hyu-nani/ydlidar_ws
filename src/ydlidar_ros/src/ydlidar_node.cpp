@@ -749,6 +749,7 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("--");
 	printf("\n");
 	printf("\033[0m");//white
+	usleep(10000);
 }
 void Line(int x0, int y0,int x1, int y1) {
 	int steep = abs(y1 - y0) > abs(x1 - x0);
