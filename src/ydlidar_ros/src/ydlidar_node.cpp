@@ -493,6 +493,7 @@ int main(int argc, char * argv[]) {
 						break;
 					}
 					system("clear");
+					usleep(50000);
 				}
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
@@ -557,6 +558,7 @@ int main(int argc, char * argv[]) {
 					printf("nothing...");
 				}
 				system("clear");
+				usleep(50000);
 			}
 			else if(kb == 'U'){
 				if(integration){
@@ -569,6 +571,7 @@ int main(int argc, char * argv[]) {
 						break;
 					}
 					system("clear");
+					usleep(50000);
 				}
 				else{
 					cursorY+=3;
@@ -585,6 +588,7 @@ int main(int argc, char * argv[]) {
 						break;
 					}
 					system("clear");
+					usleep(50000);
 				}
 				else{
 					cursorX-=3;
@@ -601,6 +605,7 @@ int main(int argc, char * argv[]) {
 						break;
 					}
 					system("clear");
+					usleep(50000);
 				}
 				else{
 					cursorX+=3;
@@ -617,6 +622,7 @@ int main(int argc, char * argv[]) {
 						break;
 					}
 					system("clear");
+					usleep(50000);
 				}
 				else{
 					cursorY=3;
@@ -632,6 +638,7 @@ int main(int argc, char * argv[]) {
 					break;
 				}
 				system("clear");
+				usleep(50000);
 			}
 		}
 		
@@ -687,6 +694,7 @@ int SerialRead()
 				cursorY = robotY;
 			}
 			printf("reading....");
+			usleep(10000);
 		}
 		return 0;
 	}
