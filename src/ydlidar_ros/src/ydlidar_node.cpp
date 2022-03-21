@@ -357,6 +357,7 @@ int main(int argc, char * argv[]) {
 					data_count[i] = 0;
 				} 
 			}
+			usleep(100);
 			/************************************************************************/
 			/* system  0                                                            */
 			/************************************************************************/
@@ -404,6 +405,7 @@ int main(int argc, char * argv[]) {
 								Line(allMapSize/2-robotY,allMapSize/2+robotX,i,j);
 					}
 				SerialPrint("Pos");
+				usleep(100);
 				SerialRead();
 			}
 			
@@ -425,6 +427,7 @@ int main(int argc, char * argv[]) {
 			count++;
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
+			usleep(100);
 			rate.sleep();
 			ros::spinOnce();
 			/************************************************************************/
