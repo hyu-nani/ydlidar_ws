@@ -418,9 +418,9 @@ int main(int argc, char * argv[]) {
 			//return sensing text to empty text 
 			for(int i= -printSize/2-5;i<printSize/2+5;i++)
 				for(int j= -printSize/2-5;j<printSize/2+5;j++){
-				  int a = allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2-robotX];
+				  int a = allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2+robotX];
 					if(a == 1 || a == 5) //sensing point or robot center
-						allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2-robotX] = 0;
+						allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2+robotX] = 0;
 				}
 			count++;
 			for(int i=0;i<500;i++)
@@ -680,7 +680,7 @@ int SerialRead()
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
-			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)-currentX];
+			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)+currentX];
 	pinMap[printSize/2][printSize/2] = 5;
 	printf("\n ");
 	printf("\033[97m");//white

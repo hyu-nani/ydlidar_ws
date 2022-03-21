@@ -70,6 +70,7 @@ void loop()
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"reset")==0){
+			driverSet(speedLeft,0,0,0,0,SpeedRight);
 			robot_angle =0;
 			robotX =0;
 			robotY =0;
