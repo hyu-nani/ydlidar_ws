@@ -352,12 +352,14 @@ int main(int argc, char * argv[]) {
 					data_count[i] = 0;
 				if(data_count[i] > 10 && mappingActive == true){//wall sensitivity
 					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2+robotY+Yvalue)<allMapSize)
-						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize)
+						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize){
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
+							usleep(1);
+						}
 					data_count[i] = 0;
 				} 
 			}
-			usleep(100);
+			usleep(1000);
 			/************************************************************************/
 			/* system  0                                                            */
 			/************************************************************************/
@@ -403,9 +405,10 @@ int main(int argc, char * argv[]) {
 						for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++){
 							if(allMap[i][j] == 2) //find wall place
 								Line(allMapSize/2-robotY,allMapSize/2+robotX,i,j);
+								usleep(10);
 					}
 				SerialPrint("Pos");
-				usleep(100);
+				usleep(1000);
 				SerialRead();
 			}
 			
@@ -427,7 +430,7 @@ int main(int argc, char * argv[]) {
 			count++;
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
-			usleep(100);
+			usleep(1000);
 			rate.sleep();
 			ros::spinOnce();
 			/************************************************************************/
