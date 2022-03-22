@@ -7,8 +7,8 @@
  */ 
 bool testMode = false;
 
-#include "hardware.h"
 #include "globalVariables.h"
+#include "hardware.h"
 #include "interrupt.h"
 #include <math.h>
 #include "calculate.h"
