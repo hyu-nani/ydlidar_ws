@@ -66,7 +66,7 @@ void loop()
 		}
 		else if(strcmp(SerialData,"left")==0){
 			calActive = false;
-			driverSet((speedLeft+errorGap/2,0,1,1,0,(SpeedRight-errorGap)/2);
+			driverSet((speedLeft+errorGap)/2,0,1,1,0,(SpeedRight-errorGap)/2);
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"right")==0){
