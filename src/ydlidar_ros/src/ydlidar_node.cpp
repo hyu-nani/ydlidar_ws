@@ -6,6 +6,7 @@
  *  http://www.ydlidar.com
  * 
  */
+
 #include "ros/ros.h"
 #include "sensor_msgs/LaserScan.h"
 #include "CYdLidar.h"
