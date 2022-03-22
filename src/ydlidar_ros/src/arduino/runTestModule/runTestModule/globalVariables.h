@@ -10,7 +10,7 @@ long	preTime		=	nowTime;
 
 //Serial
 char	SerialData[256] =	"";
-int		unitScale		=	25;//cm
+int		unitScale		=	20;//cm
 
 //wheel
 boolean	calActive	=	false;

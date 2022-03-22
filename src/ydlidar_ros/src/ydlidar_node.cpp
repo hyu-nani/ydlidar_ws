@@ -52,7 +52,7 @@ const int	printSize								=	185;//185
 
 int			pinMap[printSize][printSize]			=	{0};	//SSH print map
 int			printScale								=	1;		//scale
-float		unitScale								=	25;		//1-unit cm
+float		unitScale								=	20;		//1-unit cm
 const int	allMapSize								=	2000;		//maximum 65535
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
@@ -694,7 +694,7 @@ int SerialRead()
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
-			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)-currentX];
+			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)+currentX];
 	pinMap[printSize/2][printSize/2] = 5;
 	printf("\n ");
 	printf("\033[97m");//white
