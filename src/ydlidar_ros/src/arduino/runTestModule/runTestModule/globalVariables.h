@@ -13,7 +13,7 @@ char	SerialData[256] = "";
 int		unitScale	=	5;//cm
 
 //wheel
-int speedLeft	=	117;
+int speedLeft	=	119;
 int SpeedRight	=	120;
 
 //robot
