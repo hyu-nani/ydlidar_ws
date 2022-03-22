@@ -67,11 +67,11 @@ void driverSet(int Lpwm, int drivein1, int drivein2, int drivein3, int drivein4,
 	speedRight= (speedRight<0) ? 0 : speedRight;
 }
 void driverOUTPUT(){
-	//digitalWrite(driverIn1,LOW);
-	//digitalWrite(driverIn2,LOW);
-	//digitalWrite(driverIn3,LOW);
-	//digitalWrite(driverIn4,LOW);
-	//delay(1);
+	digitalWrite(driverIn1,LOW);
+	digitalWrite(driverIn2,LOW);
+	digitalWrite(driverIn3,LOW);
+	digitalWrite(driverIn4,LOW);
+	delay(10);
 	digitalWrite(driverIn1,in1);
 	digitalWrite(driverIn2,in2);
 	digitalWrite(driverIn3,in3);
