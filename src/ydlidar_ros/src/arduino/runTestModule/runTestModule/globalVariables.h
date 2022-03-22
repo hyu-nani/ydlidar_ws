@@ -14,8 +14,10 @@ int		unitScale		=	5;//cm
 
 //wheel
 boolean	calActive	=	false;
-int	speedLeft	=	108;
-int	speedRight	=	120;
+const int	speedLeft	=	108;
+const int	speedRight	=	120;
+int			lefePWMoutput = 0;
+int			rightPWMoutput= 0;
 float	errorGap	=	0;//¾ç¼ö¸é ¿ŞÂÊÀÌ »¡¶óÁü
 int		in1=0,in2=0,in3=0,in4=0;
 

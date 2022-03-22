@@ -37,8 +37,8 @@ void loop()
 		}
 		
 	}
-	analogWrite(driverPwmL,speedLeft+errorGap);
-	analogWrite(driverPwmR,speedRight-errorGap);
+	analogWrite(driverPwmL,lefePWMoutput+errorGap);
+	analogWrite(driverPwmR,rightPWMoutput-errorGap);
 	if(calActive){
 		speedcal(robot_angle);
 	}
