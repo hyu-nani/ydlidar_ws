@@ -357,11 +357,9 @@ int main(int argc, char * argv[]) {
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 							Line(allMapSize/2-robotY,allMapSize/2+robotX,allMapSize/2-robotY+Yvalue,allMapSize/2+robotX+Xvalue);
 						}
-					usleep(1);
 					data_count[i] = 0;
 				} 
 			}
-			usleep(1000);
 			/************************************************************************/
 			/* system  0                                                            */
 			/************************************************************************/
@@ -696,7 +694,7 @@ int SerialRead()
 void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
-			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)+currentX];
+			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)-currentX];
 	pinMap[printSize/2][printSize/2] = 5;
 	printf("\n ");
 	printf("\033[97m");//white
