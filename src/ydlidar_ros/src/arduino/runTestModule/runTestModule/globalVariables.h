@@ -14,8 +14,8 @@ int		unitScale		=	5;//cm
 
 //wheel
 boolean	calActive	=	false;
-float	speedLeft	=	108;
-float	speedRight	=	120;
+int	speedLeft	=	108;
+int	speedRight	=	120;
 float	errorGap	=	0;//¾ç¼ö¸é ¿ŞÂÊÀÌ »¡¶óÁü
 int		in1=0,in2=0,in3=0,in4=0;
 

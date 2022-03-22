@@ -54,7 +54,7 @@ void boardInitial(){
 	analogWrite(driverPwmR,0);
 }
 
-void driverSet(float Lpwm, int drivein1, int drivein2, int drivein3, int drivein4, float Rpwm){
+void driverSet(int Lpwm, int drivein1, int drivein2, int drivein3, int drivein4, int Rpwm){
 	in1 = drivein1;	
 	in2 = drivein2;
 	in3 = drivein3;
@@ -78,5 +78,5 @@ void driverOUTPUT(){
 	digitalWrite(driverIn4,in4);
 	analogWrite(driverPwmL,speedLeft+errorGap);
 	analogWrite(driverPwmR,speedRight-errorGap);	
-	delay(10);
+	delay(100);
 }

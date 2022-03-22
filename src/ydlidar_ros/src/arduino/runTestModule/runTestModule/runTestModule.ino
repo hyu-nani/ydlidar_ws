@@ -86,9 +86,9 @@ void loop()
 		else if(strcmp(SerialData,"reset")==0){
 			calActive = false;
 			driverSet(speedLeft,0,0,0,0,speedRight);
-			robot_angle =0;
-			robotX =0;
-			robotY =0;
+			robot_angle = 0;
+			robotX = 0;
+			robotY = 0;
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"Pos")==0){
