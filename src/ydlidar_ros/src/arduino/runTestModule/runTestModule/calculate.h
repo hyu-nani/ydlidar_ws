@@ -24,3 +24,11 @@ void positionCalculate(double nowPosL, double nowPosR){
 	else if(robot_angle < -180)
 		robot_angle = robot_angle + 360;
 }
+
+void speedcal(double nowAngle){
+	if(oldAngle < nowAngle)//rising
+		errorGap = 0.3;	
+	else if(oldAngle > nowAngle)
+		errorGap = -0.3;
+	oldAngle = nowAngle;
+}

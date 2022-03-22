@@ -35,7 +35,9 @@ void loop()
 			Serial.print(robot_angle);
 			preTime = nowTime;
 		}
+		
 	}
+	speedcal(robot_angle);
 	if(Serial.available()){
 		int i = 0;
 		while(Serial.available()){
@@ -49,28 +51,28 @@ void loop()
 		//Serial.println("]");
 		if(strcmp(SerialData,"stop")==0){
 			digitalWrite(led,LOW);
-			driverSet(speedLeft,0,0,0,0,SpeedRight);
+			driverSet(speedLeft+errorGap,0,0,0,0,SpeedRight-errorGap);
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"front")==0){
 			digitalWrite(led,HIGH);
-			driverSet(speedLeft,1,0,1,0,SpeedRight);
+			driverSet(speedLeft+errorGap,1,0,1,0,SpeedRight-errorGap);
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"left")==0){
-			driverSet(speedLeft/2,0,1,1,0,SpeedRight/2);
+			driverSet((speedLeft+errorGap/2,0,1,1,0,(SpeedRight-errorGap)/2);
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"right")==0){
-			driverSet(speedLeft/2,1,0,0,1,SpeedRight/2);
+			driverSet((speedLeft+errorGap)/2,1,0,0,1,(SpeedRight-errorGap)/2);
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"back")==0){
-			driverSet(speedLeft,0,1,0,1,SpeedRight);
+			driverSet(speedLeft+errorGap,0,1,0,1,SpeedRight-errorGap);
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"reset")==0){
-			driverSet(speedLeft,0,0,0,0,SpeedRight);
+			driverSet(speedLeft+errorGap,0,0,0,0,SpeedRight-errorGap);
 			robot_angle =0;
 			robotX =0;
 			robotY =0;
