@@ -372,8 +372,6 @@ int main(int argc, char * argv[]) {
 					allPointMap[i][j] = 0;
 					if (allMap[i][j] == 3) //departure
 					allMap[i][j] = 0;
-					else if(allMap[i][j] == 2) //find wall place
-					Line(allMapSize/2+robotX,allMapSize/2-robotY,i,j);
 				}
 				//add point
 				int pointRange = 50;
@@ -402,12 +400,6 @@ int main(int argc, char * argv[]) {
 			}
 			/////////////////////////////////////////////////////////////////////////
 			else if(systemMode == 1){// 
-				if(mappingActive)
-					for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
-						for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++){
-							if(allMap[i][j] == 2) //find wall place
-								//Line(allMapSize/2-robotY,allMapSize/2+robotX,i,j);
-					}
 				SerialPrint("Pos");
 				usleep(1000);
 				SerialRead();
