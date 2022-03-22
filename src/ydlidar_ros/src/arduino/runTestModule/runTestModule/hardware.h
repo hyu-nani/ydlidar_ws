@@ -78,5 +78,4 @@ void driverOUTPUT(){
 	digitalWrite(driverIn4,in4);
 	analogWrite(driverPwmL,speedLeft+errorGap);
 	analogWrite(driverPwmR,speedRight-errorGap);	
-	delay(100);
 }
