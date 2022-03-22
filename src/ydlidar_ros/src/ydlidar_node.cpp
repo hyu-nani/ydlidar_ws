@@ -583,7 +583,7 @@ int main(int argc, char * argv[]) {
 					usleep(50000);
 				}
 				else{
-					cursorX-=3;
+					cursorX+=3;
 				}
 			}
 			else if(kb == 'R'){
@@ -600,7 +600,7 @@ int main(int argc, char * argv[]) {
 					usleep(50000);
 				}
 				else{
-					cursorX+=3;
+					cursorX-=3;
 				}
 			}
 			else if(kb == 'D'){
@@ -617,7 +617,7 @@ int main(int argc, char * argv[]) {
 					usleep(50000);
 				}
 				else{
-					cursorY=3;
+					cursorY-=3;
 				}
 			}
 			else if(kb == 'S'){
