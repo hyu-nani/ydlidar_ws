@@ -52,10 +52,10 @@ const int	printSize								=	185;//185
 int			pinMap[printSize][printSize]			=	{0};	//SSH print map
 int			printScale								=	1;		//scale
 float		unitScale								=	5;		//1-unit cm
-unsigned short	allMapSize							=	4000;		//maximum 65535
-unsigned int32	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
-unsigned int32	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
-unsigned int32	oldMap[allMapSize][allMapSize]		=	{0};		//short-term map
+unsigned short	allMapSize							=	2000;		//maximum 65535
+unsigned int	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
+unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
+unsigned int	oldMap[allMapSize][allMapSize]		=	{0};		//short-term map
 //ROBOT data initial setting
 int		robotX = 0, robotY = 0;	//center
 double	robotAngle = 0;//initial angle
