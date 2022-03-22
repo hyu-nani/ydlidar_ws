@@ -59,8 +59,8 @@ void driverSet(int Lpwm, int drivein1, int drivein2, int drivein3, int drivein4,
 	in2 = drivein2;
 	in3 = drivein3;
 	in4 = drivein4;
-	speedLeft = Lpwm;
-	speedRight= Rpwm;
+	analogWrite(driverPwmL,Lpwm+errorGap);
+	analogWrite(driverPwmR,Rpwm-errorGap);
 	speedLeft = (speedLeft>255) ? 255 : speedLeft;
 	speedRight= (speedRight>255) ? 255 : speedRight;
 	speedLeft = (speedLeft<0) ? 0 : speedLeft;
