@@ -37,7 +37,8 @@ void loop()
 		}
 		
 	}
-	speedcal(robot_angle);
+	if(calActive)
+		speedcal(robot_angle);
 	if(Serial.available()){
 		int i = 0;
 		while(Serial.available()){

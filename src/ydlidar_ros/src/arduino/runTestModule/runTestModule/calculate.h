@@ -27,8 +27,8 @@ void positionCalculate(double nowPosL, double nowPosR){
 
 void speedcal(double nowAngle){
 	if(oldAngle < nowAngle)//rising
-		errorGap = 0.3;	
+		errorGap = 1;	
 	else if(oldAngle > nowAngle)
-		errorGap = -0.3;
+		errorGap = -1;
 	oldAngle = nowAngle;
 }
