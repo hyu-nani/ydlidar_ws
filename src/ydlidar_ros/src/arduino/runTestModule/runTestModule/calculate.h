@@ -30,5 +30,4 @@ void speedcal(double nowAngle){
 		errorGap = 2;	
 	else if(oldAngle > nowAngle)
 		errorGap = -2;
-	oldAngle = nowAngle;
 }

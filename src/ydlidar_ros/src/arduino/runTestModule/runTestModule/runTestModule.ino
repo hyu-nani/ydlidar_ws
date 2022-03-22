@@ -60,6 +60,7 @@ void loop()
 		}
 		else if(strcmp(SerialData,"front")==0){
 			digitalWrite(led,HIGH);
+			oldAngle = robot_angle;
 			calActive = true;
 			driverSet(speedLeft+errorGap,1,0,1,0,SpeedRight-errorGap);
 			Serial.print("OK");
@@ -76,6 +77,7 @@ void loop()
 		}
 		else if(strcmp(SerialData,"back")==0){
 			calActive = true;
+			oldAngle = robot_angle;
 			driverSet(speedLeft-errorGap,0,1,0,1,SpeedRight+errorGap);
 			Serial.print("OK");
 		}
