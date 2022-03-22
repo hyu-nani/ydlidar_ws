@@ -13,10 +13,11 @@ char	SerialData[256] =	"";
 int		unitScale		=	5;//cm
 
 //wheel
-bool	calActive	=	false;
+boolean	calActive	=	false;
 float	speedLeft	=	108;
-float	SpeedRight	=	120;
+float	speedRight	=	120;
 float	errorGap	=	0;//¾ç¼ö¸é ¿ŞÂÊÀÌ »¡¶óÁü
+boolean	in1=0,in2=0,in3=0,in4=0;
 
 //robot
 double robotX		=	0;
