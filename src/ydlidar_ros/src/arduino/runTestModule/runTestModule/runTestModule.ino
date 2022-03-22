@@ -83,7 +83,7 @@ void loop()
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"back")==0){
-			calActive = true;
+			calActive = false;
 			oldAngle = robot_angle;
 			driverSet(speedLeft,0,1,0,1,speedRight);
 			driverOUTPUT();
