@@ -37,10 +37,10 @@ void loop()
 		}
 		
 	}
+	analogWrite(driverPwmL,speedLeft+errorGap);
+	analogWrite(driverPwmR,speedRight-errorGap);
 	if(calActive){
 		speedcal(robot_angle);
-		analogWrite(driverPwmL,speedLeft+errorGap);
-		analogWrite(driverPwmR,speedRight-errorGap);
 	}
 	else
 		errorGap = 0;
