@@ -61,10 +61,10 @@ void driverSet(int Lpwm, int drivein1, int drivein2, int drivein3, int drivein4,
 	in4 = drivein4;
 	lefePWMoutput = Lpwm;
 	rightPWMoutput= Rpwm;
-	speedLeft = (speedLeft>255) ? 255 : speedLeft;
-	speedRight= (speedRight>255) ? 255 : speedRight;
-	speedLeft = (speedLeft<0) ? 0 : speedLeft;
-	speedRight= (speedRight<0) ? 0 : speedRight;
+	//speedLeft = (speedLeft>255) ? 255 : speedLeft;
+	//speedRight= (speedRight>255) ? 255 : speedRight;
+	//speedLeft = (speedLeft<0) ? 0 : speedLeft;
+	//speedRight= (speedRight<0) ? 0 : speedRight;
 }
 void driverOUTPUT(){
 	digitalWrite(driverIn1,LOW);
