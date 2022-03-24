@@ -298,12 +298,19 @@ int main(int argc, char * argv[]) {
 	
 	printf("....");
     	//test ms
-	int count = 0;
+	int count=0;
 	char buffer[20];
-	system("clear");
 	scanf("%f",&unitScale);
 	sprintf(buffer, "Unit%f",unitScale);
-	SerialPrint(buffer);
+	while(SerialRead()!=1){
+		SerialPrint(buffer);
+		usleep(50000);
+		count++;
+		if(count>100)
+		break;
+	}
+	system("clear");
+	usleep(50000);
     while (ret&&ros::ok()) {
         bool hardError;
         //and loop here 
