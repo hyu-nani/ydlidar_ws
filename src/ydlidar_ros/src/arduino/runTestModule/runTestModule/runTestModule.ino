@@ -39,11 +39,7 @@ void loop()
 	}
 	analogWrite(driverPwmL,lefePWMoutput+errorGap);
 	analogWrite(driverPwmR,rightPWMoutput-errorGap);
-	if(calActive){
-		speedcal(robot_angle);
-	}
-	else
-		errorGap = 0;
+	errorGapCal(robot_angle,encoderPosLeft,encoderPosRight,direction);
 	if(Serial.available()){
 		int i = 0;
 		while(Serial.available()){
@@ -57,40 +53,40 @@ void loop()
 		//Serial.println("]");
 		if(strcmp(SerialData,"stop")==0){
 			digitalWrite(led,LOW);
-			calActive = false;
+			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"front")==0){
 			digitalWrite(led,HIGH);
-			oldAngle = robot_angle;
-			calActive = true;
+			fixAngle = robot_angle;
+			direction = 1;
 			driverSet(speedLeft,1,0,1,0,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"left")==0){
-			calActive = false;
+			direction = 2;
 			driverSet(speedLeft/2,0,1,1,0,speedRight/2);
 			driverOUTPUT();
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"right")==0){
-			calActive = false;
+			direction = 3;
 			driverSet(speedLeft/2,1,0,0,1,speedRight/2);
 			driverOUTPUT();
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"back")==0){
-			calActive = false;
-			oldAngle = robot_angle;
+			direction = 4;
+			fixAngle = robot_angle;
 			driverSet(speedLeft,0,1,0,1,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"reset")==0){
-			calActive = false;
+			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			driverOUTPUT();
 			robot_angle = 0;

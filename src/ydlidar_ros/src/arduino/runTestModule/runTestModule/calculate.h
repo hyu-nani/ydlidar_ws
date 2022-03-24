@@ -25,9 +25,47 @@ void positionCalculate(double nowPosL, double nowPosR){
 		robot_angle = robot_angle + 360;
 }
 
-void speedcal(double nowAngle){
-	if(oldAngle < nowAngle)//rising
-		errorGap = -4;	
-	else if(oldAngle > nowAngle)
-		errorGap = +4;
+//0:stop, 1:front, 2:left, 3:right, 4:back
+void errorGapCal(double nowAngle, double nowPosL, double nowPosR, int direct){
+	double distanceL = diameter*M_PI/pulse*(nowPosL-oldPosL1);
+	double distanceR = diameter*M_PI/pulse*(nowPosR-oldPosR1);
+	oldPosL1 = nowPosL;
+	oldPosR1 = nowPosR;
+	//개별 방향 속도 제어
+	if(direct==0){
+		errorGap = 0;
+	}
+	else if(direct==1){//front
+		if(fixAngle < nowAngle)//rising
+			errorGap = -2;
+		else if(fixAngle > nowAngle)
+			errorGap = +2;
+		else
+			errorGap = 0;
+	}
+	else if(direct==2){//left
+		if(distanceL>distanceR)
+			errorGap = -2;
+		else if(distanceL<distanceR)
+			errorGap = +2;
+		else
+			errorGap = 0;
+	}
+	else if(direct==3){//right
+		if(distanceL>distanceR)
+			errorGap = +2;
+		else if(distanceL<distanceR)
+			errorGap = -2;
+		else
+			errorGap = 0;
+	}
+	else if(direct==4){//back
+		if(fixAngle < nowAngle)//rising
+			errorGap = +2;
+		else if(fixAngle > nowAngle)
+			errorGap = -2;
+		else
+			errorGap = 0;
+	}
+	
 }
