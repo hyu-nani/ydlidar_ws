@@ -299,7 +299,11 @@ int main(int argc, char * argv[]) {
 	printf("....");
     	//test ms
 	int count = 0;
+	char buffer[20];
 	system("clear");
+	scanf("%f",&unitScale);
+	sprintf(buffer, "Unit%f",unitScale);
+	SerialPrint(buffer);
     while (ret&&ros::ok()) {
         bool hardError;
         //and loop here 

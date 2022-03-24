@@ -100,7 +100,6 @@ void loop()
 		}
 		else if(strcmp(SerialData,"Unit")==0){
 			sscanf(SerialData,"Unit%f",&unitScale);
-			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"Pos")==0){
 			Serial.print("Pos/");
