@@ -300,7 +300,6 @@ int main(int argc, char * argv[]) {
     	//test ms
 	int count=0;
 	char buffer[20];
-	scanf("%f",&unitScale);
 	sprintf(buffer, "Unit%f",unitScale);
 	while(SerialRead()!=1){
 		SerialPrint(buffer);
