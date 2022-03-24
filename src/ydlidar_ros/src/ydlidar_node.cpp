@@ -546,6 +546,16 @@ int main(int argc, char * argv[]) {
 					printf("Setting mode!");
 					scanf("%d", &systemMode);
 				}
+				else if(strcmp(scanData,"scale")==0){
+					char buffer[20];
+					float unit=1;
+					printf("input(cm):");
+					scanf("%f",&unit);
+					sprintf(buffer, "Unit%f",unit);
+					SerialPrint(buffer);
+					system("clear");
+					usleep(50000);
+				}
 				else{
 					printf("nothing...");
 				}
