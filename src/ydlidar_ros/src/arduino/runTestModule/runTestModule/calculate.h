@@ -31,8 +31,9 @@ void errorGapCal(double nowAngle, double nowPosL, double nowPosR, int direct){
 	double distanceR = diameter*M_PI/pulse*(nowPosR-oldPosR1);
 	oldPosL1 = nowPosL;
 	oldPosR1 = nowPosR;
+	
 	//개별 방향 속도 제어
-	if(direct==0){
+	if(direct==0){//stop
 		errorGap = 0;
 	}
 	else if(direct==1){//front

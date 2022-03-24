@@ -47,7 +47,7 @@ char scanData[30];
 
 int	systemMode	=	1;	// 0 = default, 1 = control robot mode
 
-const int	printSize								=	185;//185
+const int	printSize								=	150;//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};	//SSH print map
@@ -57,6 +57,7 @@ const int	allMapSize								=	2000;		//maximum 65535
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
 unsigned int	oldMap[allMapSize][allMapSize]		=	{0};		//short-term map
+	
 //ROBOT data initial setting
 int		robotX = 0, robotY = 0;	//center
 double	robotAngle = 0;//initial angle
