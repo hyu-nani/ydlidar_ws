@@ -46,17 +46,17 @@ void errorGapCal(double nowAngle, double nowPosL, double nowPosR, int direct){
 	}
 	else if(direct==2){//left
 		if(-distanceL>distanceR)
-			errorGap = +2;
-		else if(-distanceL<distanceR)
 			errorGap = -2;
+		else if(-distanceL<distanceR)
+			errorGap = +2;
 		else
 			errorGap = 0;
 	}
 	else if(direct==3){//right
 		if(distanceL>-distanceR)
-			errorGap = -2;
-		else if(distanceL<-distanceR)
 			errorGap = +2;
+		else if(distanceL<-distanceR)
+			errorGap = -2;
 		else
 			errorGap = 0;
 	}
