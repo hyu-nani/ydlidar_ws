@@ -4,6 +4,7 @@
  * Created: 2022-03-16 ¿ÀÈÄ 9:26:56
  *  Author: cube_
  */ 
+float angleGap = 22.8/(10*pulse*robot_wheel_pitch/diameter);
 void positionCalculate(double nowPosL, double nowPosR){
 	double distanceL = diameter*M_PI/pulse*(nowPosL-oldPosL);
 	double distanceR = diameter*M_PI/pulse*(nowPosR-oldPosR);
@@ -18,7 +19,7 @@ void positionCalculate(double nowPosL, double nowPosR){
 	robotX += -sin(((angle/2+robot_angle))*(M_PI/180.0))*(distanceL+distanceR)/2;
 	robotY += cos(((angle/2+robot_angle))*(M_PI/180.0))*(distanceL+distanceR)/2;
 	
-	robot_angle += angle;
+	robot_angle = robot_angle+angle+angleGap;
 	if(robot_angle > 180)
 		robot_angle = robot_angle - 360;
 	else if(robot_angle < -180)
