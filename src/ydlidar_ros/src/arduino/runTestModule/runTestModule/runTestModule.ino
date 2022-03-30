@@ -39,7 +39,7 @@ void loop()
 	}
 	analogWrite(driverPwmL,lefePWMoutput+errorGap);
 	analogWrite(driverPwmR,rightPWMoutput-errorGap);
-	errorGapCal(robot_angle,encoderPosLeft,encoderPosRight,direction);
+	//errorGapCal(robot_angle,encoderPosLeft,encoderPosRight,direction);
 	if(Serial.available()){
 		int i = 0;
 		while(Serial.available()){
