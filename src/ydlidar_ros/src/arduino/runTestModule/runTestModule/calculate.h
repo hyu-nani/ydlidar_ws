@@ -38,9 +38,9 @@ void errorGapCal(double nowAngle, double nowPosL, double nowPosR, int direct){
 	}
 	else if(direct==1){//front
 		if(fixAngle < nowAngle)//rising
-			errorGap = -10;
-		else if(fixAngle > nowAngle)
 			errorGap = +10;
+		else if(fixAngle > nowAngle)
+			errorGap = -10;
 		else
 			errorGap = 0;
 	}
