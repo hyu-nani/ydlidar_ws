@@ -27,8 +27,8 @@ void positionCalculate(double nowPosL, double nowPosR){
 
 //0:stop, 1:front, 2:left, 3:right, 4:back
 void errorGapCal(double nowAngle, double nowPosL, double nowPosR, int direct){
-	double distanceL = diameter*M_PI/pulse*(nowPosL-oldPosL1);
-	double distanceR = diameter*M_PI/pulse*(nowPosR-oldPosR1);
+	double distanceL1 = diameter*M_PI/pulse*(nowPosL-oldPosL1);
+	double distanceR1 = diameter*M_PI/pulse*(nowPosR-oldPosR1);
 	oldPosL1 = nowPosL;
 	oldPosR1 = nowPosR;
 	
@@ -45,17 +45,17 @@ void errorGapCal(double nowAngle, double nowPosL, double nowPosR, int direct){
 			errorGap = 0;
 	}
 	else if(direct==2){//left
-		if(-distanceL>distanceR)
+		if(-distanceL1>distanceR1)
 			errorGap = -2;
-		else if(-distanceL<distanceR)
+		else if(-distanceL1<distanceR1)
 			errorGap = +2;
 		else
 			errorGap = 0;
 	}
 	else if(direct==3){//right
-		if(distanceL>-distanceR)
+		if(distanceL1>-distanceR1)
 			errorGap = +2;
-		else if(distanceL<-distanceR)
+		else if(distanceL1<-distanceR1)
 			errorGap = -2;
 		else
 			errorGap = 0;
