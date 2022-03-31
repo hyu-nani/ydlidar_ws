@@ -498,18 +498,18 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}
-				else if(strcmp(scanData,"test")==0){
-					int count=0;
-					while(SerialRead()!=1){
-						SerialPrint("test");
-						usleep(50000);
-						count++;
-						if(count>100)
-						break;
-					}
-					system("clear");
-					usleep(50000);
-				}
+		//		else if(strcmp(scanData,"test")==0){
+		//			int count=0;
+		//			while(SerialRead()!=1){
+		//				SerialPrint("test");
+		//				usleep(50000);
+		//				count++;
+		//				if(count>100)
+		//				break;
+		//			}
+		//			system("clear");
+		//			usleep(50000);
+		//		}
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
 				}

@@ -19,7 +19,7 @@ void positionCalculate(double nowPosL, double nowPosR){
 	double distance = (distanceL+distanceR)/2;
 	robotX += -sin(((angle/2+robot_angle))*(M_PI/180.0))*distance;
 	robotY += cos(((angle/2+robot_angle))*(M_PI/180.0))*distance;
-	robot_distance += distance;
+	//robot_distance += distance;
 	robot_angle = robot_angle+angle;
 	if(robot_angle > 180)
 		robot_angle = robot_angle - 360;
