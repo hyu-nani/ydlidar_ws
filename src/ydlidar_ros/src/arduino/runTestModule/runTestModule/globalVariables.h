@@ -19,8 +19,8 @@ int		direction		=	0; //0:stop, 1:front, 2:left, 3:right, 4:back
 //wheel
 const int	speedLeft	=	108;
 const int	speedRight	=	120;
-int			lefePWMoutput = 0;
-int			rightPWMoutput= 0;
+int			lefePWMoutput	= 0;
+int			rightPWMoutput	= 0;
 float		errorGap	=	0;//¾ç¼ö¸é ¿ÞÂÊÀÌ »¡¶óÁü
 int			in1=0,in2=0,in3=0,in4=0;
 
@@ -28,3 +28,4 @@ int			in1=0,in2=0,in3=0,in4=0;
 double robotX		=	0;
 double robotY		=	0;
 double robot_angle	=	0;
+double robot_distance =	0;
