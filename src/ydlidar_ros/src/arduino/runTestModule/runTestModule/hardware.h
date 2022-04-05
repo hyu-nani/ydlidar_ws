@@ -15,7 +15,7 @@
 
 //information of robo
 //#define wheel_radius		6
-#define	robot_wheel_pitch	54.86//44.85 크면 덜 돌고 작으면 많이 돔
+#define	robot_wheel_pitch	49//44.85 크면 덜 돌고 작으면 많이 돔
 //#define gear_ratio			100
 //#define gear		0.2
 //#define volume		0.25
