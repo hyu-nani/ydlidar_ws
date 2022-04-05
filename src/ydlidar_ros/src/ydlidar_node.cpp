@@ -47,7 +47,7 @@ char scanData[30];
 
 int	systemMode	=	1;	// 0 = default, 1 = control robot mode
 
-const int	printSize								=	100;//185
+const int	printSize								=	180;//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};	//SSH print map
@@ -627,7 +627,7 @@ int main(int argc, char * argv[]) {
 					usleep(50000);
 				}
 				else{
-					cursorX+=3;
+					cursorX-=3;
 				}
 			}
 			else if(kb == 'R'){
@@ -644,7 +644,7 @@ int main(int argc, char * argv[]) {
 					usleep(50000);
 				}
 				else{
-					cursorX-=3;
+					cursorX+=3;
 				}
 			}
 			else if(kb == 'D'){
