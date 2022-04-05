@@ -100,7 +100,7 @@ void loop()
 			direction = 1;
 			driverSet(speedLeft,1,0,1,0,speedRight);
 			driverOUTPUT();
-			while(robot_distance < 10){
+			while(robot_distance < 100){
 				nowTime = millis();
 				positionCalculate(encoderPosLeft,encoderPosRight);
 				errorGapCal(robot_angle,encoderPosLeft,encoderPosRight,direction);
