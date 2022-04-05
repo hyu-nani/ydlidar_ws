@@ -40,33 +40,33 @@ void errorGapCal(double nowAngle, double nowPosL, double nowPosR, int direct){
 	}
 	else if(direct==1){//front
 		if(fixAngle < nowAngle)//rising
-			errorGap = +10;
+			errorGap = +5;
 		else if(fixAngle > nowAngle)
-			errorGap = -10;
+			errorGap = -5;
 		else
 			errorGap = 0;
 	}
 	else if(direct==2){//left
 		if(-distanceL1>distanceR1)
-			errorGap = -10;
+			errorGap = -5;
 		else if(-distanceL1<distanceR1)
-			errorGap = +10;
+			errorGap = +5;
 		else
 			errorGap = 0;
 	}
 	else if(direct==3){//right
 		if(distanceL1>-distanceR1)
-			errorGap = -10;
+			errorGap = -5;
 		else if(distanceL1<-distanceR1)
-			errorGap = +10;
+			errorGap = +5;
 		else
 			errorGap = 0;
 	}
 	else if(direct==4){//back
 		if(fixAngle < nowAngle)//rising
-			errorGap = -10;
+			errorGap = -5;
 		else if(fixAngle > nowAngle)
-			errorGap = +10;
+			errorGap = +5;
 		else
 			errorGap = 0;
 	}

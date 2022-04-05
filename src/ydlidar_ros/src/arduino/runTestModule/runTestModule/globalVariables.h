@@ -18,7 +18,7 @@ int		direction		=	0; //0:stop, 1:front, 2:left, 3:right, 4:back
 
 //wheel
 const int	speedLeft	=	60;//108
-const int	speedRight	=	67;//120
+const int	speedRight	=	65;//120
 int			lefePWMoutput	= 0;
 int			rightPWMoutput	= 0;
 float		errorGap	=	0;//¾ç¼ö¸é ¿ŞÂÊÀÌ »¡¶óÁü
