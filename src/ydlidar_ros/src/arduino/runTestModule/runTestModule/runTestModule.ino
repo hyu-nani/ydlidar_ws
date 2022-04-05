@@ -101,10 +101,16 @@ void loop()
 			driverSet(speedLeft,1,0,1,0,speedRight);
 			driverOUTPUT();
 			while(robot_distance < 10){
+				nowTime = millis();
 				positionCalculate(encoderPosLeft,encoderPosRight);
 				errorGapCal(robot_angle,encoderPosLeft,encoderPosRight,direction);
 				analogWrite(driverPwmL,lefePWMoutput+errorGap);
 				analogWrite(driverPwmR,rightPWMoutput-errorGap);
+				if (nowTime > preTime+100)
+				{
+					Serial.print(robot_distance);
+					preTime=nowTime;
+				}
 			}
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
