@@ -19,7 +19,7 @@
 //#define gear_ratio			100
 //#define gear		0.2
 //#define volume		0.25
-#define diameter	12.48
+#define diameter	12.495
 #define pulse		6400
 //#define radius		6
 //#define encoderPPR	28
