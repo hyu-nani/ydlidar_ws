@@ -106,6 +106,9 @@ void loop()
 				analogWrite(driverPwmL,lefePWMoutput+errorGap);
 				analogWrite(driverPwmR,rightPWMoutput-errorGap);
 			}
+			direction = 0;
+			driverSet(speedLeft,0,0,0,0,speedRight);
+			driverOUTPUT();
 			Serial.print("OK");
 		}
 		else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
