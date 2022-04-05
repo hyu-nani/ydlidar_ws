@@ -68,13 +68,13 @@ void loop()
 		}
 		else if(strcmp(SerialData,"left")==0){
 			direction = 2;
-			driverSet(speedLeft/2,0,1,1,0,speedRight/2);
+			driverSet(speedLeft,0,1,1,0,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"right")==0){
 			direction = 3;
-			driverSet(speedLeft/2,1,0,0,1,speedRight/2);
+			driverSet(speedLeft,1,0,0,1,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");
 		}
