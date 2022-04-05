@@ -17,8 +17,8 @@ float	unitScale		=	10;//cm
 int		direction		=	0; //0:stop, 1:front, 2:left, 3:right, 4:back
 
 //wheel
-const int	speedLeft	=	108;
-const int	speedRight	=	120;
+const int	speedLeft	=	54;//108
+const int	speedRight	=	60;//120
 int			lefePWMoutput	= 0;
 int			rightPWMoutput	= 0;
 float		errorGap	=	0;//¾ç¼ö¸é ¿ŞÂÊÀÌ »¡¶óÁü
