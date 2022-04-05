@@ -112,6 +112,7 @@ void loop()
 					preTime=nowTime;
 				}
 			}
+			robot_distance = 0;
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			driverOUTPUT();
