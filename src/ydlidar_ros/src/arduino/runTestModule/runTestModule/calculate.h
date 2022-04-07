@@ -33,40 +33,40 @@ void errorGapCal(double nowAngle, double nowPosL, double nowPosR, int direct){
 	double distanceR1 = diameter*M_PI/pulse*(nowPosR-oldPosR1);
 	oldPosL1 = nowPosL;
 	oldPosR1 = nowPosR;
-	
+	int val = 15;
 	//개별 방향 속도 제어
 	if(direct==0){//stop
 		errorGap = 0;
 	}
 	else if(direct==1){//front
 		if(fixAngle < nowAngle)//rising
-			errorGap = +5;
+			errorGap = +val;
 		else if(fixAngle > nowAngle)
-			errorGap = -5;
+			errorGap = -val;
 		else
 			errorGap = 0;
 	}
 	else if(direct==2){//left
 		if(-distanceL1>distanceR1)
-			errorGap = -5;
+			errorGap = -val;
 		else if(-distanceL1<distanceR1)
-			errorGap = +5;
+			errorGap = +val;
 		else
 			errorGap = 0;
 	}
 	else if(direct==3){//right
 		if(distanceL1>-distanceR1)
-			errorGap = -5;
+			errorGap = -val;
 		else if(distanceL1<-distanceR1)
-			errorGap = +5;
+			errorGap = +val;
 		else
 			errorGap = 0;
 	}
 	else if(direct==4){//back
 		if(fixAngle < nowAngle)//rising
-			errorGap = -5;
+			errorGap = -val;
 		else if(fixAngle > nowAngle)
-			errorGap = +5;
+			errorGap = +val;
 		else
 			errorGap = 0;
 	}
