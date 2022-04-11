@@ -34,7 +34,7 @@ void loop()
 			Serial.print("/");
 			Serial.print(robot_angle,10);
 			Serial.print("/");
-			Serial.print(diameter);
+			Serial.print(robot_wheel_pitch);
 			preTime = nowTime;
 		}
 		
@@ -147,11 +147,11 @@ void loop()
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"up")==0){
-		  diameter += 0.01;
+		  robot_wheel_pitch += 0.01;
 		  Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"down")==0){
-		  diameter -= 0.01;
+		  robot_wheel_pitch -= 0.01;
 		  Serial.print("OK");
 		}
 		else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
@@ -166,7 +166,7 @@ void loop()
 			Serial.print("/");
 			Serial.print(robot_angle,10);
 			Serial.print("/");
-			Serial.print(diameter);
+			Serial.print(robot_wheel_pitch);
 		}
 		else{
 			if(testMode){
