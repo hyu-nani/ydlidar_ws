@@ -765,7 +765,7 @@ int SerialRead()
 	}
 	else{
 		if(buf[0]=='P' && buf[1]=='o' && buf[2]=='s'){
-			sscanf(buf,"Pos/%d/%d/%lf/",&robotX,&robotY,&robotAngle);
+			sscanf(buf,"Pos/%d/%d/%lf/%f",&robotX,&robotY,&robotAngle,&val);
 			if(integration == true){
 				cursorX = robotX;
 				cursorY = robotY;
