@@ -308,7 +308,7 @@ int main(int argc, char * argv[]) {
 	ros::NodeHandle n;
 	ros::Subscriber sub = n.subscribe<sensor_msgs::LaserScan>("/scan", 1000, scanCallback);
 	
-	printf("....");
+	printf("unit");
     	//test ms
 	int count=0;
 	char buffer[20];
