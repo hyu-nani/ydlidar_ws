@@ -41,6 +41,8 @@ int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
 
+float value = 0;
+
 bool mappingActive = false;
 
 char scanData[30];
@@ -490,7 +492,19 @@ int main(int argc, char * argv[]) {
 					printf("read!\n");
 					usleep(100000);
 				}
-				else if(strcmp(scanData,"test")==0){//
+				else if(strcmp(scanData,"up")==0){//
+					count=0;
+					while(SerialRead()!=1){
+						SerialPrint("test");
+						usleep(50000);
+						count++;
+						if(count>10)
+						break;
+					}
+					system("clear");
+					usleep(50000);
+				}
+				else if(strcmp(scanData,"down")==0){//
 					count=0;
 					while(SerialRead()!=1){
 						SerialPrint("test");
@@ -729,7 +743,7 @@ int SerialRead()
 	}
 	else{
 		if(buf[0]=='P' && buf[1]=='o' && buf[2]=='s'){
-			sscanf(buf,"Pos/%d/%d/%lf/",&robotX,&robotY,&robotAngle);
+			sscanf(buf,"Pos/%d/%d/%lf/%f",&robotX,&robotY,&robotAngle,&value);
 			if(integration == true){
 				cursorX = robotX;
 				cursorY = robotY;
