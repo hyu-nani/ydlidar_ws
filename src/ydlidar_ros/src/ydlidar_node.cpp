@@ -45,6 +45,8 @@ bool mappingActive = false;
 
 char scanData[30];
 
+float val = 0;
+
 int	systemMode	=	1;	// 0 = default, 1 = control robot mode
 
 const int	printSize								=	150;//185
