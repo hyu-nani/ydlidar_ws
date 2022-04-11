@@ -19,7 +19,7 @@ float	robot_wheel_pitch	=	40.45;
 //#define gear_ratio			100
 //#define gear		0.2
 //#define volume		0.25
-float diameter	=	11.01;
+float	diameter	=	11.01;
 #define pulse	6400
 //#define radius		6
 //#define encoderPPR	28
@@ -66,6 +66,7 @@ void driverSet(int Lpwm, int drivein1, int drivein2, int drivein3, int drivein4,
 	//speedLeft = (speedLeft<0) ? 0 : speedLeft;
 	//speedRight= (speedRight<0) ? 0 : speedRight;
 }
+
 void driverOUTPUT(){
 	digitalWrite(driverIn1,LOW);
 	digitalWrite(driverIn2,LOW);
