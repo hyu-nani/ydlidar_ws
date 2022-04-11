@@ -141,7 +141,7 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 }
 
 int main(int argc, char * argv[]) {
-    printf("serial connecting,.....\n");
+  printf("serial connecting,.....\n");
     //////////////////////////////////////////////////////////////// usb arduino
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
 	if (fd == -1) {
@@ -159,6 +159,7 @@ int main(int argc, char * argv[]) {
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
+	
 	printf("reset\n");
 	int count=0;
 	while(SerialRead()!=1){
