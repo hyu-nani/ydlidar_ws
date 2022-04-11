@@ -853,7 +853,7 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("\n");
 	printf("\033[0m");//white
 }
-void Line(int x0, int y0,int x1, int y1) {
+void Line(int x0, int y0,int x1, int y1) { //printing line
 	int steep = abs(y1 - y0) > abs(x1 - x0);
 	int t;
 	if (steep) {

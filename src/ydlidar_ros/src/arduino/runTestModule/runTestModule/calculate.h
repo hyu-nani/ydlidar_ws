@@ -1,7 +1,7 @@
 /*
  * calculate.h
  *
- * Created: 2022-03-16 ���� 9:26:56
+ * Created: 2022-03-16 9:26:56
  *  Author: cube_
  */ 
 void positionCalculate(double nowPosL, double nowPosR){

@@ -2,8 +2,8 @@
  * runTestModule.ino
  *
  * Created: 3/16/2022 5:51:25 PM
- * Author: ������
- * ROS �Ƶ��̳� �׽�Ʈ �ڵ�
+ * Author: 
+ * ROS
  */ 
 bool testMode = false;
 
@@ -25,20 +25,6 @@ void loop()
 {
 	nowTime = millis();
 	positionCalculate(encoderPosLeft,encoderPosRight);
-	if(testMode){
-		if(nowTime - preTime > 100){
-			Serial.print("Pos/");
-			Serial.print(int(robotX/unitScale));
-			Serial.print("/");
-			Serial.print(int(robotY/unitScale));
-			Serial.print("/");
-			Serial.print(robot_angle,10);
-			Serial.print("/");
-			Serial.print(robot_wheel_pitch);
-			preTime = nowTime;
-		}
-		
-	}
 	errorGapCal(encoderPosLeft,encoderPosRight,direction);
 	analogWrite(driverPwmL,lefePWMoutput+errorGap);
 	analogWrite(driverPwmR,rightPWMoutput-errorGap);

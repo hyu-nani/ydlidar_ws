@@ -6,21 +6,21 @@
  */ 
 
 //encoder sensor pin
-#define encoderPinA		2
-#define encoderPinB		3
-#define encoderPinC		18
-#define encoderPinD		19
+#define encoderPinA	2
+#define encoderPinB	3
+#define encoderPinC	18
+#define encoderPinD	19
 
-#define led			13
+#define led	13
 
 //information of robo
 //#define wheel_radius		6
-float	robot_wheel_pitch	= 40.45; //44.85 
+float	robot_wheel_pitch	=	40.45; 
 //#define gear_ratio			100
 //#define gear		0.2
 //#define volume		0.25
-float diameter	= 11.01;//12.495
-#define pulse		6400
+float diameter	=	11.01;
+#define pulse	6400
 //#define radius		6
 //#define encoderPPR	28
 //#define quardature	2
@@ -71,7 +71,7 @@ void driverOUTPUT(){
 	digitalWrite(driverIn2,LOW);
 	digitalWrite(driverIn3,LOW);
 	digitalWrite(driverIn4,LOW);
-	delay(10);
+	delay(10);	//essential code protect for motor driver
 	digitalWrite(driverIn1,in1);
 	digitalWrite(driverIn2,in2);
 	digitalWrite(driverIn3,in3);
