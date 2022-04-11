@@ -157,6 +157,7 @@ int main(int argc, char * argv[]) {
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
+	int count = 0;
 	while(SerialRead()!=1){
 		SerialPrint("reset");
 		usleep(50000);
