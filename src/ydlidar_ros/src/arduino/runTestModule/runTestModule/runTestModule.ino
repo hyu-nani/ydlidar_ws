@@ -94,7 +94,31 @@ void loop()
 			robotY = 0;
 			Serial.print("OK");
 		}
-		else if(strcmp(SerialData,"test")==0){
+		else if(strcmp(SerialData,"test1")==0){
+			digitalWrite(led,HIGH);
+			fixAngle = robot_angle;
+			direction = 4;
+			driverSet(speedLeft,0,1,0,1,speedRight);
+			driverOUTPUT();
+			while(robot_distance < 100){
+				nowTime = millis();
+				positionCalculate(encoderPosLeft,encoderPosRight);
+				errorGapCal(encoderPosLeft,encoderPosRight,direction);
+				analogWrite(driverPwmL,lefePWMoutput+errorGap);
+				analogWrite(driverPwmR,rightPWMoutput-errorGap);
+				if (nowTime > preTime+100)
+				{
+					Serial.print(robot_distance);
+					preTime=nowTime;
+				}
+			}
+			robot_distance = 0;
+			direction = 0;
+			driverSet(speedLeft,0,0,0,0,speedRight);
+			driverOUTPUT();
+			Serial.print("OK");
+		}
+		else if(strcmp(SerialData,"test2")==0){
 			digitalWrite(led,HIGH);
 			fixAngle = robot_angle;
 			direction = 1;
@@ -119,10 +143,10 @@ void loop()
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"up")==0){
-		  
+		  diameter += 0.01;
 		}
 		else if(strcmp(SerialData,"down")==0){
-		  
+		  diameter -= 0.01;
 		}
 		else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
 			sscanf(SerialData,"Unit%f",&unitScale);
@@ -136,6 +160,7 @@ void loop()
 			Serial.print("/");
 			Serial.print(robot_angle,10);
 			Serial.print("/");
+			Serial.print(diameter);
 		}
 		else{
 			if(testMode){
