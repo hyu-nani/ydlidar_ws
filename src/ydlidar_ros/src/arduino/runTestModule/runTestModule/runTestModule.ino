@@ -103,7 +103,7 @@ void loop()
 			driverSet(speedLeft,0,1,0,1,speedRight);
 			driverOUTPUT();
 			int a= robot_distance;
-			while(robot_distance - a < 100){
+			while(a - robot_distance < 100){
 				nowTime = millis();
 				positionCalculate(encoderPosLeft,encoderPosRight);
 				errorGapCal(encoderPosLeft,encoderPosRight,direction);
@@ -128,7 +128,7 @@ void loop()
 			driverSet(speedLeft,1,0,1,0,speedRight);
 			driverOUTPUT();
 			int a = robot_distance;
-			while(a - robot_distance < 100){
+			while( robot_distance - a < 100){
 				nowTime = millis();
 				positionCalculate(encoderPosLeft,encoderPosRight);
 				errorGapCal(encoderPosLeft,encoderPosRight,direction);
