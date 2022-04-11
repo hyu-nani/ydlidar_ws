@@ -162,7 +162,7 @@ int main(int argc, char * argv[]) {
 		SerialPrint("reset");
 		usleep(50000);
 		count++;
-		if(count>100)
+		if(count>1000)
 		  break;
 	}
     /////////////////////////////////////////////////////////////////
@@ -312,7 +312,7 @@ int main(int argc, char * argv[]) {
 		SerialPrint(buffer);
 		usleep(50000);
 		count++;
-		if(count>100)
+		if(count>1000)
 		break;
 	}
 	system("clear");
@@ -495,7 +495,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("test");
 						usleep(50000);
 						count++;
-						if(count>100)
+						if(count>10)
 						break;
 					}
 					system("clear");
@@ -505,12 +505,12 @@ int main(int argc, char * argv[]) {
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
 							allMap[i][j] = 0;
-					int count=0;
+					count=0;
 					while(SerialRead()!=1){
 						SerialPrint("reset");
 						usleep(50000);
 						count++;
-						if(count>100)
+						if(count>10)
 						break;
 					}
 					system("clear");
@@ -609,7 +609,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("front");
 						usleep(50000);
 						count++;
-						if(count>100)
+						if(count>10)
 						break;
 					}
 					system("clear");
@@ -626,7 +626,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("left");
 						usleep(50000);
 						count++;
-						if(count>100)
+						if(count>10)
 						break;
 					}
 					system("clear");
@@ -643,7 +643,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("right");
 						usleep(50000);
 						count++;
-						if(count>100)
+						if(count>10)
 						break;
 					}
 					system("clear");
@@ -660,7 +660,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("back");
 						usleep(50000);
 						count++;
-						if(count>100)
+						if(count>10)
 						break;
 					}
 					system("clear");
@@ -676,7 +676,7 @@ int main(int argc, char * argv[]) {
 					SerialPrint("stop");
 					usleep(50000);
 					count++;
-					if(count>100)
+					if(count>10)
 					break;
 				}
 				system("clear");
