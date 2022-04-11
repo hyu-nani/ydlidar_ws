@@ -26,17 +26,21 @@ void positionCalculate(double nowPosL, double nowPosR){
 	else if(robot_angle < -180)
 		robot_angle = robot_angle + 360;
 }
-
+int oldDirect=0;
 //0:stop, 1:front, 2:left, 3:right, 4:back
 void errorGapCal(double nowPosL, double nowPosR, int direct){
 	double distanceL1 = diameter*M_PI/pulse*(nowPosL-oldPosL1);
 	double distanceR1 = diameter*M_PI/pulse*(nowPosR-oldPosR1);
 	int val = 5;
+	if(direct != oldDirect){
+	  oldPosL1 = nowPosL;
+	  oldPosR1 = nowPosR;
+	  oldDirect = direct;
+	}
 	//���� ���� �ӵ� ����
 	if(direct==0){//stop
 		errorGap = 0;
-		oldPosL1 = nowPosL;
-	  oldPosR1 = nowPosR;
+		
 	}
 	else if(direct==1){//front
 		if(distanceL1<distanceR1)//rising
