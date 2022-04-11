@@ -48,7 +48,7 @@ char scanData[30];
 float val = 0;
 
 int	systemMode	=	1;	// 0 = default, 1 = control robot mode
-int count = 0;
+
 const int	printSize								=	150;//185
 //SSH print size 170 for laptop 100 for tablet
 
@@ -310,7 +310,7 @@ int main(int argc, char * argv[]) {
 	
 	printf("....");
     	//test ms
-	count=0;
+	int count=0;
 	char buffer[20];
 	sprintf(buffer, "Unit%f",unitScale);
 	while(SerialRead()!=1){
