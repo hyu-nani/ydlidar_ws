@@ -514,6 +514,30 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}
+				else if(strcmp(scanData,"test1")==0){
+				  count=0;
+					while(SerialRead()!=1){
+						SerialPrint("test1");
+						usleep(50000);
+						count++;
+						if(count>10)
+						break;
+					}
+					system("clear");
+					usleep(50000);
+				}
+				else if(strcmp(scanData,"test2")==0){
+				  count=0;
+					while(SerialRead()!=1){
+						SerialPrint("test2");
+						usleep(50000);
+						count++;
+						if(count>10)
+						break;
+					}
+					system("clear");
+					usleep(50000);
+				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
