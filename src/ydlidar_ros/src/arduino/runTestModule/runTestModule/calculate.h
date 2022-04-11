@@ -33,7 +33,7 @@ void errorGapCal(double nowPosL, double nowPosR, int direct){
 	double distanceR1 = diameter*M_PI/pulse*(nowPosR-oldPosR1);
 	oldPosL1 = nowPosL;
 	oldPosR1 = nowPosR;
-	int val = 10;
+	int val = 5;
 	//���� ���� �ӵ� ����
 	if(direct==0){//stop
 		errorGap = 0;
