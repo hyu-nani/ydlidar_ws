@@ -1,8 +1,8 @@
 /*
  * board.h
- * ÇÏµå¿þ¾î Á¤º¸ ¸ðÀ½
- * Created: 2022-03-16 ¿ÀÈÄ 8:02:20
- *  Author: ¹èÇöÇÑ
+ * ï¿½Ïµï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+ * Created: 2022-03-16 ï¿½ï¿½ï¿½ï¿½ 8:02:20
+ *  Author: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */ 
 
 //encoder sensor pin
@@ -15,11 +15,11 @@
 
 //information of robo
 //#define wheel_radius		6
-#define	robot_wheel_pitch	39.7//44.85 Å©¸é ´ú µ¹°í ÀÛÀ¸¸é ¸¹ÀÌ µ¼
+float	robot_wheel_pitch	= 39.7;//44.85 Å©ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 //#define gear_ratio			100
 //#define gear		0.2
 //#define volume		0.25
-#define diameter	10.93//12.495
+float diameter	= 10.93;//12.495
 #define pulse		6400
 //#define radius		6
 //#define encoderPPR	28
