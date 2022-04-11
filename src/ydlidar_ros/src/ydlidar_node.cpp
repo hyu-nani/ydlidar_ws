@@ -157,7 +157,7 @@ int main(int argc, char * argv[]) {
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
-	int count = 0;
+	int count=0;
 	while(SerialRead()!=1){
 		SerialPrint("reset");
 		usleep(50000);
@@ -305,7 +305,7 @@ int main(int argc, char * argv[]) {
 	
 	printf("....");
     	//test ms
-	int count=0;
+	count=0;
 	char buffer[20];
 	sprintf(buffer, "Unit%f",unitScale);
 	while(SerialRead()!=1){
@@ -490,7 +490,7 @@ int main(int argc, char * argv[]) {
 					usleep(100000);
 				}
 				else if(strcmp(scanData,"test")==0){//
-					int count=0;
+					count=0;
 					while(SerialRead()!=1){
 						SerialPrint("test");
 						usleep(50000);
@@ -604,7 +604,7 @@ int main(int argc, char * argv[]) {
 			}
 			else if(kb == 'U'){
 				if(integration){
-					int count=0;
+					count=0;
 					while(SerialRead()!=1){
 						SerialPrint("front");
 						usleep(50000);
@@ -621,7 +621,7 @@ int main(int argc, char * argv[]) {
 			}
 			else if(kb == 'L'){
 				if(integration){
-					int count=0;
+					count=0;
 					while(SerialRead()!=1){
 						SerialPrint("left");
 						usleep(50000);
@@ -638,7 +638,7 @@ int main(int argc, char * argv[]) {
 			}
 			else if(kb == 'R'){
 				if(integration){
-					int count=0;
+					count=0;
 					while(SerialRead()!=1){
 						SerialPrint("right");
 						usleep(50000);
@@ -655,7 +655,7 @@ int main(int argc, char * argv[]) {
 			}
 			else if(kb == 'D'){
 				if(integration){
-					int count=0;
+					count=0;
 					while(SerialRead()!=1){
 						SerialPrint("back");
 						usleep(50000);
@@ -671,7 +671,7 @@ int main(int argc, char * argv[]) {
 				}
 			}
 			else if(kb == 'S'){
-				int count=0;
+				count=0;
 				while(SerialRead()!=1){
 					SerialPrint("stop");
 					usleep(50000);
