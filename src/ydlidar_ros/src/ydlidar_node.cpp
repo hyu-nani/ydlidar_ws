@@ -158,6 +158,7 @@ int main(int argc, char * argv[]) {
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
 	int count=0;
+	printf("reset map\n");
 	while(SerialRead()!=1){
 		SerialPrint("reset");
 		usleep(50000);
@@ -303,7 +304,7 @@ int main(int argc, char * argv[]) {
 	ros::NodeHandle n;
 	ros::Subscriber sub = n.subscribe<sensor_msgs::LaserScan>("/scan", 1000, scanCallback);
 	
-	printf("....");
+	printf("Unit setting\n");
     	//test ms
 	count=0;
 	char buffer[20];
