@@ -1,8 +1,8 @@
 /*
  * board.h
- * �ϵ���� ���� ����
- * Created: 2022-03-16 ���� 8:02:20
- *  Author: ������
+ * 
+ * Created: 2022-03-16 8:02:20
+ *  Author: 
  */ 
 
 //encoder sensor pin
@@ -15,7 +15,7 @@
 
 //information of robo
 //#define wheel_radius		6
-float	robot_wheel_pitch	= 40.45; //44.85 ũ�� �� ���� ������ ���� ��
+float	robot_wheel_pitch	= 40.45; //44.85 
 //#define gear_ratio			100
 //#define gear		0.2
 //#define volume		0.25
