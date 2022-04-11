@@ -41,8 +41,6 @@ int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
 
-float value = 0;
-
 bool mappingActive = false;
 
 char scanData[30];
@@ -743,7 +741,7 @@ int SerialRead()
 	}
 	else{
 		if(buf[0]=='P' && buf[1]=='o' && buf[2]=='s'){
-			sscanf(buf,"Pos/%d/%d/%lf/%f",&robotX,&robotY,&robotAngle,&value);
+			sscanf(buf,"Pos/%d/%d/%lf/",&robotX,&robotY,&robotAngle);
 			if(integration == true){
 				cursorX = robotX;
 				cursorY = robotY;
