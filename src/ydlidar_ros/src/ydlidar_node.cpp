@@ -490,10 +490,10 @@ int main(int argc, char * argv[]) {
 					printf("read!\n");
 					usleep(100000);
 				}
-				else if(strcmp(scanData,"test")==0){//
+				else if(strcmp(scanData,"up")==0){//
 					count=0;
 					while(SerialRead()!=1){
-						SerialPrint("test");
+						SerialPrint("up");
 						usleep(50000);
 						count++;
 						if(count>10)
@@ -503,7 +503,16 @@ int main(int argc, char * argv[]) {
 					usleep(50000);
 				}
 				else if(strcmp(scanData,"down")==0){
-				  
+				  count=0;
+					while(SerialRead()!=1){
+						SerialPrint("down");
+						usleep(50000);
+						count++;
+						if(count>10)
+						break;
+					}
+					system("clear");
+					usleep(50000);
 				}
 				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
