@@ -47,7 +47,7 @@ char scanData[30];
 
 int	systemMode	=	1;	// 0 = default, 1 = control robot mode
 
-const int	printSize								=	185;//185
+const int	printSize								=	150;//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};	//SSH print map
