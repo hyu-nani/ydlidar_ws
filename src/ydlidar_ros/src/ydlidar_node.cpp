@@ -317,7 +317,7 @@ int main(int argc, char * argv[]) {
 		SerialPrint(buffer);
 		usleep(50000);
 		count++;
-		if(count>1000)
+		if(count>100)
 		break;
 	}
 	system("clear");
