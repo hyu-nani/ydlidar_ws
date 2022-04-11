@@ -2,8 +2,8 @@
  * runTestModule.ino
  *
  * Created: 3/16/2022 5:51:25 PM
- * Author: ¹èÇöÇÑ
- * ROS ¾ÆµÎÀÌ³ë Å×½ºÆ® ÄÚµå
+ * Author: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ROS ï¿½Æµï¿½ï¿½Ì³ï¿½ ï¿½×½ï¿½Æ® ï¿½Úµï¿½
  */ 
 bool testMode = false;
 
@@ -37,7 +37,7 @@ void loop()
 		}
 		
 	}
-	errorGapCal(robot_angle,encoderPosLeft,encoderPosRight,direction);
+	errorGapCal(encoderPosLeft,encoderPosRight,direction);
 	analogWrite(driverPwmL,lefePWMoutput+errorGap);
 	analogWrite(driverPwmR,rightPWMoutput-errorGap);
 	if(Serial.available()){
@@ -103,7 +103,7 @@ void loop()
 			while(robot_distance < 100){
 				nowTime = millis();
 				positionCalculate(encoderPosLeft,encoderPosRight);
-				errorGapCal(robot_angle,encoderPosLeft,encoderPosRight,direction);
+				errorGapCal(encoderPosLeft,encoderPosRight,direction);
 				analogWrite(driverPwmL,lefePWMoutput+errorGap);
 				analogWrite(driverPwmR,rightPWMoutput-errorGap);
 				if (nowTime > preTime+100)
