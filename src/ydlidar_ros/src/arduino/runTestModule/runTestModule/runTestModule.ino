@@ -118,6 +118,12 @@ void loop()
 			driverOUTPUT();
 			Serial.print("OK");
 		}
+		else if(strcmp(SerialData,"up")==0){
+		  
+		}
+		else if(strcmp(SerialData,"down")==0){
+		  
+		}
 		else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
 			sscanf(SerialData,"Unit%f",&unitScale);
 			Serial.print("OK");
