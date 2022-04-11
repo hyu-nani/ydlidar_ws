@@ -163,7 +163,7 @@ int main(int argc, char * argv[]) {
 		SerialPrint("reset");
 		usleep(50000);
 		count++;
-		if(count>1000)
+		if(count>10)
 		  break;
 	}
     /////////////////////////////////////////////////////////////////
@@ -313,7 +313,7 @@ int main(int argc, char * argv[]) {
 		SerialPrint(buffer);
 		usleep(50000);
 		count++;
-		if(count>1000)
+		if(count>10)
 		break;
 	}
 	system("clear");
