@@ -147,11 +147,11 @@ void loop()
 			Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"up")==0){
-		  robot_wheel_pitch += 0.1;
+		  robot_wheel_pitch += 0.01;
 		  Serial.print("OK");
 		}
 		else if(strcmp(SerialData,"down")==0){
-		  robot_wheel_pitch -= 0.1;
+		  robot_wheel_pitch -= 0.01;
 		  Serial.print("OK");
 		}
 		else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
