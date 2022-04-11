@@ -696,7 +696,6 @@ void SerialPrint(const char* format)
 	if(serial1 < 0)
 		perror("write failed - ");
 }
-
 int SerialRead()
 {
 	char buf[256] ="";
