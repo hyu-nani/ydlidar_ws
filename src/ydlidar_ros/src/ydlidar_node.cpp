@@ -502,7 +502,10 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}
-				else if(strcmp(scanData,"reset")==0){//dsdfs
+				else if(strcmp(scanData,"down")==0){
+				  
+				}
+				else if(strcmp(scanData,"reset")==0){//
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
 							allMap[i][j] = 0;
