@@ -490,19 +490,7 @@ int main(int argc, char * argv[]) {
 					printf("read!\n");
 					usleep(100000);
 				}
-				else if(strcmp(scanData,"up")==0){//
-					count=0;
-					while(SerialRead()!=1){
-						SerialPrint("test");
-						usleep(50000);
-						count++;
-						if(count>10)
-						break;
-					}
-					system("clear");
-					usleep(50000);
-				}
-				else if(strcmp(scanData,"down")==0){//
+				else if(strcmp(scanData,"test")==0){//
 					count=0;
 					while(SerialRead()!=1){
 						SerialPrint("test");
