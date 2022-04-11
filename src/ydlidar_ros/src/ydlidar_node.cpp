@@ -159,7 +159,7 @@ int main(int argc, char * argv[]) {
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
-	
+	/*
 	printf("reset\n");
 	int count=0;
 	while(SerialRead()!=1){
@@ -167,8 +167,9 @@ int main(int argc, char * argv[]) {
 		usleep(50000);
 		count++;
 		if(count>10)
-		  break;
+	  break;
 	}
+	*/
     /////////////////////////////////////////////////////////////////
    
     ros::init(argc, argv, "ydlidar_node"); 
@@ -316,7 +317,7 @@ int main(int argc, char * argv[]) {
 		SerialPrint(buffer);
 		usleep(50000);
 		count++;
-		if(count>10)
+		if(count>1000)
 		break;
 	}
 	system("clear");
