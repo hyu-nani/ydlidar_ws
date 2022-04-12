@@ -204,7 +204,7 @@ int main(int argc, char * argv[]) {
 	
 	if(systemMode==1){
 		printf("Run mode 1! test.");
-	else if(systemMode==2){
+	else if(systemMode==2)
 		printf("Run mode 2! basic");
     std::string port;
     int baudrate=230400;
