@@ -201,8 +201,8 @@ int main(int argc, char * argv[]) {
     printf("\n");
 	printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
     fflush(stdout);
-	
-	if(systemMode==1){
+	//print mode
+	if(systemMode==1)
 		printf("Run mode 1! test.");
 	else if(systemMode==2)
 		printf("Run mode 2! basic");
