@@ -615,7 +615,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}else{
-					cursorY+=int(50/unitScale);
+					cursorY+=int(100/unitScale);
 				}
 			}else if(kb == 'L'){
 				if(integration){
@@ -630,7 +630,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}else{
-					cursorX-=int(50/unitScale);
+					cursorX-=int(100/unitScale);
 				}
 			}else if(kb == 'R'){
 				if(integration){
@@ -645,7 +645,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}else{
-					cursorX+=int(50/unitScale);
+					cursorX+=int(100/unitScale);
 				}
 			}else if(kb == 'D'){
 				if(integration){
@@ -660,7 +660,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}else{
-					cursorY-=int(50/unitScale);
+					cursorY-=int(100/unitScale);
 				}
 			}else if(kb == 'S'){
 				count=0;
