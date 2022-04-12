@@ -53,8 +53,8 @@ const int	printSize								=	150;//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};	//SSH print map
+int			printScale								=	1;		//scale
 float		unitScale								=	10;		//1-unit cm
-
 const int	allMapSize								=	2000;		//maximum 65535
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
@@ -357,7 +357,11 @@ int main(int argc, char * argv[]) {
 				float difference = fabs(old_distance[i] - YD_distance[i]);
 				int Xvalue = round(cos((YD_angle[i]+90+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 				int Yvalue = round(-sin((YD_angle[i]+90+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
-				if(allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] == 0)
+				if( (allMapSize/2-printSize/2)<(allMapSize/2+robotX+Xvalue) && 
+				    (allMapSize/2+printSize/2)>(allMapSize/2+robotX+Xvalue) && 
+				    (allMapSize/2-printSize/2)<(allMapSize/2-robotY+Yvalue) && 
+				    (allMapSize/2+printSize/2)>(allMapSize/2-robotY+Yvalue) &&
+				    (allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue]) == 0)
 					allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
 				if( (difference < 0.02) &&	(difference != 0) && (YD_distance[i] > 0.2) && (YD_distance[i] < 4))//[M]
 					data_count[i]++;
@@ -425,9 +429,9 @@ int main(int argc, char * argv[]) {
 			//return sensing text to empty text 
 			for(int i= -printSize/2-10;i<printSize/2+10;i++)
 				for(int j= -printSize/2-10;j<printSize/2+10;j++){
-				  int a = allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2+robotX];
+				  int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
 					if(a == 1 || a == 5) //sensing point or robot center
-						allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2+robotX] = 0;
+						allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
 				}
 			count++;
 			for(int i=0;i<500;i++)
