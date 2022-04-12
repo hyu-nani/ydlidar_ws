@@ -615,8 +615,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
-				else{
+				}else{
 					cursorY+=3;
 				}
 			}else if(kb == 'L'){
@@ -631,8 +630,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
-				else{
+				}else{
 					cursorX-=3;
 				}
 			}else if(kb == 'R'){
@@ -647,8 +645,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
-				else{
+				}else{
 					cursorX+=3;
 				}
 			}else if(kb == 'D'){
@@ -663,8 +660,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
-				else{
+				}else{
 					cursorY-=3;
 				}
 			}else if(kb == 'S'){
@@ -802,7 +798,6 @@ void Line(int x0, int y0,int x1, int y1) { //printing line
 		t=x0;x0=y0;y0=t;
 		t=x1;x1=y1;y1=t;
 	}
-
 	if (x0 > x1) {
 		t=x0;x0=x1;x1=t;
 		t=y0;y0=y1;y1=t;
@@ -820,7 +815,6 @@ void Line(int x0, int y0,int x1, int y1) { //printing line
 		} else {
 		ystep = -1;
 	}
-
 	for (; x0<=x1; x0++) {
 		if (steep) {
 			if(allMap[y0][x0]!=2)
