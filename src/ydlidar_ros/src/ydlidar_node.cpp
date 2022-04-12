@@ -594,7 +594,14 @@ int main(int argc, char * argv[]) {
 					printf("input(cm):");
 					scanf("%f",&unitScale);
 					sprintf(buffer, "Unit%f",unitScale);
-					SerialPrint(buffer);
+					count = 0;
+					while(SerialRead() != 1){
+					  SerialPrint(buffer);
+					  usleep(50000);
+					  count++;
+					  if(count>100)
+					  break;
+					}
 					system("clear");
 					usleep(50000);
 				}else{
