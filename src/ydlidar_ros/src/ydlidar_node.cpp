@@ -64,6 +64,8 @@ unsigned int	oldMap[allMapSize][allMapSize]		=	{0};		//short-term map
 int		robotX = 0, robotY = 0;	//center
 double	robotAngle = 0;//initial angle
 
+//departure point
+int   departureX = 0, departureY = 0;//departure coordinate
 //cursor
 int		cursorX = 0, cursorY = 0;
 bool	integration		= true;
