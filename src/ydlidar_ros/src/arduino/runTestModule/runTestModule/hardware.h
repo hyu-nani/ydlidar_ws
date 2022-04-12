@@ -87,5 +87,5 @@ void positionPinrt(){
 	Serial.print("/");
 	Serial.print(robot_angle,10);
 	Serial.print("/");
-	Serial.print(unitScale);
+	Serial.print(diameter);
 }
