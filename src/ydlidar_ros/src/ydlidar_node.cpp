@@ -373,7 +373,7 @@ int main(int argc, char * argv[]) {
 					data_count[i]++;
 				else
 					data_count[i] = 0;
-				if(data_count[i] > 8 && mappingActive == true){//wall sensitivity
+				if(data_count[i] > 12 && mappingActive == true){//wall sensitivity
 					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2+robotY+Yvalue)<allMapSize)
 						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize){
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
@@ -420,11 +420,10 @@ int main(int argc, char * argv[]) {
 			}
 			/////////////////////////////////////////////////////////////////////////
 			else if(systemMode == 1){// 
-				SerialPrint("Pos");
+				SerialPrint("Pos");//require to position data
 				usleep(1000);
 				SerialRead();
 			}
-			
 			/************************************************************************/
 			/* print monitor                                                        */
 			/************************************************************************/
@@ -557,18 +556,6 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}
-		//		else if(strcmp(scanData,"test")==0){
-		//			int count=0;
-		//			while(SerialRead()!=1){
-		//				SerialPrint("test");
-		//				usleep(50000);
-		//				count++;
-		//				if(count>100)
-		//				break;
-		//			}
-		//			system("clear");
-		//			usleep(50000);
-		//		}
 				else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
 				}
@@ -755,12 +742,10 @@ int SerialRead()
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("No data on port\n");
 		for(int i=0;i<10;i++)
-		printf("                                                                                                    \n");
+		printf("                                                                                        \n");
 	}
 	else{
-		buf[serial1] = '\0';
-		//for(int i=0;i<=25;i++)
-		//	printf("[%c]",buf[i]);
+		buf[serial1] = '\0';//remove the endline
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("%i bytes read :\n   [ %s ]   ", serial1, buf);
 	}
@@ -803,35 +788,30 @@ void printSSHmonitor(int currentY,int currentX){
 				if(prePixel != 1)
 					printf("\033[43m\033[33m");//orange
 				printf("  ");
-				//printf("\033[40m\033[97m");//black BG & white
 				prePixel = 1;
 			}
 			else if(pinMap[i][j] == 2){   //hold , wall
 				if(prePixel != 2)
 					printf("\033[41m");//red BG
 				printf("  ");
-				//printf("\033[40m\033[97m"); //black BG & white
 				prePixel = 2;
 			}
 			else if(pinMap[i][j] == 3){   //departure
 				if(prePixel != 3)
 					printf("\033[44m");//blue BG
 				printf("  ");
-				//printf("\033[40m\033[97m");//black BG & white
 				prePixel = 3;
 			}
 			else if(pinMap[i][j] == 4){   //empty space
 				if(prePixel != 4)
 					printf("\033[47m");//blue BG
 				printf("  ");
-				//printf("\033[40m\033[97m");//black BG & white
 				prePixel = 4;
 			}
 			else if(pinMap[i][j] == 5){   //center
 				if(prePixel != 5)
 					printf("\033[45m\033[36m");//magenta BG & cyan
 				printf("<>");
-				//printf("\033[40m\033[97m");//black BG & white
 				prePixel = 5;
 			}
 			else{//nothing
