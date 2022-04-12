@@ -15,7 +15,7 @@
 
 //information of robo
 //#define wheel_radius		6
-float	robot_wheel_pitch	=	40.45; 
+float	robot_wheel_pitch	=	48.65; 
 //#define gear_ratio			100
 //#define gear		0.2
 //#define volume		0.25
