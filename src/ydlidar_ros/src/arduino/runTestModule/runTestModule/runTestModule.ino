@@ -124,10 +124,10 @@ void loop()
 			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"up")==0){//this code for setting of value
-			diameter += 0.1;
+			diameter += 0.01;
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"down")==0){
-			diameter -= 0.1;
+			diameter -= 0.01;
 			Serial.print("OK");//notify completion of transfer
 		}else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
 			sscanf(SerialData,"Unit%f",&unitScale);
