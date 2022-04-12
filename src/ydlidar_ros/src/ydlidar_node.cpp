@@ -515,7 +515,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}else if(strcmp(scanData,"departure")==0 && !integration){
-					allMap[cursorY][cursorX] = 3;//setup departure point
+					allMap[allMapSize/2+cursorY][allMapSize/2+cursorX] = 3;//setup departure point
 					system("clear");
 					usleep(50000);
 				}else if(strcmp(scanData,"reset")==0){
