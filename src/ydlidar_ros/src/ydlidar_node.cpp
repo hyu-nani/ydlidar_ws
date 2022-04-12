@@ -726,6 +726,8 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)+currentX];
+	if(pinMap[printSize/2][printSize/2] != 3)
+	  pinMap[ printSize/2 ][ printSize/2 ] = 5;//setup of print center
 	printf("\n ");
 	printf("\033[97m");//white
 	for(int i=0;i<printSize/2-1;i++)
@@ -783,7 +785,6 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("--");
 	printf("\n");
 	printf("\033[0m");//white
-	pinMap[ printSize/2 ][ printSize/2 ] = 5;//setup of print center
 }
 
 void Line(int x0, int y0,int x1, int y1) { //printing line
