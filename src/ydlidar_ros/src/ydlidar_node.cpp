@@ -594,13 +594,9 @@ int main(int argc, char * argv[]) {
 					printf("input(cm):");
 					scanf("%f",&unitScale);
 					sprintf(buffer, "Unit%f",unitScale);
-					count = 0;
 					while(SerialRead() != 1){
 					  SerialPrint(buffer);
 					  usleep(50000);
-					  count++;
-					  if(count>1000)
-					  break;
 					}
 					system("clear");
 					usleep(50000);
@@ -611,13 +607,9 @@ int main(int argc, char * argv[]) {
 				usleep(50000);
 			}else if(kb == 'U'){
 				if(integration){
-					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("front");
 						usleep(50000);
-						count++;
-						if(count>10)
-						break;
 					}
 					system("clear");
 					usleep(50000);
@@ -626,13 +618,9 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'L'){
 				if(integration){
-					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("left");
 						usleep(50000);
-						count++;
-						if(count>10)
-						break;
 					}
 					system("clear");
 					usleep(50000);
@@ -641,13 +629,9 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'R'){
 				if(integration){
-					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("right");
 						usleep(50000);
-						count++;
-						if(count>10)
-						break;
 					}
 					system("clear");
 					usleep(50000);
@@ -656,13 +640,9 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'D'){
 				if(integration){
-					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("back");
 						usleep(50000);
-						count++;
-						if(count>10)
-						break;
 					}
 					system("clear");
 					usleep(50000);
@@ -670,13 +650,9 @@ int main(int argc, char * argv[]) {
 					cursorY-=int(100/unitScale);
 				}
 			}else if(kb == 'S'){
-				count=0;
 				while(SerialRead() != 1){
 					SerialPrint("stop");
 					usleep(50000);
-					count++;
-					if(count>10)
-					break;
 				}
 				system("clear");
 				usleep(50000);
