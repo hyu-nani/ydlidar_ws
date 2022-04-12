@@ -106,6 +106,7 @@ char linux_kbhit(void)
 		return 'D';
 	else if(ch == 47)// / key
 		return 'S';
+	else if(ch ==  )
 	else
 		return 'N';
 }
@@ -514,15 +515,8 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}else if(strcmp(scanData,"test2")==0){
-					count=0;
-					while(SerialRead() != 1){
-						SerialPrint("test2");
-						usleep(50000);
-						count++;
-						if(count>10)
-						break;
-					}
+				}else if(strcmp(scanData,"departure")==0 && integration==true){
+					allMap[cursorY][cursorX] = 3;//setup departure point
 					system("clear");
 					usleep(50000);
 				}else if(strcmp(scanData,"reset")==0){
@@ -539,7 +533,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}else if(strcmp(scanData,"mapping")==0){
+				}else if(strcmp(scanData,"map")==0){
 					mappingActive = !mappingActive;
 				}else if(strcmp(scanData,"cursor")==0){
 					integration = !integration;
