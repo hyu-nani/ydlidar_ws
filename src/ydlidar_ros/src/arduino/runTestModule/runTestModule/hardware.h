@@ -78,3 +78,14 @@ void driverOUTPUT(){
 	digitalWrite(driverIn3,in3);
 	digitalWrite(driverIn4,in4);
 }
+
+void positionPinrt(){
+	Serial.print("Pos/");
+	Serial.print(int(robotX/unitScale));
+	Serial.print("/");
+	Serial.print(int(robotY/unitScale));
+	Serial.print("/");
+	Serial.print(robot_angle,10);
+	Serial.print("/");
+	Serial.print(robot_wheel_pitch);
+}

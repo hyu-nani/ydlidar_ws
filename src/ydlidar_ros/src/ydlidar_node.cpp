@@ -159,17 +159,6 @@ int main(int argc, char * argv[]) {
 	tcsetattr(fd, TCSANOW, &options);
 	//Turn off blocking for reads, use (fd, F_SETFL, FNDELAY) if you want that
 	fcntl(fd, F_SETFL, 0);
-	/*
-	printf("reset\n");
-	count=0;
-	while(SerialRead()!=1){
-		SerialPrint("reset");
-		usleep(50000);
-		count++;
-		if(count>10)
-	  break;
-	}
-	*/
     /////////////////////////////////////////////////////////////////
    
     ros::init(argc, argv, "ydlidar_node"); 
@@ -212,12 +201,11 @@ int main(int argc, char * argv[]) {
     printf("\n");
 	printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
     fflush(stdout);
+	
 	if(systemMode==1){
 		printf("Run mode 1! test.");
-	}
 	else if(systemMode==2){
 		printf("Run mode 2! basic");
-	}
     std::string port;
     int baudrate=230400;
     std::string frame_id;
@@ -475,8 +463,7 @@ int main(int argc, char * argv[]) {
 					printf("STOP....\n");
 					printf("\033[40m\033[97m");
 					break;
-				}
-				else if(strcmp(scanData,"goto")==0){//goto robot command
+				}else if(strcmp(scanData,"goto")==0){//goto robot command
 					printf("input the X Y :");			
 					int moveX=0, moveY=0;				
 					scanf("%d %d", &moveX, &moveY);		
@@ -492,8 +479,7 @@ int main(int argc, char * argv[]) {
 					usleep(100000);
 					printf("read!\n");
 					usleep(100000);
-				}
-				else if(strcmp(scanData,"up")==0){//
+				}else if(strcmp(scanData,"up")==0){
 					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("up");
@@ -504,9 +490,8 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
-				else if(strcmp(scanData,"down")==0){
-				  count=0;
+				}else if(strcmp(scanData,"down")==0){
+					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("down");
 						usleep(50000);
@@ -516,9 +501,8 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
-				else if(strcmp(scanData,"test1")==0){
-				  count=0;
+				}else if(strcmp(scanData,"test1")==0){
+					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("test1");
 						usleep(50000);
@@ -528,9 +512,8 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
-				else if(strcmp(scanData,"test2")==0){
-				  count=0;
+				}else if(strcmp(scanData,"test2")==0){
+					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("test2");
 						usleep(50000);
@@ -540,8 +523,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
-				else if(strcmp(scanData,"reset")==0){
+				}else if(strcmp(scanData,"reset")==0){
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
 							allMap[i][j] = 0;
@@ -555,14 +537,11 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
-				else if(strcmp(scanData,"mapping")==0){
+				}else if(strcmp(scanData,"mapping")==0){
 					mappingActive = !mappingActive;
-				}
-				else if(strcmp(scanData,"cursor")==0){
+				}else if(strcmp(scanData,"cursor")==0){
 					integration = !integration;
-				}
-				else if(strcmp(scanData,"filter")==0){
+				}else if(strcmp(scanData,"filter")==0){
 					printf("Filtering.............................\n");
 					int filterPoint=0;
 					for(int m=0;m<10;m++)	//10 times
@@ -584,8 +563,7 @@ int main(int argc, char * argv[]) {
 										allMap[i][j] = 2;
 									filterPoint = 0;
 								}
-				}
-				else if(strcmp(scanData,"save")==0){
+				}else if(strcmp(scanData,"save")==0){
 					ofstream savefile;
 					savefile.open("map.c");
 					for(int k = 0; k< allMapSize ; k++){
@@ -595,8 +573,7 @@ int main(int argc, char * argv[]) {
 						savefile << endl; 
 					}
 					savefile.close();
-				}
-				else if(strcmp(scanData,"load")==0){
+				}else if(strcmp(scanData,"load")==0){
 					ifstream loadfile("map.c");
 					string ch;
 					printf("\033[%d;%dH",1,1);//set cursor 0,0
@@ -610,12 +587,10 @@ int main(int argc, char * argv[]) {
 					}
 					loadfile.close();  
 					printf("loading......");
-				}
-				else if(strcmp(scanData,"mode")==0){
+				}else if(strcmp(scanData,"mode")==0){
 					printf("Setting mode!");
 					scanf("%d", &systemMode);
-				}
-				else if(strcmp(scanData,"scale")==0){
+				}else if(strcmp(scanData,"scale")==0){
 					char buffer[20];
 					printf("input(cm):");
 					scanf("%f",&unitScale);
@@ -623,17 +598,15 @@ int main(int argc, char * argv[]) {
 					SerialPrint(buffer);
 					system("clear");
 					usleep(50000);
-				}
-				else{
+				}else{
 					printf("nothing...");
 				}
 				system("clear");
 				usleep(50000);
-			}
-			else if(kb == 'U'){
+			}else if(kb == 'U'){
 				if(integration){
 					count=0;
-					while(SerialRead()!=1){
+					while(SerialRead() != 1){
 						SerialPrint("front");
 						usleep(50000);
 						count++;
@@ -646,11 +619,10 @@ int main(int argc, char * argv[]) {
 				else{
 					cursorY+=3;
 				}
-			}
-			else if(kb == 'L'){
+			}else if(kb == 'L'){
 				if(integration){
 					count=0;
-					while(SerialRead()!=1){
+					while(SerialRead() != 1){
 						SerialPrint("left");
 						usleep(50000);
 						count++;
@@ -663,11 +635,10 @@ int main(int argc, char * argv[]) {
 				else{
 					cursorX-=3;
 				}
-			}
-			else if(kb == 'R'){
+			}else if(kb == 'R'){
 				if(integration){
 					count=0;
-					while(SerialRead()!=1){
+					while(SerialRead() != 1){
 						SerialPrint("right");
 						usleep(50000);
 						count++;
@@ -680,11 +651,10 @@ int main(int argc, char * argv[]) {
 				else{
 					cursorX+=3;
 				}
-			}
-			else if(kb == 'D'){
+			}else if(kb == 'D'){
 				if(integration){
 					count=0;
-					while(SerialRead()!=1){
+					while(SerialRead() != 1){
 						SerialPrint("back");
 						usleep(50000);
 						count++;
@@ -697,10 +667,9 @@ int main(int argc, char * argv[]) {
 				else{
 					cursorY-=3;
 				}
-			}
-			else if(kb == 'S'){
+			}else if(kb == 'S'){
 				count=0;
-				while(SerialRead()!=1){
+				while(SerialRead() != 1){
 					SerialPrint("stop");
 					usleep(50000);
 					count++;
@@ -736,14 +705,12 @@ int SerialRead()
 	if (serial1 < 0) {
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("Read failed - ");
-	}
-	else if (serial1 == 0){
+	}else if (serial1 == 0){
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("No data on port\n");
 		for(int i=0;i<10;i++)
 		printf("                                                                                        \n");
-	}
-	else{
+	}else{
 		buf[serial1] = '\0';//remove the endline
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("%i bytes read :\n   [ %s ]   ", serial1, buf);
@@ -752,7 +719,7 @@ int SerialRead()
 		return 1;
 	}
 	else{
-		if(buf[0]=='P' && buf[1]=='o' && buf[2]=='s'){
+		if( buf[0]=='P' && buf[1]=='o' && buf[2]=='s' ){
 			sscanf(buf,"Pos/%d/%d/%lf/%f",&robotX,&robotY,&robotAngle,&val);
 			if(integration == true){
 				cursorX = robotX;
@@ -788,39 +755,34 @@ void printSSHmonitor(int currentY,int currentX){
 					printf("\033[43m\033[33m");//orange
 				printf("  ");
 				prePixel = 1;
-			}
-			else if(pinMap[i][j] == 2){   //hold , wall
+			}else if(pinMap[i][j] == 2){   //hold , wall
 				if(prePixel != 2)
-					printf("\033[41m");//red BG
+					printf("\033[41m");	//red BG
 				printf("  ");
 				prePixel = 2;
-			}
-			else if(pinMap[i][j] == 3){   //departure
+			}else if(pinMap[i][j] == 3){   //departure
 				if(prePixel != 3)
-					printf("\033[44m");//blue BG
+					printf("\033[44m");	//blue BG
 				printf("  ");
 				prePixel = 3;
-			}
-			else if(pinMap[i][j] == 4){   //empty space
+			}else if(pinMap[i][j] == 4){   //empty space
 				if(prePixel != 4)
-					printf("\033[47m");//blue BG
+					printf("\033[47m");	//blue BG
 				printf("  ");
 				prePixel = 4;
-			}
-			else if(pinMap[i][j] == 5){   //center
+			}else if(pinMap[i][j] == 5){   //center
 				if(prePixel != 5)
-					printf("\033[45m\033[36m");//magenta BG & cyan
+					printf("\033[45m\033[36m");	//magenta BG & cyan
 				printf("<>");
 				prePixel = 5;
-			}
-			else{//nothing
+			}else{//nothing
 				if(prePixel != 0)
-					printf("\033[40m\033[97m");//black BG & white
+					printf("\033[40m\033[97m");	//black BG & white
 				printf("  ");
 				prePixel = 0;
 			}
 		}
-		printf("\033[40m\033[97m");//black BG & white
+		printf("\033[40m\033[97m");	//black BG & white
 		printf("|\n");
 	}
 	printf(" ");
@@ -832,6 +794,7 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("\n");
 	printf("\033[0m");//white
 }
+
 void Line(int x0, int y0,int x1, int y1) { //printing line
 	int steep = abs(y1 - y0) > abs(x1 - x0);
 	int t;

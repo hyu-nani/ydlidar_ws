@@ -19,6 +19,8 @@ void setup()
 	Serial.begin(115200);
 	boardInitial();
 	interruptInit();
+	driverSet(0,0,0,0,0,0);
+	driverOUTPUT();
 }
 
 void loop()
@@ -41,8 +43,7 @@ void loop()
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
-		}
-		else if(strcmp(SerialData,"front")==0){
+		}else if(strcmp(SerialData,"front")==0){
 			digitalWrite(led,HIGH);
 			fixAngle = robot_angle;
 			direction = 1;
@@ -55,21 +56,18 @@ void loop()
 			driverSet(speedLeft,0,1,1,0,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
-		}
-		else if(strcmp(SerialData,"right")==0){
+		}else if(strcmp(SerialData,"right")==0){
 			direction = 3;
 			driverSet(speedLeft,1,0,0,1,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
-		}
-		else if(strcmp(SerialData,"back")==0){
+		}else if(strcmp(SerialData,"back")==0){
 			direction = 4;
 			fixAngle = robot_angle;
 			driverSet(speedLeft,0,1,0,1,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
-		}
-		else if(strcmp(SerialData,"reset")==0){
+		}else if(strcmp(SerialData,"reset")==0){
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			driverOUTPUT();
@@ -77,8 +75,7 @@ void loop()
 			robotX = 0;
 			robotY = 0;
 			Serial.print("OK");//notify completion of transfer
-		}
-		else if(strcmp(SerialData,"test1")==0){
+		}else if(strcmp(SerialData,"test1")==0){
 			digitalWrite(led,HIGH);
 			fixAngle = robot_angle;
 			direction = 4;
@@ -102,15 +99,14 @@ void loop()
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
-		}
-		else if(strcmp(SerialData,"test2")==0){
+		}else if(strcmp(SerialData,"test2")==0){
 			digitalWrite(led,HIGH);
 			fixAngle = robot_angle;
 			direction = 1;
 			driverSet(speedLeft,1,0,1,0,speedRight);
 			driverOUTPUT();
 			int a = robot_distance;
-			while( robot_distance - a < 100){
+			while( robot_distance - a < 100){ //check distance
 				nowTime = millis();
 				positionCalculate(encoderPosLeft,encoderPosRight);
 				errorGapCal(encoderPosLeft,encoderPosRight,direction);
@@ -127,31 +123,18 @@ void loop()
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
-		}
-		//this code for setting of value
-		else if(strcmp(SerialData,"up")==0){
+		}else if(strcmp(SerialData,"up")==0){//this code for setting of value
 			robot_wheel_pitch += 0.01;
 			Serial.print("OK");//notify completion of transfer
-		}
-		else if(strcmp(SerialData,"down")==0){
+		}else if(strcmp(SerialData,"down")==0){
 			robot_wheel_pitch -= 0.01;
 			Serial.print("OK");//notify completion of transfer
-		}
-		else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
+		}else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
 			sscanf(SerialData,"Unit%f",&unitScale);
 			Serial.print("OK");//notify completion of transfer
-		}
-		else if(strcmp(SerialData,"Pos")==0){
-			Serial.print("Pos/");
-			Serial.print(int(robotX/unitScale));
-			Serial.print("/");
-			Serial.print(int(robotY/unitScale));
-			Serial.print("/");
-			Serial.print(robot_angle,10);
-			Serial.print("/");
-			Serial.print(robot_wheel_pitch);
-		}
-		else{
+		}else if(strcmp(SerialData,"Pos")==0){
+			positionPinrt();
+		}else{
 			if(testMode){
 				//Serial.println("OK");
 			}
