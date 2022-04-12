@@ -11,7 +11,7 @@ long	preTime		=	nowTime;
 
 //Serial
 char	SerialData[256] =	"";
-float	unitScale		=	5;//cm
+float	unitScale		=	20;//cm
 
 //mode
 int		direction		=	0; //0:stop, 1:front, 2:left, 3:right, 4:back
