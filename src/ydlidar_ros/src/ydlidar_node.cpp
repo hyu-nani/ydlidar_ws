@@ -104,9 +104,8 @@ char linux_kbhit(void)
 		return 'R';
 	else if(ch == 66)//down arrow
 		return 'D';
-	else if(ch == 47)// / key
+	else if(ch == 47)// / key stop
 		return 'S';
-	else if(ch ==  )
 	else
 		return 'N';
 }
