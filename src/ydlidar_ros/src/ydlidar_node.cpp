@@ -421,8 +421,8 @@ int main(int argc, char * argv[]) {
 			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
 			printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 			//return sensing text to empty text 
-			for(int i= -printSize/2-5;i<printSize/2+5;i++)
-				for(int j= -printSize/2-5;j<printSize/2+5;j++){
+			for(int i= -printSize/2-10;i<printSize/2+10;i++)
+				for(int j= -printSize/2-10;j<printSize/2+10;j++){
 				  int a = allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2+robotX];
 					if(a == 1 || a == 5) //sensing point or robot center
 						allMap[i*printScale+allMapSize/2-robotY][j*printScale+allMapSize/2+robotX] = 0;
@@ -616,7 +616,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}else{
-					cursorY+=3;
+					cursorY+=5;
 				}
 			}else if(kb == 'L'){
 				if(integration){
@@ -631,7 +631,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}else{
-					cursorX-=3;
+					cursorX-=5;
 				}
 			}else if(kb == 'R'){
 				if(integration){
@@ -646,7 +646,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}else{
-					cursorX+=3;
+					cursorX+=5;
 				}
 			}else if(kb == 'D'){
 				if(integration){
@@ -661,7 +661,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}else{
-					cursorY-=3;
+					cursorY-=5;
 				}
 			}else if(kb == 'S'){
 				count=0;
