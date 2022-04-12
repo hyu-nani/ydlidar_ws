@@ -423,7 +423,7 @@ int main(int argc, char * argv[]) {
 			printf("\033[%d;%dH",1,3);//set cursor 0,2
 			//SSH print
 			printSSHmonitor(cursorY,cursorX);
-			printf("count:%d  /  1-unit : %f cm  / print scale : %d \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale,printScale);
+			printf("count:%d  /  1-unit : %f cm \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale);
 			printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 			//return sensing text to empty text 
 			for(int i= -printSize/2-10;i<printSize/2+10;i++)
