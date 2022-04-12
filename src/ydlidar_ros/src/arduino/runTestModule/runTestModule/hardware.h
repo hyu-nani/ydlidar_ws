@@ -14,8 +14,8 @@
 #define led	13
 
 //information of robo
-//#define wheel_radius		6
-float	robot_wheel_pitch	=	48.65; 
+//#define wheel_radius		6//
+float	robot_wheel_pitch	=	38.65;//distance
 //#define gear_ratio			100
 //#define gear		0.2
 //#define volume		0.25
