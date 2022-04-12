@@ -419,7 +419,7 @@ int main(int argc, char * argv[]) {
 				allMap[pointY][pointX] = 3; //add departure
 			}
 			/////////////////////////////////////////////////////////////////////////
-			else if(systemMode == 1){// 
+			else if(systemMode == 1){
 				SerialPrint("Pos");//require to position data
 				usleep(1000);
 				SerialRead();
@@ -495,7 +495,7 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"up")==0){//
 					count=0;
-					while(SerialRead()!=1){
+					while(SerialRead() != 1){
 						SerialPrint("up");
 						usleep(50000);
 						count++;
@@ -507,7 +507,7 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"down")==0){
 				  count=0;
-					while(SerialRead()!=1){
+					while(SerialRead() != 1){
 						SerialPrint("down");
 						usleep(50000);
 						count++;
@@ -519,7 +519,7 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"test1")==0){
 				  count=0;
-					while(SerialRead()!=1){
+					while(SerialRead() != 1){
 						SerialPrint("test1");
 						usleep(50000);
 						count++;
@@ -531,7 +531,7 @@ int main(int argc, char * argv[]) {
 				}
 				else if(strcmp(scanData,"test2")==0){
 				  count=0;
-					while(SerialRead()!=1){
+					while(SerialRead() != 1){
 						SerialPrint("test2");
 						usleep(50000);
 						count++;
@@ -541,12 +541,12 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					usleep(50000);
 				}
-				else if(strcmp(scanData,"reset")==0){//
+				else if(strcmp(scanData,"reset")==0){
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
 							allMap[i][j] = 0;
 					count=0;
-					while(SerialRead()!=1){
+					while(SerialRead() != 1){
 						SerialPrint("reset");
 						usleep(50000);
 						count++;
@@ -711,7 +711,6 @@ int main(int argc, char * argv[]) {
 				usleep(50000);
 			}
 		}
-		
 		break;
     }
 	SerialPrint("stop");
@@ -769,7 +768,7 @@ void printSSHmonitor(int currentY,int currentX){
 	for(int i = 0 ; i<printSize;i++)
 		for(int j = 0; j<printSize;j++)
 			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)+currentX];
-	pinMap[printSize/2][printSize/2] = 5;
+	pinMap[ printSize/2 ][ printSize/2 ] = 5;
 	printf("\n ");
 	printf("\033[97m");//white
 	for(int i=0;i<printSize/2-1;i++)
