@@ -745,7 +745,7 @@ void printSSHmonitor(int currentY,int currentX){
 				prePixel = 3;
 			}else if(pinMap[i][j] == 4){   //empty space
 				if(prePixel != 4)
-					printf("\033[47m");	//blue BG
+					printf("\033[47m");	//white BG
 				printf("  ");
 				prePixel = 4;
 			}else if(pinMap[i][j] == 5){   //center
