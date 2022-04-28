@@ -69,6 +69,8 @@ int   departureX = 0, departureY = 0;//departure coordinate
 int		cursorX = 0, cursorY = 0;
 bool	integration		= true;
 
+float distanceTest = 0;
+
 void SerialPrint(const char* format);
 int	 SerialRead();
 void printSSHmonitor(int currentY,int currentX);
@@ -301,12 +303,12 @@ int main(int argc, char * argv[]) {
     	//test ms
 	int count=0;
 	char buffer[20];
-	sprintf(buffer, "Unit%f",unitScale);
+	sprintf(buffer, "Unit%fD",unitScale);
 	while(SerialRead()!=1){
 		SerialPrint(buffer);
 		usleep(50000);
 		count++;
-		if(count>10)
+		if(count>1000)
 		break;
 	}
 	system("clear");
@@ -319,7 +321,6 @@ int main(int argc, char * argv[]) {
 		//mapping
 		//////////////////////////////////////////////////////////////////////////
 		//while(scanChar != EOF){
-			
 		while(true){
 			LaserScan scan;
 			if(laser.doProcessSimple(scan, hardError )){
@@ -416,6 +417,24 @@ int main(int argc, char * argv[]) {
 				SerialPrint("Pos");//require to position data
 				usleep(1000);
 				SerialRead();
+			}
+			/////////////////////////////////////////////////////////////////////////
+			else if(systemMode == 2){
+				if(count == 10) //
+					distanceTest = YD_distance[2];
+				else if(count == 11){
+					while(SerialRead() != 1){
+						SerialPrint("test1");
+						usleep(500000);
+					}
+				else if(count > 12){
+					SerialPrint("Pos");
+					if(YD_distance[2] > distanceTest){ //다시 측정한 거리가 예상값보다 클때
+							
+					}else{
+						
+					}
+				}
 			}
 			/************************************************************************/
 			/* print monitor                                                        */

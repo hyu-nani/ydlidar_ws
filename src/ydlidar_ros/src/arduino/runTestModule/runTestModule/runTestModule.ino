@@ -81,7 +81,7 @@ void loop()
 			direction = 4;
 			driverSet(speedLeft,0,1,0,1,speedRight);
 			driverOUTPUT();
-			int a= robot_distance;
+			int a = robot_distance;
 			while(a - robot_distance < 100){
 				nowTime = millis();
 				positionCalculate(encoderPosLeft,encoderPosRight);
@@ -130,7 +130,7 @@ void loop()
 			robot_wheel_pitch -= 0.01;
 			Serial.print("OK");//notify completion of transfer
 		}else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
-			sscanf(SerialData,"Unit%f",&unitScale);
+			sscanf(SerialData,"Unit%fD",&unitScale);
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"Pos")==0){
 			positionPinrt();
