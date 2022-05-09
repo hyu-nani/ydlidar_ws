@@ -66,9 +66,9 @@ void errorGapCal(double nowPosL, double nowPosR, int direct){
 			errorGap = 0;
 	}else if(direct==4){//back
 		if(distanceL1<distanceR1)//rising
-			errorGap = +val;
+			errorGap = -val*2;
 		else if(distanceL1>distanceR1)
-			errorGap = -val;
+			errorGap = +val*2;
 		else
 			errorGap = 0;
 	}
