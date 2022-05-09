@@ -19,7 +19,7 @@ float	robot_wheel_pitch	=	39.07;//distance
 //#define gear_ratio			100
 //#define gear		0.2
 //#define volume		0.25
-float	diameter	=	12.5;
+float	diameter	=	12.2;
 #define pulse	7228 //
 //#define radius		6
 //#define encoderPPR	28
