@@ -655,7 +655,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("left");
 						usleep(50000);
 					}
-					gapAngle = 1;
+					gapAngle = 0.5;
 					system("clear");
 					usleep(50000);
 				}else{
