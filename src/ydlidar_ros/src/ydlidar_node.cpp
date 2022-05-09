@@ -429,6 +429,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("10cm");
 						usleep(500000);
 					}
+				}
 				else if(count > 12){
 					SerialPrint("Pos");
 					if(YD_distance[2] > distanceTest){ //다시 측정한 거리가 예상값보다 클때
