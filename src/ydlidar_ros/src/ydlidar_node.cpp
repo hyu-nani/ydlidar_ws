@@ -206,7 +206,7 @@ int main(int argc, char * argv[]) {
     fflush(stdout);
 	//print mode
 	if(systemMode==1)
-		printf("Run mode 1! test.");d
+		printf("Run mode 1! test.");
 	else if(systemMode==2)
 		printf("Run mode 2! basic");
     std::string port;
@@ -433,7 +433,8 @@ int main(int argc, char * argv[]) {
 					SerialPrint("Pos");
 					if(YD_distance[2] > distanceTest){ //다시 측정한 거리가 예상값보다 클때
 							
-					}else{
+					}	
+					else{
 						
 					}
 				}
