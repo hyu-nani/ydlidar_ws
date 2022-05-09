@@ -377,7 +377,7 @@ int main(int argc, char * argv[]) {
 					data_count[i] = 0;
 				} 
 				else if(gapTime > 0)
-					gapTime -= 0.
+					gapTime -= 0.01;
 			}
 			/************************************************************************/
 			/* system  0                                                            */
