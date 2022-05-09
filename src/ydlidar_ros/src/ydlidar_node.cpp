@@ -367,7 +367,7 @@ int main(int argc, char * argv[]) {
 					data_count[i]++;
 				else
 					data_count[i] = 0;
-				if(data_count[i] > 6 && mappingActive == true){//wall sensitivity
+				if(data_count[i] > 4 && mappingActive == true){//wall sensitivity
 					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2+robotY+Yvalue)<allMapSize)
 						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize){
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
@@ -655,7 +655,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("left");
 						usleep(50000);
 					}
-					gapAngle = 0.5;
+					gapAngle = 1;
 					system("clear");
 					usleep(50000);
 				}else{
@@ -667,7 +667,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("right");
 						usleep(50000);
 					}
-					gapAngle = -0.5;
+					gapAngle = -1;
 					system("clear");
 					usleep(50000);
 				}else{
