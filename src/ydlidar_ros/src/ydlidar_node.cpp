@@ -40,7 +40,8 @@ float	data_average[500]	=	{0};
 int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
-float	gapAngle = 0;
+float	gapTime = 0.0; //각도를 다시 읽기까지 시간
+float	gapAngle = 0.0; //회전시 원심력으로 인한 오차
 bool mappingActive = false;
 
 char scanData[30];
@@ -367,7 +368,7 @@ int main(int argc, char * argv[]) {
 					data_count[i]++;
 				else
 					data_count[i] = 0;
-				if(data_count[i] > 4 && mappingActive == true){//wall sensitivity
+				if(data_count[i] > 4 && mappingActive == true && gapTime){//wall sensitivity
 					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2+robotY+Yvalue)<allMapSize)
 						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize){
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
@@ -375,6 +376,8 @@ int main(int argc, char * argv[]) {
 						}
 					data_count[i] = 0;
 				} 
+				else if(gapTime > 0)
+					gapTime -= 0.
 			}
 			/************************************************************************/
 			/* system  0                                                            */
@@ -655,6 +658,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("left");
 						usleep(50000);
 					}
+					gapTime = 1;
 					gapAngle = 0.0;
 					system("clear");
 					usleep(50000);
@@ -667,6 +671,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("right");
 						usleep(50000);
 					}
+					gapTime = 1;
 					gapAngle = -1;
 					system("clear");
 					usleep(50000);
