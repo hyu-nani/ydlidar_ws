@@ -40,7 +40,7 @@ float	data_average[500]	=	{0};
 int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
-
+float	gapAngle = 0;
 bool mappingActive = false;
 
 char scanData[30];
@@ -355,8 +355,8 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			for(int i=0;i<500;i++){
 				float difference = fabs(old_distance[i] - YD_distance[i]);
-				int Xvalue = round(cos((YD_angle[i]+90+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
-				int Yvalue = round(-sin((YD_angle[i]+90+robotAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+				int Xvalue = round(cos((YD_angle[i]+90+robotAngle+gapAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
+				int Yvalue = round(-sin((YD_angle[i]+90+robotAngle+gapAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 				if( (allMapSize/2-printSize/2)<(allMapSize/2+robotX+Xvalue) && 
 				    (allMapSize/2+printSize/2)>(allMapSize/2+robotX+Xvalue) && 
 				    (allMapSize/2-printSize/2)<(allMapSize/2-robotY+Yvalue) && 
@@ -655,6 +655,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("left");
 						usleep(50000);
 					}
+					gapAngle = -0.2;
 					system("clear");
 					usleep(50000);
 				}else{
@@ -666,6 +667,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("right");
 						usleep(50000);
 					}
+					gapAngle = 0.5;
 					system("clear");
 					usleep(50000);
 				}else{
