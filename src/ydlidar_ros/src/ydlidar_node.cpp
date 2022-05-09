@@ -540,7 +540,6 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}
 				}else if(strcmp(scanData,"test")==0){
 					count=0;
 					while(SerialRead() != 1){
