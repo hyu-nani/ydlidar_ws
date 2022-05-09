@@ -45,10 +45,10 @@ void loop()
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"front")==0){
 			digitalWrite(led,HIGH);
-			fixAngle = robot_angle;
 			direction = 1;
 			driverSet(speedLeft,1,0,1,0,speedRight);
 			driverOUTPUT();
+			fixAngle = robot_angle;
 			Serial.print("OK");//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"left")==0){
@@ -63,9 +63,9 @@ void loop()
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"back")==0){
 			direction = 4;
-			fixAngle = robot_angle;
 			driverSet(speedLeft,0,1,0,1,speedRight);
 			driverOUTPUT();
+			fixAngle = robot_angle;
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"reset")==0){
 			direction = 0;

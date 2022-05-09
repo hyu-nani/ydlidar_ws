@@ -72,7 +72,7 @@ void driverOUTPUT(){
 	digitalWrite(driverIn2,LOW);
 	digitalWrite(driverIn3,LOW);
 	digitalWrite(driverIn4,LOW);
-	delay(10);	//essential code protect for motor driver
+	delay(500);	//essential code protect for motor driver
 	digitalWrite(driverIn1,in1);
 	digitalWrite(driverIn2,in2);
 	digitalWrite(driverIn3,in3);
