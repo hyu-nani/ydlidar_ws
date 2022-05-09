@@ -75,7 +75,7 @@ void loop()
 			robotX = 0;
 			robotY = 0;
 			Serial.print("OK");//notify completion of transfer
-		}else if(strcmp(SerialData,"test1")==0){
+		}else if(strcmp(SerialData,"10cm")==0){
 			digitalWrite(led,HIGH);
 			fixAngle = robot_angle;
 			direction = 4;

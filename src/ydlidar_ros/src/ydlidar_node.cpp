@@ -206,7 +206,7 @@ int main(int argc, char * argv[]) {
     fflush(stdout);
 	//print mode
 	if(systemMode==1)
-		printf("Run mode 1! test.");
+		printf("Run mode 1! test.");d
 	else if(systemMode==2)
 		printf("Run mode 2! basic");
     std::string port;
@@ -418,13 +418,15 @@ int main(int argc, char * argv[]) {
 				usleep(1000);
 				SerialRead();
 			}
-			/////////////////////////////////////////////////////////////////////////
+			//////////////////////////////////////////////////////////////////////////
+			// 시스템 모드 2 아두이노와 통신을 통해 거리에 따른 오차 보정
+			//////////////////////////////////////////////////////////////////////////
 			else if(systemMode == 2){
-				if(count == 10) //
+				if(count == 10) // 각 카운트마다 실행 명령 분할
 					distanceTest = YD_distance[2];
-				else if(count == 11){
+				else if(count == 11){// 10cm 전진 명령
 					while(SerialRead() != 1){
-						SerialPrint("test1");
+						SerialPrint("10cm");
 						usleep(500000);
 					}
 				else if(count > 12){
@@ -525,10 +527,10 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					usleep(50000);
-				}else if(strcmp(scanData,"test1")==0){
+				}else if(strcmp(scanData,"10cm")==0){
 					count=0;
 					while(SerialRead() != 1){
-						SerialPrint("test1");
+						SerialPrint("10cm");
 						usleep(50000);
 						count++;
 						if(count>10)
