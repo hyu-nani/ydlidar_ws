@@ -380,7 +380,7 @@ int main(int argc, char * argv[]) {
 					ignoreTime--;
 			}
 			/************************************************************************/
-			/* system  0                                                            */
+			/*    System Mode 0 포인팅 맵 추가로 목적지 계산                        */
 			/************************************************************************/
 			if(systemMode == 0){//default(point map)
 				//reset point map
@@ -415,15 +415,17 @@ int main(int argc, char * argv[]) {
 				printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
 				allMap[pointY][pointX] = 3; //add departure
 			}
-			/////////////////////////////////////////////////////////////////////////
+			/************************************************************************/
+			/*     System Mode 1 기본 위치 통신과 무선조종                          */
+			/************************************************************************/
 			else if(systemMode == 1){
 				SerialPrint("Pos");//require to position data
 				usleep(1000);
 				SerialRead();
 			}
-			//////////////////////////////////////////////////////////////////////////
-			// 시스템 모드 2 아두이노와 통신을 통해 거리에 따른 오차 보정
-			//////////////////////////////////////////////////////////////////////////
+			/************************************************************************/
+			/*     System Mode 2 아두이노와 통신을 통해 거리에 따른 오차 보정       */
+			/************************************************************************/
 			else if(systemMode == 2){
 				if(count == 10) // 각 카운트마다 실행 명령 분할
 					distanceTest = YD_distance[2];
@@ -437,14 +439,13 @@ int main(int argc, char * argv[]) {
 					SerialPrint("Pos");
 					if(YD_distance[2] > distanceTest){ //다시 측정한 거리가 예상값보다 클때
 							
-					}	
-					else{
+					}else{
 						
 					}
 				}
 			}
 			/************************************************************************/
-			/* print monitor                                                        */
+			/* Printing SSH Monitor                                                 */
 			/************************************************************************/
 			printf("\033[%d;%dH",1,3);//set cursor 0,2
 			//SSH print
@@ -475,7 +476,7 @@ int main(int argc, char * argv[]) {
 				}
 			}
 			/************************************************************************/
-			/* Command Line                                                         */
+			/* Command input                                                        */
 			/************************************************************************/
 			char kb = linux_kbhit();
 			if(kb=='M'){
@@ -489,6 +490,7 @@ int main(int argc, char * argv[]) {
 				printf("\033[40m\033[97m");
 				printf("\nCommand Please...\n input:");
 				scanf(" %s",scanData);
+				//Command List
 				if(strcmp(scanData,"stop")==0){//all stop
 					printf("\033[45m\033[36m");
 					printf("STOP....\n");
@@ -641,6 +643,8 @@ int main(int argc, char * argv[]) {
 				}
 				system("clear");
 				usleep(50000);
+			/////////////////////////////////////////
+			//Kbhit keyboard command list
 			}else if(kb == 'U'){
 				if(integration){
 					while(SerialRead() != 1){
@@ -660,7 +664,7 @@ int main(int argc, char * argv[]) {
 						usleep(50000);
 					}
 					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
-					gapAngle = 0.0;
+					gapAngle = 0.0;		//로봇 회전시 라이다 회전에 의한 간섭의 오차 값
 					system("clear");
 					usleep(50000);
 				}else{
@@ -673,7 +677,7 @@ int main(int argc, char * argv[]) {
 						usleep(50000);
 					}
 					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
-					gapAngle = -1;
+					gapAngle = -1;		//로봇 회전시 라이다 회전에 의한 간섭의 오차 값
 					system("clear");
 					usleep(50000);
 				}else{
