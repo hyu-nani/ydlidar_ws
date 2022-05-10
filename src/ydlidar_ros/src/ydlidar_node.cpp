@@ -40,7 +40,7 @@ float	data_average[500]	=	{0};
 int		data_count[500]		=	{0};
 int		printCount = 0;
 int		lidarReadCount;
-float	gapTime = 0.0; //각도를 다시 읽기까지 시간
+int 	ignoreTime = 0;	//방향 전환 후 관성으로 인한 라이다의 오차를 없애기 위한 입력무시 횟수
 float	gapAngle = 0.0; //회전시 원심력으로 인한 오차
 bool mappingActive = false;
 
@@ -368,7 +368,7 @@ int main(int argc, char * argv[]) {
 					data_count[i]++;
 				else
 					data_count[i] = 0;
-				if(data_count[i] > 4 && mappingActive == true && gapTime <= 0){//wall sensitivity
+				if(data_count[i] > 4 && mappingActive == true && ignoreTime == 0){//wall sensitivity
 					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2+robotY+Yvalue)<allMapSize)
 						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize){
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
@@ -376,8 +376,8 @@ int main(int argc, char * argv[]) {
 						}
 					data_count[i] = 0;
 				} 
-				else if(gapTime > 0)//관성을 없애기 위한 시간차
-					gapTime -= 0.01;
+				if(ignoreTime > 0)//관성을 없애기 위한 시간차
+					ignoreTime--;
 			}
 			/************************************************************************/
 			/* system  0                                                            */
@@ -647,6 +647,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("front");
 						usleep(50000);
 					}
+					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
 					system("clear");
 					usleep(50000);
 				}else{
@@ -658,7 +659,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("left");
 						usleep(50000);
 					}
-					gapTime = 1;
+					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
 					gapAngle = 0.0;
 					system("clear");
 					usleep(50000);
@@ -671,7 +672,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("right");
 						usleep(50000);
 					}
-					gapTime = 1;
+					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
 					gapAngle = -1;
 					system("clear");
 					usleep(50000);
@@ -684,6 +685,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("back");
 						usleep(50000);
 					}
+					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
 					system("clear");
 					usleep(50000);
 				}else{
@@ -694,6 +696,7 @@ int main(int argc, char * argv[]) {
 					SerialPrint("stop");
 					usleep(50000);
 				}
+				ignoreTime = 10;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
 				system("clear");
 				usleep(50000);
 			}
