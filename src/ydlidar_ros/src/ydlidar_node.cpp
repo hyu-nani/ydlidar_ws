@@ -651,7 +651,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("front");
 						usleep(50000);
 					}
-					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
+					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					system("clear");
 					usleep(50000);
 				}else{
@@ -663,8 +663,8 @@ int main(int argc, char * argv[]) {
 						SerialPrint("left");
 						usleep(50000);
 					}
-					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
-					gapAngle = 0.0;		//로봇 회전시 라이다 회전에 의한 간섭의 오차 값
+					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
+					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation 
 					system("clear");
 					usleep(50000);
 				}else{
@@ -676,8 +676,8 @@ int main(int argc, char * argv[]) {
 						SerialPrint("right");
 						usleep(50000);
 					}
-					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
-					gapAngle = -1;		//로봇 회전시 라이다 회전에 의한 간섭의 오차 값
+					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
+					gapAngle = -1;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
 					usleep(50000);
 				}else{
@@ -689,7 +689,7 @@ int main(int argc, char * argv[]) {
 						SerialPrint("back");
 						usleep(50000);
 					}
-					ignoreTime = 20;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
+					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					system("clear");
 					usleep(50000);
 				}else{
