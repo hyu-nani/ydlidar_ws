@@ -319,12 +319,11 @@ int main(int argc, char * argv[]) {
 	delay_ms(50000);
     while (ret&&ros::ok()) {
         bool hardError;
-        //and loop here 
-    	
-		//////////////////////////////////////////////////////////////////////////
-		//mapping
-		//////////////////////////////////////////////////////////////////////////
-		//while(scanChar != EOF){
+        //and loop start here 
+  
+		/************************************************************************/
+		/*    Mapping code                                                      */
+		/************************************************************************/
 		while(true){
 			LaserScan scan;
 			if(laser.doProcessSimple(scan, hardError )){
@@ -379,11 +378,11 @@ int main(int argc, char * argv[]) {
 						}
 					data_count[i] = 0;
 				} 
-				if(ignoreTime > 0)//관성을 없애기 위한 시간차
+				if(ignoreTime > 0)//
 					ignoreTime--;
 			}
 			/************************************************************************/
-			/*    System Mode 0 포인팅 맵 추가로 목적지 계산    (미완)              */
+			/*    System Mode 0 : make point map and finding center point           */
 			/************************************************************************/
 			if(systemMode == 0){
 				//reset point map
@@ -419,7 +418,7 @@ int main(int argc, char * argv[]) {
 				allMap[pointY][pointX] = 3; //add departure
 			}
 			/************************************************************************/
-			/*     System Mode 1 기본 위치 통신과 무선조종   (수정중)               */
+			/*     System Mode 1 : Default mode remote control   (edit)             */
 			/************************************************************************/
 			else if(systemMode == 1){
 				SerialPrint("Pos");//require to position data
@@ -427,7 +426,7 @@ int main(int argc, char * argv[]) {
 				SerialRead();
 			}
 			/************************************************************************/
-			/*  System Mode 2 아두이노와 통신을 통해 거리에 따른 오차 보정(수정중)  */
+			/*  System Mode 2 : adjust to error gap used the lidar (edit)           */
 			/************************************************************************/
 			else if(systemMode == 2){
 				if(count == 10) // 각 카운트마다 실행 명령 분할
@@ -448,8 +447,14 @@ int main(int argc, char * argv[]) {
 				}
 			}
 			/************************************************************************/
-			/*  System Mode 3 목적지 설정 후 이동 코드 (수정중)                     */
+			/*  System Mode 3 : setting departure and move (edit)                   */
 			/************************************************************************/
+			/*
+				<sequence>
+				1. 앞서 커서의 이동에 의해 목적지를 설정
+				2. 목적시 설정과 동시에 아두이노로 목적지의 좌표값을 전달
+				3. 전달 확인 후 전
+			*/
 			else if(systemMode == 3){
 				
 			}
@@ -794,43 +799,44 @@ void printSSHmonitor(int currentY,int currentX){
 		printf(" |");
 		prePixel = 0;
 		for(int j=0;j<printSize;j++){
-			switch (pinMap[i][j])
-			case 1:	//Sensing point
-				if(prePixel != 1)
-				printf("\033[43m\033[33m");//orange
-				printf("  ");
-				prePixel = 1;
-				break;
-			case 2: //Hold, Wall point
-				if(prePixel != 2)
-				printf("\033[41m");		//red BG
-				printf("  ");
-				prePixel = 2;
-				break;
-			case 3:	//Departure point
-				if(prePixel != 3)
-				printf("\033[44m");		//blue BG
-				printf("  ");
-				prePixel = 3;
-				break;
-			case 4:	//Empty space
-				if(prePixel != 4)
-				printf("\033[47m");		//white BG
-				printf("  ");
-				prePixel = 4;
-				break;
-			case 5:	//Center
-				if(prePixel != 5)
-				printf("\033[45m\033[36m");	//magenta BG & cyan
-				printf("<>");
-				prePixel = 5;
-				break;
-			default://Nothing space
-				if(prePixel != 0)
-				printf("\033[40m\033[97m");	//black BG & white
-				printf("  ");
-				prePixel = 0;
-				break;
+			switch (pinMap[i][j]){
+				case 1:	//Sensing point
+					if(prePixel != 1)
+					printf("\033[43m\033[33m");//orange background color
+					printf("  ");
+					prePixel = 1;
+					break;
+				case 2: //Hold, Wall point
+					if(prePixel != 2)
+					printf("\033[41m");		//red background color
+					printf("  ");
+					prePixel = 2;
+					break;
+				case 3:	//Departure point
+					if(prePixel != 3)
+					printf("\033[44m");		//blue background color
+					printf("  ");
+					prePixel = 3;
+					break;
+				case 4:	//Empty space
+					if(prePixel != 4)
+					printf("\033[47m");		//white background color
+					printf("  ");
+					prePixel = 4;
+					break;
+				case 5:	//Center
+					if(prePixel != 5)
+					printf("\033[45m\033[36m");	//magenta BG & cyan
+					printf("<>");
+					prePixel = 5;
+					break;
+				default://Nothing space
+					if(prePixel != 0)
+					printf("\033[40m\033[97m");	//black BG & white
+					printf("  ");
+					prePixel = 0;
+					break;
+			}
 		}
 		printf("\033[40m\033[97m");	//black BG & white
 		printf("|\n");
