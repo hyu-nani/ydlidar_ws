@@ -42,18 +42,18 @@ int		printCount = 0;
 int		lidarReadCount;
 int 	ignoreTime = 0;	//방향 전환 후 관성으로 인한 라이다의 오차를 없애기 위한 입력무시 횟수
 float	gapAngle = 0.0; //회전시 원심력으로 인한 오차
-bool mappingActive = false;
+bool	mappingActive = false;
 
-char scanData[30];
+char	scanData[30];
 
-float val = 0;
+float	val = 0;
 
-int	systemMode	=	1;	// 0 = default, 1 = control robot mode
+int		systemMode	=	1;	// 0 = default, 1 = control robot mode
 
 const int	printSize								=	150;//185
 //SSH print size 170 for laptop 100 for tablet
 
-int			pinMap[printSize][printSize]			=	{0};	//SSH print map
+int			pinMap[printSize][printSize]			=	{0};		//SSH print map
 float		unitScale								=	  5;		//1-unit cm
 const int	allMapSize								=	2000;		//maximum 65535
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
@@ -64,12 +64,15 @@ unsigned int	oldMap[allMapSize][allMapSize]		=	{0};		//short-term map
 int		robotX = 0, robotY = 0;	//center
 double	robotAngle = 0;//initial angle
 
+//delay
+void	delay_ms(int time){usleep(time);} 
 //departure point
 int   departureX = 0, departureY = 0;//departure coordinate
-//cursor
+//screen cursor
 int		cursorX = 0, cursorY = 0;
 bool	integration		= true;
 
+//test
 float distanceTest = 0;
 
 void SerialPrint(const char* format);
@@ -205,7 +208,7 @@ int main(int argc, char * argv[]) {
     printf("\n");
 	printf("::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::\n");
     fflush(stdout);
-	//print mode
+	//print of mode name
 	if(systemMode==1)
 		printf("Run mode 1! test.");
 	else if(systemMode==2)
@@ -307,13 +310,13 @@ int main(int argc, char * argv[]) {
 	sprintf(buffer, "Unit%fD",unitScale);
 	while(SerialRead()!=1){
 		SerialPrint(buffer);
-		usleep(50000);
+		delay_ms(50000);
 		count++;
 		if(count>1000)
 		break;
 	}
 	system("clear");
-	usleep(50000);
+	delay_ms(50000);
     while (ret&&ros::ok()) {
         bool hardError;
         //and loop here 
@@ -382,7 +385,7 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/*    System Mode 0 포인팅 맵 추가로 목적지 계산                        */
 			/************************************************************************/
-			if(systemMode == 0){//default(point map)
+			if(systemMode == 0){
 				//reset point map
 				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++){
@@ -408,8 +411,8 @@ int main(int argc, char * argv[]) {
 				for(int j=0;j<allMapSize;j++)
 				if(allPointMap[i][j] > pointMax){
 					pointMax = allPointMap[i][j];
-					pointY=i;
-					pointX=j;
+					pointY = i;
+					pointX = j;
 				}
 				printf("\033[%d;%dH",1,1);//set cursor 0,0
 				printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
@@ -420,7 +423,7 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			else if(systemMode == 1){
 				SerialPrint("Pos");//require to position data
-				usleep(1000);
+				delay_ms(1000);
 				SerialRead();
 			}
 			/************************************************************************/
@@ -432,7 +435,7 @@ int main(int argc, char * argv[]) {
 				else if(count == 11){// 10cm 전진 명령
 					while(SerialRead() != 1){
 						SerialPrint("10cm");
-						usleep(500000);
+						delay_ms(500000);
 					}
 				}
 				else if(count > 12){
@@ -462,7 +465,7 @@ int main(int argc, char * argv[]) {
 			count++;
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
-			usleep(1000);
+			delay_ms(1000);
 			rate.sleep();
 			ros::spinOnce();
 			/************************************************************************/
@@ -509,57 +512,57 @@ int main(int argc, char * argv[]) {
 					SerialPrint(buffer);
 					printf("Serial waiting\n");
 					//while(SerialRead()==0)
-					usleep(100000);
+					delay_ms(100000);
 					printf("read!\n");
-					usleep(100000);
+					delay_ms(100000);
 				}else if(strcmp(scanData,"up")==0){
 					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("up");
-						usleep(50000);
+						delay_ms(50000);
 						count++;
 						if(count>10)
 						break;
 					}
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else if(strcmp(scanData,"down")==0){
 					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("down");
-						usleep(50000);
+						delay_ms(50000);
 						count++;
 						if(count>10)
 						break;
 					}
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else if(strcmp(scanData,"10cm")==0){
 					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("10cm");
-						usleep(50000);
+						delay_ms(50000);
 						count++;
 						if(count>10)
 						break;
 					}
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else if(strcmp(scanData,"test")==0){
 					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("test");
-						usleep(50000);
+						delay_ms(50000);
 						count++;
 						if(count>10)
 						break;
 					}
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else if(strcmp(scanData,"departure")==0 && !integration){
 					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup departure point
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else if(strcmp(scanData,"reset")==0){
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
@@ -567,13 +570,13 @@ int main(int argc, char * argv[]) {
 					count=0;
 					while(SerialRead() != 1){
 						SerialPrint("reset");
-						usleep(50000);
+						delay_ms(50000);
 						count++;
 						if(count>10)
 						break;
 					}
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else if(strcmp(scanData,"map")==0){
 					mappingActive = !mappingActive;
 				}else if(strcmp(scanData,"cursor")==0){
@@ -633,27 +636,27 @@ int main(int argc, char * argv[]) {
 					scanf("%f",&unitScale);
 					sprintf(buffer, "Unit%f",unitScale);
 					while(SerialRead() != 1){
-					  SerialPrint(buffer);
-					  usleep(50000);
+						SerialPrint(buffer);
+						delay_ms(50000);
 					}
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else{
 					printf("nothing...");
 				}
 				system("clear");
-				usleep(50000);
+				delay_ms(50000);
 			/////////////////////////////////////////
 			//Kbhit keyboard command list
 			}else if(kb == 'U'){
 				if(integration){
 					while(SerialRead() != 1){
 						SerialPrint("front");
-						usleep(50000);
+						delay_ms(50000);
 					}
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else{
 					cursorY+=int(100/unitScale);
 				}
@@ -661,12 +664,12 @@ int main(int argc, char * argv[]) {
 				if(integration){
 					while(SerialRead() != 1){
 						SerialPrint("left");
-						usleep(50000);
+						delay_ms(50000);
 					}
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation 
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else{
 					cursorX-=int(100/unitScale);
 				}
@@ -674,12 +677,12 @@ int main(int argc, char * argv[]) {
 				if(integration){
 					while(SerialRead() != 1){
 						SerialPrint("right");
-						usleep(50000);
+						delay_ms(50000);
 					}
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = -1;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else{
 					cursorX+=int(100/unitScale);
 				}
@@ -687,22 +690,22 @@ int main(int argc, char * argv[]) {
 				if(integration){
 					while(SerialRead() != 1){
 						SerialPrint("back");
-						usleep(50000);
+						delay_ms(50000);
 					}
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					system("clear");
-					usleep(50000);
+					delay_ms(50000);
 				}else{
 					cursorY-=int(100/unitScale);
 				}
 			}else if(kb == 'S'){
 				while(SerialRead() != 1){
 					SerialPrint("stop");
-					usleep(50000);
+					delay_ms(50000);
 				}
 				ignoreTime = 10;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
 				system("clear");
-				usleep(50000);
+				delay_ms(50000);
 			}
 		}
 		break;
@@ -751,7 +754,7 @@ int SerialRead()
 				cursorY = robotY;
 			}
 			printf("reading....");
-			usleep(10000);
+			delay_ms(10000);
 		}
 		return 0;
 	}
