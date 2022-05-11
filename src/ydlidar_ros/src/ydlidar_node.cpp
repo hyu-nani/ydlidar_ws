@@ -308,7 +308,7 @@ int main(int argc, char * argv[]) {
 	int count=0;
 	char buffer[20];
 	sprintf(buffer, "Unit%fD",unitScale);
-	while(SerialRead()!=1){
+	while(SerialRead() != true){
 		SerialPrint(buffer);
 		delay_ms(50000);
 		count++;
@@ -383,7 +383,7 @@ int main(int argc, char * argv[]) {
 					ignoreTime--;
 			}
 			/************************************************************************/
-			/*    System Mode 0 포인팅 맵 추가로 목적지 계산                        */
+			/*    System Mode 0 포인팅 맵 추가로 목적지 계산    (미완)              */
 			/************************************************************************/
 			if(systemMode == 0){
 				//reset point map
@@ -419,7 +419,7 @@ int main(int argc, char * argv[]) {
 				allMap[pointY][pointX] = 3; //add departure
 			}
 			/************************************************************************/
-			/*     System Mode 1 기본 위치 통신과 무선조종                          */
+			/*     System Mode 1 기본 위치 통신과 무선조종   (수정중)               */
 			/************************************************************************/
 			else if(systemMode == 1){
 				SerialPrint("Pos");//require to position data
@@ -427,25 +427,31 @@ int main(int argc, char * argv[]) {
 				SerialRead();
 			}
 			/************************************************************************/
-			/*     System Mode 2 아두이노와 통신을 통해 거리에 따른 오차 보정       */
+			/*  System Mode 2 아두이노와 통신을 통해 거리에 따른 오차 보정(수정중)  */
 			/************************************************************************/
 			else if(systemMode == 2){
 				if(count == 10) // 각 카운트마다 실행 명령 분할
 					distanceTest = YD_distance[2];
 				else if(count == 11){// 10cm 전진 명령
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("10cm");
 						delay_ms(500000);
 					}
 				}
 				else if(count > 12){
 					SerialPrint("Pos");
-					if(YD_distance[2] > distanceTest){ //다시 측정한 거리가 예상값보다 클때
+					if(YD_distance[2] > distanceTest){	//다시 측정한 거리가 예상값보다 클때
 							
 					}else{
 						
 					}
 				}
+			}
+			/************************************************************************/
+			/*  System Mode 3 목적지 설정 후 이동 코드 (수정중)                     */
+			/************************************************************************/
+			else if(systemMode == 3){
+				
 			}
 			/************************************************************************/
 			/* Printing SSH Monitor                                                 */
@@ -511,13 +517,13 @@ int main(int argc, char * argv[]) {
 					printf("ARDUINO SENDING : %s\n", buffer);
 					SerialPrint(buffer);
 					printf("Serial waiting\n");
-					//while(SerialRead()==0)
+					//while(SerialRead()==false)
 					delay_ms(100000);
 					printf("read!\n");
 					delay_ms(100000);
 				}else if(strcmp(scanData,"up")==0){
 					count=0;
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("up");
 						delay_ms(50000);
 						count++;
@@ -528,7 +534,7 @@ int main(int argc, char * argv[]) {
 					delay_ms(50000);
 				}else if(strcmp(scanData,"down")==0){
 					count=0;
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("down");
 						delay_ms(50000);
 						count++;
@@ -539,7 +545,7 @@ int main(int argc, char * argv[]) {
 					delay_ms(50000);
 				}else if(strcmp(scanData,"10cm")==0){
 					count=0;
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("10cm");
 						delay_ms(50000);
 						count++;
@@ -550,7 +556,7 @@ int main(int argc, char * argv[]) {
 					delay_ms(50000);
 				}else if(strcmp(scanData,"test")==0){
 					count=0;
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("test");
 						delay_ms(50000);
 						count++;
@@ -561,6 +567,11 @@ int main(int argc, char * argv[]) {
 					delay_ms(50000);
 				}else if(strcmp(scanData,"departure")==0 && !integration){
 					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup departure point
+					departureX = cursorX;
+					departureY = cursorY;
+					while(SerialRead() != true){
+						
+					}
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"reset")==0){
@@ -568,7 +579,7 @@ int main(int argc, char * argv[]) {
 						for(int j=0;j<allMapSize;j++)
 							allMap[i][j] = 0;
 					count=0;
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("reset");
 						delay_ms(50000);
 						count++;
@@ -635,7 +646,7 @@ int main(int argc, char * argv[]) {
 					printf("input(cm):");
 					scanf("%f",&unitScale);
 					sprintf(buffer, "Unit%f",unitScale);
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint(buffer);
 						delay_ms(50000);
 					}
@@ -651,7 +662,7 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			}else if(kb == 'U'){
 				if(integration){
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("front");
 						delay_ms(50000);
 					}
@@ -663,7 +674,7 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'L'){
 				if(integration){
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("left");
 						delay_ms(50000);
 					}
@@ -676,7 +687,7 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'R'){
 				if(integration){
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("right");
 						delay_ms(50000);
 					}
@@ -689,7 +700,7 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'D'){
 				if(integration){
-					while(SerialRead() != 1){
+					while(SerialRead() != true){
 						SerialPrint("back");
 						delay_ms(50000);
 					}
@@ -700,7 +711,7 @@ int main(int argc, char * argv[]) {
 					cursorY-=int(100/unitScale);
 				}
 			}else if(kb == 'S'){
-				while(SerialRead() != 1){
+				while(SerialRead() != true){
 					SerialPrint("stop");
 					delay_ms(50000);
 				}
@@ -727,7 +738,7 @@ void SerialPrint(const char* format)
 	if(serial1 < 0)
 		perror("write failed - ");
 }
-int SerialRead()
+bool SerialRead()
 {
 	char buf[256] ="";
 	serial1 = read(fd, (void*)buf, 255);
@@ -744,8 +755,8 @@ int SerialRead()
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("%i bytes read :\n   [ %s ]   ", serial1, buf);
 	}
-	if(strcmp(buf,"OK")==0){
-		return 1;
+	if(strcmp(buf,"OK")==0){//transform success
+		return true;
 	}
 	else{
 		if( buf[0]=='P' && buf[1]=='o' && buf[2]=='s' ){
@@ -757,7 +768,7 @@ int SerialRead()
 			printf("reading....");
 			delay_ms(10000);
 		}
-		return 0;
+		return false;
 	}
 }
 void printSSHmonitor(int currentY,int currentX){

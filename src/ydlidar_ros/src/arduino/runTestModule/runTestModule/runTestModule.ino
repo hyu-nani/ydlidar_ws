@@ -134,6 +134,8 @@ void loop()
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"Pos")==0){
 			positionPinrt();
+		}else if(SerialData[0]=='g' && SerialData[1]=='o'){	//targetting mode
+			sscanf(SerialData,"go %d %d", &departureX, &departureY);
 		}else{
 			if(testMode){
 				//Serial.println("OK");
