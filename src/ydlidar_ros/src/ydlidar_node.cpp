@@ -70,13 +70,13 @@ void	delay_ms(int time){usleep(time);}
 int   departureX = 0, departureY = 0;//departure coordinate
 //screen cursor
 int		cursorX = 0, cursorY = 0;
-bool	integration		= true;
+bool	integration		= true; //cursor and robot
 
 //test
 float distanceTest = 0;
 
 void SerialPrint(const char* format);
-int	 SerialRead();
+bool SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
 
@@ -99,20 +99,22 @@ char linux_kbhit(void)
 	//if(ch != -1)
 	//for(int i=0 ;i<10000;i++)
 	//	printf("%d\n",ch);
-	if(ch == 32)//space key
-		return 'M';
-	else if(ch == 65)//up arrow
-		return 'U';
-	else if(ch == 68)//left arrow
-		return 'L';
-	else if(ch == 67)//right arrow
-		return 'R';
-	else if(ch == 66)//down arrow
-		return 'D';
-	else if(ch == 47)// / key stop
-		return 'S';
-	else
-		return 'N';
+	switch(ch){
+		case 32://space key
+			return 'M';
+		case 65://up arrow
+			return 'U';
+		case 68://left arrow
+			return 'L';
+		case 67://right arrow
+			return 'R';
+		case 66://down arrow
+			return 'D';
+		case 47:// / key
+			return 'S';
+		default:
+			return 'N';
+	}
 }
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
@@ -378,7 +380,7 @@ int main(int argc, char * argv[]) {
 						}
 					data_count[i] = 0;
 				} 
-				if(ignoreTime > 0)//
+				if(ignoreTime > 0)// ignore lidar value
 					ignoreTime--;
 			}
 			/************************************************************************/
