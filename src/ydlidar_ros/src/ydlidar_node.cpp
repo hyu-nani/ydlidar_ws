@@ -414,7 +414,7 @@ int main(int argc, char * argv[]) {
 					pointY = i;
 					pointX = j;
 				}
-				printf("\033[%d;%dH",1,1);//set cursor 0,0
+				printf("\033[%d;%dH",1,1);	//set cursor 0,0
 				printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
 				allMap[pointY][pointX] = 3; //add departure
 			}
