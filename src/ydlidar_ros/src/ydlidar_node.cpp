@@ -46,7 +46,7 @@ bool	mappingActive = false;
 
 char	scanData[30];
 
-float	val = 0;
+float	val	=	0;
 
 int		systemMode	=	1;	// 0 = default, 1 = control robot mode
 
@@ -54,7 +54,7 @@ const int	printSize								=	150;//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};		//SSH print map
-float		unitScale								=	  5;		//1-unit cm
+float		unitScale								=	5;		//1-unit cm
 const int	allMapSize								=	2000;		//maximum 65535
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
@@ -67,7 +67,7 @@ double	robotAngle = 0;//initial angle
 //delay
 void	delay_ms(int time){usleep(time);} 
 //departure point
-int   departureX = 0, departureY = 0;//departure coordinate
+int		departureX = 0, departureY = 0;//departure coordinate
 //screen cursor
 int		cursorX = 0, cursorY = 0;
 bool	integration		= true; //cursor and robot
