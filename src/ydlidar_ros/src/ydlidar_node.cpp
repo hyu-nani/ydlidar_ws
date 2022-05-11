@@ -646,8 +646,9 @@ int main(int argc, char * argv[]) {
 				}
 				system("clear");
 				delay_ms(50000);
-			/////////////////////////////////////////
-			//Kbhit keyboard command list
+			/************************************************************************/
+			/*   Kbhit keyboard command list                                        */
+			/************************************************************************/
 			}else if(kb == 'U'){
 				if(integration){
 					while(SerialRead() != 1){
@@ -703,7 +704,7 @@ int main(int argc, char * argv[]) {
 					SerialPrint("stop");
 					delay_ms(50000);
 				}
-				ignoreTime = 10;	//관성으로 인한 라이다 오차를 없애기 위한 딜레이
+				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				system("clear");
 				delay_ms(50000);
 			}
@@ -779,27 +780,27 @@ void printSSHmonitor(int currentY,int currentX){
 		printf(" |");
 		prePixel = 0;
 		for(int j=0;j<printSize;j++){
-			if(pinMap[i][j] == 1){        //sensing
+			if(pinMap[i][j] == 1){			//sensing
 				if(prePixel != 1)
 					printf("\033[43m\033[33m");//orange
 				printf("  ");
 				prePixel = 1;
-			}else if(pinMap[i][j] == 2){   //hold , wall
+			}else if(pinMap[i][j] == 2){	//hold , wall
 				if(prePixel != 2)
-					printf("\033[41m");	//red BG
+					printf("\033[41m");		//red BG
 				printf("  ");
 				prePixel = 2;
-			}else if(pinMap[i][j] == 3){   //departure
+			}else if(pinMap[i][j] == 3){	//departure
 				if(prePixel != 3)
-					printf("\033[44m");	//blue BG
+					printf("\033[44m");		//blue BG
 				printf("  ");
 				prePixel = 3;
-			}else if(pinMap[i][j] == 4){   //empty space
+			}else if(pinMap[i][j] == 4){	//empty space
 				if(prePixel != 4)
-					printf("\033[47m");	//white BG
+					printf("\033[47m");		//white BG
 				printf("  ");
 				prePixel = 4;
-			}else if(pinMap[i][j] == 5){   //center
+			}else if(pinMap[i][j] == 5){	//center
 				if(prePixel != 5)
 					printf("\033[45m\033[36m");	//magenta BG & cyan
 				printf("<>");
