@@ -577,7 +577,7 @@ int main(int argc, char * argv[]) {
 					departureX = cursorX;
 					departureY = cursorY;
 					char buffer[20];
-					sprintf(buffer, "go %d %d\n", departureX, departureY);
+					sprintf(buffer, "go/%d/%dE\n", departureX, departureY);
 					while(SerialRead() != true){
 						SerialPrint(buffer);
 						delay_ms(50000);
@@ -681,7 +681,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					delay_ms(50000);
 				}else{
-					cursorY+=int(100/unitScale);
+					cursorY+=int(100/unitScale);	//cursor move
 				}
 			}else if(kb == 'L'){
 				if(integration){
@@ -694,7 +694,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					delay_ms(50000);
 				}else{
-					cursorX-=int(100/unitScale);
+					cursorX-=int(100/unitScale);	//cursor move
 				}
 			}else if(kb == 'R'){
 				if(integration){
@@ -707,7 +707,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					delay_ms(50000);
 				}else{
-					cursorX+=int(100/unitScale);
+					cursorX+=int(100/unitScale);	//cursor move
 				}
 			}else if(kb == 'D'){
 				if(integration){
@@ -719,7 +719,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					delay_ms(50000);
 				}else{
-					cursorY-=int(100/unitScale);
+					cursorY-=int(100/unitScale);	//cursor move
 				}
 			}else if(kb == 'S'){
 				while(SerialRead() != true){
@@ -771,7 +771,7 @@ bool SerialRead()
 	}
 	else{
 		if( buf[0]=='P' && buf[1]=='o' && buf[2]=='s' ){
-			sscanf(buf,"Pos/%d/%d/%lf/%f",&robotX,&robotY,&robotAngle,&val);
+			sscanf(buf,"Pos/%d/%d/%lf/%fE",&robotX,&robotY,&robotAngle,&val);
 			if(integration == true){
 				cursorX = robotX;
 				cursorY = robotY;
@@ -864,19 +864,16 @@ void Line(int x0, int y0,int x1, int y1) { //printing line
 		t=x0;x0=x1;x1=t;
 		t=y0;y0=y1;y1=t;
 	}
-
 	int16_t dx, dy;
 	dx = x1 - x0;
 	dy = abs(y1 - y0);
-
 	int16_t err = dx / 2;
 	int16_t ystep;
-
-	if (y0 < y1) {
+	if (y0 < y1)
 		ystep = 1;
-		} else {
+	else
 		ystep = -1;
-	}
+	
 	for (; x0<=x1; x0++) {
 		if (steep) {
 			if(allMap[y0][x0]!=2)

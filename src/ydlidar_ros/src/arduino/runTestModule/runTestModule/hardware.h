@@ -88,4 +88,5 @@ void positionPinrt(){
 	Serial.print(robot_angle,10);
 	Serial.print("/");
 	Serial.print(robot_wheel_pitch);
+	Serial.print("E");
 }//

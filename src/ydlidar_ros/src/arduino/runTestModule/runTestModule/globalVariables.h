@@ -25,10 +25,10 @@ float		errorGap		= 0;	//speed gap each wheel
 int			in1=0,in2=0,in3=0,in4=0;
 
 //robot
-double robotX		=	0;
-double robotY		=	0;
-double robot_angle	=	0;
-double robot_distance =	0;
+double robotX			=	0;
+double robotY			=	0;
+double robot_angle		=	0;
+double robot_distance	=	0;
 
 //departure
 int		departureX	=	0;
