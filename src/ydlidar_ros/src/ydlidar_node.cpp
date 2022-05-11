@@ -497,22 +497,22 @@ int main(int argc, char * argv[]) {
 			char kb = linux_kbhit();
 			if(kb=='M'){
 				printf("\033[45m\033[36m");
-				for(int i=0;i<printSize/2-1;i++)
+				for(int i=0; i<printSize/2-1; i++)
 					printf("--");
 				printf("PAUSE");
-				for(int i=0;i<printSize/2-1;i++)
+				for(int i=0; i<printSize/2-1; i++)
 					printf("--");
 				printf("-\n");
 				printf("\033[40m\033[97m");
 				printf("\nCommand Please...\n input:");
 				scanf(" %s",scanData);
 				//Command List
-				if(strcmp(scanData,"stop")==0){//all stop
+				if(strcmp(scanData,"stop") == 0){//all stop
 					printf("\033[45m\033[36m");
 					printf("STOP....\n");
 					printf("\033[40m\033[97m");
 					break;
-				}else if(strcmp(scanData,"goto")==0){//goto robot command
+				}else if(strcmp(scanData,"goto") == 0){//goto robot command
 					printf("input the X Y :");			
 					int moveX=0, moveY=0;				
 					scanf("%d %d", &moveX, &moveY);		
@@ -528,7 +528,7 @@ int main(int argc, char * argv[]) {
 					delay_ms(100000);
 					printf("read!\n");
 					delay_ms(100000);
-				}else if(strcmp(scanData,"up")==0){
+				}else if(strcmp(scanData,"up") == 0){
 					count=0;
 					while(SerialRead() != true){
 						SerialPrint("up");
@@ -539,7 +539,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					delay_ms(50000);
-				}else if(strcmp(scanData,"down")==0){
+				}else if(strcmp(scanData,"down") == 0){
 					count=0;
 					while(SerialRead() != true){
 						SerialPrint("down");
@@ -550,7 +550,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					delay_ms(50000);
-				}else if(strcmp(scanData,"10cm")==0){
+				}else if(strcmp(scanData,"10cm") == 0){
 					count=0;
 					while(SerialRead() != true){
 						SerialPrint("10cm");
@@ -561,7 +561,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					delay_ms(50000);
-				}else if(strcmp(scanData,"test")==0){
+				}else if(strcmp(scanData,"test") == 0){
 					count=0;
 					while(SerialRead() != true){
 						SerialPrint("test");
@@ -572,7 +572,7 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					delay_ms(50000);
-				}else if(strcmp(scanData,"departure")==0 && !integration){
+				}else if(strcmp(scanData,"departure") == 0 && !integration){
 					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup departure point
 					departureX = cursorX;
 					departureY = cursorY;
@@ -585,7 +585,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					systemMode = 3; //move to departure
 					delay_ms(50000);
-				}else if(strcmp(scanData,"reset")==0){
+				}else if(strcmp(scanData,"reset") == 0){
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
 							allMap[i][j] = 0;
@@ -599,17 +599,17 @@ int main(int argc, char * argv[]) {
 					}
 					system("clear");
 					delay_ms(50000);
-				}else if(strcmp(scanData,"map")==0){
+				}else if(strcmp(scanData,"map") == 0){
 					mappingActive = !mappingActive;
-				}else if(strcmp(scanData,"cursor")==0){
+				}else if(strcmp(scanData,"cursor") == 0){
 					integration = !integration;
-				}else if(strcmp(scanData,"filter")==0){
+				}else if(strcmp(scanData,"filter") == 0){
 					printf("Filtering.............................\n");
 					int filterPoint=0;
 					for(int m=0;m<10;m++)	//10 times
 						for(int i=1;i<allMapSize;i++)
 							for(int j=1;j<allMapSize;j++)
-								if(allMap[i][j]==0){
+								if(allMap[i][j] == 0){
 									for(int k=0;k<3;k++)
 										for(int p=0;p<3;p++)
 											if(allMap[i-1+k][j-1+p]==4)
