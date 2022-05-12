@@ -69,35 +69,6 @@ float sumx = 0; // 총 x의 값
 float sumy = 0; // 총 y의 값
 float sumz = 0; // 총 z의 값
 
-/*
-  float K00 = 0, K01 = 0, K02 = 0;
-  float K10 = 0, K11 = 0, K12 = 0;
-  float K20 = 0, K21 = 0, K22 = 0;
-  float K30 = 0, K31 = 0, K32 = 0;
-
-  char t;
-
-*/
-
-/*
-  int iRev;
-*/
-
-/*
-  void front() {
-  analogWrite(pwmL, 200);
-  digitalWrite(in1, HIGH);
-  analogWrite(pwmR, 200);
-  digitalWrite(in3, HIGH);
-  }
-  void Mstop() {
-  analogWrite(pwmL, 0);
-  digitalWrite(in1, LOW);
-  analogWrite(pwmR, 0);
-  digitalWrite(in3, LOW);
-  }
-*/
-
 void boardInitial() {
   pinMode(driverPwmL, OUTPUT);
   pinMode(driverPwmR, OUTPUT);
@@ -172,15 +143,6 @@ void setup() {
 
   pinMode(encoderPinD, INPUT_PULLUP);
   attachInterrupt(5, doEncoderD, CHANGE);
-
-  /*
-    Serial.println("Input 'F': FRONT");
-    Serial.println("Input 'B': BACK");
-    Serial.println("Input 'L': LEFT");
-    Serial.println("Input 'R': RIGHT");
-    Serial.println("Input 'S': STOP");
-  */
-
 }
 
 long oldPositionL = -9999999;
