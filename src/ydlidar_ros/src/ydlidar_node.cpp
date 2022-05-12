@@ -691,7 +691,7 @@ int main(int argc, char * argv[]) {
 						delay_ms(50000);
 					}
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
-					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation 
+					gapAngle = 1.0;		//It's when the robot spins Error value of interference by rotation 
 					system("clear");
 					delay_ms(50000);
 				}else{
