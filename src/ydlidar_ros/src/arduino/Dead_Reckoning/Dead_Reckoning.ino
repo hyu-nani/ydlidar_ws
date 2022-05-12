@@ -250,56 +250,7 @@ void loop() {
     for (int j = 0; j < 256; j++)
       SerialData[j] = '\0';
   }
-
-
 }
-
-/*
-  if (Serial.available() > 0) {
-    iRev = Serial.read();
-
-    if (iRev == 'F') {
-      digitalWrite(in1, HIGH);
-      analogWrite(pwmL, speedL);
-      digitalWrite(in3, HIGH);
-      analogWrite(pwmR, speedR);
-      Serial.println("FRONT");
-    }
-    else  if (iRev == 'B') {
-      digitalWrite(in2, HIGH);
-      analogWrite(pwmL, speedL);
-      digitalWrite(in4, HIGH);
-      analogWrite(pwmR, speedR);
-      Serial.println("BACK");
-    }
-    else  if (iRev == 'L') {
-      digitalWrite(in1, LOW);
-      digitalWrite(in2, LOW);
-      analogWrite(pwmL, speedL);
-      digitalWrite(in3, HIGH);
-      digitalWrite(in4, LOW);
-      analogWrite(pwmR, speedR);
-      Serial.println("LEFT");
-    }
-    else  if (iRev == 'R') {
-      digitalWrite(in1, HIGH);
-      digitalWrite(in2, LOW);
-      analogWrite(pwmL, speedL);
-      digitalWrite(in3, LOW);
-      digitalWrite(in4, LOW);
-      analogWrite(pwmR, speedR);
-      Serial.println("RIGHT");
-    }
-    else if (iRev == 'S') {
-      digitalWrite(in1, LOW);
-      digitalWrite(in2, LOW);
-      analogWrite(pwmL, 0);
-      digitalWrite(in3, LOW);
-      digitalWrite(in4, LOW);
-      analogWrite(pwmR, 0);
-      Serial.println("STOP");
-    }
-*/
 
 float angleCalculator(float newpositionX, float newpositionY) {
   if (newpositionX >= 0 && newpositionY >= 0)
@@ -324,8 +275,8 @@ float calculator(float newposition1, float newposition2) {
   
   newposition1_old = newposition1;
   newposition2_old = newposition2;
-  //이동각도 계산
-  double c = (distanceL - distanceR) / 2;
+  
+  double c = (distanceL - distanceR) / 2; //이동각도 계산
   //double angle = asin(2*sin(c/robot_wheel_pitch)*cos(c/robot_wheel_pitch))*(PI/180);
   double angle = 2 * asin(c / robot_wheel_pitch) * (180.0 / M_PI);
   Serial.print(distanceL);
@@ -350,90 +301,3 @@ float calculator(float newposition1, float newposition2) {
 
   return 0;
 }
-
-/*
-void printVal() {
-  Serial.print("\t\tX: ");
-  Serial.print(robot_X);
-  Serial.print("\t\tY: ");
-  Serial.print(robot_Y);
-  Serial.print("\t\tR: ");
-  Serial.print(robot_R);
-  Serial.println();
-  delay(100);
-}
-*/
-
-/*float calculator(float newposition1, float newposition2, float del_t) {
-
-  vel_motor1 = (((newposition1 - newposition1_old) / encoder_PPR) * TWO_PI) / (Quadrature * Gear_ratio);
-  vel_motor2 = (((newposition2 - newposition2_old) / encoder_PPR) * TWO_PI) / (Quadrature * Gear_ratio);
-
-  vel_robot = (wheel_radius * (vel_motor1 + vel_motor2)) / 2;
-  d_robot = (wheel_radius * (vel_motor1 - vel_motor2)) / robot_wheel_pitch;
-
-  dot_seta = d_robot;
-  robot_seta_radian += dot_seta;
-
-  robot_X += sin((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot;
-  robot_Y += cos((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot;
-  robot_R += dot_seta;
-  if (robot_R > 180)
-    robot_R = robot_R - 360;
-  else if (robot_R < -180)
-    robot_R = robot_R + 360;
-
-  newposition1_old = newposition1;
-  newposition2_old = newposition2;
-
-  if (x > 0 && y > 0) {
-    dot_R = ((robot_seta_radian - dot_seta) + d_robot);
-  }
-  else if (x > 0 && y < 0) {
-    dot_R = ((robot_seta_radian - dot_seta) + d_robot);
-  }
-  else if (x < 0 && y > 0) {
-    dot_R = ((robot_seta_radian - dot_seta) + d_robot);
-  }
-  else if (x < 0 && y < 0) {
-    dot_R = ((robot_seta_radian - dot_seta) + d_robot);
-  }
-  }
-*/
-
-/*
-  K00 = sin(((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot);
-  K01 = cos(((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot);
-  K02 = d_robot;
-
-  K10 = vel_robot * sin(((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot + (t / 2) * K02);
-  K11 = vel_robot * cos(((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot + (t / 2) * K02);
-  K12 = d_robot;
-
-  K20 = vel_robot * sin(((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot + (t / 2) * K12);
-  K21 = vel_robot * cos(((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot + (t / 2) * K12);
-  K22 = d_robot;
-
-  K30 = vel_robot * sin(((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot + t * K22);
-  K31 = vel_robot * cos(((robot_seta_radian - dot_seta) + (dot_seta / 2)) * vel_robot + t * K22);
-  K32 = d_robot;
-
-  X = X + (t / 6) * (K00 + 2 * (K10 + K20) + K30);
-  Y = Y + (t / 6) * (K01 + 2 * (K11 + K21) + K31);
-  R = R + (t / 6) * (K02 + 2 * (K12 + K22) + K32);
-*/
-
-/*
-  if (x > 0 && y > 0) {
-  R_K = ((robot_seta_radian - dot_seta) + d_robot);
-  }
-  else if (x > 0 && y < 0) {
-  R_K = ((robot_seta_radian - dot_seta) + d_robot);
-  }
-  else if (x < 0 && y > 0) {
-  R_K = ((robot_seta_radian - dot_seta) + d_robot);
-  }
-  else if (x < 0 && y < 0) {
-  R_K = ((robot_seta_radian - dot_seta) + d_robot);
-  }
-*/
