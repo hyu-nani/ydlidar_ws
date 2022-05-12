@@ -40,7 +40,7 @@ int driverPwmR  = 11;
 
 int a, b, c, d;
 
-float speedL = 100, speedR = 100; //바퀴 속도
+float speedL = 100, speedR = 107.45; //바퀴 속도
 
 long encoderPosL = 0;
 long encoderPosR = 0;
@@ -183,8 +183,8 @@ void setup() {
 
 }
 
-long oldPositionL = -9999999999;
-long oldPositionR = -9999999999;
+long oldPositionL = -9999999;
+long oldPositionR = -9999999;
 
 void loop() {
   nowTime = millis();
@@ -347,6 +347,8 @@ float calculator(float newposition1, float newposition2) {
   Serial.print(robot_R);
   Serial.println();
   delay(100);
+
+  return 0;
 }
 
 /*
