@@ -57,7 +57,7 @@ float del_t = 0;
 float newposition1, newposition1_old, vel_motor1;
 float newposition2, newposition2_old, vel_motor2;
 
-float calcultor(float newposition1, float newposition2);
+float calculator(float newposition1, float newposition2);
 
 float angleCalculator(float newpositionX, float newpositionY);
 
