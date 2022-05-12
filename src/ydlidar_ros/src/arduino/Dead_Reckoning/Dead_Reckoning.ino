@@ -57,7 +57,7 @@ float del_t = 0;
 float newposition1, newposition1_old, vel_motor1;
 float newposition2, newposition2_old, vel_motor2;
 
-float calcultor(float newposition1, float newposition2, float del_t);
+float calcultor(float newposition1, float newposition2);
 
 float angleCalculator(float newpositionX, float newpositionY);
 
@@ -192,7 +192,7 @@ void loop() {
   newposition1 = encoderPosL;
   newposition2 = encoderPosR;
 
-  Calculator(newposition1, newposition2);
+  calculator(newposition1, newposition2);
 
   if (Serial.available()) {
     int i = 0;
@@ -318,7 +318,7 @@ float distanceCalculator(float newpositionX, float newpositionY) {
   return sqrt(pow(newpositionX, 2) + pow(newpositionY, 2));
 }
 
-float Calculator(float newposition1, float newposition2) {
+float calculator(float newposition1, float newposition2) {
   double distanceL = diameter * M_PI / pulse * (newposition1 - newposition1_old);
   double distanceR = diameter * M_PI / pulse * (newposition2 - newposition2_old);
   
