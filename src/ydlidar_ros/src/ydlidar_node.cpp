@@ -54,7 +54,7 @@ const int	printSize								=	150;//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};		//SSH print map
-float		unitScale								=	5;		//1-unit cm
+float		unitScale								=	5;			//1-unit cm
 const int	allMapSize								=	2000;		//maximum 65535
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
@@ -74,6 +74,9 @@ bool	integration		= true; //cursor and robot
 bool	screenActive	= false;
 //test
 float distanceTest = 0;
+
+//way finding algorism
+#include "pathWayFind.cpp"
 
 void SerialPrint(const char* format);
 bool SerialRead();
@@ -249,7 +252,6 @@ int main(int argc, char * argv[]) {
     nh_private.param<int>("samp_rate", samp_rate, samp_rate);
     nh_private.param<bool>("isSingleChannel", isSingleChannel, isSingleChannel);
     nh_private.param<bool>("isTOFLidar", isTOFLidar, isTOFLidar);
- 
 
     ignore_array = split(list ,',');
     if(ignore_array.size()%2){
@@ -312,10 +314,7 @@ int main(int argc, char * argv[]) {
 	sprintf(buffer, "Unit%fD",unitScale);
 	while(SerialRead() != true){
 		SerialPrint(buffer);
-		delay_ms(50000);
-		count++;
-		if(count>1000)
-		break;
+		delay_ms(100000);
 	}
 	system("clear");
 	delay_ms(50000);
@@ -482,8 +481,10 @@ int main(int argc, char * argv[]) {
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
 			delay_ms(1000);
-			rate.sleep();
-			ros::spinOnce();
+			//속도의 증가효과가 있는지 확인 바람
+			//rate.sleep();
+			//ros::spinOnce();
+			
 			/************************************************************************/
 			/* end system                                                           */
 			/************************************************************************/
