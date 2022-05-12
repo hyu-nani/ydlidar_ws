@@ -71,7 +71,7 @@ int		departureX = 0, departureY = 0;//departure coordinate
 //screen cursor
 int		cursorX = 0, cursorY = 0;
 bool	integration		= true; //cursor and robot
-
+bool	screenActive	= false;
 //test
 float distanceTest = 0;
 
@@ -466,17 +466,19 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			printf("\033[%d;%dH",1,3);//set cursor 0,2
 			//SSH print
-			printSSHmonitor(cursorY,cursorX);
-			printf("count:%d  /  1-unit : %f cm \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale);
-			printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
-			//return sensing text to empty text 
-			for(int i= -printSize/2-10;i<printSize/2+10;i++)
-				for(int j= -printSize/2-10;j<printSize/2+10;j++){
-				  int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
-					if(a == 1 || a == 5) //sensing point or robot center
-						allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
-				}
-			count++;
+			if(screenActive){
+				printSSHmonitor(cursorY,cursorX);
+				printf("count:%d  /  1-unit : %f cm \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale);
+				printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
+				//return sensing text to empty text 
+				for(int i= -printSize/2-10;i<printSize/2+10;i++)
+					for(int j= -printSize/2-10;j<printSize/2+10;j++){
+					  int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
+						if(a == 1 || a == 5) //sensing point or robot center
+							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
+					}
+				count++;
+			}
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
 			delay_ms(1000);
@@ -602,6 +604,8 @@ int main(int argc, char * argv[]) {
 					delay_ms(50000);
 				}else if(strcmp(scanData,"map") == 0){
 					mappingActive = !mappingActive;
+				}else if(strcmp(scanData,"screem") == 0){
+					screenActive = !screenActive;
 				}else if(strcmp(scanData,"cursor") == 0){
 					integration = !integration;
 				}else if(strcmp(scanData,"filter") == 0){
