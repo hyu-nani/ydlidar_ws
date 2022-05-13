@@ -12,8 +12,19 @@
 	즉, 아무것도 아닌 공간이 아닌 인식된 빈공간 이여야 하며.
 	즉각적인 전방 회피를 위해 순간적으로 센싱되는 곳 또한 벽으로 간주한다.
 */
-void convertMap(){
+unsigned int	mazeMap[allMapSize][allMapSize]	=	{0};
 	
+void convertMap(){
+	for(int y=0;y<allMapSize;y++)
+	for(int x=0;x<allMapSize;x++){
+		int dot = allMap[y][x];
+		if(	dot == 0 ||	//none
+			dot == 1 ||	//sensing
+			dot == 2)	//wall
+			mazeMap[y][x] = 1;//wall
+		else
+			mazeMap[y][x] = 0;//way
+	}
 }
 void path(){
 	
