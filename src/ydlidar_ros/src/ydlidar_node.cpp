@@ -50,7 +50,7 @@ float	val	=	0;
 
 int		systemMode	=	1;	// 0 = default, 1 = control robot mode
 
-const int	printSize								=	150;//185
+const int	printSize								=	150;		//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};		//SSH print map
@@ -511,12 +511,12 @@ int main(int argc, char * argv[]) {
 				printf("\nCommand Please...\n input:");
 				scanf(" %s",scanData);
 				//Command List
-				if(strcmp(scanData,"stop") == 0){//all stop
+				if(strcmp(scanData,"stop") == 0){		//all stop
 					printf("\033[45m\033[36m");
 					printf("STOP....\n");
 					printf("\033[40m\033[97m");
 					break;
-				}else if(strcmp(scanData,"goto") == 0){//goto robot command
+				}else if(strcmp(scanData,"goto") == 0){	//goto robot command
 					printf("input the X Y :");			
 					int moveX=0, moveY=0;				
 					scanf("%d %d", &moveX, &moveY);		
