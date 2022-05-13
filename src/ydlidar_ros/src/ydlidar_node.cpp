@@ -66,16 +66,19 @@ double	robotAngle = 0;//initial angle
 
 //delay
 void	delay_ms(int time){usleep(time);} 
+	
 //departure point
 int		departureX = 0, departureY = 0;//departure coordinate
+
 //screen cursor
 int		cursorX = 0, cursorY = 0;
 bool	integration		= true; //cursor and robot
 bool	screenActive	= false;
+
 //test
 float distanceTest = 0;
 
-//way finding algorism
+//path finding algorithm
 #include "pathWayFind.cpp"
 
 void SerialPrint(const char* format);
