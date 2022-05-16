@@ -844,6 +844,12 @@ void printSSHmonitor(int currentY,int currentX){
 					printf("<>");
 					prePixel = 5;
 					break;
+				case 6:	//path
+					if(prePixel != 6)
+					printf("\033[45m\033[36m");
+					printf("  ");
+					prePixel = 6;
+					break;
 				default://Nothing space
 					if(prePixel != 0)
 					printf("\033[40m\033[97m");	//black BG & white
