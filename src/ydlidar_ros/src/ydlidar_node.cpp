@@ -423,12 +423,14 @@ int main(int argc, char * argv[]) {
 					printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
 					allMap[pointY][pointX] = 3; //add departure
 					break;
+					
 				/*     System Mode 1 : Default mode remote control   (edit)             */
 				case 1:
 					SerialPrint("Pos");//require to position data
 					delay_ms(1000);
 					SerialRead();
 					break;
+					
 				/*  System Mode 2 : adjust to error gap used the lidar (edit)           */
 				case 2:
 					if(count == 10) // 각 카운트마다 실행 명령 분할
@@ -448,6 +450,7 @@ int main(int argc, char * argv[]) {
 						}
 					}
 					break;
+					
 				/*  System Mode 3 : setting departure and move (edit)                  
 					<sequence>
 					1. 앞서 커서의 이동에 의해 목적지를 설정
@@ -457,7 +460,15 @@ int main(int argc, char * argv[]) {
 				*/
 				case 3:
 					initMap();
-					findWay(robotX, robotY, departureX, departureY);
+					findWay(robotX, robotY, departureX, departureY);//output(moveX moveY)
+					char buffer[20];
+					sprintf(buffer, "go/%d/%dE", moveX, moveY); 
+					while(SerialRead() != true){
+						SerialPrint(buffer);
+						delay_ms(500000);
+					}
+					break;
+				default:
 					break;
 			}
 			
@@ -486,15 +497,23 @@ int main(int argc, char * argv[]) {
 			//rate.sleep();
 			//ros::spinOnce();
 			
+			switch(systemMode){
 			/************************************************************************/
 			/* end system                                                           */
 			/************************************************************************/
-			if(systemMode == 2){// Tracking map point
-				for(int i=0;i<allMapSize;i++){//save short term storage
-					for(int j=0;j<allMapSize;j++){
-						oldMap[i][j]=allMap[i][j];
-					}
-				}
+				case 0:
+					break;
+				case 1:
+					break;
+				case 2:
+					for(int i=0;i<allMapSize;i++)//save short term storage
+					for(int j=0;j<allMapSize;j++)
+						oldMap[i][j] = allMap[i][j];
+					break;
+				case 3:
+					break;
+				default:
+					break;
 			}
 			/************************************************************************/
 			/* Command input                                                        */
@@ -582,11 +601,6 @@ int main(int argc, char * argv[]) {
 					departureX = cursorX;
 					departureY = cursorY;
 					char buffer[20];
-					sprintf(buffer, "go/%d/%dE\n", departureX, departureY);
-					while(SerialRead() != true){
-						SerialPrint(buffer);
-						delay_ms(50000);
-					}
 					system("clear");
 					systemMode = 3; //move to departure
 					delay_ms(50000);
