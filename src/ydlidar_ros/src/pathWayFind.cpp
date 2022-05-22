@@ -100,19 +100,19 @@ void findWay(int sx, int sy, int ex, int ey){
 	moveX = 0;
 	moveY = 0;
 	if(countMaze[sy - 1][sx] == -1){
-		moveX = sx;
-		moveY = sy - 1;
+		moveX = 0;
+		moveY = -1;
 	}
 	else if(countMaze[sy + 1][sx] == -1){
-		moveX = sx;
-		moveY = sy + 1;
+		moveX = 0;
+		moveY = 1;
 	}
 	else if(countMaze[sy][sx - 1] == -1){
-		moveX = sx - 1;
-		moveY = sy;
+		moveX = -1;
+		moveY = 0;
 	}
 	else if(countMaze[sy][sx + 1] == -1){
-		moveX = sx + 1;
-		moveY = sy;
+		moveX = 1;
+		moveY = 0;
 	}
 }

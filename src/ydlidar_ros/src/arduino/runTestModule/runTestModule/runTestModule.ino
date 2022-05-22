@@ -136,6 +136,24 @@ void loop()
 			positionPinrt();
 		}else if(SerialData[0]=='g' && SerialData[1]=='o'){	//targetting mode
 			sscanf(SerialData,"go/%d/%dE", &departureX, &departureY);
+			if(departureX == 1){
+				rotateRight();
+				goOnePoint();
+				Serial.print("OK");
+			}
+			else if(departureX == -1){
+				rotateLeft();
+				goOnePoint();
+				Serial.print("OK");
+			}
+			else if(departureY == 1){
+				goOnePoint();
+				Serial.print("OK");
+			}
+			else if(departureY == -1){
+				backOnePoint();
+				Serial.print("OK");
+			}
 		}else{
 			if(testMode){
 				//Serial.println("OK");

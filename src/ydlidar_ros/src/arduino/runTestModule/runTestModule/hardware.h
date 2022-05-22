@@ -90,3 +90,48 @@ void positionPinrt(){
 	Serial.print(robot_wheel_pitch);
 	Serial.print("E");
 }//
+
+void rotateLeft(){
+	driverSet(speedLeft,0,1,1,0,speedRight);
+	driverOUTPUT();
+	fixAngle = robot_angle;
+	while(robot_angle < fixAngle+90){
+		positionCalculate(encoderPosLeft,encoderPosRight);
+		errorGapCal(encoderPosLeft,encoderPosRight,direction);
+		analogWrite(driverPwmL,lefePWMoutput+errorGap);
+		analogWrite(driverPwmR,rightPWMoutput-errorGap);
+	}
+}
+void rotateRight(){
+	driverSet(speedLeft,1,0,0,1,speedRight);
+	driverOUTPUT();
+	fixAngle = robot_angle;
+	while(robot_angle > fixAngle-90){
+		positionCalculate(encoderPosLeft,encoderPosRight);
+		errorGapCal(encoderPosLeft,encoderPosRight,direction);
+		analogWrite(driverPwmL,lefePWMoutput+errorGap);
+		analogWrite(driverPwmR,rightPWMoutput-errorGap);
+	}
+}
+void goOnePoint(){
+	driverSet(speedLeft,1,0,1,0,speedRight);
+	driverOUTPUT();
+	int fixDistance = robot_distance;
+	while(robot_distance - fixDistance < unitScale){
+		positionCalculate(encoderPosLeft,encoderPosRight);
+		errorGapCal(encoderPosLeft,encoderPosRight,direction);
+		analogWrite(driverPwmL,lefePWMoutput+errorGap);
+		analogWrite(driverPwmR,rightPWMoutput-errorGap);
+	}
+}
+void backOnePoint(){
+	driverSet(speedLeft,0,1,0,1,speedRight);
+	driverOUTPUT();
+	int fixDistance = robot_distance;
+	while(fixDistance - robot_distance < unitScale){
+		positionCalculate(encoderPosLeft,encoderPosRight);
+		errorGapCal(encoderPosLeft,encoderPosRight,direction);
+		analogWrite(driverPwmL,lefePWMoutput+errorGap);
+		analogWrite(driverPwmR,rightPWMoutput-errorGap);
+	}
+}
