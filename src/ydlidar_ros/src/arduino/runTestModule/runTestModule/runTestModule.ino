@@ -135,6 +135,8 @@ void loop()
 		}else if(strcmp(SerialData,"Pos")==0){
 			positionPinrt();
 		}else if(SerialData[0]=='g' && SerialData[1]=='o'){	//targetting mode
+			departureX = 0;
+			departureY = 0;
 			sscanf(SerialData,"go/%d/%dE", &departureX, &departureY);
 			if(departureX == 1){
 				rotateRight();

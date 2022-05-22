@@ -99,20 +99,41 @@ void findWay(int sx, int sy, int ex, int ey){
 	//next move point
 	moveX = 0;
 	moveY = 0;
-	if(countMaze[sy - 1][sx] == -1){
-		moveX = 0;
-		moveY = -1;
-	}
-	else if(countMaze[sy + 1][sx] == -1){
-		moveX = 0;
-		moveY = 1;
-	}
-	else if(countMaze[sy][sx - 1] == -1){
-		moveX = -1;
-		moveY = 0;
-	}
-	else if(countMaze[sy][sx + 1] == -1){
-		moveX = 1;
-		moveY = 0;
-	}
+	//현재 방향에 따른 값 수정 필요
+	if( -10 < robot_angle && robot_angle < 10)//위
+		if(countMaze[sy - 1][sx] == -1)
+			moveY = -1;
+		else if(countMaze[sy + 1][sx] == -1)
+			moveY = 1;
+		else if(countMaze[sy][sx - 1] == -1)
+			moveX = -1;
+		else if(countMaze[sy][sx + 1] == -1)
+			moveX = 1;
+	else if( 80 < robot_angle && robot_angle < 100)//좌
+		if(countMaze[sy - 1][sx] == -1)
+			moveX = -1;
+		else if(countMaze[sy + 1][sx] == -1)
+			moveX = 1;
+		else if(countMaze[sy][sx - 1] == -1)
+			moveY = 1;
+		else if(countMaze[sy][sx + 1] == -1)
+			moveY = -1;
+	else if( -100 < robot_angle && robot_angle < -80)//우
+		if(countMaze[sy - 1][sx] == -1)
+			moveX = 1;
+		else if(countMaze[sy + 1][sx] == -1)
+			moveX = -1;
+		else if(countMaze[sy][sx - 1] == -1)
+			moveY = -1;
+		else if(countMaze[sy][sx + 1] == -1)
+			moveY = 1;
+	else if( 170 < robot_angle && robot_angle < -170)//아래
+		if(countMaze[sy - 1][sx] == -1)
+			moveY = 1;
+		else if(countMaze[sy + 1][sx] == -1)
+			moveY = -1;
+		else if(countMaze[sy][sx - 1] == -1)
+			moveX = 1;
+		else if(countMaze[sy][sx + 1] == -1)
+			moveX = -1;
 }
