@@ -54,7 +54,7 @@ const int	printSize								=	150;		//185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};		//SSH print map
-float		unitScale								=	5;			//1-unit cm
+float		unitScale								=	10;			//1-unit cm
 const int	allMapSize								=	2000;		//maximum 65535
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
 unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
