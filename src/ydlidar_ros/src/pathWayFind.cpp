@@ -41,6 +41,7 @@ void initMap(){
 			mazeMap[y][x] = 0;	//wall
 		else
 			mazeMap[y][x] = 1;	//path
+		countMaze[y][x] = 0;
 	}
 }
 
