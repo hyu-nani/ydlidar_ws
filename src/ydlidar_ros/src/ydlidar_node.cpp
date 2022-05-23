@@ -462,11 +462,17 @@ int main(int argc, char * argv[]) {
 				initMap();
 				printf("findWay\n");
 				findWay(allMapSize/2+robotX, allMapSize/2+robotY, allMapSize/2+departureX, allMapSize/2+departureY);//output(moveX moveY)
-				char buffer[20];
-				sprintf(buffer, "go/%d/%dE\n", moveX, moveY); 
-				while(SerialRead() != true){
-					printf("send>%s",buffer);
-					SerialPrint(buffer);
+				if(moveY!=0 || moveX != 0){
+					char buffer[20];
+					sprintf(buffer, "go/%d/%dE", moveX, moveY);
+					while(SerialRead() != true){
+						printf("send>%s",buffer);
+						SerialPrint(buffer);
+						delay_ms(500000);
+					}
+				}
+				else{
+					SerialPrint("stop");
 					delay_ms(500000);
 				}
 			}
