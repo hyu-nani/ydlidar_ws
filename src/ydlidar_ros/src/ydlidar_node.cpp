@@ -475,6 +475,9 @@ int main(int argc, char * argv[]) {
 					SerialPrint("stop");
 					delay_ms(500000);
 				}
+				SerialPrint("Pos");//require to position data
+				delay_ms(1000);
+				SerialRead();
 			}
 			
 			/************************************************************************/
