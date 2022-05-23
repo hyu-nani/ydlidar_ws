@@ -32,8 +32,8 @@ void initMap(){
 	StartY	=	robotY;
 	endX	=	departureX;
 	endY	=	departureY;
-	for(int y = StartY-100; y < endY+100; y++)
-	for(int x = startX-100; x < endX+100; x++){
+	for(int y = 0; y < allMapSize; y++)
+	for(int x = 0; x < allMapSize; x++){
 		int dot = allMap[y][x];
 		if(	dot == 0 ||	//none
 			dot == 1 ||	//sensing
