@@ -738,7 +738,6 @@ int main(int argc, char * argv[]) {
 				delay_ms(50000);
 			}
 		}
-    }
 	SerialPrint("stop");
 	close(fd);
     laser.turnOff();
