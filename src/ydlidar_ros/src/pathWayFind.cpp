@@ -69,10 +69,8 @@ void findWay(int sx, int sy, int ex, int ey){
 					countMaze[y - 1][x] = count + 1;
 				if (mazeMap[y][x + 1] == 1 && countMaze[y][x + 1] == 0)
 					countMaze[y][y + 1] = count + 1;
-				if (mazeMap[y][x - 1] == 1 && countMaze[y][x - 1] == 0){
+				if (mazeMap[y][x - 1] == 1 && countMaze[y][x - 1] == 0)
 					countMaze[y][x - 1] = count + 1;
-					printf("%d\n",count);
-				}
 			}
 		}
 		count++;
