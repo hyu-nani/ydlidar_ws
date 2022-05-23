@@ -823,6 +823,7 @@ void printSSHmonitor(int currentY,int currentX){
 		prePixel = 0;
 		for(int j=0;j<printSize;j++){
 			switch (pinMap[i][j]){
+				printf("aaa\n");
 				case 1:	//Sensing point
 					if(prePixel != 1)
 					printf("\033[43m\033[33m");//orange background color
