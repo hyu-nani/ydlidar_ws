@@ -670,8 +670,8 @@ int main(int argc, char * argv[]) {
 				}else{
 					printf("nothing...");
 				}
-			system("clear");
-			delay_ms(50000);
+				system("clear");
+				delay_ms(50000);
 			/************************************************************************/
 			/*   Kbhit keyboard command list                                        */
 			/************************************************************************/
