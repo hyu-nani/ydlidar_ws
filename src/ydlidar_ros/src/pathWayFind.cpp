@@ -75,27 +75,25 @@ void findWay(int sx, int sy, int ex, int ey){
 		}
 		count++;
 	}
-	printf("%d\n", count);
 	//find way inversion counting
 	int nowX = ex, nowY = ey;
-	for (int i = count; i > 0; i--) {
-		if (countMaze[nowX][nowY] = i)
 		countMaze[nowX][nowY] = -1;
-		if (i - 1 == countMaze[nowX - 1][nowY]) {
-			countMaze[nowX - 1][nowY] = -1;
-			nowX--;
-		}
-		else if (i - 1 == countMaze[nowX + 1][nowY]) {
-			countMaze[nowX + 1][nowY] = -1;
-			nowX++;
-		}
-		else if (i - 1 == countMaze[nowX][nowY - 1]) {
-			countMaze[nowX][nowY - 1] = -1;
+	for (int i = count; i > 0; i--) {
+		if (i - 1 == countMaze[nowY - 1][nowX]) {
+			countMaze[nowY - 1][nowX] = -1;
 			nowY--;
 		}
-		else if (i - 1 == countMaze[nowX][nowY + 1]) {
-			countMaze[nowX][nowY + 1] = -1;
+		else if (i - 1 == countMaze[nowY + 1][nowX]) {
+			countMaze[nowY + 1][nowX] = -1;
 			nowY++;
+		}
+		else if (i - 1 == countMaze[nowY][nowX - 1]) {
+			countMaze[nowY][nowX - 1] = -1;
+			nowX--;
+		}
+		else if (i - 1 == countMaze[nowY][nowX + 1]) {
+			countMaze[nowY][nowX + 1] = -1;
+			nowX++;
 		}
 	}
 	printf("%d\n", count);
