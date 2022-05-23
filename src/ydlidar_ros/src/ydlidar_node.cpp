@@ -314,7 +314,7 @@ int main(int argc, char * argv[]) {
     	//test ms
 	int count=0;
 	char buffer[20];
-	sprintf(buffer, "Unit%fD",unitScale);
+	sprintf(buffer, "Unit%fD\n",unitScale);
 	while(SerialRead() != true){
 		printf("%s",buffer);
 		SerialPrint(buffer);
@@ -463,9 +463,9 @@ int main(int argc, char * argv[]) {
 				printf("findWay\n");
 				findWay(allMapSize/2+robotX, allMapSize/2+robotY, allMapSize/2+departureX, allMapSize/2+departureY);//output(moveX moveY)
 				char buffer[20];
-				sprintf(buffer, "go/%d/%dE", moveX, moveY); 
+				sprintf(buffer, "go/%d/%dE\n", moveX, moveY); 
 				while(SerialRead() != true){
-					printf("%s\n",buffer);
+					printf("%s",buffer);
 					SerialPrint(buffer);
 					delay_ms(500000);
 				}
