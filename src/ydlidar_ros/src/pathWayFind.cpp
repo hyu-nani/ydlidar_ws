@@ -74,8 +74,8 @@ void findWay(int sx, int sy, int ex, int ey){
 			}
 		}
 		count++;
-		
 	}
+	printf("%d\n", count);
 	//find way inversion counting
 	int nowX = ex, nowY = ey;
 	for (int i = count; i > 0; i--) {
