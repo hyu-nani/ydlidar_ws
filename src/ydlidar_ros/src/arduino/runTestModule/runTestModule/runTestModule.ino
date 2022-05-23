@@ -129,7 +129,7 @@ void loop()
 		}else if(strcmp(SerialData,"down")==0){
 			robot_wheel_pitch -= 0.01;
 			Serial.print("OK");	//notify completion of transfer
-		}else if(SerialData[0]=='U' && SerialData[1]=='n' && SerialData[2]=='i' && SerialData[3]=='t'){
+		}else if(SerialData[0]=='U' && SerialData[1]=='n'){
 			sscanf(SerialData,"Unit%fD",&unitScale);
 			Serial.print("OK");	//notify completion of transfer
 		}else if(strcmp(SerialData,"Pos")==0){
