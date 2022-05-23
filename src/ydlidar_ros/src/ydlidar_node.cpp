@@ -321,7 +321,7 @@ int main(int argc, char * argv[]) {
 		delay_ms(500000);
 	}
 	system("clear");
-	delay_ms(5000000);
+	delay_ms(3000000);
     while (ret&&ros::ok()) {
         bool hardError;
         //and loop start here 
