@@ -56,12 +56,13 @@ void findWay(int sx, int sy, int ex, int ey){
 	int count = 1;
 	countMaze[sy][sx] = 1;
 	//counting maze
+	printf("%d/%d/%d/%d :",sx,sy,ex,ey);
 	while(countMaze[ey][ex] != count){
 		for (int y = -count + sy; y < count + sy; y++)
 		for (int x = -count + sx; x < count + sx; x++) {
 			if (x < 0 || y < 0 || x > allMapSize || y > allMapSize)//range over
 				continue;
-			if (countMaze[y][x] == count) {//check way
+			if (countMaze[y][x] == count) {		//check way
 				if (mazeMap[y + 1][x] == 1 && countMaze[y + 1][x] == 0)
 					countMaze[y + 1][x] = count + 1;
 				if (mazeMap[y - 1][x] == 1 && countMaze[y - 1][x] == 0)
