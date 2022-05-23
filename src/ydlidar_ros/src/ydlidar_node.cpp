@@ -316,7 +316,7 @@ int main(int argc, char * argv[]) {
 	char buffer[20];
 	sprintf(buffer, "Unit%fD\n",unitScale);
 	while(SerialRead() != true){
-		printf("%s",buffer);
+		printf("send>%s",buffer);
 		SerialPrint(buffer);
 		delay_ms(500000);
 	}
@@ -465,7 +465,7 @@ int main(int argc, char * argv[]) {
 				char buffer[20];
 				sprintf(buffer, "go/%d/%dE\n", moveX, moveY); 
 				while(SerialRead() != true){
-					printf("%s",buffer);
+					printf("send>%s",buffer);
 					SerialPrint(buffer);
 					delay_ms(500000);
 				}
@@ -677,6 +677,7 @@ int main(int argc, char * argv[]) {
 					scanf("%f",&unitScale);
 					sprintf(buffer, "Unit%f",unitScale);
 					while(SerialRead() != true){
+						printf("send>%s",buffer);
 						SerialPrint(buffer);
 						delay_ms(50000);
 					}
