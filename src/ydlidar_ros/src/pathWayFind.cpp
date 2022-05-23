@@ -56,7 +56,7 @@ void findWay(int sx, int sy, int ex, int ey){
 	int count = 1;
 	countMaze[sy][sx] = 1;
 	//counting maze
-	printf("%d/%d/%d/%d :",sx,sy,ex,ey);
+	printf("%d/%d/%d/%d :\n",sx,sy,ex,ey);
 	while(countMaze[ey][ex] != count){
 		for (int y = -count + sy; y < count + sy; y++)
 		for (int x = -count + sx; x < count + sx; x++) {
@@ -71,7 +71,7 @@ void findWay(int sx, int sy, int ex, int ey){
 					countMaze[y][y + 1] = count + 1;
 				if (mazeMap[y][x - 1] == 1 && countMaze[y][x - 1] == 0){
 					countMaze[y][x - 1] = count + 1;
-					printf("%d/n",count);
+					printf("%d\n",count);
 				}
 			}
 		}
