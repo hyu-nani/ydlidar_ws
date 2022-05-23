@@ -388,88 +388,81 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/*    System Mode						                                */
 			/************************************************************************/
-			switch(systemMode){
-				/*    System Mode 0 : make point map and finding center point           */
-				case 0:
-					//reset point map
-					for(int i=0;i<allMapSize;i++)
-					for(int j=0;j<allMapSize;j++){
-						allPointMap[i][j] = 0;
-						if (allMap[i][j] == 3) //departure
-						allMap[i][j] = 0;
-					}
-					//add point
-					int pointRange = 50;
-					unsigned int pointMax=0,pointX=0,pointY=0;
-					for(int i=0;i<allMapSize;i++)
-					for(int j=0;j<allMapSize;j++)
-					if(allMap[i][j]==2){ //find wall place
-						for(int k=-pointRange;k<pointRange;k++)
-						for(int p=-pointRange;p<pointRange;p++)
-						if(k+i>0&&p+j>0&&k+i<allMapSize&&p+j<allMapSize)
-						allPointMap[k+i][p+j]++;
-					}
-					else if(allMap[i][j]==4) //find empty place
-					allPointMap[i][j]+=5;
-					//find score and record
-					for(int i=0;i<allMapSize;i++)
-					for(int j=0;j<allMapSize;j++)
-					if(allPointMap[i][j] > pointMax){
-						pointMax = allPointMap[i][j];
-						pointY = i;
-						pointX = j;
-					}
-					printf("\033[%d;%dH",1,1);	//set cursor 0,0
-					printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
-					allMap[pointY][pointX] = 3; //add departure
-					break;
-					
-				/*     System Mode 1 : Default mode remote control   (edit)             */
-				case 1:
-					SerialPrint("Pos");//require to position data
-					delay_ms(1000);
-					SerialRead();
-					break;
-					
-				/*  System Mode 2 : adjust to error gap used the lidar (edit)           */
-				case 2:
-					if(count == 10) // 각 카운트마다 실행 명령 분할
-						distanceTest = YD_distance[2];
-					else if(count == 11){// 10cm 전진 명령
-						while(SerialRead() != true){
-							SerialPrint("10cm");
-							delay_ms(500000);
-						}
-					}
-					else if(count > 12){
-						SerialPrint("Pos");
-						if(YD_distance[2] > distanceTest){	//다시 측정한 거리가 예상값보다 클때
-							
-						}else{
-						
-						}
-					}
-					break;
-					
-				/*  System Mode 3 : setting departure and move (edit)                  
-					<sequence>
-					1. 앞서 커서의 이동에 의해 목적지를 설정
-					2. 목적시 설정과 동시에 아두이노로 목적지의 좌표값을 전달
-					3. 전달 확인 후 아두이노에서 거리 계산
-					4. 라이다를 통해 장애물 인식
-				*/
-				case 3:
-					initMap();
-					findWay(robotX, robotY, departureX, departureY);//output(moveX moveY)
-					char buffer[20];
-					sprintf(buffer, "go/%d/%dE", moveX, moveY); 
+			if(systemMode == 0){
+			/*    System Mode 0 : make point map and finding center point           */
+				//reset point map
+				for(int i=0;i<allMapSize;i++)
+				for(int j=0;j<allMapSize;j++){
+					allPointMap[i][j] = 0;
+					if (allMap[i][j] == 3) //departure
+					allMap[i][j] = 0;
+				}
+				//add point
+				int pointRange = 50;
+				unsigned int pointMax=0,pointX=0,pointY=0;
+				for(int i=0;i<allMapSize;i++)
+				for(int j=0;j<allMapSize;j++)
+				if(allMap[i][j]==2){ //find wall place
+					for(int k=-pointRange;k<pointRange;k++)
+					for(int p=-pointRange;p<pointRange;p++)
+					if(k+i>0&&p+j>0&&k+i<allMapSize&&p+j<allMapSize)
+					allPointMap[k+i][p+j]++;
+				}
+				else if(allMap[i][j]==4) //find empty place
+				allPointMap[i][j]+=5;
+				//find score and record
+				for(int i=0;i<allMapSize;i++)
+				for(int j=0;j<allMapSize;j++)
+				if(allPointMap[i][j] > pointMax){
+					pointMax = allPointMap[i][j];
+					pointY = i;
+					pointX = j;
+				}
+				printf("\033[%d;%dH",1,1);	//set cursor 0,0
+				printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
+				allMap[pointY][pointX] = 3; //add departure
+			}
+			else if(systemMode == 1){		
+			/*     System Mode 1 : Default mode remote control   (edit)             */
+				SerialPrint("Pos");//require to position data
+				delay_ms(1000);
+				SerialRead();
+			}
+			else if(systemMode == 2){
+			/*  System Mode 2 : adjust to error gap used the lidar (edit)           */
+				if(count == 10) // 각 카운트마다 실행 명령 분할
+					distanceTest = YD_distance[2];
+				else if(count == 11){// 10cm 전진 명령
 					while(SerialRead() != true){
-						SerialPrint(buffer);
+						SerialPrint("10cm");
 						delay_ms(500000);
 					}
-					break;
-				default:
-					break;
+				}
+				else if(count > 12){
+					SerialPrint("Pos");
+					if(YD_distance[2] > distanceTest){	//다시 측정한 거리가 예상값보다 클때
+							
+					}else{
+						
+					}
+				}
+			}
+			else if(systemMode == 3){		
+			/*  System Mode 3 : setting departure and move (edit)                  
+				<sequence>
+				1. 앞서 커서의 이동에 의해 목적지를 설정
+				2. 목적시 설정과 동시에 아두이노로 목적지의 좌표값을 전달
+				3. 전달 확인 후 아두이노에서 거리 계산
+				4. 라이다를 통해 장애물 인식
+			*/
+				initMap();
+				findWay(robotX, robotY, departureX, departureY);//output(moveX moveY)
+				char buffer[20];
+				sprintf(buffer, "go/%d/%dE", moveX, moveY); 
+				while(SerialRead() != true){
+					SerialPrint(buffer);
+					delay_ms(500000);
+				}
 			}
 			
 			/************************************************************************/
