@@ -332,7 +332,7 @@ int main(int argc, char * argv[]) {
 		while(true){
 			LaserScan scan;
 			if(laser.doProcessSimple(scan, hardError )){
-				printf("scanning\n")
+				printf("scanning\n");
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
 				start_scan_time.sec = scan.stamp/1000000000ul;
