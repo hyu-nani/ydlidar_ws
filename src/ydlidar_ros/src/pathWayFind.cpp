@@ -59,7 +59,7 @@ void findWay(int sx, int sy, int ex, int ey){
 		for (int y = -count + sy; y < count + sy; y++)
 		for (int x = -count + sx; x < count + sx; x++) {
 			if (x < 0 || y < 0 || x > allMapSize || y > allMapSize)//range over
-			continue;
+				continue;
 			if (countMaze[y][x] == count) {//check way
 				if (mazeMap[y + 1][x] == 1 && countMaze[y + 1][x] == 0)
 					countMaze[y + 1][x] = count + 1;
@@ -72,6 +72,7 @@ void findWay(int sx, int sy, int ex, int ey){
 			}
 		}
 		count++;
+		printf("%d/n",count);
 	}
 	//find way inversion counting
 	int nowX = ex, nowY = ey;
@@ -95,7 +96,7 @@ void findWay(int sx, int sy, int ex, int ey){
 			nowY++;
 		}
 	}
-	printf("%d", count);
+	printf("%d\n", count);
 	//next move point
 	moveX = 0;
 	moveY = 0;
