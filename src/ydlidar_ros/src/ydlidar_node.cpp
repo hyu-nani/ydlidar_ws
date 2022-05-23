@@ -42,7 +42,7 @@ int		printCount = 0;
 int		lidarReadCount;
 int 	ignoreTime = 0;	//방향 전환 후 관성으로 인한 라이다의 오차를 없애기 위한 입력무시 횟수
 float	gapAngle = 0.0; //회전시 원심력으로 인한 오차
-bool	mappingActive = false;
+
 
 char	scanData[30];
 
@@ -74,7 +74,7 @@ int		departureX = 0, departureY = 0;//departure coordinate
 int		cursorX = 0, cursorY = 0;
 bool	integration		= true; //cursor and robot
 bool	screenActive	= true;
-
+bool	mappingActive	= false;
 //test
 float distanceTest = 0;
 
@@ -145,18 +145,18 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
         //if(val != 0)
         //	YD_distance[i] = val;
 		//if(YD_angle[i]> -5 && YD_angle[i]< 5){
-        //	printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
+        	//printf("angle-distance[%f - %f]%d\n",YD_angle[i],YD_distance[i],i);
    		//}
     }
-    for(int i = 0; i < lidarReadCount; i++) {
-        float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
-		if(degree > -5 && degree< 5)
-			printf("[YDLIDAR INFO]: angle-distance : [%f, %f, %d]\n", degree, scan->ranges[i], i);
-    }
+//    for(int i = 0; i < count; i++) {
+//        float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
+//	if(degree > -5 && degree< 5)
+//        printf("[YDLIDAR INFO]: angle-distance : [%f, %f, %d]\n", degree, scan->ranges[i], i);
+//    }
 }
 
 int main(int argc, char * argv[]) {
-	printf("serial connecting,.....\n");
+  printf("serial connecting,.....\n");
     //////////////////////////////////////////////////////////////// usb arduino
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
 	if (fd == -1) {
@@ -330,9 +330,7 @@ int main(int argc, char * argv[]) {
 		/************************************************************************/
 		while(true){
 			LaserScan scan;
-			printf("scanbegin")
 			if(laser.doProcessSimple(scan, hardError )){
-				printf("scanning")
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
 				start_scan_time.sec = scan.stamp/1000000000ul;
@@ -492,13 +490,23 @@ int main(int argc, char * argv[]) {
 			//rate.sleep();
 			//ros::spinOnce();
 			
+			switch(systemMode){
 			/************************************************************************/
 			/* end system                                                           */
 			/************************************************************************/
-			if(systemMode == 2)
-				for(int i=0;i<allMapSize;i++)//save short term storage
-				for(int j=0;j<allMapSize;j++)
-				oldMap[i][j] = allMap[i][j];
+				case 0:
+					break;
+				case 1:
+					break;
+				case 2:
+					for(int i=0;i<allMapSize;i++)//save short term storage
+					for(int j=0;j<allMapSize;j++)
+						oldMap[i][j] = allMap[i][j];
+					break;
+				case 3:
+					break;
+				default:
+					break;
 			}
 			/************************************************************************/
 			/* Command input                                                        */
@@ -740,6 +748,8 @@ int main(int argc, char * argv[]) {
 				delay_ms(50000);
 			}
 		}
+		break;
+    }
 	SerialPrint("stop");
 	close(fd);
     laser.turnOff();
