@@ -821,50 +821,47 @@ void printSSHmonitor(int currentY,int currentX){
 		printf(" |");
 		prePixel = 0;
 		for(int j=0;j<printSize;j++){
-			printf("pls\n");
-			switch (pinMap[i][j]){
-				case 1:	//Sensing point
-					if(prePixel != 1)
-					printf("\033[43m\033[33m");//orange background color
-					printf("  ");
-					prePixel = 1;
-					break;
-				case 2: //Hold, Wall point
-					if(prePixel != 2)
-					printf("\033[41m");		//red background color
-					printf("  ");
-					prePixel = 2;
-					break;
-				case 3:	//Departure point
-					if(prePixel != 3)
-					printf("\033[44m");		//blue background color
-					printf("  ");
-					prePixel = 3;
-					break;
-				case 4:	//Empty space
-					if(prePixel != 4)
-					printf("\033[47m");		//white background color
-					printf("  ");
-					prePixel = 4;
-					break;
-				case 5:	//Center
-					if(prePixel != 5)
-					printf("\033[45m\033[36m");	//magenta BG & cyan
-					printf("<>");
-					prePixel = 5;
-					break;
-				case 6:	//path
-					if(prePixel != 6)
-					printf("\033[45m\033[36m");
-					printf("  ");
-					prePixel = 6;
-					break;
-				default://Nothing space
-					if(prePixel != 0)
-					printf("\033[40m\033[97m");	//black BG & white
-					printf("  ");
-					prePixel = 0;
-					break;
+			if(pinMap[i][j] == 1){
+				if(prePixel != 1)
+				printf("\033[43m\033[33m");//orange background color
+				printf("  ");
+				prePixel = 1;
+			}
+			else if(pinMap[i][j] == 2){
+				if(prePixel != 2)
+				printf("\033[41m");		//red background color
+				printf("  ");
+				prePixel = 2;
+			}
+			else if(pinMap[i][j] == 3){
+				if(prePixel != 3)
+				printf("\033[44m");		//blue background color
+				printf("  ");
+				prePixel = 3;
+			}
+			else if(pinMap[i][j] == 4){
+				if(prePixel != 4)
+				printf("\033[47m");		//white background color
+				printf("  ");
+				prePixel = 4;
+			}
+			else if(pinMap[i][j] == 5){
+				if(prePixel != 5)
+				printf("\033[45m\033[36m");	//magenta BG & cyan
+				printf("<>");
+				prePixel = 5;
+			}
+			else if(pinMap[i][j] == 6){
+				if(prePixel != 6)
+				printf("\033[45m\033[36m");
+				printf("  ");
+				prePixel = 6;
+			}
+			else{
+				if(prePixel != 0)
+				printf("\033[40m\033[97m");	//black BG & white
+				printf("  ");
+				prePixel = 0;
 			}
 		}
 		printf("\033[40m\033[97m");	//black BG & white
