@@ -512,6 +512,7 @@ int main(int argc, char * argv[]) {
 			/* Command input                                                        */
 			/************************************************************************/
 			char kb = linux_kbhit();
+			printf("asdlkfmaklsdmflkasmflkasmdf");
 			if(kb=='M'){
 				printf("\033[45m\033[36m");
 				for(int i=0; i<printSize/2-1; i++)
