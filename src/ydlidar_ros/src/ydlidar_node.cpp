@@ -458,9 +458,9 @@ int main(int argc, char * argv[]) {
 				3. 전달 확인 후 아두이노에서 거리 계산
 				4. 라이다를 통해 장애물 인식
 			*/
-				printf("initMap");
+				printf("initMap\n");
 				initMap();
-				printf("findWay");
+				printf("findWay\n");
 				findWay(robotX, robotY, departureX, departureY);//output(moveX moveY)
 				char buffer[20];
 				sprintf(buffer, "go/%d/%dE", moveX, moveY); 
