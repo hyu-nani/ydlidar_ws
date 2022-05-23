@@ -371,7 +371,6 @@ int main(int argc, char * argv[]) {
 				    (allMapSize/2+printSize/2)>(allMapSize/2-robotY+Yvalue) &&
 				    (allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue]) == 0){
 						allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
-						printf("/\n");
 					}
 				if( (difference < 0.02) &&	(difference != 0) && (YD_distance[i] > 0.2) && (YD_distance[i] < 4))//[M]
 					data_count[i]++;
