@@ -316,8 +316,9 @@ int main(int argc, char * argv[]) {
 	char buffer[20];
 	sprintf(buffer, "Unit%fD",unitScale);
 	while(SerialRead() != true){
+		printf("%s",buffer);
 		SerialPrint(buffer);
-		delay_ms(100000);
+		delay_ms(500000);
 	}
 	system("clear");
 	delay_ms(50000);
