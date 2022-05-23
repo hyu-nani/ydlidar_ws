@@ -73,7 +73,7 @@ int		departureX = 0, departureY = 0;//departure coordinate
 //screen cursor
 int		cursorX = 0, cursorY = 0;
 bool	integration		= true; //cursor and robot
-bool	screenActive	= false;
+bool	screenActive	= true;
 
 //test
 float distanceTest = 0;
@@ -490,23 +490,13 @@ int main(int argc, char * argv[]) {
 			//rate.sleep();
 			//ros::spinOnce();
 			
-			switch(systemMode){
 			/************************************************************************/
 			/* end system                                                           */
 			/************************************************************************/
-				case 0:
-					break;
-				case 1:
-					break;
-				case 2:
-					for(int i=0;i<allMapSize;i++)//save short term storage
-					for(int j=0;j<allMapSize;j++)
-						oldMap[i][j] = allMap[i][j];
-					break;
-				case 3:
-					break;
-				default:
-					break;
+			if(systemMode == 2)
+				for(int i=0;i<allMapSize;i++)//save short term storage
+				for(int j=0;j<allMapSize;j++)
+				oldMap[i][j] = allMap[i][j];
 			}
 			/************************************************************************/
 			/* Command input                                                        */
@@ -613,7 +603,7 @@ int main(int argc, char * argv[]) {
 					delay_ms(50000);
 				}else if(strcmp(scanData,"map") == 0){
 					mappingActive = !mappingActive;
-				}else if(strcmp(scanData,"screem") == 0){
+				}else if(strcmp(scanData,"screen") == 0){
 					screenActive = !screenActive;
 				}else if(strcmp(scanData,"cursor") == 0){
 					integration = !integration;
