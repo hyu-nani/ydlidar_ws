@@ -458,11 +458,14 @@ int main(int argc, char * argv[]) {
 				3. 전달 확인 후 아두이노에서 거리 계산
 				4. 라이다를 통해 장애물 인식
 			*/
+				printf("initMap");
 				initMap();
+				printf("findWay");
 				findWay(robotX, robotY, departureX, departureY);//output(moveX moveY)
 				char buffer[20];
 				sprintf(buffer, "go/%d/%dE", moveX, moveY); 
 				while(SerialRead() != true){
+					printf("%s\n",buffer);
 					SerialPrint(buffer);
 					delay_ms(500000);
 				}
@@ -596,7 +599,6 @@ int main(int argc, char * argv[]) {
 					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup departure point
 					departureX = cursorX;
 					departureY = cursorY;
-					char buffer[20];
 					system("clear");
 					systemMode = 3; //move to departure
 					delay_ms(50000);
