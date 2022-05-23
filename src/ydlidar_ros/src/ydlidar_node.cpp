@@ -750,6 +750,8 @@ int main(int argc, char * argv[]) {
 				system("clear");
 				delay_ms(50000);
 			}
+			rate.sleep();
+			ros::spinOnce();
 		}
 		break;
     }
