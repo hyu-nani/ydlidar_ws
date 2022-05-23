@@ -321,7 +321,7 @@ int main(int argc, char * argv[]) {
 		delay_ms(500000);
 	}
 	system("clear");
-	delay_ms(50000);
+	delay_ms(5000000);
     while (ret&&ros::ok()) {
         bool hardError;
         //and loop start here 
@@ -369,8 +369,10 @@ int main(int argc, char * argv[]) {
 				    (allMapSize/2+printSize/2)>(allMapSize/2+robotX+Xvalue) && 
 				    (allMapSize/2-printSize/2)<(allMapSize/2-robotY+Yvalue) && 
 				    (allMapSize/2+printSize/2)>(allMapSize/2-robotY+Yvalue) &&
-				    (allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue]) == 0)
-					allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
+				    (allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue]) == 0){
+						allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
+						printf("/");
+					}
 				if( (difference < 0.02) &&	(difference != 0) && (YD_distance[i] > 0.2) && (YD_distance[i] < 4))//[M]
 					data_count[i]++;
 				else
