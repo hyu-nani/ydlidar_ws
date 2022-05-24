@@ -424,6 +424,7 @@ int main(int argc, char * argv[]) {
 				기본 작동 코드로 아두이노에 좌표점 정보 확인 요청
 				
 			*/
+				OKsign = true;
 				SerialPrint("Pos");//require to position data
 				delay_ms(1000);
 				SerialRead();
@@ -440,6 +441,7 @@ int main(int argc, char * argv[]) {
 					SerialPrint("10cm");
 				}
 				else if(count > 12){
+					OKsign = true;
 					SerialPrint("Pos");
 					if(YD_distance[2] > distanceTest){	//다시 측정한 거리가 예상값보다 클때
 							
@@ -478,6 +480,7 @@ int main(int argc, char * argv[]) {
 					OKsign = false;
 				}
 				else{
+					OKsign = true;
 					SerialPrint("Pos");//require to position data
 					delay_ms(1000);
 				}
@@ -756,7 +759,6 @@ bool SerialRead()
 	if(strcmp(buf,"OK")==0){//transform success
 		OKsign = true;
 		return true;
-		
 	}
 	else{
 		if( buf[0]=='P' && buf[1]=='o' && buf[2]=='s' ){
