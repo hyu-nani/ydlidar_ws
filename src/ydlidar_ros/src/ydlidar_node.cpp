@@ -426,13 +426,20 @@ int main(int argc, char * argv[]) {
 				allMap[pointY][pointX] = 3; //add departure
 			}
 			else if(systemMode == 1){		
-			/*     System Mode 1 : Default mode remote control   (edit)             */
+			/*     System Mode 1 : Default mode remote control   (edit)           
+				기본 작동 코드로 아두이노에 좌표점 정보 확인 요청
+				
+			*/
 				SerialPrint("Pos");//require to position data
 				delay_ms(1000);
 				SerialRead();
 			}
 			else if(systemMode == 2){
-			/*  System Mode 2 : adjust to error gap used the lidar (edit)           */
+			/*  System Mode 2 : adjust to error gap used the lidar (edit)           
+				가변 조정 알고리즘을 통한 아두이노의 하드웨어적 오차를 능동수정
+				<미완성>
+			*/
+			
 				if(count == 10) // 각 카운트마다 실행 명령 분할
 					distanceTest = YD_distance[2];
 				else if(count == 11){// 10cm 전진 명령
@@ -453,10 +460,12 @@ int main(int argc, char * argv[]) {
 			else if(systemMode == 3){		
 			/*  System Mode 3 : setting departure and move (edit)                  
 				<sequence>
-				1. 앞서 커서의 이동에 의해 목적지를 설정
-				2. 목적시 설정과 동시에 아두이노로 목적지의 좌표값을 전달
-				3. 전달 확인 후 아두이노에서 거리 계산
-				4. 라이다를 통해 장애물 인식
+				1. 앞서 커서의 이동에 의해 목적지를 설정 (시스템1)
+				2. 목적시 설정과 동시에 미로계산 및 목적지까지의 거리계산
+				3. 다음 이동 좌표점 확인 후 아두이노에 전달
+				4. 아두이노 데이터 인식후 좌표위치로 이동
+				5. 이동 후 현재 좌표 확인
+				6. 라즈베리파이에서 좌표 확인 후 현재좌표수정 및 2번 과정으로 이동
 			*/
 				printf("initMap\n");
 				initMap();
@@ -655,7 +664,7 @@ int main(int argc, char * argv[]) {
 								}
 				}else if(strcmp(scanData,"save")==0){
 					ofstream savefile;
-					savefile.open("map.c");
+					savefile.open("map.txt");
 					for(int k = 0; k< allMapSize ; k++){
 						for(int j=0;j<allMapSize;j++){
 							savefile << (char)allMap[k][j];
@@ -664,7 +673,7 @@ int main(int argc, char * argv[]) {
 					}
 					savefile.close();
 				}else if(strcmp(scanData,"load")==0){
-					ifstream loadfile("map.c");
+					ifstream loadfile("map.txt");
 					string ch;
 					printf("\033[%d;%dH",1,1);//set cursor 0,0
 					if(loadfile.good()){
