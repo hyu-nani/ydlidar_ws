@@ -483,8 +483,8 @@ int main(int argc, char * argv[]) {
 				else{
 					SerialPrint("Pos");//require to position data
 					delay_ms(1000);
-					SerialRead();
 				}
+				SerialRead();
 			}
 			
 			/************************************************************************/
