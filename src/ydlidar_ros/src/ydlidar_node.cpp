@@ -469,9 +469,7 @@ int main(int argc, char * argv[]) {
 						delay_ms(2000000);
 						systemMode = 1;
 					}//output(moveX moveY)
-					else{
-						setMoveXY(allMapSize/2+robotX, allMapSize/2-robotY);
-					}
+					setMoveXY(allMapSize/2+robotX, allMapSize/2-robotY);
 					if(moveY!=0 || moveX != 0){
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);
@@ -601,6 +599,7 @@ int main(int argc, char * argv[]) {
 					OKsign = true;	
 					SerialPrint("reset");
 					OKsign = true;	
+					systemMode = 1;
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"map") == 0){
