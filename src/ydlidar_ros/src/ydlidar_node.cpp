@@ -681,7 +681,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					delay_ms(50000);
 				}else{
-					cursorY+=int(100/unitScale);	//cursor move
+					cursorY+=int(50/unitScale);	//cursor move
 				}
 			}else if(kb == 'L'){
 				if(integration){
@@ -691,7 +691,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					delay_ms(50000);
 				}else{
-					cursorX-=int(100/unitScale);	//cursor move
+					cursorX-=int(50/unitScale);	//cursor move
 				}
 			}else if(kb == 'R'){
 				if(integration){
@@ -701,7 +701,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					delay_ms(50000);
 				}else{
-					cursorX+=int(100/unitScale);	//cursor move
+					cursorX+=int(50/unitScale);	//cursor move
 				}
 			}else if(kb == 'D'){
 				if(integration){
@@ -711,7 +711,7 @@ int main(int argc, char * argv[]) {
 					system("clear");
 					delay_ms(50000);
 				}else{
-					cursorY-=int(100/unitScale);	//cursor move
+					cursorY-=int(50/unitScale);	//cursor move
 				}
 			}else if(kb == 'S'){
 				SerialPrint("stop");
