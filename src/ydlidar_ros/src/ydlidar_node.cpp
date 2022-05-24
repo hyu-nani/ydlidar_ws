@@ -482,13 +482,14 @@ int main(int argc, char * argv[]) {
 					}
 					else{
 						SerialPrint("stop");
-						delay_ms(500000);
 					}
 					OKsign = false;
 				}
-				SerialPrint("Pos");//require to position data
-				delay_ms(1000);
-				SerialRead();
+				else{
+					SerialPrint("Pos");//require to position data
+					delay_ms(1000);
+					SerialRead();
+				}
 			}
 			
 			/************************************************************************/
