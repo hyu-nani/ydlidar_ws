@@ -154,4 +154,4 @@ bool findWay(int sx, int sy, int ex, int ey){
 		else if(countMaze[sy][sx + 1] == -1)
 			moveX = -1;
 	}
-}
+};
