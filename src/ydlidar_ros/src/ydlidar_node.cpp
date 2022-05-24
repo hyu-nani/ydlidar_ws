@@ -443,9 +443,9 @@ int main(int argc, char * argv[]) {
 				if(count == 10) // 각 카운트마다 실행 명령 분할
 					distanceTest = YD_distance[2];
 				else if(count == 11){// 10cm 전진 명령
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("10cm");
-						delay_ms(500000);
+						OKsign = false;
 					}
 				}
 				else if(count > 12){
@@ -467,12 +467,13 @@ int main(int argc, char * argv[]) {
 				5. 이동 후 현재 좌표 확인
 				6. 라즈베리파이에서 좌표 확인 후 현재좌표수정 및 2번 과정으로 이동
 			*/
-				
 				if(OKsign){
 					printf("initMap\n");
 					initMap();
-					printf("findWay\n");
-					findWay(allMapSize/2+robotX, allMapSize/2+robotY, allMapSize/2+departureX, allMapSize/2+departureY);//output(moveX moveY)
+				}
+				findWay(allMapSize/2+robotX, allMapSize/2+robotY, allMapSize/2+departureX, allMapSize/2+departureY);//output(moveX moveY)
+				if(OKsign){
+					setMoveXY();
 					if(moveY!=0 || moveX != 0){
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);
