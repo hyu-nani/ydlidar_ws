@@ -56,7 +56,7 @@ void findWay(int sx, int sy, int ex, int ey){
 	int count = 1;
 	countMaze[sy][sx] = 1;
 	//counting maze
-	printf("%d/%d/%d/%d :\n",sx,sy,ex,ey);
+	printf("%d/%d/%d/%d counting:\n",sx,sy,ex,ey);
 	while(countMaze[ey][ex] != count){
 		for (int y = -count + sy; y < count + sy; y++)
 		for (int x = -count + sx; x < count + sx; x++) {
@@ -75,6 +75,7 @@ void findWay(int sx, int sy, int ex, int ey){
 		}
 		count++;
 	}
+	printf("find way\n");
 	//find way inversion counting
 	int nowX = ex, nowY = ey;
 		countMaze[nowX][nowY] = -1;
