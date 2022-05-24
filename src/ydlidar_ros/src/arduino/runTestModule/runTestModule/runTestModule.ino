@@ -133,7 +133,7 @@ void loop()
 			sscanf(SerialData,"Unit%fD",&unitScale);
 			Serial.print("OK");	//notify completion of transfer
 		}else if(strcmp(SerialData,"Pos")==0){
-			positionPinrt();
+			positionPrint();
 		}else if(SerialData[0]=='g' && SerialData[1]=='o'){	//targetting mode
 			departureX = 0;
 			departureY = 0;

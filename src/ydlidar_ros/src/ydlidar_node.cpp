@@ -473,7 +473,7 @@ int main(int argc, char * argv[]) {
 				}
 				findWay(allMapSize/2+robotX, allMapSize/2+robotY, allMapSize/2+departureX, allMapSize/2+departureY);//output(moveX moveY)
 				if(OKsign){
-					setMoveXY();
+					setMoveXY(allMapSize/2+robotX, allMapSize/2+robotY);
 					if(moveY!=0 || moveX != 0){
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);

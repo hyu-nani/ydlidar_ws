@@ -102,7 +102,7 @@ void findWay(int sx, int sy, int ex, int ey){
 	}
 	printf("%d\n", count);
 }
-void setMoveXY(){
+void setMoveXY(int sx, int sy){
 	//next move point
 	moveX = 0;
 	moveY = 0;
