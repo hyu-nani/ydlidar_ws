@@ -612,9 +612,8 @@ int main(int argc, char * argv[]) {
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
 							allMap[i][j] = 0;
-					if(OKsign){
-						SerialPrint("reset");
-					}
+					OKsign = true;	
+					SerialPrint("reset");
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"map") == 0){
