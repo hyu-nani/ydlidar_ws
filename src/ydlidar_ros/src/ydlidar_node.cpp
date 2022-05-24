@@ -66,7 +66,7 @@ double	robotAngle = 0;//initial angle
 
 //delay
 void	delay_ms(int time){usleep(time);} 
-	
+bool	OKsign	=	false;
 //departure point
 int		departureX = 0, departureY = 0;//departure coordinate
 
@@ -467,22 +467,23 @@ int main(int argc, char * argv[]) {
 				5. 이동 후 현재 좌표 확인
 				6. 라즈베리파이에서 좌표 확인 후 현재좌표수정 및 2번 과정으로 이동
 			*/
-				printf("initMap\n");
-				initMap();
-				printf("findWay\n");
-				findWay(allMapSize/2+robotX, allMapSize/2+robotY, allMapSize/2+departureX, allMapSize/2+departureY);//output(moveX moveY)
-				if(moveY!=0 || moveX != 0){
-					char buffer[20];
-					sprintf(buffer, "go/%d/%dE", moveX, moveY);
-					printf("send>%s",buffer);
-					SerialPrint(buffer);
-					while(SerialRead() != true){
-						delay_ms(100000);
+				
+				if(OKsign){
+					printf("initMap\n");
+					initMap();
+					printf("findWay\n");
+					findWay(allMapSize/2+robotX, allMapSize/2+robotY, allMapSize/2+departureX, allMapSize/2+departureY);//output(moveX moveY)
+					if(moveY!=0 || moveX != 0){
+						char buffer[20];
+						sprintf(buffer, "go/%d/%dE", moveX, moveY);
+						printf("send>%s",buffer);
+						SerialPrint(buffer);
 					}
-				}
-				else{
-					SerialPrint("stop");
-					delay_ms(500000);
+					else{
+						SerialPrint("stop");
+						delay_ms(500000);
+					}
+					OKsign = false;
 				}
 				SerialPrint("Pos");//require to position data
 				delay_ms(1000);
@@ -570,46 +571,30 @@ int main(int argc, char * argv[]) {
 					printf("read!\n");
 					delay_ms(100000);
 				}else if(strcmp(scanData,"up") == 0){
-					count=0;
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("up");
-						delay_ms(50000);
-						count++;
-						if(count>10)
-						break;
+						OKsign = false;
 					}
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"down") == 0){
-					count=0;
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("down");
-						delay_ms(50000);
-						count++;
-						if(count>10)
-						break;
+						OKsign = false;
 					}
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"10cm") == 0){
-					count=0;
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("10cm");
-						delay_ms(50000);
-						count++;
-						if(count>10)
-						break;
+						OKsign = false;
 					}
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"test") == 0){
-					count=0;
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("test");
-						delay_ms(50000);
-						count++;
-						if(count>10)
-						break;
+						OKsign = false;
 					}
 					system("clear");
 					delay_ms(50000);
@@ -624,13 +609,9 @@ int main(int argc, char * argv[]) {
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
 							allMap[i][j] = 0;
-					count=0;
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("reset");
-						delay_ms(50000);
-						count++;
-						if(count>10)
-						break;
+						OKsign = false;
 					}
 					system("clear");
 					delay_ms(50000);
@@ -694,10 +675,10 @@ int main(int argc, char * argv[]) {
 					printf("input(cm):");
 					scanf("%f",&unitScale);
 					sprintf(buffer, "Unit%f",unitScale);
-					while(SerialRead() != true){
+					if(OKsign){
 						printf("send>%s",buffer);
 						SerialPrint(buffer);
-						delay_ms(50000);
+						OKsign = false;
 					}
 					system("clear");
 					delay_ms(50000);
@@ -711,9 +692,9 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			}else if(kb == 'U'){
 				if(integration){
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("front");
-						delay_ms(50000);
+						OKsign = false;
 					}
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation
@@ -724,9 +705,9 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'L'){
 				if(integration){
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("left");
-						delay_ms(50000);
+						OKsign = false;
 					}
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 1.0;		//It's when the robot spins Error value of interference by rotation 
@@ -737,9 +718,9 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'R'){
 				if(integration){
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("right");
-						delay_ms(50000);
+						OKsign = false;
 					}
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = -1;		//It's when the robot spins Error value of interference by rotation
@@ -750,9 +731,9 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'D'){
 				if(integration){
-					while(SerialRead() != true){
+					if(OKsign){
 						SerialPrint("back");
-						delay_ms(50000);
+						OKsign = false;
 					}
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation
@@ -762,9 +743,9 @@ int main(int argc, char * argv[]) {
 					cursorY-=int(100/unitScale);	//cursor move
 				}
 			}else if(kb == 'S'){
-				while(SerialRead() != true){
+				if(OKsign){
 					SerialPrint("stop");
-					delay_ms(50000);
+					OKsign = false;
 				}
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
@@ -810,7 +791,9 @@ bool SerialRead()
 		printf("%i bytes read :\n   [ %s ]   ", serial1, buf);
 	}
 	if(strcmp(buf,"OK")==0){//transform success
+		OKsign = true;
 		return true;
+		
 	}
 	else{
 		if( buf[0]=='P' && buf[1]=='o' && buf[2]=='s' ){
