@@ -39,7 +39,7 @@ void initMap(){
 		if(	dot == 0 ||	//none
 			dot == 1 ||	//sensing
 			dot == 2){	//wall
-			mazeMap[i][j] = 0;	//wall
+			mazeMap[y][x] = 0;	//wall
 		}
 		else{
 			mazeMap[y][x] = 1;	//path
