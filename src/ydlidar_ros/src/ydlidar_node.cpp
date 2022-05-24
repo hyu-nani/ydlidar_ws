@@ -474,10 +474,10 @@ int main(int argc, char * argv[]) {
 				if(moveY!=0 || moveX != 0){
 					char buffer[20];
 					sprintf(buffer, "go/%d/%dE", moveX, moveY);
+					printf("send>%s",buffer);
+					SerialPrint(buffer);
 					while(SerialRead() != true){
-						printf("send>%s",buffer);
-						SerialPrint(buffer);
-						delay_ms(500000);
+						delay_ms(100000);
 					}
 				}
 				else{
@@ -844,43 +844,43 @@ void printSSHmonitor(int currentY,int currentX){
 		printf(" |");
 		prePixel = 0;
 		for(int j=0;j<printSize;j++){
-			if(pinMap[i][j] == 1){
+			if(pinMap[i][j] == 1){//sensing
 				if(prePixel != 1)
 				printf("\033[43m\033[33m");//orange background color
 				printf("  ");
 				prePixel = 1;
 			}
-			else if(pinMap[i][j] == 2){
+			else if(pinMap[i][j] == 2){//wall
 				if(prePixel != 2)
 				printf("\033[41m");		//red background color
 				printf("  ");
 				prePixel = 2;
 			}
-			else if(pinMap[i][j] == 3){
+			else if(pinMap[i][j] == 3){//departure
 				if(prePixel != 3)
 				printf("\033[44m");		//blue background color
 				printf("  ");
 				prePixel = 3;
 			}
-			else if(pinMap[i][j] == 4){
+			else if(pinMap[i][j] == 4){//emty
 				if(prePixel != 4)
 				printf("\033[47m");		//white background color
 				printf("  ");
 				prePixel = 4;
 			}
-			else if(pinMap[i][j] == 5){
+			else if(pinMap[i][j] == 5){//center
 				if(prePixel != 5)
 				printf("\033[45m\033[36m");	//magenta BG & cyan
 				printf("<>");
 				prePixel = 5;
 			}
-			else if(pinMap[i][j] == 6){
+			else if(pinMap[i][j] == 6){//path
 				if(prePixel != 6)
 				printf("\033[45m\033[36m");
 				printf("  ");
 				prePixel = 6;
 			}
-			else{
+			else{//none
 				if(prePixel != 0)
 				printf("\033[40m\033[97m");	//black BG & white
 				printf("  ");
