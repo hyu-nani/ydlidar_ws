@@ -495,13 +495,14 @@ int main(int argc, char * argv[]) {
 			printf("\033[%d;%dH",1,3);//set cursor 0,2
 			//SSH print
 			if(screenActive){
+				allMap[allMapSize/2-robotY][allMapSize/2+robotX] = 5;//robot
 				printSSHmonitor(cursorY,cursorX);
 				printf("count:%d  /  1-unit : %f cm \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale);
 				printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 				//return sensing text to empty text 
 				for(int i= -printSize/2-10;i<printSize/2+10;i++)
 					for(int j= -printSize/2-10;j<printSize/2+10;j++){
-					  int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
+						int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
 						if(a == 1 || a == 5) //sensing point or robot center
 							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
 					}
@@ -589,6 +590,7 @@ int main(int argc, char * argv[]) {
 					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup departure point
 					departureX = allMapSize/2+cursorX;
 					departureY = allMapSize/2-cursorY;
+					integration = true;
 					system("clear");
 					systemMode = 3; //move to departure
 					delay_ms(50000);
