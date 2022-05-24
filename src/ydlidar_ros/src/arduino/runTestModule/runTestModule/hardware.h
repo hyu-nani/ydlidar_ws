@@ -79,7 +79,7 @@ void driverOUTPUT(){
 	digitalWrite(driverIn4,in4);
 }
 
-void positionPinrt(){
+void positionPrint(){
 	Serial.print("Pos/");
 	Serial.print(int(robotX/unitScale));
 	Serial.print("/");
