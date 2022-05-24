@@ -464,9 +464,7 @@ int main(int argc, char * argv[]) {
 				if(OKsign){
 					printf("initMap\n");
 					initMap();
-				}
-				findWay(allMapSize/2+robotX, allMapSize/2+robotY, allMapSize/2+departureX, allMapSize/2+departureY);//output(moveX moveY)
-				if(OKsign){
+					findWay(allMapSize/2+robotX, allMapSize/2+robotY, allMapSize/2+departureX, allMapSize/2+departureY);//output(moveX moveY)
 					setMoveXY(allMapSize/2+robotX, allMapSize/2+robotY);
 					if(moveY!=0 || moveX != 0){
 						char buffer[20];
