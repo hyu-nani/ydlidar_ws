@@ -86,7 +86,7 @@ bool findWay(int sx, int sy, int ex, int ey){
 	printf("find way\n");
 	//find way inversion counting
 	int nowX = ex, nowY = ey;
-		countMaze[nowY][nowX] = -1;
+	countMaze[nowY][nowX] = -1;
 	for (int i = count; i > 0; i--) {
 		if (i - 1 == countMaze[nowY - 1][nowX]) {
 			countMaze[nowY - 1][nowX] = -1;
@@ -114,7 +114,7 @@ bool findWay(int sx, int sy, int ex, int ey){
 	moveX = 0;
 	moveY = 0;
 	//현재 방향에 따른 값 수정 필요
-	if( -10 < robotAngle && robotAngle < 10)//위
+	if( -10 < robotAngle && robotAngle < 10){//위
 		if(countMaze[sy - 1][sx] == -1)
 			moveY = -1;
 		else if(countMaze[sy + 1][sx] == -1)
@@ -123,7 +123,8 @@ bool findWay(int sx, int sy, int ex, int ey){
 			moveX = -1;
 		else if(countMaze[sy][sx + 1] == -1)
 			moveX = 1;
-	else if( 80 < robotAngle && robotAngle < 100)//좌
+	}
+	else if( 80 < robotAngle && robotAngle < 100){//좌
 		if(countMaze[sy - 1][sx] == -1)
 			moveX = -1;
 		else if(countMaze[sy + 1][sx] == -1)
@@ -132,7 +133,8 @@ bool findWay(int sx, int sy, int ex, int ey){
 			moveY = 1;
 		else if(countMaze[sy][sx + 1] == -1)
 			moveY = -1;
-	else if( -100 < robotAngle && robotAngle < -80)//우
+	}
+	else if( -100 < robotAngle && robotAngle < -80){//우
 		if(countMaze[sy - 1][sx] == -1)
 			moveX = 1;
 		else if(countMaze[sy + 1][sx] == -1)
@@ -141,7 +143,8 @@ bool findWay(int sx, int sy, int ex, int ey){
 			moveY = -1;
 		else if(countMaze[sy][sx + 1] == -1)
 			moveY = 1;
-	else if( 170 < robotAngle && robotAngle < -170)//아래
+	}
+	else if( 170 < robotAngle && robotAngle < -170){//아래
 		if(countMaze[sy - 1][sx] == -1)
 			moveY = 1;
 		else if(countMaze[sy + 1][sx] == -1)
@@ -150,4 +153,5 @@ bool findWay(int sx, int sy, int ex, int ey){
 			moveX = 1;
 		else if(countMaze[sy][sx + 1] == -1)
 			moveX = -1;
+	}
 }
