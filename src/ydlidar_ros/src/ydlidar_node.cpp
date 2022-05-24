@@ -436,11 +436,8 @@ int main(int argc, char * argv[]) {
 			
 				if(count == 10) // 각 카운트마다 실행 명령 분할
 					distanceTest = YD_distance[2];
-				else if(count == 11){// 10cm 전진 명령
-					if(OKsign){
-						SerialPrint("10cm");
-						OKsign = false;
-					}
+				else if(count == 11){// 10cm 전진 명령	
+					SerialPrint("10cm");
 				}
 				else if(count > 12){
 					SerialPrint("Pos");
@@ -769,6 +766,7 @@ bool SerialRead()
 				cursorY = robotY;
 			}
 			printf("reading....");
+			OKsign = true;
 			delay_ms(10000);
 		}
 		return false;
