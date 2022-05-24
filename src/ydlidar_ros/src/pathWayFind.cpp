@@ -86,7 +86,7 @@ bool findWay(int sx, int sy, int ex, int ey){
 	printf("find way\n");
 	//find way inversion counting
 	int nowX = ex, nowY = ey;
-		countMaze[nowX][nowY] = -1;
+		countMaze[nowY][nowX] = -1;
 	for (int i = count; i > 0; i--) {
 		if (i - 1 == countMaze[nowY - 1][nowX]) {
 			countMaze[nowY - 1][nowX] = -1;
