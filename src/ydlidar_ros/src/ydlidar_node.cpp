@@ -574,31 +574,19 @@ int main(int argc, char * argv[]) {
 					printf("read!\n");
 					delay_ms(100000);
 				}else if(strcmp(scanData,"up") == 0){
-					if(OKsign){
-						SerialPrint("up");
-						OKsign = false;
-					}
+					SerialPrint("up");
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"down") == 0){
-					if(OKsign){
-						SerialPrint("down");
-						OKsign = false;
-					}
+					SerialPrint("down");
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"10cm") == 0){
-					if(OKsign){
-						SerialPrint("10cm");
-						OKsign = false;
-					}
+					SerialPrint("10cm");
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"test") == 0){
-					if(OKsign){
-						SerialPrint("test");
-						OKsign = false;
-					}
+					SerialPrint("test");
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"departure") == 0 && !integration){
@@ -614,6 +602,7 @@ int main(int argc, char * argv[]) {
 							allMap[i][j] = 0;
 					OKsign = true;	
 					SerialPrint("reset");
+					OKsign = true;	
 					system("clear");
 					delay_ms(50000);
 				}else if(strcmp(scanData,"map") == 0){
@@ -673,14 +662,9 @@ int main(int argc, char * argv[]) {
 					scanf("%d", &systemMode);
 				}else if(strcmp(scanData,"scale")==0){
 					char buffer[20];
-					printf("input(cm):");
 					scanf("%f",&unitScale);
 					sprintf(buffer, "Unit%f",unitScale);
-					if(OKsign){
-						printf("send>%s",buffer);
-						SerialPrint(buffer);
-						OKsign = false;
-					}
+					SerialPrint(buffer);
 					system("clear");
 					delay_ms(50000);
 				}else{
@@ -693,10 +677,7 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			}else if(kb == 'U'){
 				if(integration){
-					if(OKsign){
-						SerialPrint("front");
-						OKsign = false;
-					}
+					SerialPrint("front");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
@@ -706,10 +687,7 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'L'){
 				if(integration){
-					if(OKsign){
-						SerialPrint("left");
-						OKsign = false;
-					}
+					SerialPrint("left");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 1.0;		//It's when the robot spins Error value of interference by rotation 
 					system("clear");
@@ -719,10 +697,7 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'R'){
 				if(integration){
-					if(OKsign){
-						SerialPrint("right");
-						OKsign = false;
-					}
+					SerialPrint("right");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = -1;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
@@ -732,10 +707,7 @@ int main(int argc, char * argv[]) {
 				}
 			}else if(kb == 'D'){
 				if(integration){
-					if(OKsign){
-						SerialPrint("back");
-						OKsign = false;
-					}
+					SerialPrint("back");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
@@ -744,10 +716,7 @@ int main(int argc, char * argv[]) {
 					cursorY-=int(100/unitScale);	//cursor move
 				}
 			}else if(kb == 'S'){
-				if(OKsign){
-					SerialPrint("stop");
-					OKsign = false;
-				}
+				SerialPrint("stop");
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
 				system("clear");
@@ -768,11 +737,13 @@ int main(int argc, char * argv[]) {
 
 void SerialPrint(const char* format)
 {
-	serial1 = write(fd,format,int(strlen(format)));
-	//printf("\n %s %d\n",format,int(strlen(format)));
-	//serial1 = write(fd,"front",5);
-	if(serial1 < 0)
-		perror("write failed - ");
+	if(OKsign){
+		serial1 = write(fd,format,int(strlen(format)));
+		if(serial1 < 0)
+			perror("write failed - ");	
+		OKsign = false;
+	}
+	
 }
 bool SerialRead()
 {
