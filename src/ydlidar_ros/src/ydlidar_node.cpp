@@ -464,7 +464,8 @@ int main(int argc, char * argv[]) {
 				if(OKsign){
 					printf("initMap\n");
 					initMap();
-					if(findWay(allMapSize/2+robotX, allMapSize/2-robotY, departureX, departureY) == false){
+					
+					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, departureX, departureY)){
 						printf("I can Find way!!!!!!!!!!!!!!!!\n");
 						delay_ms(2000000);
 						systemMode = 1;
