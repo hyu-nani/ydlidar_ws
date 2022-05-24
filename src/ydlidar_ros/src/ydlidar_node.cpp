@@ -311,17 +311,11 @@ int main(int argc, char * argv[]) {
 	ros::Subscriber sub = n.subscribe<sensor_msgs::LaserScan>("/scan", 1000, scanCallback);
 	
 	printf("unit");
-    	//test ms
 	int count=0;
 	char buffer[20];
 	sprintf(buffer, "Unit%fD\n",unitScale);
-	while(SerialRead() != true){
-		printf("send>%s",buffer);
-		SerialPrint(buffer);
-		delay_ms(500000);
-	}
 	system("clear");
-	delay_ms(3000000);
+	delay_ms(1000000);
     while (ret&&ros::ok()) {
         bool hardError;
         //and loop start here 
