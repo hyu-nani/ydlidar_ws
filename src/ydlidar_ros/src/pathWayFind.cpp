@@ -110,9 +110,6 @@ bool findWay(int sx, int sy, int ex, int ey){
 		}
 	}
 	printf("%d\n", count);
-	return true;
-}
-void setMoveXY(int sx, int sy){
 	//next move point
 	moveX = 0;
 	moveY = 0;

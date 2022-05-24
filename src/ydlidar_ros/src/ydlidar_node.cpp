@@ -469,7 +469,6 @@ int main(int argc, char * argv[]) {
 						delay_ms(2000000);
 						systemMode = 1;
 					}//output(moveX moveY)
-					setMoveXY(allMapSize/2+robotX, allMapSize/2-robotY);
 					if(moveY!=0 || moveX != 0){
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);
