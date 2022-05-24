@@ -368,8 +368,8 @@ int main(int argc, char * argv[]) {
 				int Yvalue = round(-sin((YD_angle[i]+90+robotAngle+gapAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 				if( (allMapSize/2-printSize/2)<(allMapSize/2+robotX+Xvalue) && 
 				    (allMapSize/2+printSize/2)>(allMapSize/2+robotX+Xvalue) && 
-				    (allMapSize/2-printSize/2)<(allMapSize/2+robotY+Yvalue) && 
-				    (allMapSize/2+printSize/2)>(allMapSize/2+robotY+Yvalue) &&
+				    (allMapSize/2-printSize/2)<(allMapSize/2-robotY+Yvalue) && 
+				    (allMapSize/2+printSize/2)>(allMapSize/2-robotY+Yvalue) &&
 				    (allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue]) == 0){
 						allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
 					}
@@ -378,7 +378,7 @@ int main(int argc, char * argv[]) {
 				else
 					data_count[i] = 0;
 				if(data_count[i] > 4 && mappingActive == true && ignoreTime == 0){//wall sensitivity
-					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2+robotY+Yvalue)<allMapSize)
+					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2-robotY+Yvalue)<allMapSize)
 						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize){
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 							Line(allMapSize/2-robotY,allMapSize/2+robotX,allMapSize/2-robotY+Yvalue,allMapSize/2+robotX+Xvalue);
