@@ -32,15 +32,18 @@ void initMap(){
 	StartY	=	robotY;
 	endX	=	departureX;
 	endY	=	departureY;
+	int	guide	=	1;
 	for(int y = 0; y < allMapSize; y++)
 	for(int x = 0; x < allMapSize; x++){
 		int dot = allMap[y][x];
 		if(	dot == 0 ||	//none
 			dot == 1 ||	//sensing
-			dot == 2)	//wall
-			mazeMap[y][x] = 0;	//wall
-		else
+			dot == 2){	//wall
+			mazeMap[i][j] = 0;	//wall
+		}
+		else{
 			mazeMap[y][x] = 1;	//path
+		}
 		countMaze[y][x] = 0;
 	}
 }
@@ -52,7 +55,7 @@ void initMap(){
 	ex = departure X
 	ey = departure Y
 */
-void findWay(int sx, int sy, int ex, int ey){
+bool findWay(int sx, int sy, int ex, int ey){
 	int count = 1;
 	countMaze[sy][sx] = 1;
 	//counting maze
@@ -73,7 +76,13 @@ void findWay(int sx, int sy, int ex, int ey){
 					countMaze[y][x - 1] = count + 1;
 			}
 		}
-		count++;
+		delay_ms(1);
+		if(count > 1000){
+			return false;
+			break;
+		}
+		else
+			count++;
 	}
 	printf("find way\n");
 	//find way inversion counting
@@ -102,6 +111,7 @@ void findWay(int sx, int sy, int ex, int ey){
 		}
 	}
 	printf("%d\n", count);
+	return true;
 }
 void setMoveXY(int sx, int sy){
 	//next move point
