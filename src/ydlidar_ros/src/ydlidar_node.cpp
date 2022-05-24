@@ -464,12 +464,14 @@ int main(int argc, char * argv[]) {
 				if(OKsign){
 					printf("initMap\n");
 					initMap();
-					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, allMapSize/2+departureX, allMapSize/2-departureY)){
+					if(findWay(allMapSize/2+robotX, allMapSize/2-robotY, departureX, departureY) == false){
 						printf("I can Find way!!!!!!!!!!!!!!!!\n");
 						delay_ms(2000000);
 						systemMode = 1;
 					}//output(moveX moveY)
-					setMoveXY(allMapSize/2+robotX, allMapSize/2-robotY);
+					else{
+						setMoveXY(allMapSize/2+robotX, allMapSize/2-robotY);
+					}
 					if(moveY!=0 || moveX != 0){
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);
@@ -587,8 +589,8 @@ int main(int argc, char * argv[]) {
 					delay_ms(50000);
 				}else if(strcmp(scanData,"departure") == 0 && !integration){
 					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup departure point
-					departureX = cursorX;
-					departureY = cursorY;
+					departureX = allMapSize/2+cursorX;
+					departureY = allMapSize/2-cursorY;
 					system("clear");
 					systemMode = 3; //move to departure
 					delay_ms(50000);
