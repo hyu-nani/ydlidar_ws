@@ -614,7 +614,6 @@ int main(int argc, char * argv[]) {
 							allMap[i][j] = 0;
 					if(OKsign){
 						SerialPrint("reset");
-						OKsign = false;
 					}
 					system("clear");
 					delay_ms(50000);
