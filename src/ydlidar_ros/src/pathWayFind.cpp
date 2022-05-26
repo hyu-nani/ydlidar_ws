@@ -23,15 +23,15 @@ int		moveX = 0, moveY = 0;
 /*
 	Convert allmap to mazeMap
 	and
-	setting start position , departure position
+	setting start position , arrival position
 	1 : path
 	0 : wall
 */
 void initMap(){
 	startX	=	robotX;
 	StartY	=	robotY;
-	endX	=	departureX;
-	endY	=	departureY;
+	endX	=	arrivalX;
+	endY	=	arrivalY;
 	int	guide	=	1;
 	for(int y = 0; y < allMapSize; y++)
 	for(int x = 0; x < allMapSize; x++){
@@ -47,14 +47,6 @@ void initMap(){
 		countMaze[y][x] = 0;
 	}
 }
-
-/*
-	Find path way
-	sx = start X
-	sy = start Y
-	ex = departure X
-	ey = departure Y
-*/
 bool findWay(int sx, int sy, int ex, int ey){
 	int count = 1;
 	countMaze[sy][sx] = 1;

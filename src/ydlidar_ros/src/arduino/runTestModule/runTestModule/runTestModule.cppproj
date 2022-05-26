@@ -18,8 +18,7 @@
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
-    <OverrideVtorValue>
-    </OverrideVtorValue>
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
     <eraseonlaunchrule>0</eraseonlaunchrule>
     <ProgFlashFromRam>true</ProgFlashFromRam>
     <RamSnippetAddress>0x20000000</RamSnippetAddress>
@@ -42,6 +41,23 @@
     <preserveEEPROM>true</preserveEEPROM>
     <ResetRule>0</ResetRule>
     <EraseKey />
+    <avrtool>com.atmel.avrdbg.tool.stk500</avrtool>
+    <avrtoolserialnumber />
+    <avrdeviceexpectedsignature>0x1E9801</avrdeviceexpectedsignature>
+    <com_atmel_avrdbg_tool_stk500>
+      <ToolOptions>
+        <InterfaceProperties>
+          <IspClock>125000</IspClock>
+        </InterfaceProperties>
+        <InterfaceName>ISP</InterfaceName>
+      </ToolOptions>
+      <ToolType>com.atmel.avrdbg.tool.stk500</ToolType>
+      <ToolNumber>
+      </ToolNumber>
+      <ToolName>STK500</ToolName>
+    </com_atmel_avrdbg_tool_stk500>
+    <avrtoolinterface>ISP</avrtoolinterface>
+    <avrtoolinterfaceclock>125000</avrtoolinterfaceclock>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -86,9 +102,8 @@
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/cores/esp8266/umm_malloc</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/variants/nodemcu</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/include</Value>
-      <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/lwip/include</Value>
+      <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/lwip2/include</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/libc/xtensa-lx106-elf/include</Value>
-      <Value>{build.path}/core</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2/xtensa-lx106-elf</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include</Value>
@@ -136,9 +151,8 @@
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/cores/esp8266/umm_malloc</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/variants/nodemcu</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/include</Value>
-      <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/lwip/include</Value>
+      <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/lwip2/include</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/libc/xtensa-lx106-elf/include</Value>
-      <Value>{build.path}/core</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2/xtensa-lx106-elf</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include</Value>
@@ -216,9 +230,8 @@
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/cores/esp8266/umm_malloc</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/variants/nodemcu</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/include</Value>
-      <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/lwip/include</Value>
+      <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/lwip2/include</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/libc/xtensa-lx106-elf/include</Value>
-      <Value>{build.path}/core</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2/xtensa-lx106-elf</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include</Value>
@@ -266,9 +279,8 @@
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/cores/esp8266/umm_malloc</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/variants/nodemcu</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/include</Value>
-      <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/lwip/include</Value>
+      <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/lwip2/include</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/hardware/esp8266/2.7.4/tools/sdk/libc/xtensa-lx106-elf/include</Value>
-      <Value>{build.path}/core</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include/c++/4.8.2/xtensa-lx106-elf</Value>
       <Value>C:/Users/cube_/AppData/Local/arduino15/packages/esp8266/tools/xtensa-lx106-elf-gcc/2.5.0-4-b40a506/xtensa-lx106-elf/include</Value>

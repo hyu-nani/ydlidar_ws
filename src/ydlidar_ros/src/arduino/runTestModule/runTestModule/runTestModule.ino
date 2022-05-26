@@ -135,24 +135,24 @@ void loop()
 		}else if(strcmp(SerialData,"Pos")==0){
 			positionPrint();
 		}else if(SerialData[0]=='g' && SerialData[1]=='o'){	//targetting mode
-			departureX = 0;
-			departureY = 0;
-			sscanf(SerialData,"go/%d/%dE", &departureX, &departureY);
-			if(departureX == 1){
+			arrivalX = 0;
+			arrivalY = 0;
+			sscanf(SerialData,"go/%d/%dE", &arrivalX, &arrivalY);
+			if(arrivalX == 1){
 				rotateRight();
 				goOnePoint();
 				Serial.print("OK");
 			}
-			else if(departureX == -1){
+			else if(arrivalX == -1){
 				rotateLeft();
 				goOnePoint();
 				Serial.print("OK");
 			}
-			else if(departureY == 1){
+			else if(arrivalY == 1){
 				goOnePoint();
 				Serial.print("OK");
 			}
-			else if(departureY == -1){
+			else if(arrivalY == -1){
 				backOnePoint();
 				Serial.print("OK");
 			}

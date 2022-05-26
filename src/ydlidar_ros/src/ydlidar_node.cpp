@@ -57,7 +57,7 @@ int			pinMap[printSize][printSize]			=	{0};		//SSH print map
 float		unitScale								=	5;			//1-unit cm
 const int	allMapSize								=	2000;		//maximum 65535
 unsigned int	allMap[allMapSize][allMapSize]      =	{0};		//All map wall, sensing, robot
-unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, departure point
+unsigned int	allPointMap[allMapSize][allMapSize] =	{0};		//score, arrival point
 unsigned int	oldMap[allMapSize][allMapSize]		=	{0};		//short-term map
 	
 //ROBOT data initial setting
@@ -67,8 +67,8 @@ double	robotAngle = 0;//initial angle
 //delay
 void	delay_ms(int time){usleep(time);} 
 bool	OKsign	=	false;
-//departure point
-int		departureX = 0, departureY = 0;//departure coordinate
+//arrival point
+int		arrivalX = 0, arrivalY = 0;//arrival coordinate
 
 //screen cursor
 int		cursorX = 0, cursorY = 0;
@@ -391,7 +391,7 @@ int main(int argc, char * argv[]) {
 				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++){
 					allPointMap[i][j] = 0;
-					if (allMap[i][j] == 3) //departure
+					if (allMap[i][j] == 3) //arrival
 					allMap[i][j] = 0;
 				}
 				//add point
@@ -417,7 +417,7 @@ int main(int argc, char * argv[]) {
 				}
 				printf("\033[%d;%dH",1,1);	//set cursor 0,0
 				printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
-				allMap[pointY][pointX] = 3; //add departure
+				allMap[pointY][pointX] = 3; //add arrival
 			}
 			else if(systemMode == 1){		
 			/*     System Mode 1 : Default mode remote control   (edit)           
@@ -451,7 +451,7 @@ int main(int argc, char * argv[]) {
 				}
 			}
 			else if(systemMode == 3){		
-			/*  System Mode 3 : setting departure and move (edit)                  
+			/*  System Mode 3 : setting arrival and move (edit)                  
 				<sequence>
 				1. 앞서 커서의 이동에 의해 목적지를 설정 (시스템1)
 				2. 목적시 설정과 동시에 미로계산 및 목적지까지의 거리계산
@@ -459,13 +459,13 @@ int main(int argc, char * argv[]) {
 				4. 아두이노 데이터 인식후 좌표위치로 이동
 				5. 이동 후 현재 좌표 확인
 				6. 라즈베리파이에서 좌표 확인 후 현재좌표수정 및 2번 과정으로 이동
-			*/
+			*/	
 				delay_ms(1000);
 				if(OKsign){
 					printf("initMap\n");
 					initMap();
 					
-					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, departureX, departureY)){
+					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY)){
 						printf("I can Find way!!!!!!!!!!!!!!!!\n");
 						delay_ms(2000000);
 						systemMode = 1;
@@ -586,13 +586,13 @@ int main(int argc, char * argv[]) {
 					SerialPrint("test");
 					system("clear");
 					delay_ms(50000);
-				}else if(strcmp(scanData,"departure") == 0 && !integration){
-					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup departure point
-					departureX = allMapSize/2+cursorX;
-					departureY = allMapSize/2-cursorY;
+				}else if(strcmp(scanData,"destination") == 0 && !integration){
+					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup arrival point
+					arrivalX = allMapSize/2+cursorX;
+					arrivalY = allMapSize/2-cursorY;
 					integration = true;
 					system("clear");
-					systemMode = 3; //move to departure
+					systemMode = 3; //move to arrival
 					delay_ms(50000);
 				}else if(strcmp(scanData,"reset") == 0){
 					for(int i=0;i<allMapSize;i++)
@@ -810,13 +810,13 @@ void printSSHmonitor(int currentY,int currentX){
 				printf("  ");
 				prePixel = 2;
 			}
-			else if(pinMap[i][j] == 3){//departure
+			else if(pinMap[i][j] == 3){//arrival point
 				if(prePixel != 3)
 				printf("\033[44m");		//blue background color
 				printf("  ");
 				prePixel = 3;
 			}
-			else if(pinMap[i][j] == 4){//emty
+			else if(pinMap[i][j] == 4){//empty
 				if(prePixel != 4)
 				printf("\033[47m");		//white background color
 				printf("  ");
