@@ -537,6 +537,10 @@ int main(int argc, char * argv[]) {
 			/* Command input                                                        */
 			/************************************************************************/
 			char kb = linux_kbhit();
+			if(kb != 'N' ){
+				printf("%c",kb);
+				delay_ms(1000);
+			}
 			if(kb=='M'){
 				printf("\033[45m\033[36m");
 				for(int i=0; i<printSize/2-1; i++)
@@ -554,22 +558,6 @@ int main(int argc, char * argv[]) {
 					printf("STOP....\n");
 					printf("\033[40m\033[97m");
 					break;
-				}else if(strcmp(scanData,"goto") == 0){	//goto robot command
-					printf("input the X Y :");			
-					int moveX=0, moveY=0;				
-					scanf("%d %d", &moveX, &moveY);		
-					robotX += moveX;				    
-					robotY += moveY;				    
-					printf("go to robot X:%d / Y:%d\n", robotX, robotY);
-					char buffer[20];
-					sprintf(buffer, "%d %d\n", moveX, moveY);
-					printf("ARDUINO SENDING : %s\n", buffer);
-					SerialPrint(buffer);
-					printf("Serial waiting\n");
-					//while(SerialRead()==false)
-					delay_ms(100000);
-					printf("read!\n");
-					delay_ms(100000);
 				}else if(strcmp(scanData,"up") == 0){
 					SerialPrint("up");
 					system("clear");
