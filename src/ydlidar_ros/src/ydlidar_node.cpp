@@ -574,14 +574,6 @@ int main(int argc, char * argv[]) {
 					SerialPrint("test");
 					system("clear");
 					delay_ms(50000);
-				}else if(strcmp(scanData,"destination") == 0 && !integration){
-					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup arrival point
-					arrivalX = allMapSize/2+cursorX;
-					arrivalY = allMapSize/2-cursorY;
-					integration = true;
-					system("clear");
-					systemMode = 3; //move to arrival
-					delay_ms(50000);
 				}else if(strcmp(scanData,"reset") == 0){
 					for(int i=0;i<allMapSize;i++)
 						for(int j=0;j<allMapSize;j++)
@@ -596,8 +588,35 @@ int main(int argc, char * argv[]) {
 					mappingActive = !mappingActive;
 				}else if(strcmp(scanData,"screen") == 0){
 					screenActive = !screenActive;
-				}else if(strcmp(scanData,"cursor") == 0){
-					integration = !integration;
+				}else if(strcmp(scanData,"move") == 0){
+					integration = false;
+					bool decide = false;
+					while(decide==false){
+						kb = linux_kbhit();
+						delay_ms(10);//protect process
+						if(kb == 'U')//up arrow
+							cursorY+=int(50/unitScale);	//cursor move
+						else if(kb == 'D')//down arrow
+							cursorY-=int(50/unitScale);	//cursor move		
+						else if(kb == 'R')//right arrow
+							cursorX+=int(50/unitScale);	//cursor move	
+						else if(kb == 'L')//left arrow
+							cursorX-=int(50/unitScale);	//cursor move
+						else if(kb == 'S')//stop '/' key
+							decide = true;
+						allMap[allMapSize/2-robotY][allMapSize/2+robotX] = 5;//robot
+						printf("################### move point and press '/' ###################\n");
+						printSSHmonitor(cursorY,cursorX);
+						printf("count:%d  /  1-unit : %f cm \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale);
+						printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
+					}
+					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup arrival point
+					arrivalX = allMapSize/2+cursorX;
+					arrivalY = allMapSize/2-cursorY;
+					integration = true;
+					system("clear");
+					systemMode = 3; //move to arrival find way mode
+					delay_ms(50000);
 				}else if(strcmp(scanData,"filter") == 0){
 					printf("Filtering.............................\n");
 					int filterPoint=0;

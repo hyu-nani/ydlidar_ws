@@ -11,6 +11,7 @@ long	preTime		=	nowTime;
 
 //Serial
 char	SerialData[256] =	"";
+
 float	unitScale		=	5;//cm
 
 //mode

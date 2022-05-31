@@ -20,7 +20,6 @@ void setup()
 	boardInitial();
 	interruptInit();
 	driverSet(0,0,0,0,0,0);
-	driverOUTPUT();
 }
 
 void loop()
@@ -38,49 +37,39 @@ void loop()
 			i++;
 		}
 		if(strcmp(SerialData,"stop")==0){
-			digitalWrite(led,LOW);
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
-			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"front")==0){
-			digitalWrite(led,HIGH);
 			direction = 1;
 			driverSet(speedLeft,1,0,1,0,speedRight);
-			driverOUTPUT();
 			fixAngle = robot_angle;
 			Serial.print("OK");//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"left")==0){
 			direction = 2;
 			driverSet(speedLeft,0,1,1,0,speedRight);
-			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"right")==0){
 			direction = 3;
 			driverSet(speedLeft,1,0,0,1,speedRight);
-			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"back")==0){
 			direction = 4;
 			driverSet(speedLeft,0,1,0,1,speedRight);
-			driverOUTPUT();
 			fixAngle = robot_angle;
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"reset")==0){
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
-			driverOUTPUT();
 			robot_angle = 0;
 			robotX = 0;
 			robotY = 0;
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"test")==0){
-			digitalWrite(led,HIGH);
 			fixAngle = robot_angle;
 			direction = 4;
 			driverSet(speedLeft,0,1,0,1,speedRight);
-			driverOUTPUT();
 			int a = robot_distance;
 			while(a - robot_distance < 100){
 				nowTime = millis();
@@ -97,14 +86,12 @@ void loop()
 			robot_distance = 0;
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
-			driverOUTPUT();
 			Serial.print("OK");//notify completion of transfer
 		}else if(strcmp(SerialData,"10cm")==0){
 			digitalWrite(led,HIGH);
 			fixAngle = robot_angle;
 			direction = 1;
 			driverSet(speedLeft,1,0,1,0,speedRight);
-			driverOUTPUT();
 			int a = robot_distance;
 			while( robot_distance - a < 100){ //check distance
 				nowTime = millis();
@@ -121,7 +108,6 @@ void loop()
 			robot_distance = 0;
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
-			driverOUTPUT();
 			Serial.print("OK");	//notify completion of transfer
 		}else if(strcmp(SerialData,"up")==0){//this code for setting of value
 			robot_wheel_pitch += 0.01;

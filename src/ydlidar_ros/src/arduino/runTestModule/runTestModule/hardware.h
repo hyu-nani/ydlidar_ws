@@ -16,7 +16,7 @@
 //information of robo
 //#define wheel_radius		6//
 float	robot_wheel_pitch	=	39.54;//distance
-//#define gear_ratio			100
+//#define gear_ratio	100
 //#define gear		0.2
 //#define volume		0.25
 float	diameter	=	12.25;
@@ -61,13 +61,12 @@ void driverSet(int Lpwm, int drivein1, int drivein2, int drivein3, int drivein4,
 	in4 = drivein4;
 	lefePWMoutput = Lpwm;
 	rightPWMoutput= Rpwm;
-	//speedLeft = (speedLeft>255) ? 255 : speedLeft;
-	//speedRight= (speedRight>255) ? 255 : speedRight;
-	//speedLeft = (speedLeft<0) ? 0 : speedLeft;
-	//speedRight= (speedRight<0) ? 0 : speedRight;
-}
-
-void driverOUTPUT(){
+	lefePWMoutput = (Lpwm>255) ? 255 : Lpwm;
+	rightPWMoutput= (Rpwm>255) ? 255 : Rpwm;
+	lefePWMoutput = (Lpwm<0) ? 0 : Lpwm;
+	rightPWMoutput= (Rpwm<0) ? 0 : Rpwm;
+	
+	//all low protect motor driver
 	digitalWrite(driverIn1,LOW);
 	digitalWrite(driverIn2,LOW);
 	digitalWrite(driverIn3,LOW);
@@ -78,6 +77,7 @@ void driverOUTPUT(){
 	digitalWrite(driverIn3,in3);
 	digitalWrite(driverIn4,in4);
 }
+
 
 void positionPrint(){
 	Serial.print("Pos/");
