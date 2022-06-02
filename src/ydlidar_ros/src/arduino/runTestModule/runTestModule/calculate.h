@@ -76,7 +76,6 @@ void errorGapCal(double nowPosL, double nowPosR, int direct){
 
 void rotateLeft(){
 	driverSet(speedLeft,0,1,1,0,speedRight);
-	driverOUTPUT();
 	fixAngle = robot_angle;
 	while(robot_angle < fixAngle+90){
 		positionCalculate(encoderPosLeft,encoderPosRight);
@@ -87,7 +86,6 @@ void rotateLeft(){
 }
 void rotateRight(){
 	driverSet(speedLeft,1,0,0,1,speedRight);
-	driverOUTPUT();
 	fixAngle = robot_angle;
 	while(robot_angle > fixAngle-90){
 		positionCalculate(encoderPosLeft,encoderPosRight);
@@ -98,7 +96,6 @@ void rotateRight(){
 }
 void goOnePoint(){
 	driverSet(speedLeft,1,0,1,0,speedRight);
-	driverOUTPUT();
 	int fixDistance = robot_distance;
 	while(robot_distance - fixDistance < unitScale){
 		positionCalculate(encoderPosLeft,encoderPosRight);
@@ -109,7 +106,6 @@ void goOnePoint(){
 }
 void backOnePoint(){
 	driverSet(speedLeft,0,1,0,1,speedRight);
-	driverOUTPUT();
 	int fixDistance = robot_distance;
 	while(fixDistance - robot_distance < unitScale){
 		positionCalculate(encoderPosLeft,encoderPosRight);
