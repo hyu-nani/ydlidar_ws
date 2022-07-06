@@ -2,7 +2,7 @@
  * interrupt.h
  *
  * Created: 2022-03-16 ¿ÀÈÄ 8:14:17
- *  Author: cube_
+ *  Author: hyu-nani
  */ 
 
 void doEncoderA(){

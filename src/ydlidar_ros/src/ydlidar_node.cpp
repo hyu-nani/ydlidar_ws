@@ -18,10 +18,6 @@
 #include <signal.h>
 #include <csignal>
 #include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <termios.h>
 #include <math.h>
 #include <stdlib.h>
 
@@ -80,48 +76,14 @@ float distanceTest = 0;
 
 //path finding algorithm
 #include "pathWayFind.cpp"
+#include "KBhit.cpp"
 
 void SerialPrint(const char* format);
 bool SerialRead();
 void printSSHmonitor(int currentY,int currentX);
 void Line(int x0, int y0,int x1, int y1);
 
-char linux_kbhit(void)
-{
-	int ch;
-	struct termios oldt, newt;
-	int oldf;
-	tcgetattr(STDIN_FILENO, &oldt);//read current setting
-	newt = oldt;
-	newt.c_lflag &= ~(ICANON | ECHO);//CANONICAL and ECHO off
-	tcsetattr(STDIN_FILENO, TCSANOW, &newt);//input setting on terminal
-	newt.c_cc[VMIN] = 1;//min input char num = 1
-	newt.c_cc[VTIME] = 0;//read wait time = 0
-	oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
-	fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
-	ch = getchar();//read keyboard
-	tcsetattr(STDIN_FILENO, TCSANOW, &oldt);//reset setting
-	fcntl(STDIN_FILENO, F_SETFL, oldf);
-	//if(ch != -1)
-	//for(int i=0 ;i<10000;i++)
-	//	printf("%d\n",ch);
-	switch(ch){
-		case 32://space key
-			return 'M';
-		case 65://up arrow
-			return 'U';
-		case 68://left arrow
-			return 'L';
-		case 67://right arrow
-			return 'R';
-		case 66://down arrow
-			return 'D';
-		case 47:// / key
-			return 'S';
-		default:
-			return 'N';
-	}
-}
+
 std::vector<float> split(const std::string &s, char delim) {
     std::vector<float> elems;
     std::stringstream ss(s);
@@ -536,12 +498,12 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/* Command input                                                        */
 			/************************************************************************/
-			char kb = linux_kbhit();
-			if(kb != 'N' ){
+			string kb = linux_kbhit();
+			if(kb.compare("nothing")!=0){
 				printf("%c",kb);
 				delay_ms(1000);
 			}
-			if(kb=='M'){
+			if(kb.compare("Space")==0){
 				printf("\033[45m\033[36m");
 				for(int i=0; i<printSize/2-1; i++)
 					printf("--");
@@ -588,35 +550,6 @@ int main(int argc, char * argv[]) {
 					mappingActive = !mappingActive;
 				}else if(strcmp(scanData,"screen") == 0){
 					screenActive = !screenActive;
-				}else if(strcmp(scanData,"move") == 0){
-					integration = false;
-					bool decide = false;
-					while(decide==false){
-						kb = linux_kbhit();
-						delay_ms(10);//protect process
-						if(kb == 'U')//up arrow
-							cursorY+=int(50/unitScale);	//cursor move
-						else if(kb == 'D')//down arrow
-							cursorY-=int(50/unitScale);	//cursor move		
-						else if(kb == 'R')//right arrow
-							cursorX+=int(50/unitScale);	//cursor move	
-						else if(kb == 'L')//left arrow
-							cursorX-=int(50/unitScale);	//cursor move
-						else if(kb == 'S')//stop '/' key
-							decide = true;
-						allMap[allMapSize/2-robotY][allMapSize/2+robotX] = 5;//robot
-						printf("################### move point and press '/' ###################\n");
-						printSSHmonitor(cursorY,cursorX);
-						printf("count:%d  /  1-unit : %f cm \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale);
-						printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
-					}
-					allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup arrival point
-					arrivalX = allMapSize/2+cursorX;
-					arrivalY = allMapSize/2-cursorY;
-					integration = true;
-					system("clear");
-					systemMode = 3; //move to arrival find way mode
-					delay_ms(50000);
 				}else if(strcmp(scanData,"filter") == 0){
 					printf("Filtering.............................\n");
 					int filterPoint=0;
@@ -679,9 +612,16 @@ int main(int argc, char * argv[]) {
 				system("clear");
 				delay_ms(50000);
 			/************************************************************************/
-			/*   Kbhit keyboard command list                                        */
+			/*   Kbhit keyboard command list										*/
+			/*								                                        */
+			/*   up arrow : front													*/
+			/*   down arrow : back													*/
+			/*   left arrow : left													*/
+			/*   right arrow : right												*/
+			/*   Key M : active mapping												*/
+			/*   Key M : active mapping												*/
 			/************************************************************************/
-			}else if(kb == 'U'){
+			}else if(kb.compare("Up")==0){
 				if(integration){
 					SerialPrint("front");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
@@ -691,7 +631,7 @@ int main(int argc, char * argv[]) {
 				}else{
 					cursorY+=int(50/unitScale);	//cursor move
 				}
-			}else if(kb == 'L'){
+			}else if(kb.compare("Left")==0){
 				if(integration){
 					SerialPrint("left");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
@@ -701,7 +641,7 @@ int main(int argc, char * argv[]) {
 				}else{
 					cursorX-=int(50/unitScale);	//cursor move
 				}
-			}else if(kb == 'R'){
+			}else if(kb.compare("Right")==0){
 				if(integration){
 					SerialPrint("right");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
@@ -711,7 +651,7 @@ int main(int argc, char * argv[]) {
 				}else{
 					cursorX+=int(50/unitScale);	//cursor move
 				}
-			}else if(kb == 'D'){
+			}else if(kb.compare("Down")==0){
 				if(integration){
 					SerialPrint("back");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
@@ -721,11 +661,44 @@ int main(int argc, char * argv[]) {
 				}else{
 					cursorY-=int(50/unitScale);	//cursor move
 				}
-			}else if(kb == 'S'){
+			}else if(kb.compare("/")==0){
 				SerialPrint("stop");
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
 				system("clear");
+				delay_ms(50000);
+			}else if(kb.compare("Map")==0){	//map calculate active
+				mappingActive = !mappingActive;
+				delay_ms(50000);
+			}
+			else if(kb.compare("Move")==0){
+				integration = false;
+				bool decide = false;
+				while(decide==false){
+					kb = linux_kbhit();
+					delay_ms(10);//protect process
+					if(kb.compare("Up")==0)//up arrow
+						cursorY+=int(50/unitScale);	//cursor move
+					else if(kb.compare("Down")==0)//down arrow
+						cursorY-=int(50/unitScale);	//cursor move
+					else if(kb.compare("Right")==0)//right arrow
+						cursorX+=int(50/unitScale);	//cursor move
+					else if(kb.compare("Left")==0)//left arrow
+						cursorX-=int(50/unitScale);	//cursor move
+					else if(kb.compare("/")==0)//stop '/' key
+						decide = true;
+					allMap[allMapSize/2-robotY][allMapSize/2+robotX] = 5;//robot
+					printf("################### move point and press '/' ###################\n");
+					printSSHmonitor(cursorY,cursorX);
+					printf("count:%d  /  1-unit : %f cm \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale);
+					printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
+				}
+				allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup arrival point
+				arrivalX = allMapSize/2+cursorX;
+				arrivalY = allMapSize/2-cursorY;
+				integration = true;
+				system("clear");
+				systemMode = 3; //move to arrival find way mode
 				delay_ms(50000);
 			}
 			rate.sleep();
