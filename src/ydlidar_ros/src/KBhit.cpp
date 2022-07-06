@@ -194,7 +194,7 @@ const char* linux_kbhit()
 		case 84:// T
 		return "T";
 		case 85:// U
-			return "U";
+		return "U";
 		case 86:// V
 		return "V";
 		case 87:// W

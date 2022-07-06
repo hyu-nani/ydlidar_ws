@@ -709,6 +709,7 @@ int main(int argc, char * argv[]) {
 					savefile << endl;
 				}
 				savefile.close();
+				system("clear");
 			}
 			rate.sleep();
 			ros::spinOnce();
