@@ -582,20 +582,6 @@ int main(int argc, char * argv[]) {
 						savefile << endl; 
 					}
 					savefile.close();
-				}else if(strcmp(scanData,"load")==0){
-					ifstream loadfile("map.txt");
-					string ch;
-					printf("\033[%d;%dH",1,1);//set cursor 0,0
-					if(loadfile.good()){
-						for(int i=0;i<allMapSize;i++){
-							getline(loadfile,ch);
-							for(int j=0;j<allMapSize;j++){
-								allMap[i][j] = (int)ch[j];
-							}
-						}
-					}
-					loadfile.close();  
-					printf("loading......");
 				}else if(strcmp(scanData,"mode")==0){
 					printf("Setting mode!");
 					scanf("%d", &systemMode);
@@ -619,7 +605,7 @@ int main(int argc, char * argv[]) {
 			/*   left arrow : left													*/
 			/*   right arrow : right												*/
 			/*   Key M : active mapping												*/
-			/*   Key M : active mapping												*/
+			/*   Key G : move														*/
 			/************************************************************************/
 			}else if(kb.compare("Up")==0){
 				if(integration){
@@ -670,8 +656,7 @@ int main(int argc, char * argv[]) {
 			}else if(kb.compare("Map")==0){	//map calculate active
 				mappingActive = !mappingActive;
 				delay_ms(50000);
-			}
-			else if(kb.compare("Move")==0){
+			}else if(kb.compare("Move")==0){
 				integration = false;
 				bool decide = false;
 				while(decide==false){
@@ -700,6 +685,30 @@ int main(int argc, char * argv[]) {
 				system("clear");
 				systemMode = 3; //move to arrival find way mode
 				delay_ms(50000);
+			}else if(kb.compare("FF")==0){//Ctrl-L
+				ifstream loadfile("map.txt");
+				string ch;
+				printf("\033[%d;%dH",1,1);//set cursor 0,0
+				if(loadfile.good()){
+					for(int i=0;i<allMapSize;i++){
+						getline(loadfile,ch);
+						for(int j=0;j<allMapSize;j++){
+							allMap[i][j] = (int)ch[j];
+						}
+					}
+				}
+				loadfile.close();
+				printf("loading......");
+			}else if(kb.compare("DC3")==0){//Ctrl-S
+				ofstream savefile;
+				savefile.open("map.txt");
+				for(int k = 0; k< allMapSize ; k++){
+					for(int j=0;j<allMapSize;j++){
+						savefile << (char)allMap[k][j];
+					}
+					savefile << endl;
+				}
+				savefile.close();
 			}
 			rate.sleep();
 			ros::spinOnce();
