@@ -444,7 +444,7 @@ int main(int argc, char * argv[]) {
 					OKsign = false;
 				}
 				else{
-					OKsign = true;
+					//OKsign = true;
 					SerialPrint("Pos");//require to position data
 					delay_ms(1000);
 				}
