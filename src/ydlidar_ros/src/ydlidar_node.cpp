@@ -680,6 +680,8 @@ int main(int argc, char * argv[]) {
 				arrivalX = allMapSize/2+cursorX;
 				arrivalY = allMapSize/2-cursorY;
 				integration = true;
+				cursorX = robotX;
+				cursorY = robotY;
 				system("clear");
 				systemMode = 3; //move to arrival find way mode
 				delay_ms(50000);
