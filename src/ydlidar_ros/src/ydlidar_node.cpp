@@ -445,7 +445,7 @@ int main(int argc, char * argv[]) {
 					OKsign = false;
 				}
 				else{
-					//OKsign = true;
+					OKsign = true;
 					SerialPrint("Pos");//require to position data
 					delay_ms(1000);
 				}
@@ -656,13 +656,13 @@ int main(int argc, char * argv[]) {
 					kb = linux_kbhit();
 					delay_ms(10);//protect process
 					if(kb.compare("Up")==0)//up arrow
-						cursorY+=int(50/unitScale);	//cursor move
+						cursorY+=int(30/unitScale);	//cursor move
 					else if(kb.compare("Down")==0)//down arrow
-						cursorY-=int(50/unitScale);	//cursor move
+						cursorY-=int(30/unitScale);	//cursor move
 					else if(kb.compare("Right")==0)//right arrow
-						cursorX+=int(50/unitScale);	//cursor move
+						cursorX+=int(30/unitScale);	//cursor move
 					else if(kb.compare("Left")==0)//left arrow
-						cursorX-=int(50/unitScale);	//cursor move
+						cursorX-=int(30/unitScale);	//cursor move
 					else if(kb.compare("/")==0)//stop '/' key
 						decide = true;
 					allMap[allMapSize/2-robotY][allMapSize/2+robotX] = 5;//robot
