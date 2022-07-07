@@ -465,8 +465,10 @@ int main(int argc, char * argv[]) {
 				for(int i= -printSize/2-10;i<printSize/2+10;i++)
 					for(int j= -printSize/2-10;j<printSize/2+10;j++){
 						int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
-						if(a == 1 || a == 5 || a == 6) //sensing point or robot center
+						if(a == 1 || a == 5) //sensing point or robot center
 							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
+						if(a == 6)
+							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 4;
 					}
 				count++;
 			}
