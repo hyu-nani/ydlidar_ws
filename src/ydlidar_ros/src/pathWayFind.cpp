@@ -57,9 +57,9 @@ void initMap(){
 	for(int y = 1; y < allMapSize-1; y++)
 	for(int x = 1; x < allMapSize-1; x++)
 	if( mazeMap[y][x] == 2 )
-	for(int i=0;i<3;i++)
-	for(int j=0;j<3;j++)
-	mazeMap[y+i-1][x+j-1] = 0;
+	for(int i=0;i<5;i++)
+	for(int j=0;j<5;j++)
+	mazeMap[y+i-2][x+j-2] = 0;
 }
 bool findWay(int sx, int sy, int ex, int ey){
 	int count = 1;
