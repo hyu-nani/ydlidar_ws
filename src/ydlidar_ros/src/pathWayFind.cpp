@@ -82,23 +82,23 @@ bool findWay(int sx, int sy, int ex, int ey){
 	for (int i = count; i > 0; i--) {
 		if (i - 1 == countMaze[nowY - 1][nowX]) {
 			countMaze[nowY - 1][nowX] = -1;
-			nowY--;
 			allMap[nowY - 1][nowX] = 6;
+			nowY--;
 		}
 		else if (i - 1 == countMaze[nowY + 1][nowX]) {
 			countMaze[nowY + 1][nowX] = -1;
-			nowY++;
 			allMap[nowY + 1][nowX] = 6;
+			nowY++;
 		}
 		else if (i - 1 == countMaze[nowY][nowX - 1]) {
 			countMaze[nowY][nowX - 1] = -1;
-			nowX--;
 			allMap[nowY][nowX - 1] = 6;
+			nowX--;
 		}
 		else if (i - 1 == countMaze[nowY][nowX + 1]) {
 			countMaze[nowY][nowX + 1] = -1;
-			nowX++;
 			allMap[nowY][nowX + 1] = 6;
+			nowX++;
 		}
 	}
 	//printf("%d\n", count);
