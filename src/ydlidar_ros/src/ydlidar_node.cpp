@@ -536,16 +536,6 @@ int main(int argc, char * argv[]) {
 					SerialPrint("test");
 					system("clear");
 					delay_ms(50000);
-				}else if(strcmp(scanData,"reset") == 0){
-					for(int i=0;i<allMapSize;i++)
-						for(int j=0;j<allMapSize;j++)
-							allMap[i][j] = 0;
-					OKsign = true;	
-					SerialPrint("reset");
-					OKsign = true;	
-					systemMode = 1;
-					system("clear");
-					delay_ms(50000);
 				}else if(strcmp(scanData,"map") == 0){
 					mappingActive = !mappingActive;
 				}else if(strcmp(scanData,"screen") == 0){
@@ -710,6 +700,16 @@ int main(int argc, char * argv[]) {
 				}
 				savefile.close();
 				system("clear");
+			}else if(kb.compare("Reset")==0){
+				for(int i=0;i<allMapSize;i++)
+				for(int j=0;j<allMapSize;j++)
+				allMap[i][j] = 0;
+				OKsign = true;
+				SerialPrint("reset");
+				OKsign = true;
+				systemMode = 1;
+				system("clear");
+				delay_ms(50000);
 			}
 			rate.sleep();
 			ros::spinOnce();

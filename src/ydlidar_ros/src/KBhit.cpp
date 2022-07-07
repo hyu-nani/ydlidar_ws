@@ -188,7 +188,7 @@ const char* linux_kbhit()
 		case 81:// Q 
 		return "Q";
 		case 82:// R
-		return "R";
+		return "Reset";
 		case 83:// S
 		return "S";
 		case 84:// T
@@ -242,7 +242,7 @@ const char* linux_kbhit()
 		case 108:// l
 		return "l";
 		case 109:// m
-		return "m";
+		return "Map";
 		case 110:// n
 		return "n";
 		case 111:// o
@@ -252,7 +252,7 @@ const char* linux_kbhit()
 		case 113:// q
 		return "q";
 		case 114:// r
-		return "r";
+		return "Reset";
 		case 115:// s
 		return "s";
 		case 116:// t
