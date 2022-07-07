@@ -868,12 +868,9 @@ void Line(int x0, int y0,int x1, int y1) { //printing line
 	
 	for (; x0<=x1; x0++) {
 		if (steep) {
-			if(allMap[y0][x0]!=2 && allMap[x0][y0]==6)//
+			if(allMap[y0][x0]!=2 && allMap[y0][x0]!=6)//
 				allMap[y0][x0]=4;
-			} else {
-			if(allMap[x0][y0]!=2 && allMap[x0][y0]!=6)
-				allMap[x0][y0]=4;
-		}
+			}
 		err -= dy;
 		if (err < 0) {
 			y0 += ystep;
