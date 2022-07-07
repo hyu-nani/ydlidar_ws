@@ -386,7 +386,7 @@ int main(int argc, char * argv[]) {
 				기본 작동 코드로 아두이노에 좌표점 정보 확인 요청
 				
 			*/
-				OKsign = true;
+				//OKsign = true;
 				SerialPrint("Pos");//require to position data
 				delay_ms(1000);
 				SerialRead();
