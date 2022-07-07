@@ -674,7 +674,7 @@ int main(int argc, char * argv[]) {
 				arrivalY = allMapSize/2-cursorY;
 				integration = true;
 				system("clear");
-				systemMode = 3; //move to arrival find way mode
+				//systemMode = 3; //move to arrival find way mode
 				delay_ms(50000);
 			}else if(kb.compare("FF")==0){//Ctrl-L
 				ifstream loadfile("map.txt");
