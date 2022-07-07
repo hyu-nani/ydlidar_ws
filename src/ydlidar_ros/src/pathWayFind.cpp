@@ -46,10 +46,9 @@ void initMap(){
 		}
 		countMaze[y][x] = 0;
 	}
-	for(int y = 0; y < allMapSize; y++)
-	for(int x = 0; x < allMapSize; x++){
-		int dot = mazeMap[y][x];
-		if( dot == 0 )
+	for(int y = 1; y < allMapSize-1; y++)
+	for(int x = 1; x < allMapSize-1; x++){
+		if( mazeMap[y][x] == 0 )
 		if( mazeMap[y+1][x] == 1 || mazeMap[y][x+1] == 1 || mazeMap[y-1][x] == 1 || mazeMap[y][x-1] == 1)
 		for(int i=-1;i<2;i++)
 		for(int j=-1;j<2;j++)
