@@ -114,6 +114,9 @@ bool findWay(int sx, int sy, int ex, int ey){
 			allMap[nowY][nowX + 1] = 6;
 			nowX++;
 		}
+		else{
+			return false;
+		}
 	}
 	//printf("%d\n", count);
 	//next move point

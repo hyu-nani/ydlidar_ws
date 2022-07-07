@@ -427,11 +427,15 @@ int main(int argc, char * argv[]) {
 					printf("initMap\n");
 					initMap();
 					
-					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY)){
-						printf("I can Find way!!!!!!!!!!!!!!!!\n");
+					if(findWay(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY)){
+						printf("find.")
+					}
+					else{
+						printf("i can't Find way!!!!!!!!!!!!!!!!\n");
 						delay_ms(2000000);
-						systemMode = 1;
-					}//output(moveX moveY)
+					}
+					//output(moveX moveY)
+					
 					if(moveY!=0 || moveX != 0){
 						char buffer[20];
 						//sprintf(buffer, "go/%d/%dE", moveX, moveY);
