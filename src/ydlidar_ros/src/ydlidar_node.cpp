@@ -454,7 +454,6 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/* Printing SSH Monitor                                                 */
 			/************************************************************************/
-			printf("\n");
 			printf("\033[%d;%dH",1,3);//set cursor 0,2
 			//SSH print
 			if(screenActive){
@@ -664,6 +663,7 @@ int main(int argc, char * argv[]) {
 					else if(kb.compare("/")==0)//stop '/' key
 						decide = true;
 					allMap[allMapSize/2-robotY][allMapSize/2+robotX] = 5;//robot
+					printf("\033[%d;%dH",1,3);//set cursor 0,2
 					printf("################### move point and press '/' ###################\n");
 					printSSHmonitor(cursorY,cursorX);
 					printf("count:%d  /  1-unit : %f cm \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale);
