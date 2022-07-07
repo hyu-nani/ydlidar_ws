@@ -46,7 +46,6 @@ void initMap(){
 		}
 		countMaze[y][x] = 0;
 	}
-	/*
 	for(int y = 1; y < allMapSize-1; y++)
 	for(int x = 1; x < allMapSize-1; x++){
 		if( mazeMap[y][x] == 0 )
@@ -54,7 +53,7 @@ void initMap(){
 		for(int i=-1;i<2;i++)
 		for(int j=-1;j<2;j++)
 		mazeMap[y+i][x+j] = 0;
-	}*/
+	}
 }
 bool findWay(int sx, int sy, int ex, int ey){
 	int count = 1;
@@ -109,6 +108,8 @@ bool findWay(int sx, int sy, int ex, int ey){
 			allMap[nowY][nowX + 1] = 6;
 			nowX++;
 		}
+		else{i++;}
+		
 	}
 	//printf("%d\n", count);
 	//next move point
