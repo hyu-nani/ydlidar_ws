@@ -49,15 +49,16 @@ void initMap(){
 	for(int x = 1; x < allMapSize-1; x++)
 	if( mazeMap[y][x] == 0 )
 	if( mazeMap[y+1][x] == 1 ||
-	mazeMap[y][x+1] == 1 ||
-	mazeMap[y-1][x] == 1 ||
-	mazeMap[y][x-1] == 1)
-	mazeMap[y][x] = 2;
+		mazeMap[y][x+1] == 1 ||
+		mazeMap[y-1][x] == 1 ||
+		mazeMap[y][x-1] == 1)
+		mazeMap[y][x] = 2;
 	for(int y = 1; y < allMapSize-1; y++)
 	for(int x = 1; x < allMapSize-1; x++)
 	if( mazeMap[y][x] == 2 )
 	for(int i=0;i<5;i++)
 	for(int j=0;j<5;j++)
+	if(mazeMap[y+i-2][x+j-2] != 2)
 	mazeMap[y+i-2][x+j-2] = 0;
 }
 bool findWay(int sx, int sy, int ex, int ey){
