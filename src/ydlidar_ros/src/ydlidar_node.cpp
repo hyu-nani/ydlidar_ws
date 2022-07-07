@@ -430,7 +430,7 @@ int main(int argc, char * argv[]) {
 					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY)){
 						printf("I can Find way!!!!!!!!!!!!!!!!\n");
 						delay_ms(2000000);
-						systemMode = 1;
+						//systemMode = 1;
 					}//output(moveX moveY)
 					if(moveY!=0 || moveX != 0){
 						char buffer[20];
@@ -467,7 +467,7 @@ int main(int argc, char * argv[]) {
 						int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
 						if(a == 1 || a == 5) //sensing point or robot center
 							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
-						if(a == 6)
+						else if(a == 6)
 							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 4;
 					}
 				count++;
