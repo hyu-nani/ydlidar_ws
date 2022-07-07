@@ -336,7 +336,7 @@ int main(int argc, char * argv[]) {
 				if(data_count[i] > 4 && mappingActive == true && ignoreTime == 0){//wall sensitivity
 					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2-robotY+Yvalue)<allMapSize)
 						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize){
-							Line(allMapSize/2-robotY,allMapSize/2+robotX,allMapSize/2-robotY+Yvalue,allMapSize/2+robotX+Xvalue);
+							Line(allMapSize/2-robotY, allMapSize/2+robotX, allMapSize/2-robotY+Yvalue, allMapSize/2+robotX+Xvalue);
 							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
 						}
 					data_count[i] = 0;
@@ -870,7 +870,10 @@ void Line(int x0, int y0,int x1, int y1) { //printing line
 		if (steep) {
 			if(allMap[y0][x0]!=2 && allMap[y0][x0]!=6)//
 				allMap[y0][x0]=4;
-			}
+		} else {
+			if(allMap[x0][y0]!=2 && allMap[x0][y0]!=6)//
+				allMap[x0][y0]=4;
+		}
 		err -= dy;
 		if (err < 0) {
 			y0 += ystep;
