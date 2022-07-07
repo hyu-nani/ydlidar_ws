@@ -17,7 +17,7 @@
 */
 unsigned int	mazeMap[allMapSize][allMapSize]	=	{0};
 unsigned int	countMaze[allMapSize][allMapSize]	=	{0};
-int		startX, StartY;
+int		startX, startY;
 int		endX, endY;
 int		moveX = 0, moveY = 0;
 /*
@@ -29,7 +29,7 @@ int		moveX = 0, moveY = 0;
 */
 void initMap(){
 	startX	=	robotX;
-	StartY	=	robotY;
+	startY	=	robotY;
 	endX	=	arrivalX;
 	endY	=	arrivalY;
 	int	guide	=	1;
@@ -37,7 +37,6 @@ void initMap(){
 	for(int x = 0; x < allMapSize; x++){
 		int dot = allMap[y][x];
 		if(	dot == 0 ||	//none
-			dot == 1 ||	//sensing
 			dot == 2){	//wall
 			mazeMap[y][x] = 0;	//wall
 		}
