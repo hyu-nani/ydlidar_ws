@@ -74,7 +74,7 @@ bool	mappingActive	= false;
 //test
 float distanceTest = 0;
 
-//path finding algorithm
+//include file
 #include "pathWayFind.cpp"
 #include "KBhit.cpp"
 
@@ -500,7 +500,7 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			string kb = linux_kbhit();
 			if(kb.compare("nothing")!=0){
-				printf("%c",kb);
+				printf("%s",kb);
 				delay_ms(1000);
 			}
 			if(kb.compare("Space")==0){
