@@ -45,6 +45,9 @@ void initMap(){
 		}
 		countMaze[y][x] = 0;
 	}
+	for(int i=0;i<5;i++)
+	for(int j=0;j<5;j++)
+	mazeMap[robotY+i-2][robotX+j-2] = 1;	//path
 	for(int y = 1; y < allMapSize-1; y++)
 	for(int x = 1; x < allMapSize-1; x++)
 	if( mazeMap[y][x] == 0 )
