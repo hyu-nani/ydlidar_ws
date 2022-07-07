@@ -53,7 +53,7 @@ void initMap(){
 	mazeMap[y][x+1] == 1 ||
 	mazeMap[y-1][x] == 1 ||
 	mazeMap[y][x-1] == 1)
-	mazeMap[y+i-1][x+j-1] = 2;
+	mazeMap[y][x] = 2;
 	for(int y = 1; y < allMapSize-1; y++)
 	for(int x = 1; x < allMapSize-1; x++)
 	if( mazeMap[y][x] == 2 )
