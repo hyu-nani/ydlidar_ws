@@ -431,6 +431,9 @@ int main(int argc, char * argv[]) {
 						printf("i can't Find way!!!!!!!!!!!!!!!!\n");
 						delay_ms(2000000);
 					}
+					else{
+						systemMode = 1;
+					}
 					//output(moveX moveY)
 					
 					if(moveY!=0 || moveX != 0){
@@ -445,7 +448,7 @@ int main(int argc, char * argv[]) {
 					OKsign = false;
 				}
 				else{
-					OKsign = true;
+					//OKsign = true;
 					SerialPrint("Pos");//require to position data
 					delay_ms(1000);
 				}
