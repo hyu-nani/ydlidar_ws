@@ -83,7 +83,6 @@ bool findWay(int sx, int sy, int ex, int ey){
 		}
 		if(count > 500){
 			return false;
-			break;
 		}
 		else
 			count++;
