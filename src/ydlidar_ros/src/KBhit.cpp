@@ -230,7 +230,7 @@ const char* linux_kbhit()
 		case 102:// f
 		return "f";
 		case 103:// g
-		return "g";
+		return "Move";
 		case 104:// h
 		return "h";
 		case 105:// i
