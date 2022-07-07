@@ -821,7 +821,7 @@ void printSSHmonitor(int currentY,int currentX){
 			}
 			else if(pinMap[i][j] == 6){//path
 				if(prePixel != 6)
-				printf("\033[45m\033[36m");
+				printf("\033[45m\033[37m");
 				printf("  ");
 				prePixel = 6;
 			}
