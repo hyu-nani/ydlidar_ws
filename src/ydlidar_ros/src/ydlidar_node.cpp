@@ -467,8 +467,8 @@ int main(int argc, char * argv[]) {
 						int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
 						if(a == 1 || a == 5) //sensing point or robot center
 							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
-						else if(a == 6)
-							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 4;
+						//else if(a == 6)
+						//	allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 4;
 					}
 				count++;
 			}
