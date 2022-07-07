@@ -468,7 +468,7 @@ int main(int argc, char * argv[]) {
 						if(a == 1 || a == 5) //sensing point or robot center
 							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
 						//else if(a == 6)
-						//	allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 4;
+						//s	allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 4;
 					}
 				count++;
 			}
@@ -791,47 +791,49 @@ void printSSHmonitor(int currentY,int currentX){
 		printf(" |");
 		prePixel = 0;
 		for(int j=0;j<printSize;j++){
-			if(pinMap[i][j] == 1){//sensing
+			switch(pinMap[i][j]){
+				case 1://sensing
 				if(prePixel != 1)
 				printf("\033[43m\033[33m");//orange background color
 				printf("  ");
 				prePixel = 1;
-			}
-			else if(pinMap[i][j] == 2){//wall
+				break;
+				case 2://wall
 				if(prePixel != 2)
 				printf("\033[41m");		//red background color
 				printf("  ");
 				prePixel = 2;
-			}
-			else if(pinMap[i][j] == 3){//arrival point
+				break;
+				case 3://arrival point
 				if(prePixel != 3)
 				printf("\033[44m");		//blue background color
 				printf("  ");
 				prePixel = 3;
-			}
-			else if(pinMap[i][j] == 4){//empty
+				break;
+				case 4://empty
 				if(prePixel != 4)
 				printf("\033[47m");		//white background color
 				printf("  ");
 				prePixel = 4;
-			}
-			else if(pinMap[i][j] == 5){//center
+				break;
+				case 5://center
 				if(prePixel != 5)
 				printf("\033[45m\033[36m");	//magenta BG & cyan
 				printf("<>");
 				prePixel = 5;
-			}
-			else if(pinMap[i][j] == 6){//path
+				break;
+				case 6://path
 				if(prePixel != 6)
 				printf("\033[45m\033[37m");
 				printf("  ");
 				prePixel = 6;
-			}
-			else{//none
+				break;
+				default:
 				if(prePixel != 0)
 				printf("\033[40m\033[97m");	//black BG & white
 				printf("  ");
 				prePixel = 0;
+				break;
 			}
 		}
 		printf("\033[40m\033[97m");	//black BG & white
