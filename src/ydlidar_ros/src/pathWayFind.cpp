@@ -50,7 +50,7 @@ void initMap(){
 	for(int x = 0; x < allMapSize; x++){
 		int dot = mazeMap[y][x];
 		if( dot == 0 )
-		if( mazeMap[y+1][x] == 1 || mazeMap[y][x+1] == 1 || mazeMap[y-1][x] == 1 || mazeMap[y][x-1] == 1 ||)
+		if( mazeMap[y+1][x] == 1 || mazeMap[y][x+1] == 1 || mazeMap[y-1][x] == 1 || mazeMap[y][x-1] == 1)
 		for(int i=-1;i<2;i++)
 		for(int j=-1;j<2;j++)
 		mazeMap[y+i][x+j] = 0;
