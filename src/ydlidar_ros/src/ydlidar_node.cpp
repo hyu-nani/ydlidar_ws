@@ -498,7 +498,7 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/* Command input                                                        */
 			/************************************************************************/
-			string kb = linux_kbhit();
+			string* kb = linux_kbhit();
 			if(kb.compare("nothing")!=0){
 				printf("%s", kb);
 				delay_ms(1000);
