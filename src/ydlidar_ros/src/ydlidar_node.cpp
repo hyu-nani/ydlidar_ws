@@ -752,8 +752,8 @@ int main(int argc, char * argv[]) {
 				break;
 			}else if(kb.compare("f")==0 || kb.compare("F")==0){
 				int filterPoint=0;
-				for(int i=1;i<allMapSize;i++)
-				for(int j=1;j<allMapSize;j++)
+				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
+				for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++)
 				if(allMap[i][j] == 0){
 					for(int k=0;k<3;k++)
 					for(int p=0;p<3;p++)
@@ -789,12 +789,11 @@ void SerialPrint(const char* format)
 {
 	if(OKsign){
 		serial1 = write(fd,format,int(strlen(format)));
-		if(serial1 < 0){
+		if(serial1 < 0)
 			perror("write failed - ");
-		}
-		else{
+		else
 			OKsign = false;
-		}
+		
 	}
 	
 }
