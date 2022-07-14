@@ -722,6 +722,11 @@ int main(int argc, char * argv[]) {
 				systemMode = 1;
 				system("clear");
 				delay_ms(50000);
+			}else if(kb.compare("ETX")==0){
+				printf("\033[45m\033[36m");
+				printf("STOP....\n");
+				printf("\033[40m\033[97m");
+				break;
 			}
 			rate.sleep();
 			ros::spinOnce();
