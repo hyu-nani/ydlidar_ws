@@ -742,7 +742,7 @@ int main(int argc, char * argv[]) {
 				systemMode = 1; 
 				system("clear");
 				delay_ms(50);
-			}else if(kb.compare("ETX")==0){
+			}else if(kb.compare("c")==0){
 				SerialPrint("stop");
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
