@@ -439,7 +439,7 @@ int main(int argc, char * argv[]) {
 					
 					if(moveY!=0 || moveX != 0){
 						char buffer[20];
-						//sprintf(buffer, "go/%d/%dE", moveX, moveY);
+						sprintf(buffer, "go/%d/%dE", moveX, moveY);
 						printf("send>%s",buffer);
 						SerialPrint(buffer);
 					}
