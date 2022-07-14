@@ -61,7 +61,7 @@ int		robotX = 0, robotY = 0;	//center
 double	robotAngle = 0;//initial angle
 
 //delay
-void	delay_ms(int time){usleep(time);} 
+void	delay_ms(int time){usleep(time*1000);} 
 bool	OKsign	=	false;
 //arrival point
 int		arrivalX = 0, arrivalY = 0;//arrival coordinate
@@ -277,7 +277,7 @@ int main(int argc, char * argv[]) {
 	char buffer[20];
 	sprintf(buffer, "Unit%fD\n",unitScale);
 	system("clear");
-	delay_ms(1000000);
+	delay_ms(1000);
     while (ret&&ros::ok()) {
         bool hardError;
         //and loop start here 
@@ -430,7 +430,7 @@ int main(int argc, char * argv[]) {
 					
 					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY)){
 						printf("i can't Find way!!!!!!!!!!!!!!!!\n");
-						delay_ms(2000000);
+						delay_ms(2000);
 					}
 					else{
 						systemMode = 1;
@@ -535,19 +535,19 @@ int main(int argc, char * argv[]) {
 				}else if(strcmp(scanData,"up") == 0){
 					SerialPrint("up");
 					system("clear");
-					delay_ms(50000);
+					delay_ms(50);
 				}else if(strcmp(scanData,"down") == 0){
 					SerialPrint("down");
 					system("clear");
-					delay_ms(50000);
+					delay_ms(50);
 				}else if(strcmp(scanData,"10cm") == 0){
 					SerialPrint("10cm");
 					system("clear");
-					delay_ms(50000);
+					delay_ms(50);
 				}else if(strcmp(scanData,"test") == 0){
 					SerialPrint("test");
 					system("clear");
-					delay_ms(50000);
+					delay_ms(50);
 				}else if(strcmp(scanData,"map") == 0){
 					mappingActive = !mappingActive;
 				}else if(strcmp(scanData,"screen") == 0){
@@ -593,12 +593,12 @@ int main(int argc, char * argv[]) {
 					sprintf(buffer, "Unit%f",unitScale);
 					SerialPrint(buffer);
 					system("clear");
-					delay_ms(50000);
+					delay_ms(50);
 				}else{
 					printf("nothing...");
 				}
 				system("clear");
-				delay_ms(50000);
+				delay_ms(50);
 			/************************************************************************/
 			/*   Kbhit keyboard command list										*/
 			/*								                                        */
@@ -615,7 +615,7 @@ int main(int argc, char * argv[]) {
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
-					delay_ms(50000);
+					delay_ms(50);
 				}else{
 					cursorY+=int(50/unitScale);	//cursor move
 				}
@@ -625,7 +625,7 @@ int main(int argc, char * argv[]) {
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 1.0;		//It's when the robot spins Error value of interference by rotation 
 					system("clear");
-					delay_ms(50000);
+					delay_ms(50);
 				}else{
 					cursorX-=int(50/unitScale);	//cursor move
 				}
@@ -635,7 +635,7 @@ int main(int argc, char * argv[]) {
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = -1;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
-					delay_ms(50000);
+					delay_ms(50);
 				}else{
 					cursorX+=int(50/unitScale);	//cursor move
 				}
@@ -645,7 +645,7 @@ int main(int argc, char * argv[]) {
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
-					delay_ms(50000);
+					delay_ms(50);
 				}else{
 					cursorY-=int(50/unitScale);	//cursor move
 				}
@@ -654,10 +654,10 @@ int main(int argc, char * argv[]) {
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
 				system("clear");
-				delay_ms(50000);
+				delay_ms(50);
 			}else if(kb.compare("Map")==0){	//map calculate active
 				mappingActive = !mappingActive;
-				delay_ms(50000);
+				delay_ms(50);
 			}else if(kb.compare("Move")==0){
 				integration = false;
 				bool decide = false;
@@ -690,7 +690,7 @@ int main(int argc, char * argv[]) {
 				cursorY = robotY;
 				system("clear");
 				systemMode = 3; //move to arrival find way mode
-				delay_ms(50000);
+				delay_ms(50);
 			}else if(kb.compare("FF")==0){//Ctrl-L
 				ifstream loadfile("map.txt");
 				string ch;
@@ -725,7 +725,7 @@ int main(int argc, char * argv[]) {
 				OKsign = true;
 				systemMode = 1; 
 				system("clear");
-				delay_ms(50000);
+				delay_ms(50);
 			}else if(kb.compare("ETX")==0){
 				SerialPrint("stop");
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
@@ -790,7 +790,7 @@ bool SerialRead()
 			}
 			printf("reading....");
 			OKsign = true;
-			delay_ms(10000);
+			delay_ms(1000);
 		}
 		return false;
 	}
