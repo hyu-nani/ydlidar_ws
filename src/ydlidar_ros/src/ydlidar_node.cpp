@@ -386,7 +386,7 @@ int main(int argc, char * argv[]) {
 				기본 작동 코드로 아두이노에 좌표점 정보 확인 요청
 				
 			*/
-				OKsign = true;
+				//OKsign = true;
 				SerialPrint("Pos");//require to position data
 				delay_ms(1000);
 				SerialRead();
@@ -422,8 +422,8 @@ int main(int argc, char * argv[]) {
 				5. 이동 후 현재 좌표 확인
 				6. 라즈베리파이에서 좌표 확인 후 현재좌표수정 및 2번 과정으로 이동
 			*/	
-				delay_ms(1000);
-				OKsign = true;
+				//delay_ms(1000);
+				//OKsign = true;
 				if(OKsign){
 					printf("initMap\n");
 					initMap();
@@ -447,7 +447,7 @@ int main(int argc, char * argv[]) {
 					else{
 						SerialPrint("stop");
 					}
-					OKsign = false;
+					//OKsign = false;
 				}
 				else{
 					//OKsign = true;
