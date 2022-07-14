@@ -529,9 +529,6 @@ int main(int argc, char * argv[]) {
 					}
 					break;
 				case 2:
-					for(int i=0;i<allMapSize;i++)//save short term storage
-					for(int j=0;j<allMapSize;j++)
-						oldMap[i][j] = allMap[i][j];
 					break;
 				case 3:
 					break;
