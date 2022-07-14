@@ -365,7 +365,7 @@ int main(int argc, char * argv[]) {
 			printf("\n");
 			switch(systemMode){
 				case 0:
-				/*    System Mode 0 : make point map and finding center point           */
+				/*		System Mode 0 : make point map and finding center point           */
 					
 				break;
 				case 1:
@@ -375,9 +375,29 @@ int main(int argc, char * argv[]) {
 				SerialPrint("Pos");//require to position data
 				delay_ms(100);
 				SerialRead();
+				//filtering
+				int filterPoint1=0;
+				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
+				for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++)
+				if(allMap[i][j] == 0){
+					for(int k=0;k<3;k++)
+					for(int p=0;p<3;p++)
+					if(allMap[i-1+k][j-1+p]==4)
+					filterPoint1++;
+					if(filterPoint1>3)
+					allMap[i][j] = 4;
+					filterPoint1 = 0;
+					for(int k=0;k<3;k++)
+					for(int p=0;p<3;p++)
+					if(allMap[i-1+k][j-1+p]==2)
+					filterPoint1++;
+					if(filterPoint1>3)
+					allMap[i][j] = 2;
+					filterPoint1 = 0;
+				}
 				break;
 				case 2:
-				/*  System Mode 2 : adjust to error gap used the lidar (edit)           
+				/*		System Mode 2 : adjust to error gap used the lidar (edit)           
 				가변 조정 알고리즘을 통한 아두이노의 하드웨어적 오차를 능동수정
 				<미완성>
 				*/
@@ -397,7 +417,7 @@ int main(int argc, char * argv[]) {
 				}
 				break;
 				case 3:
-				/*  System Mode 3 : setting arrival and move (edit)                  
+				/*		System Mode 3 : setting arrival and move (edit)                  
 				<sequence>
 				1. 앞서 커서의 이동에 의해 목적지를 설정 (시스템1)
 				2. 목적시 설정과 동시에 미로계산 및 목적지까지의 거리계산
