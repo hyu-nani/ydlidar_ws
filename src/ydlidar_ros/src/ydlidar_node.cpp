@@ -457,7 +457,7 @@ int main(int argc, char * argv[]) {
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);
 						printf("send>%s",buffer);
-						delay_ms(1000);
+						delay_ms(100);
 						SerialPrint(buffer);
 					}
 					else{
@@ -551,19 +551,19 @@ int main(int argc, char * argv[]) {
 				}else if(strcmp(scanData,"up") == 0){
 					SerialPrint("up");
 					system("clear");
-					delay_ms(50);
+					delay_ms(10);
 				}else if(strcmp(scanData,"down") == 0){
 					SerialPrint("down");
 					system("clear");
-					delay_ms(50);
+					delay_ms(10);
 				}else if(strcmp(scanData,"10cm") == 0){
 					SerialPrint("10cm");
 					system("clear");
-					delay_ms(50);
+					delay_ms(10);
 				}else if(strcmp(scanData,"test") == 0){
 					SerialPrint("test");
 					system("clear");
-					delay_ms(50);
+					delay_ms(10);
 				}else if(strcmp(scanData,"map") == 0){
 					mappingActive = !mappingActive;
 				}else if(strcmp(scanData,"screen") == 0){
@@ -757,6 +757,7 @@ int main(int argc, char * argv[]) {
 		}
 		break;
     }
+	OKsign = true;
 	SerialPrint("stop");
 	close(fd);
     laser.turnOff();
@@ -771,6 +772,7 @@ void SerialPrint(const char* format)
 		serial1 = write(fd,format,int(strlen(format)));
 		if(serial1 < 0)
 			perror("write failed - ");	
+			return false;
 		OKsign = false;
 	}
 	

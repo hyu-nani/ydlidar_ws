@@ -149,7 +149,7 @@ void loop()
 		}
 		//reset the SerialData
 		for(int j=0;j<256;j++)
-			SerialData[j] = '\0';
+		SerialData[j] = '\0';
 	}
 	
 }
