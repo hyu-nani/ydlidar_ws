@@ -508,6 +508,25 @@ int main(int argc, char * argv[]) {
 				case 0:
 					break;
 				case 1:
+					int filterPoint=0;
+					for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
+					for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++)
+					if(allMap[i][j] == 0){
+						for(int k=0;k<3;k++)
+						for(int p=0;p<3;p++)
+						if(allMap[i-1+k][j-1+p]==4)
+						filterPoint++;
+						if(filterPoint>3)
+						allMap[i][j] = 4;
+						filterPoint = 0;
+						for(int k=0;k<3;k++)
+						for(int p=0;p<3;p++)
+						if(allMap[i-1+k][j-1+p]==2)
+						filterPoint++;
+						if(filterPoint>3)
+						allMap[i][j] = 2;
+						filterPoint = 0;
+					}
 					break;
 				case 2:
 					for(int i=0;i<allMapSize;i++)//save short term storage
