@@ -441,6 +441,7 @@ int main(int argc, char * argv[]) {
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);
 						printf("send>%s",buffer);
+						delay_ms(1000);
 						SerialPrint(buffer);
 					}
 					else{
