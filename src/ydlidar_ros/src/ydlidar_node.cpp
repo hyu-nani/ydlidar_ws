@@ -794,7 +794,7 @@ bool SerialRead()
 	}
 	if(strcmp(buf,"OK")==0){//transform success
 		printf("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-		delay_ms(1000);
+		delay_ms(10);
 		OKsign = true;
 		return true;
 	}
