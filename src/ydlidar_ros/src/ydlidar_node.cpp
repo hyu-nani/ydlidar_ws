@@ -380,6 +380,7 @@ int main(int argc, char * argv[]) {
 				//filtering
 				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++){
 					for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++){
+						filterPoint1=0;
 						if(allMap[i][j] == 0){
 							for(int k=0;k<3;k++)
 							for(int p=0;p<3;p++)
