@@ -807,7 +807,7 @@ bool SerialRead()
 			}
 			printf("reading....");
 			OKsign = true;
-			delay_ms(1000);
+			delay_ms(10);
 		}
 		return false;
 	}
