@@ -452,7 +452,7 @@ int main(int argc, char * argv[]) {
 				else{
 					//OKsign = true;
 					SerialPrint("Pos");//require to position data
-					delay_ms(1000);
+					delay_ms(500);
 				}
 				SerialRead();
 			}
@@ -681,6 +681,7 @@ int main(int argc, char * argv[]) {
 				arrivalX = allMapSize/2+cursorX;
 				arrivalY = allMapSize/2-cursorY;
 				integration = true;
+				OKsign = true;
 				cursorX = robotX;
 				cursorY = robotY;
 				system("clear");
