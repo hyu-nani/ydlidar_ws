@@ -388,7 +388,7 @@ int main(int argc, char * argv[]) {
 			*/
 				//OKsign = true;
 				SerialPrint("Pos");//require to position data
-				delay_ms(1000);
+				delay_ms(100);
 				SerialRead();
 			}
 			else if(systemMode == 2){
@@ -422,7 +422,7 @@ int main(int argc, char * argv[]) {
 				5. 이동 후 현재 좌표 확인
 				6. 라즈베리파이에서 좌표 확인 후 현재좌표수정 및 2번 과정으로 이동
 			*/	
-				//delay_ms(1000);
+				//delay_ms(1);
 				//OKsign = true;
 				if(OKsign){
 					printf("initMap\n");
@@ -480,7 +480,7 @@ int main(int argc, char * argv[]) {
 			}
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
-			delay_ms(1000);
+			delay_ms(1);
 			//속도의 증가효과가 있는지 확인 바람
 			//rate.sleep();
 			//ros::spinOnce();
