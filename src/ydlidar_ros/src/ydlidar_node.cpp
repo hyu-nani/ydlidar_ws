@@ -377,23 +377,25 @@ int main(int argc, char * argv[]) {
 				SerialRead();
 				//filtering
 				int filterPoint1=0;
-				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
-				for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++)
-				if(allMap[i][j] == 0){
-					for(int k=0;k<3;k++)
-					for(int p=0;p<3;p++)
-					if(allMap[i-1+k][j-1+p]==4)
-					filterPoint1++;
-					if(filterPoint1>3)
-					allMap[i][j] = 4;
-					filterPoint1 = 0;
-					for(int k=0;k<3;k++)
-					for(int p=0;p<3;p++)
-					if(allMap[i-1+k][j-1+p]==2)
-					filterPoint1++;
-					if(filterPoint1>3)
-					allMap[i][j] = 2;
-					filterPoint1 = 0;
+				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++){
+					for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++){
+						if(allMap[i][j] == 0){
+							for(int k=0;k<3;k++)
+							for(int p=0;p<3;p++)
+							if(allMap[i-1+k][j-1+p]==4)
+							filterPoint1++;
+							if(filterPoint1>3)
+							allMap[i][j] = 4;
+							filterPoint1 = 0;
+							for(int k=0;k<3;k++)
+							for(int p=0;p<3;p++)
+							if(allMap[i-1+k][j-1+p]==2)
+							filterPoint1++;
+							if(filterPoint1>3)
+							allMap[i][j] = 2;
+							filterPoint1 = 0;
+						}
+					}
 				}
 				break;
 				case 2:
