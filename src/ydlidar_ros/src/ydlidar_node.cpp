@@ -347,6 +347,22 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/*    System Mode						                                */
 			/************************************************************************/
+			printf("SYSTEM MODE : ");
+			switch(systemMode){
+				case 0:
+				printf("Zero");
+				break;
+				case 1:
+				printf("One");
+				break;
+				case 2:
+				printf("Two");
+				break;
+				case 3:
+				printf("Three");
+				break;
+			}
+			printf("\n");
 			if(systemMode == 0){
 			/*    System Mode 0 : make point map and finding center point           */
 				//reset point map
@@ -761,7 +777,7 @@ void SerialPrint(const char* format)
 }
 bool SerialRead()
 {
-	char buf[256] ="";
+	char buf[256] = "";
 	serial1 = read(fd, (void*)buf, 255);
 	if (serial1 < 0) {
 		printf("\033[%d;%dH",printSize+10,3);
@@ -777,8 +793,9 @@ bool SerialRead()
 		printf("%i bytes read :\n   [ %s ]   ", serial1, buf);
 	}
 	if(strcmp(buf,"OK")==0){//transform success
+		printf("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+		delay_ms(1000);
 		OKsign = true;
-		delay_ms(2000);
 		return true;
 	}
 	else{
