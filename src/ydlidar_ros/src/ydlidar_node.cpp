@@ -524,6 +524,10 @@ int main(int argc, char * argv[]) {
 				scanf(" %s",scanData);
 				//Command List
 				if(strcmp(scanData,"stop") == 0){		//all stop
+					SerialPrint("stop");
+					ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
+					gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
+					system("clear");
 					printf("\033[45m\033[36m");
 					printf("STOP....\n");
 					printf("\033[40m\033[97m");
@@ -723,6 +727,10 @@ int main(int argc, char * argv[]) {
 				system("clear");
 				delay_ms(50000);
 			}else if(kb.compare("ETX")==0){
+				SerialPrint("stop");
+				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
+				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
+				system("clear");
 				printf("\033[45m\033[36m");
 				printf("STOP....\n");
 				printf("\033[40m\033[97m");
