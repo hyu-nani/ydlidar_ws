@@ -732,13 +732,14 @@ int main(int argc, char * argv[]) {
 				}
 				savefile.close();
 				system("clear");
-			}else if(kb.compare("Reset")==0){
+			}else if(kb.compare("R")==0 || kb.compare("r")==0){
 				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++)
 				allMap[i][j] = 0;
 				OKsign = true;
 				SerialPrint("reset");
-				OKsign = true;
+				delay_ms(100);
+				SerialRead();
 				systemMode = 1; 
 				system("clear");
 				delay_ms(50);
