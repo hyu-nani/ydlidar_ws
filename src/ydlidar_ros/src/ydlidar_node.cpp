@@ -723,7 +723,7 @@ int main(int argc, char * argv[]) {
 				OKsign = true;
 				SerialPrint("reset");
 				OKsign = true;
-				systemMode = 1;
+				systemMode = 1; 
 				system("clear");
 				delay_ms(50000);
 			}else if(kb.compare("ETX")==0){
@@ -778,7 +778,6 @@ bool SerialRead()
 	}
 	if(strcmp(buf,"OK")==0){//transform success
 		OKsign = true;
-		printf("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
 		delay_ms(2000);
 		return true;
 	}
@@ -818,43 +817,43 @@ void printSSHmonitor(int currentY,int currentX){
 			switch(pinMap[i][j]){
 				case 1://sensing
 				if(prePixel != 1)
-				printf("\033[43m\033[33m");//orange background color
+					printf("\033[43m\033[33m");//orange background color
 				printf("  ");
 				prePixel = 1;
 				break;
 				case 2://wall
 				if(prePixel != 2)
-				printf("\033[41m");		//red background color
+					printf("\033[41m");		//red background color
 				printf("  ");
 				prePixel = 2;
 				break;
 				case 3://arrival point
 				if(prePixel != 3)
-				printf("\033[44m");		//blue background color
+					printf("\033[44m");		//blue background color
 				printf("  ");
 				prePixel = 3;
 				break;
 				case 4://empty
 				if(prePixel != 4)
-				printf("\033[47m");		//white background color
+					printf("\033[47m");		//white background color
 				printf("  ");
 				prePixel = 4;
 				break;
 				case 5://center
 				if(prePixel != 5)
-				printf("\033[45m\033[36m");	//magenta BG & cyan
+					printf("\033[45m\033[36m");	//magenta BG & cyan
 				printf("<>");
 				prePixel = 5;
 				break;
 				case 6://path
 				if(prePixel != 6)
-				printf("\033[45m\033[37m");
+					printf("\033[45m\033[37m");
 				printf("  ");
 				prePixel = 6;
 				break;
 				default:
 				if(prePixel != 0)
-				printf("\033[40m\033[97m");	//black BG & white
+					printf("\033[40m\033[97m");	//black BG & white
 				printf("  ");
 				prePixel = 0;
 				break;
