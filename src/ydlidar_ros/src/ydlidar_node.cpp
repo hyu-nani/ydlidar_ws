@@ -738,8 +738,6 @@ int main(int argc, char * argv[]) {
 				allMap[i][j] = 0;
 				OKsign = true;
 				SerialPrint("reset");
-				delay_ms(100);
-				SerialRead();
 				systemMode = 1; 
 				system("clear");
 				delay_ms(50);
