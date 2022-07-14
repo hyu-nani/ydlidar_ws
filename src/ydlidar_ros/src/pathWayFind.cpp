@@ -85,7 +85,7 @@ bool findWay(int sx, int sy, int ex, int ey){
 					countMaze[y][x - 1] = count + 1;
 			}
 		}
-		if(count > 500){
+		if(count > 5000){
 			return false;
 		}
 		else
