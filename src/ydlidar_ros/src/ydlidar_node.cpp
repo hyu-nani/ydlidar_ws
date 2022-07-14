@@ -367,9 +367,6 @@ int main(int argc, char * argv[]) {
 				case 0:
 				/*    System Mode 0 : make point map and finding center point           */
 					
-				printf("\033[%d;%dH",1,1);	//set cursor 0,0
-				printf("pointMax:%d / X:%d / Y:%d ", pointMax, pointX, pointY);
-				allMap[pointY][pointX] = 3; //add arrival
 				break;
 				case 1:
 				/*     System Mode 1 : Default mode remote control   (edit)           
