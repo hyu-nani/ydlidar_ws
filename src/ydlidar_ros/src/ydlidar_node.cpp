@@ -363,6 +363,8 @@ int main(int argc, char * argv[]) {
 				break;
 			}
 			printf("\n");
+		
+			int filterPoint1=0;
 			switch(systemMode){
 				case 0:
 				/*		System Mode 0 : make point map and finding center point           */
@@ -376,7 +378,6 @@ int main(int argc, char * argv[]) {
 				delay_ms(100);
 				SerialRead();
 				//filtering
-				int filterPoint1=0;
 				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++){
 					for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++){
 						if(allMap[i][j] == 0){
@@ -412,7 +413,7 @@ int main(int argc, char * argv[]) {
 					OKsign = true;
 					SerialPrint("Pos");
 					if(YD_distance[2] > distanceTest){	//다시 측정한 거리가 예상값보다 클때
-							
+						
 					}else{
 						
 					}
