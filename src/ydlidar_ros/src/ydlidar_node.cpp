@@ -468,7 +468,7 @@ int main(int argc, char * argv[]) {
 				else{
 					//OKsign = true;
 					SerialPrint("Pos");//require to position data
-					delay_ms(500);
+					delay_ms(50);
 				}
 				SerialRead();
 			}
@@ -525,7 +525,7 @@ int main(int argc, char * argv[]) {
 			string kb = linux_kbhit();
 			if(kb.compare("nothing")!=0){
 				//printf("%s", kb);
-				delay_ms(1000);
+				delay_ms(10);
 			}
 			if(kb.compare("Space")==0){
 				printf("\033[45m\033[36m");
@@ -794,7 +794,7 @@ bool SerialRead()
 	}
 	if(strcmp(buf,"OK")==0){//transform success
 		printf("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
-		delay_ms(10);
+		delay_ms(1);
 		OKsign = true;
 		return true;
 	}
@@ -807,7 +807,7 @@ bool SerialRead()
 			}
 			printf("reading....");
 			OKsign = true;
-			delay_ms(10);
+			delay_ms(1);
 		}
 		return false;
 	}
