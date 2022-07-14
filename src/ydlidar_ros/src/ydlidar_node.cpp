@@ -770,10 +770,11 @@ void SerialPrint(const char* format)
 	if(OKsign){
 		serial1 = write(fd,format,int(strlen(format)));
 		if(serial1 < 0){
-			perror("write failed - ");	
-			return false;
+			perror("write failed - ");
 		}
-		OKsign = false;
+		else{
+			OKsign = false;
+		}
 	}
 	
 }
