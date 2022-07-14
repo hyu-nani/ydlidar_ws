@@ -708,23 +708,23 @@ int main(int argc, char * argv[]) {
 			}else if(kb.compare("f")==0){
 				int filterPoint=0;
 				for(int i=1;i<allMapSize;i++)
-				for(int j=1;j<allMapSize;j++)
-				if(allMap[i][j] == 0){
-					for(int k=0;k<3;k++)
-					for(int p=0;p<3;p++)
-					if(allMap[i-1+k][j-1+p]==4)
-					filterPoint++;
-					if(filterPoint>4)
-					allMap[i][j] = 4;
-					filterPoint = 0;
-					for(int k=0;k<3;k++)
-					for(int p=0;p<3;p++)
-					if(allMap[i-1+k][j-1+p]==2)
-					filterPoint++;
-					if(filterPoint>4)
-					allMap[i][j] = 2;
-					filterPoint = 0;
-				}
+					for(int j=1;j<allMapSize;j++)
+						if(allMap[i][j] == 0){
+							for(int k=0;k<3;k++)
+								for(int p=0;p<3;p++)
+									if(allMap[i-1+k][j-1+p]==4)
+										filterPoint++;
+								if(filterPoint>4)
+									allMap[i][j] = 4;
+								filterPoint = 0;
+								for(int k=0;k<3;k++)
+								for(int p=0;p<3;p++)
+								if(allMap[i-1+k][j-1+p]==2)
+								filterPoint++;
+								if(filterPoint>4)
+								allMap[i][j] = 2;
+								filterPoint = 0;
+						}
 			}
 			}else if(kb.compare("DC3")==0){//Ctrl-S
 				ofstream savefile;
@@ -799,6 +799,8 @@ bool SerialRead()
 	}
 	if(strcmp(buf,"OK")==0){//transform success
 		OKsign = true;
+		printf("ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss");
+		delay_ms(2000);
 		return true;
 	}
 	else{
