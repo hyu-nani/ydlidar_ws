@@ -281,7 +281,7 @@ int main(int argc, char * argv[]) {
     while (ret&&ros::ok()) {
         bool hardError;
         //and loop start here 
-  
+		OKsign = true;
 		/************************************************************************/
 		/*    Mapping code                                                      */
 		/************************************************************************/
