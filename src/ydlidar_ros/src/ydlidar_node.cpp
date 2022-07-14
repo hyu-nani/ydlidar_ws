@@ -741,7 +741,7 @@ int main(int argc, char * argv[]) {
 				systemMode = 1; 
 				system("clear");
 				delay_ms(50);
-			}else if(kb.compare("c")==0){
+			}else if(kb.compare("c")==0 || kb.compare("C")==0){
 				SerialPrint("stop");
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
@@ -750,6 +750,26 @@ int main(int argc, char * argv[]) {
 				printf("STOP....\n");
 				printf("\033[40m\033[97m");
 				break;
+			}else if(kb.compare("f")==0 || kb.compare("F")==0){
+				int filterPoint=0;
+				for(int i=1;i<allMapSize;i++)
+				for(int j=1;j<allMapSize;j++)
+				if(allMap[i][j] == 0){
+					for(int k=0;k<3;k++)
+					for(int p=0;p<3;p++)
+					if(allMap[i-1+k][j-1+p]==4)
+					filterPoint++;
+					if(filterPoint>4)
+					allMap[i][j] = 4;
+					filterPoint = 0;
+					for(int k=0;k<3;k++)
+					for(int p=0;p<3;p++)
+					if(allMap[i-1+k][j-1+p]==2)
+					filterPoint++;
+					if(filterPoint>4)
+					allMap[i][j] = 2;
+					filterPoint = 0;
+				}
 			}
 			rate.sleep();
 			ros::spinOnce();
