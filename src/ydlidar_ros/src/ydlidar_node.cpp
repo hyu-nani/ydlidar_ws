@@ -375,25 +375,6 @@ int main(int argc, char * argv[]) {
 				/*     System Mode 1 : Default mode remote control   (edit)           
 				기본 작동 코드로 아두이노에 좌표점 정보 확인 요청
 				*/
-				int filterPoint=0;
-				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
-				for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++)
-				if(allMap[i][j] == 0){
-					for(int k=0;k<3;k++)
-					for(int p=0;p<3;p++)
-					if(allMap[i-1+k][j-1+p]==4)
-					filterPoint++;
-					if(filterPoint>3)
-					allMap[i][j] = 4;
-					filterPoint = 0;
-					for(int k=0;k<3;k++)
-					for(int p=0;p<3;p++)
-					if(allMap[i-1+k][j-1+p]==2)
-					filterPoint++;
-					if(filterPoint>3)
-					allMap[i][j] = 2;
-					filterPoint = 0;
-				}
 				SerialPrint("Pos");//require to position data
 				delay_ms(100);
 				SerialRead();
@@ -403,7 +384,6 @@ int main(int argc, char * argv[]) {
 				가변 조정 알고리즘을 통한 아두이노의 하드웨어적 오차를 능동수정
 				<미완성>
 				*/
-			
 				if(count == 10) // 각 카운트마다 실행 명령 분할
 					distanceTest = YD_distance[2];
 				else if(count == 11){// 10cm 전진 명령	
