@@ -117,7 +117,7 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 //    }
 }
 /*
-
+CSV 파일형식의 맵 저장 코드
 */
 void saveMapCSV(){
 	ofstream mapFile;
@@ -446,13 +446,14 @@ int main(int argc, char * argv[]) {
 				4. 아두이노 데이터 인식후 좌표위치로 이동
 				5. 이동 후 현재 좌표 확인
 				6. 라즈베리파이에서 좌표 확인 후 현재좌표수정 및 2번 과정으로 이동
+				
+				OKsign 은 아두이노와 통신을 할 때 응답 확인용. 응답이 확인되면 true
 				*/	
 				//delay_ms(1);
 				//OKsign = true;
 				if(OKsign){
 					printf("initMap\n");
 					initMap();
-					
 					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY)){
 						printf("i can't Find way!!!!!!!!!!!!!!!!\n");
 						delay_ms(2000);
@@ -466,8 +467,10 @@ int main(int argc, char * argv[]) {
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);
 						printf("send>%s",buffer);
-						delay_ms(100);
 						SerialPrint(buffer);
+						//reset val
+						moveX = 0;
+						moveY = 0;
 					}
 					else{
 						SerialPrint("stop");
@@ -507,10 +510,9 @@ int main(int argc, char * argv[]) {
 			}
 			for(int i=0;i<500;i++)
 				old_distance[i] = YD_distance[i];
-			delay_ms(1);
-			//속도의 증가효과가 있는지 확인 바람
-			//rate.sleep();
-			//ros::spinOnce();
+			delay_ms(1);//prevent process down
+			rate.sleep();
+			ros::spinOnce();
 			/************************************************************************/
 			/* end system                                                           */
 			/************************************************************************/
@@ -534,7 +536,7 @@ int main(int argc, char * argv[]) {
 				//printf("%s", kb);
 				delay_ms(10);
 			}
-			if(kb.compare("Space")==0){
+			if(kb.compare("Space")==0){//command hit
 				printf("\033[45m\033[36m");
 				for(int i=0; i<printSize/2-1; i++)
 					printf("--");
@@ -738,8 +740,9 @@ int main(int argc, char * argv[]) {
 					savefile << endl;
 				}
 				savefile.close();
+				saveMapCSV();
 				system("clear");
-			}else if(kb.compare("R")==0 || kb.compare("r")==0){
+			}else if(kb.compare("R")==0 || kb.compare("r")==0){//reset
 				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++)
 				allMap[i][j] = 0;
@@ -748,7 +751,7 @@ int main(int argc, char * argv[]) {
 				systemMode = 1; 
 				system("clear");
 				delay_ms(50);
-			}else if(kb.compare("c")==0 || kb.compare("C")==0){
+			}else if(kb.compare("c")==0 || kb.compare("C")==0){//stop
 				SerialPrint("stop");
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
@@ -757,7 +760,7 @@ int main(int argc, char * argv[]) {
 				printf("STOP....\n");
 				printf("\033[40m\033[97m");
 				break;
-			}else if(kb.compare("f")==0 || kb.compare("F")==0){
+			}else if(kb.compare("f")==0 || kb.compare("F")==0){//filter one cycle
 				int filterPoint=0;
 				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
 				for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++)
@@ -778,8 +781,6 @@ int main(int argc, char * argv[]) {
 					filterPoint = 0;
 				}
 			}
-			rate.sleep();
-			ros::spinOnce();
 		}
 		break;
     }
@@ -938,7 +939,6 @@ void Line(int x0, int y0,int x1, int y1) { //printing line
 		ystep = 1;
 	else
 		ystep = -1;
-	
 	for (; x0<=x1; x0++) {
 		if (steep) {
 			if(allMap[y0][x0]!=2 && allMap[y0][x0]!=6)//
