@@ -116,6 +116,23 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 //        printf("[YDLIDAR INFO]: angle-distance : [%f, %f, %d]\n", degree, scan->ranges[i], i);
 //    }
 }
+/*
+
+*/
+void saveMapCSV(){
+	ofstream mapFile;
+	mapFile.open("map.csv");
+	mapFile << "[ ALL MAP ] 0:none 1:sense 2:wall 3:arrive 4:empty 5:center 6:path\n";
+	for(int i=0;i<allMapSize;i++){
+		for(int j=0;j<allMapSize;j++){
+			mapFile << (char)allMap[i][j];
+			if(j!=allMapSize-1)
+				mapFile << ",";
+		}
+		mapFile << "\n";
+	}
+	mapFile.close();
+}
 
 int main(int argc, char * argv[]) {
   printf("serial connecting,.....\n");
@@ -494,11 +511,10 @@ int main(int argc, char * argv[]) {
 			//속도의 증가효과가 있는지 확인 바람
 			//rate.sleep();
 			//ros::spinOnce();
-			
-			switch(systemMode){
 			/************************************************************************/
 			/* end system                                                           */
 			/************************************************************************/
+			switch(systemMode){
 				case 0:
 					break;
 				case 1:
