@@ -1,0 +1,64 @@
+ubuntu 20.10 라즈베리파이 설치과정 두번째 시도
+
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu bionic main" > /etc/apt/sources.list.d/ros-latest.list'
+
+sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+
+sudo apt update
+
+sudo apt install ros-desktop-full
+
+sudo rosdep init
+(에러발생)
+sudo apt-get install pip
+
+sudo pip install -U rosdep
+
+sudo rosdep init
+
+rosdep update
+
+bash
+(에러발생:/opt/ros/melodic/setup.bash: No such file or directory)
+home/.bashrc 파일을 열어 (컨+H)  echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc 라인삭제 후 저장
+
+bash
+
+sudo apt install python-rosinstall python-rosinstall-generator python-wstool build-essential
+(에러발생 python3 버전이 대체한다고 함)
+sudo apt install python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+
+여기까지 ros 설치
+
+mkdir -p ~/ydlidar_ws/src
+
+cd ~/ydlidar_ws
+
+catkin_make
+(에러발생:unable ...)
+sudo apt install git
+
+git clone https://github.com/YDLIDAR/YDLidar-SDK
+
+cd YDLidar-SDK/build
+
+cmake ..
+(에러발생)
+sudo apt install cmake
+
+cmake ..
+
+make
+
+sudo make install
+
+cd ~/ydlidar_ws
+
+catkin_make
+(에러..)
+sudo apt install catkin
+(에러..)
+sudo apt install python3-catkin-pkg
+
+sudo apt install python3-catkin-pkg-modules
+

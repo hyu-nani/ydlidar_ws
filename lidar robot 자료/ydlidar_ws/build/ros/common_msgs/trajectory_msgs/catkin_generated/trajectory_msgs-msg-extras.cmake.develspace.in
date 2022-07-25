@@ -1,0 +1,2 @@
+set(trajectory_msgs_MESSAGE_FILES "/home/pls/ydlidar_ws/src/ros/common_msgs/trajectory_msgs/msg/JointTrajectory.msg;/home/pls/ydlidar_ws/src/ros/common_msgs/trajectory_msgs/msg/JointTrajectoryPoint.msg;/home/pls/ydlidar_ws/src/ros/common_msgs/trajectory_msgs/msg/MultiDOFJointTrajectory.msg;/home/pls/ydlidar_ws/src/ros/common_msgs/trajectory_msgs/msg/MultiDOFJointTrajectoryPoint.msg")
+set(trajectory_msgs_SERVICE_FILES "")

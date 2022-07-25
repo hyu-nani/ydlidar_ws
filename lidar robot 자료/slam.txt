@@ -1,0 +1,153 @@
+설치 방법
+http://wiki.ros.org/ROSberryPi/Installing%20ROS%20Kinetic%20on%20the%20Raspberry%20Pi
+
+https://www.instructables.com/Install-ROS-Kinetic-TurtleBot3-Raspicam-on-Raspber/
+
+참고
+https://blog.naver.com/rmlee/221460156608
+https://kyubot.tistory.com/130
+따라하면됨
+
+$ sudo ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/kinetic
+여기서 문제 발생 
+
+empy 문제이면
+$ sudo apt install python-empy
+
+opencv3 문제
+$ cd ~/ros_catkin_ws
+$ cd /home/pi/ros_catkin_ws/build_isolated/opencv3/install && /opt/ros/kinetic/env.sh make -j4 -l4
+$ sudo mkdir -p /opt/ros/kinetic
+$ sudo chown pi:pi /opt/ros/kinetic
+
+rospack 문제
+
+qt-sip 뭐뭐 문제
+$ sudo apt-get install sip-dev pyqt5-dev python-sip-dev pyqt5-dev-tools
+
+
+
+기타
+
+https://yoraish.com/2020/01/23/a-full-autonomous-stack-a-tutorial-ros-raspberry-pi-arduino-slam/
+
+https://blog.naver.com/albert0512/221212766430
+
+http://georgeknowlden.com/projects/farm_robot/log.html
+
+https://github.com/YDLIDAR/ydlidar_ros
+
+https://tutorialforlinux.com/2020/09/06/step-by-step-ros-ubuntu-20-10-installation-guide/2/
+========================================================================================================
+
+
+ubuntu 20.10 ros설치 과정
+
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+sudo apt-get update
+
+sudo apt-get install ros-desktop-full
+
+sudo rm /etc/ros/rosdep/sources.list.d/20-default.list
+
+sudo rosdep init
+
+rosdep update
+
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+
+home/.bashrc 파일을 열어 (컨+H)  echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc 라인삭제 후 저장
+
+bash
+
+sudo apt-get install python-rosinstall python-rosinstall-generator python-wstool build-essential
+
+mkdir -p ~/ydlidar_ws/src
+
+cd ~/ydlidar_ws/src
+
+sudo apt install git
+
+git clone https://github.com/EAIBOT/ydlidar.git
+
+cd ..
+
+sudo apt install catkin
+
+catkin_make //에러발생 CXX 파일 못찾았네
+
+sudo apt-get install build-essential
+
+sudo apt-get install g++
+
+sudo apt-get install ros-sensor-msgs
+
+cd ~/ydlidar_ws/src
+
+mkdir ros
+
+cd ~/ydlidar_ws/src/ros
+
+git clone https://github.com/ros/common_msgs.git
+
+sudo apt install pyqt5-dev-tools
+
+cd ~/ydlidar_ws
+
+catkin_make
+(램 부족인진 모르겠지만 계속 중지됨 하지만 계속반복하면 되긴함)
+echo "source ~/ydlidar_ws/devel/setup.bash" >> ~/.bashrc
+
+source ~/.bashrc
+
+cd ~/ydlidar_ws/src/ydlidar/startup
+
+sudo chmod +x initenv.sh
+
+sudo sh initenv.sh
+
+bash
+
+$ roslaunch ydlidar lidar_view.launch 
+(G2 연결안됨)
+===================================== 연결 이상할때
+sudo apt-get install python3-serial
+
+//sudo apt-get install setserial
+
+ls -ald /var/lock
+
+ls -ald /run/lock
+
+touch /var/lock/test
+
+sudo chmod o+w /run/lock
+
+ls -ald /run/lock
+
+touch /var/lock/test
+
+ls -al /var/lock/test
+
+reboot
+
+ls -ald /run/lock
+
+roslaunch ydlidar lidar_view.launch 
+====================================
+
+cd ~/ydlidar_ws/src
+
+git clone https://github.com/YDLIDAR/ydlidar_ros
+
+cd ..
+
+ydlidar_ws/src폴더에 기존의 ydlidar 폴더를 지운다
+
+catkin_make
+
+
+

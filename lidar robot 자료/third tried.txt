@@ -1,0 +1,64 @@
+ubuntu 20.10 ros설치 과정 3번째 방법
+
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+
+sudo apt-get update
+
+sudo apt-get upgrade
+
+sudo apt-get install ros-desktop-full
+
+sudo rm /etc/ros/rosdep/sources.list.d/20-default.list
+
+sudo rosdep init
+
+rosdep update
+
+echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
+
+home/.bashrc 파일을 열어 (컨+H)  echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc 라인삭제 후 저장
+
+bash
+
+sudo apt-get install python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+
+sudo apt-get install ros-sensor-msgs
+
+sudo apt install git
+
+sudo apt install pyqt5-dev-tools
+
+source /opt/ros/kinetic/setup.bash
+오류 (디렉토리 없음)
+mkdir -p ~/catkin_ws/src
+
+cd ..
+
+catkin_make
+오류없음
+
+mkdir ros
+
+cd ros
+
+git clone https://github.com/ros/common_msgs.git
+
+cd ~/catkin_ws
+
+source devel/setup.bash
+
+echo $ROS_PACKAGE_PATH
+
+git clone https://github.com/YDLIDAR/ydlidar_ros
+
+catkin_make
+
+roscd ydlidar_ros/startup
+
+sudo chmod 777 ./*
+
+sudo sh initenv.sh
+
+roslaunch ydlidar_ros lidar_view.launch

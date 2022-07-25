@@ -1,0 +1,8 @@
+작업 후 
+디렉토리 이동후
+gcc -o 이름 이름확장명
+./이름
+
+
+cd ydlidar_ws
+catkin_make
