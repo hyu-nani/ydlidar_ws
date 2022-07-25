@@ -820,10 +820,10 @@ bool SerialRead()
 	}else{
 		buf[serial1] = '\0';//remove the endline
 		printf("\033[%d;%dH",printSize+10,3);
-		printf("%i bytes read :\n   [ %s ]   ", serial1, buf);
+		printf("%d bytes read :\n   [ %s ]   ", serial1, buf);
 	}
 	if(strcmp(buf,"OK")==0){//transform success
-		printf("ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+		printf("ddddddddddddddddddddddddddddddddd");
 		delay_ms(1);
 		OKsign = true;
 		return true;
