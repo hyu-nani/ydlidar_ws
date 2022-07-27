@@ -127,7 +127,7 @@ void saveMapCSV(){
 	mapFile << "[ ALL MAP ] 0:none 1:sense 2:wall 3:arrive 4:empty 5:center 6:path\n";
 	for(int i=0;i<allMapSize;i++){
 		for(int j=0;j<allMapSize;j++){
-			mapFile << (char)(int)allMap[i][j];
+			mapFile << (char)(allMap[i][j]+48);
 			if(j!=allMapSize-1)
 				mapFile << ",";
 		}
