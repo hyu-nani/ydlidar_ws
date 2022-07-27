@@ -732,7 +732,7 @@ int main(int argc, char * argv[]) {
 				}
 				loadfile.close();
 				printf("loading......");
-			}else if(kb.compare("DC3")==0){//Ctrl-S
+			}else if(kb.compare("S")==0 || kb.compare("s")==0){//Save
 				printf("TXT file save..............\n");
 				ofstream savefile;
 				savefile.open("map.txt");
