@@ -99,7 +99,8 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
     //printf("[YDLIDAR INFO]: I heard a laser scan %s[%d]:\n", scan->header.frame_id.c_str(), lidarReadCount);
     //printf("[YDLIDAR INFO]: angle_range : [%f, %f]\n", RAD2DEG(scan->angle_min), RAD2DEG(scan->angle_max));
     
-	for(int i = 0; i < lidarReadCount; i++) {
+	for(int i = 0; i < lidarReadCount; i++) 
+	{
         float degree = RAD2DEG(scan->angle_min + scan->angle_increment * i);
         YD_angle[i] = degree;
         YD_distance[i] = scan->ranges[i];
@@ -119,28 +120,33 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 /*
 CSV 파일형식의 맵 저장 코드
 */
-void saveMapCSV(){
+void saveMapCSV()
+{
 	delay_ms(1000);
 	ofstream mapFile;
 	printf("CSV file save.............\n");
 	mapFile.open("map.csv");
 	mapFile << "[ ALL MAP ] 0:none 1:sense 2:wall 3:arrive 4:empty 5:center 6:path\n";
-	for(int i=0;i<allMapSize;i++){
-		for(int j=0;j<allMapSize;j++){
+	for(int i=0;i<allMapSize;i++)
+	{
+		for(int j=0;j<allMapSize;j++)
+		{
 			mapFile << (char)(allMap[i][j]+48);
 			if(j!=allMapSize-1)
-				mapFile << ",";
+			mapFile << ",";
 		}
 		mapFile << "\n";
 	}
 	mapFile.close();
 }
 
-int main(int argc, char * argv[]) {
+int main(int argc, char * argv[]) 
+{
   printf("serial connecting,.....\n");
     //////////////////////////////////////////////////////////////// usb arduino
 	fd = open("/dev/ttyACM0", O_RDWR | O_NOCTTY | O_NDELAY);
-	if (fd == -1) {
+	if (fd == -1) 
+	{
     	printf("doesn't connected arduino");
   		perror("open_port: Unable to open /dev/ttyACM0 - ");
     	return(-1);
@@ -238,24 +244,24 @@ int main(int argc, char * argv[]) {
     nh_private.param<bool>("isTOFLidar", isTOFLidar, isTOFLidar);
 
     ignore_array = split(list ,',');
-    if(ignore_array.size()%2){
+    if(ignore_array.size()%2)
+	{
         ROS_ERROR_STREAM("ignore array is odd need be even");
     }
 
-    for(uint16_t i =0 ; i < ignore_array.size();i++){
-        if(ignore_array[i] < -180 && ignore_array[i] > 180){
-            ROS_ERROR_STREAM("ignore array should be between 0 and 360");
-        }
+    for(uint16_t i =0 ; i < ignore_array.size();i++)
+	{
+        if(ignore_array[i] < -180 && ignore_array[i] > 180)
+        ROS_ERROR_STREAM("ignore array should be between 0 and 360");
     }
 
     CYdLidar laser;
-    if(frequency<3){
-       frequency = 7.0; 
-    }
-    if(frequency>15.7){
-        frequency = 15.7;
-    }
-    if(angle_max < angle_min){
+    if(frequency<3)
+    frequency = 7.0; 
+    if(frequency>15.7)
+    frequency = 15.7;
+    if(angle_max < angle_min)
+	{
         double temp = angle_max;
         angle_max = angle_min;
         angle_min = temp;
@@ -278,16 +284,17 @@ int main(int argc, char * argv[]) {
     laser.setSingleChannel(isSingleChannel);
     laser.setLidarType(isTOFLidar ? TYPE_TOF : TYPE_TRIANGLE);
     bool ret = laser.initialize();
-    if (ret) {
+    if (ret) 
+	{
         ret = laser.turnOn();
-        if (!ret) {
-            ROS_ERROR("Failed to start scan mode!!!");
-        }
-    } else {
+        if (!ret) 
+        ROS_ERROR("Failed to start scan mode!!!");
+    } 
+	else
+	{
         ROS_ERROR("Error initializing YDLIDAR Comms and Status!!!");
     }
     ros::Rate rate(20);
-    
 	ros::NodeHandle n;
 	ros::Subscriber sub = n.subscribe<sensor_msgs::LaserScan>("/scan", 1000, scanCallback);
 	
@@ -296,15 +303,18 @@ int main(int argc, char * argv[]) {
 	char buffer[20];
 	sprintf(buffer, "Unit%fD\n",unitScale);
 	system("clear");
+	
 	delay_ms(1000);
-    while (ret&&ros::ok()) {
+    while (ret&&ros::ok()) 
+	{
         bool hardError;
         //and loop start here 
 		OKsign = true;
 		/************************************************************************/
 		/*    Mapping code                                                      */
 		/************************************************************************/
-		while(true){
+		while(true)
+		{
 			LaserScan scan;
 			if(laser.doProcessSimple(scan, hardError )){
 				printf("scanning\n");
@@ -325,9 +335,11 @@ int main(int argc, char * argv[]) {
 				scan_msg.ranges.resize(size);
 				scan_msg.intensities.resize(size);
 				
-				for(int i=0; i < scan.points.size(); i++) {
+				for(int i=0; i < scan.points.size(); i++) 
+				{
 					int index = std::ceil((scan.points[i].angle - scan.config.min_angle)/scan.config.angle_increment);
-					if(index >=0 && index < size) {
+					if(index >=0 && index < size) 
+					{
 						scan_msg.ranges[index] = scan.points[i].range;
 						scan_msg.intensities[index] = scan.points[i].intensity;
 					}
@@ -337,7 +349,8 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			/* Writing sensing, wall                                                */
 			/************************************************************************/
-			for(int i=0;i<500;i++){
+			for(int i=0;i<500;i++)
+			{
 				float difference = fabs(old_distance[i] - YD_distance[i]);
 				int Xvalue = round(cos((YD_angle[i]+90+robotAngle+gapAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
 				int Yvalue = round(-sin((YD_angle[i]+90+robotAngle+gapAngle)*M_PI/180.0)*YD_distance[i]*100.0/unitScale);
@@ -345,29 +358,33 @@ int main(int argc, char * argv[]) {
 				    (allMapSize/2+printSize/2)>(allMapSize/2+robotX+Xvalue) && 
 				    (allMapSize/2-printSize/2)<(allMapSize/2-robotY+Yvalue) && 
 				    (allMapSize/2+printSize/2)>(allMapSize/2-robotY+Yvalue) &&
-				    (allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue]) == 0){
+				    (allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue]) == 0)
+					{
 						allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
 					}
 				if( (difference < 0.02) &&	(difference != 0) && (YD_distance[i] > 0.2) && (YD_distance[i] < 4))//[M]
-					data_count[i]++;
+				data_count[i]++;
 				else
-					data_count[i] = 0;
-				if(data_count[i] > 4 && mappingActive == true && ignoreTime == 0){//wall sensitivity
+				data_count[i] = 0;
+				if(data_count[i] > 4 && mappingActive == true && ignoreTime == 0)
+				{//wall sensitivity
 					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2-robotY+Yvalue)<allMapSize)
-						if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize){
-							Line(allMapSize/2-robotY, allMapSize/2+robotX, allMapSize/2-robotY+Yvalue, allMapSize/2+robotX+Xvalue);
-							allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
-						}
+					if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize)
+					{
+						Line(allMapSize/2-robotY, allMapSize/2+robotX, allMapSize/2-robotY+Yvalue, allMapSize/2+robotX+Xvalue);
+						allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 2; //hold
+					}
 					data_count[i] = 0;
 				} 
 				if(ignoreTime > 0)// ignore lidar value
-					ignoreTime--;
+				ignoreTime--;
 			}
 			/************************************************************************/
 			/*    System Mode						                                */
 			/************************************************************************/
 			printf("SYSTEM MODE : ");
-			switch(systemMode){
+			switch(systemMode)
+			{
 				case 0:
 				printf("Zero");
 				break;
@@ -384,7 +401,8 @@ int main(int argc, char * argv[]) {
 			printf("\n");
 		
 			int filterPoint1=0;
-			switch(systemMode){
+			switch(systemMode)
+			{
 				case 0:
 				/*		System Mode 0 : make point map and finding center point           */
 					
@@ -397,10 +415,13 @@ int main(int argc, char * argv[]) {
 				delay_ms(100);
 				SerialRead();
 				//filtering
-				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++){
-					for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++){
+				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
+				{
+					for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++)
+					{
 						filterPoint1=0;
-						if(allMap[i][j] == 0){
+						if(allMap[i][j] == 0)
+						{
 							for(int k=0;k<3;k++)
 							for(int p=0;p<3;p++)
 							if(allMap[i-1+k][j-1+p]==4)
@@ -425,16 +446,21 @@ int main(int argc, char * argv[]) {
 				<미완성>
 				*/
 				if(count == 10) // 각 카운트마다 실행 명령 분할
-					distanceTest = YD_distance[2];
-				else if(count == 11){// 10cm 전진 명령	
+				distanceTest = YD_distance[2];
+				else if(count == 11)
+				{// 10cm 전진 명령	
 					SerialPrint("10cm");
 				}
-				else if(count > 12){
+				else if(count > 12)
+				{
 					OKsign = true;
 					SerialPrint("Pos");
-					if(YD_distance[2] > distanceTest){	//다시 측정한 거리가 예상값보다 클때
+					if(YD_distance[2] > distanceTest)
+					{	//다시 측정한 거리가 예상값보다 클때
 						
-					}else{
+					}
+					else
+					{
 						
 					}
 				}
@@ -450,22 +476,24 @@ int main(int argc, char * argv[]) {
 				6. 라즈베리파이에서 좌표 확인 후 현재좌표수정 및 2번 과정으로 이동
 				
 				OKsign 은 아두이노와 통신을 할 때 응답 확인용. 응답이 확인되면 true
-				*/	
-				//delay_ms(1);
-				//OKsign = true;
-				if(OKsign){
+				*/
+				if(OKsign)
+				{
 					printf("initMap\n");
-					initMap();
-					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY)){
+					initMap();//convert allMap to mazeMap
+					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY))
+					{
 						printf("i can't Find way!!!!!!!!!!!!!!!!\n");
 						delay_ms(2000);
 					}
-					else{
+					else
+					{//success
 						systemMode = 1;
 					}
 					//output(moveX moveY)
 					
-					if(moveY!=0 || moveX != 0){
+					if(moveY!=0 || moveX != 0)
+					{
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);
 						printf("send>%s",buffer);
@@ -474,13 +502,13 @@ int main(int argc, char * argv[]) {
 						moveX = 0;
 						moveY = 0;
 					}
-					else{
+					else
+					{
 						SerialPrint("stop");
 					}
-					//OKsign = false;
 				}
-				else{
-					//OKsign = true;
+				else
+				{
 					SerialPrint("Pos");//require to position data
 					delay_ms(50);
 				}
@@ -494,31 +522,35 @@ int main(int argc, char * argv[]) {
 			/************************************************************************/
 			printf("\033[%d;%dH",1,3);//set cursor 0,2
 			//SSH print
-			if(screenActive){
+			if(screenActive)
+			{
 				allMap[allMapSize/2-robotY][allMapSize/2+robotX] = 5;//robot
 				printSSHmonitor(cursorY,cursorX);
 				printf("count:%d  /  1-unit : %f cm \033[92m []Robot \033[33m Sensing \033[31m Wall\n\033[0m",count,unitScale);
 				printf("\t\t[[ ROS-SLAM SSH monitor ]]\n");
 				//return sensing text to empty text 
 				for(int i= -printSize/2-10;i<printSize/2+10;i++)
-					for(int j= -printSize/2-10;j<printSize/2+10;j++){
-						int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
-						if(a == 1 || a == 5) //sensing point or robot center
-							allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
-						//else if(a == 6)
-						//s	allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 4;
-					}
+				for(int j= -printSize/2-10;j<printSize/2+10;j++)
+				{
+					int a = allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX];
+					if(a == 1 || a == 5) //sensing point or robot center
+						allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 0;
+					//else if(a == 6)
+					//s	allMap[i+allMapSize/2-robotY][j+allMapSize/2+robotX] = 4;
+				}
 				count++;
 			}
 			for(int i=0;i<500;i++)
-				old_distance[i] = YD_distance[i];
-			delay_ms(1);//prevent process down
+			old_distance[i] = YD_distance[i];
+			//ydlidar one time loop end code
+			delay_ms(1);
 			rate.sleep();
 			ros::spinOnce();
 			/************************************************************************/
-			/* end system                                                           */
+			/* end system            SSH 맵출력후 동작코드	                        */
 			/************************************************************************/
-			switch(systemMode){
+			switch(systemMode)
+			{
 				case 0:
 					break;
 				case 1:
@@ -534,23 +566,26 @@ int main(int argc, char * argv[]) {
 			/* Command input                                                        */
 			/************************************************************************/
 			string kb = linux_kbhit();
-			if(kb.compare("nothing")!=0){
+			if(kb.compare("nothing")!=0)
+			{
 				//printf("%s", kb);
 				delay_ms(10);
 			}
-			if(kb.compare("Space")==0){//command hit
+			if(kb.compare("Space")==0)//command hit
+			{
 				printf("\033[45m\033[36m");
 				for(int i=0; i<printSize/2-1; i++)
-					printf("--");
+				printf("--");
 				printf("PAUSE");
 				for(int i=0; i<printSize/2-1; i++)
-					printf("--");
+				printf("--");
 				printf("-\n");
 				printf("\033[40m\033[97m");
 				printf("\nCommand Please...\n input:");
 				scanf(" %s",scanData);
 				//Command List
-				if(strcmp(scanData,"stop") == 0){		//all stop
+				if(strcmp(scanData,"stop") == 0)//all stop
+				{		
 					SerialPrint("stop");
 					ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
@@ -559,69 +594,84 @@ int main(int argc, char * argv[]) {
 					printf("STOP....\n");
 					printf("\033[40m\033[97m");
 					break;
-				}else if(strcmp(scanData,"up") == 0){
+				}
+				else if(strcmp(scanData,"up") == 0)
+				{
 					SerialPrint("up");
 					system("clear");
 					delay_ms(10);
-				}else if(strcmp(scanData,"down") == 0){
+				}
+				else if(strcmp(scanData,"down") == 0)
+				{
 					SerialPrint("down");
 					system("clear");
 					delay_ms(10);
-				}else if(strcmp(scanData,"10cm") == 0){
+				}
+				else if(strcmp(scanData,"10cm") == 0)
+				{
 					SerialPrint("10cm");
 					system("clear");
 					delay_ms(10);
-				}else if(strcmp(scanData,"test") == 0){
+				}
+				else if(strcmp(scanData,"test") == 0)
+				{
 					SerialPrint("test");
 					system("clear");
 					delay_ms(10);
-				}else if(strcmp(scanData,"map") == 0){
-					mappingActive = !mappingActive;
-				}else if(strcmp(scanData,"screen") == 0){
-					screenActive = !screenActive;
-				}else if(strcmp(scanData,"filter") == 0){
+				}
+				else if(strcmp(scanData,"filter") == 0)
+				{
 					printf("Filtering.............................\n");
 					int filterPoint=0;
 					for(int m=0;m<10;m++)	//10 times
-						for(int i=1;i<allMapSize;i++)
-							for(int j=1;j<allMapSize;j++)
-								if(allMap[i][j] == 0){
-									for(int k=0;k<3;k++)
-										for(int p=0;p<3;p++)
-											if(allMap[i-1+k][j-1+p]==4)
-												filterPoint++;
-									if(filterPoint>4)
-										allMap[i][j] = 4;
-									filterPoint = 0;
-									for(int k=0;k<3;k++)
-										for(int p=0;p<3;p++)
-											if(allMap[i-1+k][j-1+p]==2)
-												filterPoint++;
-									if(filterPoint>4)
-										allMap[i][j] = 2;
-									filterPoint = 0;
-								}
-				}else if(strcmp(scanData,"save")==0){
+					for(int i=1;i<allMapSize;i++)
+					for(int j=1;j<allMapSize;j++)
+					if(allMap[i][j] == 0)
+					{
+						for(int k=0;k<3;k++)
+						for(int p=0;p<3;p++)
+						if(allMap[i-1+k][j-1+p]==4)
+						filterPoint++;
+						if(filterPoint>4)
+						allMap[i][j] = 4;
+						filterPoint = 0;
+						for(int k=0;k<3;k++)
+						for(int p=0;p<3;p++)
+						if(allMap[i-1+k][j-1+p]==2)
+						filterPoint++;
+						if(filterPoint>4)
+						allMap[i][j] = 2;
+						filterPoint = 0;
+					}
+				}
+				else if(strcmp(scanData,"save")==0)
+				{
 					ofstream savefile;
 					savefile.open("map.txt");
-					for(int k = 0; k< allMapSize ; k++){
-						for(int j=0;j<allMapSize;j++){
-							savefile << (char)allMap[k][j];
-						}
-						savefile << endl; 
+					for(int k = 0; k< allMapSize ; k++)
+					{
+						for(int j=0;j<allMapSize;j++)
+						savefile << (char)allMap[k][j];
+						savefile << endl;
 					}
 					savefile.close();
-				}else if(strcmp(scanData,"mode")==0){
+				}
+				else if(strcmp(scanData,"mode")==0)
+				{
 					printf("Setting mode!");
 					scanf("%d", &systemMode);
-				}else if(strcmp(scanData,"scale")==0){
+				}
+				else if(strcmp(scanData,"scale")==0)
+				{
 					char buffer[20];
 					scanf("%f",&unitScale);
 					sprintf(buffer, "Unit%f",unitScale);
 					SerialPrint(buffer);
 					system("clear");
 					delay_ms(50);
-				}else{
+				}
+				else
+				{
 					printf("nothing...");
 				}
 				system("clear");
@@ -636,71 +686,98 @@ int main(int argc, char * argv[]) {
 			/*   Key M : active mapping												*/
 			/*   Key G : move														*/
 			/************************************************************************/
-			}else if(kb.compare("Up")==0){
-				if(integration){
+			}
+			else if(kb.compare("Up")==0)
+			{
+				if(integration)
+				{
 					SerialPrint("front");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
 					delay_ms(50);
-				}else{
+				}
+				else
+				{
 					cursorY+=int(50/unitScale);	//cursor move
 				}
-			}else if(kb.compare("Left")==0){
-				if(integration){
+			}
+			else if(kb.compare("Left")==0)
+			{
+				if(integration)
+				{
 					SerialPrint("left");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 1.0;		//It's when the robot spins Error value of interference by rotation 
 					system("clear");
 					delay_ms(50);
-				}else{
+				}
+				else
+				{
 					cursorX-=int(50/unitScale);	//cursor move
 				}
-			}else if(kb.compare("Right")==0){
-				if(integration){
+			}
+			else if(kb.compare("Right")==0)
+			{
+				if(integration)
+				{
 					SerialPrint("right");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = -1;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
 					delay_ms(50);
-				}else{
+				}
+				else
+				{
 					cursorX+=int(50/unitScale);	//cursor move
 				}
-			}else if(kb.compare("Down")==0){
-				if(integration){
+			}
+			else if(kb.compare("Down")==0)
+			{
+				if(integration)
+				{
 					SerialPrint("back");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
 					gapAngle = 0.0;		//It's when the robot spins Error value of interference by rotation
 					system("clear");
 					delay_ms(50);
-				}else{
+				}
+				else
+				{
 					cursorY-=int(50/unitScale);	//cursor move
 				}
-			}else if(kb.compare("/")==0){
+			}
+			else if(kb.compare("/")==0)
+			{
 				SerialPrint("stop");
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
 				system("clear");
 				delay_ms(50);
-			}else if(kb.compare("Map")==0){	//map calculate active
+			}
+			else if(kb.compare("Map")==0)//map calculate active
+			{	
 				mappingActive = !mappingActive;
 				delay_ms(50);
-			}else if(kb.compare("Move")==0){
+			}
+			else if(kb.compare("Move")==0)
+			{
 				integration = false;
 				bool decide = false;
-				while(decide==false){
+				while(decide==false)
+				{
 					kb = linux_kbhit();
 					delay_ms(10);//protect process
 					if(kb.compare("Up")==0)//up arrow
-						cursorY+=int(30/unitScale);	//cursor move
+					cursorY+=int(30/unitScale);	//cursor move
 					else if(kb.compare("Down")==0)//down arrow
-						cursorY-=int(30/unitScale);	//cursor move
+					cursorY-=int(30/unitScale);	//cursor move
 					else if(kb.compare("Right")==0)//right arrow
-						cursorX+=int(30/unitScale);	//cursor move
+					cursorX+=int(30/unitScale);	//cursor move
 					else if(kb.compare("Left")==0)//left arrow
-						cursorX-=int(30/unitScale);	//cursor move
+					cursorX-=int(30/unitScale);	//cursor move
 					else if(kb.compare("/")==0)//stop '/' key
-						decide = true;
+					decide = true;
 					allMap[allMapSize/2-robotY][allMapSize/2+robotX] = 5;//robot
 					printf("################### move point and press '/' ###################\n");
 					printf("\033[%d;%dH",1,3);//set cursor 0,2
@@ -718,34 +795,24 @@ int main(int argc, char * argv[]) {
 				system("clear");
 				systemMode = 3; //move to arrival find way mode
 				delay_ms(50);
-			}else if(kb.compare("FF")==0){//Ctrl-L
-				ifstream loadfile("map.txt");
-				string ch;
-				printf("\033[%d;%dH",1,1);//set cursor 0,0
-				if(loadfile.good()){
-					for(int i=0;i<allMapSize;i++){
-						getline(loadfile,ch);
-						for(int j=0;j<allMapSize;j++){
-							allMap[i][j] = (int)ch[j];
-						}
-					}
-				}
-				loadfile.close();
-				printf("loading......");
-			}else if(kb.compare("S")==0 || kb.compare("s")==0){//Save
+			}
+			else if(kb.compare("S")==0 || kb.compare("s")==0)//Save
+			{
 				printf("TXT file save..............\n");
 				ofstream savefile;
 				savefile.open("map.txt");
-				for(int k = 0; k< allMapSize ; k++){
-					for(int j=0;j<allMapSize;j++){
-						savefile << (char)allMap[k][j];
-					}
+				for(int k = 0; k< allMapSize ; k++)
+				{
+					for(int j=0;j<allMapSize;j++)
+					savefile << (char)allMap[k][j];
 					savefile << endl;
 				}
 				savefile.close();
 				saveMapCSV();
 				system("clear");
-			}else if(kb.compare("R")==0 || kb.compare("r")==0){//reset
+			}
+			else if(kb.compare("R")==0 || kb.compare("r")==0)//reset
+			{
 				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++)
 				allMap[i][j] = 0;
@@ -754,7 +821,9 @@ int main(int argc, char * argv[]) {
 				systemMode = 1; 
 				system("clear");
 				delay_ms(50);
-			}else if(kb.compare("c")==0 || kb.compare("C")==0){//stop
+			}
+			else if(kb.compare("c")==0 || kb.compare("C")==0)//stop
+			{
 				SerialPrint("stop");
 				ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
 				gapAngle = 0.0;			//It's when the robot spins Error value of interference by rotation
@@ -763,11 +832,14 @@ int main(int argc, char * argv[]) {
 				printf("STOP....\n");
 				printf("\033[40m\033[97m");
 				break;
-			}else if(kb.compare("f")==0 || kb.compare("F")==0){//filter one cycle
+			}
+			else if(kb.compare("f")==0 || kb.compare("F")==0)//filter one cycle
+			{
 				int filterPoint=0;
 				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
 				for(int j=allMapSize/2-printSize;j<allMapSize/2+printSize;j++)
-				if(allMap[i][j] == 0){
+				if(allMap[i][j] == 0)
+				{
 					for(int k=0;k<3;k++)
 					for(int p=0;p<3;p++)
 					if(allMap[i-1+k][j-1+p]==4)
@@ -798,12 +870,13 @@ int main(int argc, char * argv[]) {
 
 void SerialPrint(const char* format)
 {
-	if(OKsign){
+	if(OKsign)
+	{
 		serial1 = write(fd,format,int(strlen(format)));
 		if(serial1 < 0)
-			perror("write failed - ");
+		perror("write failed - ");
 		else
-			OKsign = false;
+		OKsign = false;
 		
 	}
 	
@@ -812,29 +885,38 @@ bool SerialRead()
 {
 	char buf[256] = "";
 	serial1 = read(fd, (void*)buf, 255);
-	if (serial1 < 0) {
+	if (serial1 < 0) 
+	{
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("Read failed - ");
-	}else if (serial1 == 0){
+	}
+	else if (serial1 == 0)
+	{
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("No data on port\n");
 		for(int i=0;i<10;i++)
 		printf("                                                                                        \n");
-	}else{
+	}
+	else
+	{
 		buf[serial1] = '\0';//remove the endline
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("%d bytes read :\n   [ %s ]   ", serial1, buf);
 	}
-	if(strcmp(buf,"OK")==0){//transform success
+	if(strcmp(buf,"OK")==0)//success transform message
+	{
 		printf("ddddddddddddddddddddddddddddddddd");
 		delay_ms(1);
 		OKsign = true;
 		return true;
 	}
-	else{
-		if( buf[0]=='P' && buf[1]=='o' && buf[2]=='s' ){
+	else
+	{
+		if( buf[0]=='P' && buf[1]=='o' && buf[2]=='s' )
+		{
 			sscanf(buf,"Pos/%d/%d/%lf/%fE",&robotX,&robotY,&robotAngle,&val);
-			if(integration == true){
+			if(integration == true)
+			{
 				cursorX = robotX;
 				cursorY = robotY;
 			}
@@ -845,12 +927,13 @@ bool SerialRead()
 		return false;
 	}
 }
-void printSSHmonitor(int currentY,int currentX){
+void printSSHmonitor(int currentY,int currentX)
+{
 	for(int i = 0 ; i<printSize;i++)
-		for(int j = 0; j<printSize;j++)
-			pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)+currentX];
+	for(int j = 0; j<printSize;j++)
+	pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)+currentX];
 	if(pinMap[printSize/2][printSize/2] != 3)
-	  pinMap[ printSize/2 ][ printSize/2 ] = 5;//setup of print center
+	pinMap[ printSize/2 ][ printSize/2 ] = 5;//setup of print center
 	printf("\n ");
 	printf("\033[97m");//white
 	for(int i=0;i<printSize/2-1;i++)
@@ -860,50 +943,53 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("--");
 	printf("-\n");
 	int prePixel = 0;
-	for(int i=0;i<printSize;i++){
+	for(int i=0;i<printSize;i++)
+	{
 		printf(" |");
 		prePixel = 0;
-		for(int j=0;j<printSize;j++){
-			switch(pinMap[i][j]){
+		for(int j=0;j<printSize;j++)
+		{
+			switch(pinMap[i][j])
+			{
 				case 1://sensing
 				if(prePixel != 1)
-					printf("\033[43m\033[33m");//orange background color
+				printf("\033[43m\033[33m");//orange background color
 				printf("  ");
 				prePixel = 1;
 				break;
 				case 2://wall
 				if(prePixel != 2)
-					printf("\033[41m");		//red background color
+				printf("\033[41m");		//red background color
 				printf("  ");
 				prePixel = 2;
 				break;
 				case 3://arrival point
 				if(prePixel != 3)
-					printf("\033[44m");		//blue background color
+				printf("\033[44m");		//blue background color
 				printf("  ");
 				prePixel = 3;
 				break;
 				case 4://empty
 				if(prePixel != 4)
-					printf("\033[47m");		//white background color
+				printf("\033[47m");		//white background color
 				printf("  ");
 				prePixel = 4;
 				break;
 				case 5://center
 				if(prePixel != 5)
-					printf("\033[45m\033[36m");	//magenta BG & cyan
+				printf("\033[45m\033[36m");	//magenta BG & cyan
 				printf("<>");
 				prePixel = 5;
 				break;
 				case 6://path
 				if(prePixel != 6)
-					printf("\033[45m\033[37m");
+				printf("\033[45m\033[37m");
 				printf("  ");
 				prePixel = 6;
 				break;
 				default:
 				if(prePixel != 0)
-					printf("\033[40m\033[97m");	//black BG & white
+				printf("\033[40m\033[97m");	//black BG & white
 				printf("  ");
 				prePixel = 0;
 				break;
@@ -922,14 +1008,21 @@ void printSSHmonitor(int currentY,int currentX){
 	printf("\033[0m");//white
 }
 
-void Line(int x0, int y0,int x1, int y1) { //printing line
+void Line(int x0, int y0,int x1, int y1) //printing line
+{ 
 	int steep = abs(y1 - y0) > abs(x1 - x0);
 	int t;
-	if (steep) {
-		t=x0;x0=y0;y0=t;
-		t=x1;x1=y1;y1=t;
+	if(steep)
+	{
+		t=x0;
+		x0=y0;
+		y0=t;
+		t=x1;
+		x1=y1;
+		y1=t;
 	}
-	if (x0 > x1) {
+	if(x0 > x1) 
+	{
 		t=x0;x0=x1;x1=t;
 		t=y0;y0=y1;y1=t;
 	}
@@ -938,20 +1031,25 @@ void Line(int x0, int y0,int x1, int y1) { //printing line
 	dy = abs(y1 - y0);
 	int16_t err = dx / 2;
 	int16_t ystep;
-	if (y0 < y1)
-		ystep = 1;
+	if(y0 < y1)
+	ystep = 1;
 	else
-		ystep = -1;
-	for (; x0<=x1; x0++) {
-		if (steep) {
-			if(allMap[y0][x0]!=2 && allMap[y0][x0]!=6)//
-				allMap[y0][x0]=4;
-		} else {
-			if(allMap[x0][y0]!=2 && allMap[x0][y0]!=6)//
-				allMap[x0][y0]=4;
+	ystep = -1;
+	for (; x0<=x1; x0++) 
+	{
+		if (steep) 
+		{
+			if(allMap[y0][x0]!=2 && allMap[y0][x0]!=6)
+			allMap[y0][x0]=4;
+		} 
+		else 
+		{
+			if(allMap[x0][y0]!=2 && allMap[x0][y0]!=6)
+			allMap[x0][y0]=4;
 		}
 		err -= dy;
-		if (err < 0) {
+		if (err < 0) 
+		{
 			y0 += ystep;
 			err += dx;
 		}
