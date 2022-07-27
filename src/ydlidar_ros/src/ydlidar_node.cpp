@@ -120,7 +120,9 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
 CSV 파일형식의 맵 저장 코드
 */
 void saveMapCSV(){
+	delay_ms(1000);
 	ofstream mapFile;
+	printf("CSV file save.............\n");
 	mapFile.open("map.csv");
 	mapFile << "[ ALL MAP ] 0:none 1:sense 2:wall 3:arrive 4:empty 5:center 6:path\n";
 	for(int i=0;i<allMapSize;i++){
@@ -731,6 +733,7 @@ int main(int argc, char * argv[]) {
 				loadfile.close();
 				printf("loading......");
 			}else if(kb.compare("DC3")==0){//Ctrl-S
+				printf("TXT file save..............\n");
 				ofstream savefile;
 				savefile.open("map.txt");
 				for(int k = 0; k< allMapSize ; k++){
