@@ -125,17 +125,14 @@ void saveMapCSV(){
 	printf("CSV file save.............\n");
 	mapFile.open("map.csv");
 	mapFile << "[ ALL MAP ] 0:none 1:sense 2:wall 3:arrive 4:empty 5:center 6:path\n";
-	mapFile << "124,1232,1234,1234\n";
-	/*
 	for(int i=0;i<allMapSize;i++){
 		for(int j=0;j<allMapSize;j++){
-			mapFile << (char)allMap[i][j];
+			mapFile << (char)(int)allMap[i][j];
 			if(j!=allMapSize-1)
 				mapFile << ",";
 		}
 		mapFile << "\n";
 	}
-	*/
 	mapFile.close();
 }
 
