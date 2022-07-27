@@ -4,7 +4,8 @@
  * Created: 2022-03-16 9:26:56
  *  Author: cube_
  */ 
-void positionCalculate(double nowPosL, double nowPosR){
+void positionCalculate(double nowPosL, double nowPosR)
+{
 	double distanceL = diameter*M_PI/pulse*(nowPosL-oldPosL);
 	double distanceR = diameter*M_PI/pulse*(nowPosR-oldPosR);
 	oldPosL = nowPosL;
@@ -28,7 +29,8 @@ void positionCalculate(double nowPosL, double nowPosR){
 
 int oldDirect=0;
 //0:stop, 1:front, 2:left, 3:right, 4:back
-void errorGapCal(double nowPosL, double nowPosR, int direct){
+void errorGapCal(double nowPosL, double nowPosR, int direct)
+{
 	//if the direction changed, save the wheel position 
 	if(direct != oldDirect){
 		oldPosL1	= nowPosL;
@@ -41,30 +43,39 @@ void errorGapCal(double nowPosL, double nowPosR, int direct){
 	
 	int val = 5;//this error gap for wheel speed each wheel
 	
-	if(direct==0){//stop
+	if(direct==0)//stop
+	{
 		errorGap = 0;
-	}else if(direct==1){//front
+	}
+	else if(direct==1)//front
+	{
 		if(distanceL1<distanceR1)//rising
 			errorGap = +val;
 		else if(distanceL1>distanceR1)
 			errorGap = -val;
 		else
 			errorGap = 0;
-	}else if(direct==2){//left
+	}
+	else if(direct==2)//left
+	{
 		if(-distanceL1>distanceR1)
 			errorGap = -val;
 		else if(-distanceL1<distanceR1)
 			errorGap = +val;
 		else
 			errorGap = 0;
-	}else if(direct==3){//right
+	}
+	else if(direct==3)//right
+	{
 		if(distanceL1>-distanceR1)
 			errorGap = -val;
 		else if(distanceL1<-distanceR1)
 			errorGap = +val;
 		else
 			errorGap = 0;
-	}else if(direct==4){//back
+	}
+	else if(direct==4)//back
+	{
 		if(distanceL1<distanceR1)//rising
 			errorGap = -val*2;
 		else if(distanceL1>distanceR1)
@@ -74,20 +85,24 @@ void errorGapCal(double nowPosL, double nowPosR, int direct){
 	}
 }
 
-void rotateLeft(){
+void rotateLeft()
+{
 	driverSet(speedLeft,0,1,1,0,speedRight);
 	fixAngle = robot_angle;
-	while(robot_angle < fixAngle+90){
+	while(robot_angle < fixAngle+90)
+	{
 		positionCalculate(encoderPosLeft,encoderPosRight);
 		errorGapCal(encoderPosLeft,encoderPosRight,direction);
 		analogWrite(driverPwmL,lefePWMoutput+errorGap);
 		analogWrite(driverPwmR,rightPWMoutput-errorGap);
 	}
 }
-void rotateRight(){
+void rotateRight()
+{
 	driverSet(speedLeft,1,0,0,1,speedRight);
 	fixAngle = robot_angle;
-	while(robot_angle > fixAngle-90){
+	while(robot_angle > fixAngle-90)
+	{
 		positionCalculate(encoderPosLeft,encoderPosRight);
 		errorGapCal(encoderPosLeft,encoderPosRight,direction);
 		analogWrite(driverPwmL,lefePWMoutput+errorGap);
@@ -104,10 +119,12 @@ void goOnePoint(){
 		analogWrite(driverPwmR,rightPWMoutput-errorGap);
 	}
 }
-void backOnePoint(){
+void backOnePoint()
+{
 	driverSet(speedLeft,0,1,0,1,speedRight);
 	int fixDistance = robot_distance;
-	while(fixDistance - robot_distance < unitScale){
+	while(fixDistance - robot_distance < unitScale)
+	{
 		positionCalculate(encoderPosLeft,encoderPosRight);
 		errorGapCal(encoderPosLeft,encoderPosRight,direction);
 		analogWrite(driverPwmL,lefePWMoutput+errorGap);

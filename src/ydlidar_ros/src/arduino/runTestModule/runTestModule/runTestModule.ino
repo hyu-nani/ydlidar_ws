@@ -29,49 +29,64 @@ void loop()
 	errorGapCal(encoderPosLeft,encoderPosRight,direction);
 	analogWrite(driverPwmL,lefePWMoutput+errorGap);
 	analogWrite(driverPwmR,rightPWMoutput-errorGap);
-	if(Serial.available()){
+	if(Serial.available())
+	{
 		int i = 0;
-		while(Serial.available()){
+		while(Serial.available())
+		{
 			SerialData[i] = Serial.read();
 			delay(1);
 			i++;
 		}
-		if(strcmp(SerialData,"stop")==0){
+		if(strcmp(SerialData,"stop")==0)
+		{
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			Serial.print("OK");//notify completion of transfer
-		}else if(strcmp(SerialData,"front")==0){
+		}
+		else if(strcmp(SerialData,"front")==0)
+		{
 			direction = 1;
 			driverSet(speedLeft,1,0,1,0,speedRight);
 			fixAngle = robot_angle;
 			Serial.print("OK");//notify completion of transfer
 		}
-		else if(strcmp(SerialData,"left")==0){
+		else if(strcmp(SerialData,"left")==0)
+		{
 			direction = 2;
 			driverSet(speedLeft,0,1,1,0,speedRight);
 			Serial.print("OK");//notify completion of transfer
-		}else if(strcmp(SerialData,"right")==0){
+		}
+		else if(strcmp(SerialData,"right")==0)
+		{
 			direction = 3;
 			driverSet(speedLeft,1,0,0,1,speedRight);
 			Serial.print("OK");//notify completion of transfer
-		}else if(strcmp(SerialData,"back")==0){
+		}
+		else if(strcmp(SerialData,"back")==0)
+		{
 			direction = 4;
 			driverSet(speedLeft,0,1,0,1,speedRight);
 			fixAngle = robot_angle;
 			Serial.print("OK");//notify completion of transfer
-		}else if(strcmp(SerialData,"reset")==0){
+		}
+		else if(strcmp(SerialData,"reset")==0)
+		{
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			robot_angle = 0;
 			robotX = 0;
 			robotY = 0;
 			Serial.print("OK");//notify completion of transfer
-		}else if(strcmp(SerialData,"test")==0){
+		}
+		else if(strcmp(SerialData,"test")==0)
+		{
 			fixAngle = robot_angle;
 			direction = 4;
 			driverSet(speedLeft,0,1,0,1,speedRight);
 			int a = robot_distance;
-			while(a - robot_distance < 100){
+			while(a - robot_distance < 100)
+			{
 				nowTime = millis();
 				positionCalculate(encoderPosLeft,encoderPosRight);
 				errorGapCal(encoderPosLeft,encoderPosRight,direction);
@@ -87,13 +102,16 @@ void loop()
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			Serial.print("OK");//notify completion of transfer
-		}else if(strcmp(SerialData,"10cm")==0){
+		}
+		else if(strcmp(SerialData,"10cm")==0)
+		{
 			digitalWrite(led,HIGH);
 			fixAngle = robot_angle;
 			direction = 1;
 			driverSet(speedLeft,1,0,1,0,speedRight);
 			int a = robot_distance;
-			while( robot_distance - a < 100){ //check distance
+			while( robot_distance - a < 100)//check distance
+			{ 
 				nowTime = millis();
 				positionCalculate(encoderPosLeft,encoderPosRight);
 				errorGapCal(encoderPosLeft,encoderPosRight,direction);
@@ -109,41 +127,58 @@ void loop()
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
 			Serial.print("OK");	//notify completion of transfer
-		}else if(strcmp(SerialData,"up")==0){//this code for setting of value
+		}
+		else if(strcmp(SerialData,"up")==0)//this code for setting of value
+		{
 			robot_wheel_pitch += 0.01;
 			Serial.print("OK");	//notify completion of transfer
-		}else if(strcmp(SerialData,"down")==0){
+		}
+		else if(strcmp(SerialData,"down")==0)
+		{
 			robot_wheel_pitch -= 0.01;
 			Serial.print("OK");	//notify completion of transfer
-		}else if(SerialData[0]=='U' && SerialData[1]=='n'){
+		}
+		else if(SerialData[0]=='U' && SerialData[1]=='n')
+		{
 			sscanf(SerialData,"Unit%fD",&unitScale);
 			Serial.print("OK");	//notify completion of transfer
-		}else if(strcmp(SerialData,"Pos")==0){
+		}
+		else if(strcmp(SerialData,"Pos")==0)
+		{
 			positionPrint();
-		}else if(SerialData[0]=='g' && SerialData[1]=='o'){	//targetting mode
+		}
+		else if(SerialData[0]=='g' && SerialData[1]=='o')//targetting mode
+		{	
 			arrivalX = 0;
 			arrivalY = 0;
 			sscanf(SerialData,"go/%d/%dE", &arrivalX, &arrivalY);
-			if(arrivalX == 1){
+			if(arrivalX == 1)
+			{
 				rotateRight();
 				goOnePoint();
 				Serial.print("OK");
 			}
-			else if(arrivalX == -1){
+			else if(arrivalX == -1)
+			{
 				rotateLeft();
 				goOnePoint();
 				Serial.print("OK");
 			}
-			else if(arrivalY == 1){
+			else if(arrivalY == 1)
+			{
 				goOnePoint();
 				Serial.print("OK");
 			}
-			else if(arrivalY == -1){
+			else if(arrivalY == -1)
+			{
 				backOnePoint();
 				Serial.print("OK");
 			}
-		}else{
-			if(testMode){
+		}
+		else
+		{
+			if(testMode)
+			{
 				//Serial.println("OK");
 			}
 		}

@@ -33,7 +33,8 @@ float	diameter	=	12.25;
 #define driverIn4	10
 #define driverPwmR	11
 
-void boardInitial(){
+void boardInitial()
+{
 	pinMode(driverPwmL,OUTPUT);
 	pinMode(driverPwmR,OUTPUT);
 	pinMode(driverIn1,OUTPUT);
@@ -54,7 +55,8 @@ void boardInitial(){
 	analogWrite(driverPwmR,0);
 }
 
-void driverSet(int Lpwm, int drivein1, int drivein2, int drivein3, int drivein4, int Rpwm){
+void driverSet(int Lpwm, int drivein1, int drivein2, int drivein3, int drivein4, int Rpwm)
+{
 	in1 = drivein1;	
 	in2 = drivein2;
 	in3 = drivein3;
@@ -79,7 +81,8 @@ void driverSet(int Lpwm, int drivein1, int drivein2, int drivein3, int drivein4,
 }
 
 
-void positionPrint(){
+void positionPrint()
+{
 	Serial.print("Pos/");
 	Serial.print(int(robotX/unitScale));
 	Serial.print("/");

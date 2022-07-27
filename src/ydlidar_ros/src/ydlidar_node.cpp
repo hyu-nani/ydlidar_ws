@@ -133,7 +133,7 @@ void saveMapCSV()
 		{
 			mapFile << (char)(allMap[i][j]+48);
 			if(j!=allMapSize-1)
-			mapFile << ",";
+				mapFile << ",";
 		}
 		mapFile << "\n";
 	}
@@ -245,10 +245,7 @@ int main(int argc, char * argv[])
 
     ignore_array = split(list ,',');
     if(ignore_array.size()%2)
-	{
         ROS_ERROR_STREAM("ignore array is odd need be even");
-    }
-
     for(uint16_t i =0 ; i < ignore_array.size();i++)
 	{
         if(ignore_array[i] < -180 && ignore_array[i] > 180)
@@ -257,9 +254,9 @@ int main(int argc, char * argv[])
 
     CYdLidar laser;
     if(frequency<3)
-    frequency = 7.0; 
+		frequency = 7.0; 
     if(frequency>15.7)
-    frequency = 15.7;
+		frequency = 15.7;
     if(angle_max < angle_min)
 	{
         double temp = angle_max;
@@ -288,7 +285,7 @@ int main(int argc, char * argv[])
 	{
         ret = laser.turnOn();
         if (!ret) 
-        ROS_ERROR("Failed to start scan mode!!!");
+			ROS_ERROR("Failed to start scan mode!!!");
     } 
 	else
 	{
@@ -316,7 +313,8 @@ int main(int argc, char * argv[])
 		while(true)
 		{
 			LaserScan scan;
-			if(laser.doProcessSimple(scan, hardError )){
+			if(laser.doProcessSimple(scan, hardError ))
+			{
 				printf("scanning\n");
 				sensor_msgs::LaserScan scan_msg;
 				ros::Time start_scan_time;
@@ -363,11 +361,11 @@ int main(int argc, char * argv[])
 						allMap[allMapSize/2-robotY+Yvalue][allMapSize/2+robotX+Xvalue] = 1; //sense
 					}
 				if( (difference < 0.02) &&	(difference != 0) && (YD_distance[i] > 0.2) && (YD_distance[i] < 4))//[M]
-				data_count[i]++;
+					data_count[i]++;
 				else
-				data_count[i] = 0;
-				if(data_count[i] > 4 && mappingActive == true && ignoreTime == 0)
-				{//wall sensitivity
+					data_count[i] = 0;
+				if(data_count[i] > 4 && mappingActive == true && ignoreTime == 0)//wall sensitivity
+				{
 					if((allMapSize/2-robotY+Yvalue)>0&&(allMapSize/2-robotY+Yvalue)<allMapSize)
 					if((allMapSize/2+robotX+Xvalue)>0&&(allMapSize/2+robotX+Xvalue)<allMapSize)
 					{
@@ -377,7 +375,7 @@ int main(int argc, char * argv[])
 					data_count[i] = 0;
 				} 
 				if(ignoreTime > 0)// ignore lidar value
-				ignoreTime--;
+					ignoreTime--;
 			}
 			/************************************************************************/
 			/*    System Mode						                                */
@@ -399,7 +397,6 @@ int main(int argc, char * argv[])
 				break;
 			}
 			printf("\n");
-		
 			int filterPoint1=0;
 			switch(systemMode)
 			{
@@ -425,16 +422,16 @@ int main(int argc, char * argv[])
 							for(int k=0;k<3;k++)
 							for(int p=0;p<3;p++)
 							if(allMap[i-1+k][j-1+p]==4)
-							filterPoint1++;
+								filterPoint1++;
 							if(filterPoint1>5)
-							allMap[i][j] = 4;
+								allMap[i][j] = 4;
 							filterPoint1 = 0;
 							for(int k=0;k<3;k++)
 							for(int p=0;p<3;p++)
 							if(allMap[i-1+k][j-1+p]==2)
-							filterPoint1++;
+								filterPoint1++;
 							if(filterPoint1>5)
-							allMap[i][j] = 2;
+								allMap[i][j] = 2;
 							filterPoint1 = 0;
 						}
 					}
@@ -446,7 +443,7 @@ int main(int argc, char * argv[])
 				<미완성>
 				*/
 				if(count == 10) // 각 카운트마다 실행 명령 분할
-				distanceTest = YD_distance[2];
+					distanceTest = YD_distance[2];
 				else if(count == 11)
 				{// 10cm 전진 명령	
 					SerialPrint("10cm");
@@ -486,8 +483,8 @@ int main(int argc, char * argv[])
 						printf("i can't Find way!!!!!!!!!!!!!!!!\n");
 						delay_ms(2000);
 					}
-					else
-					{//success
+					else//success
+					{
 						systemMode = 1;
 					}
 					//output(moveX moveY)
@@ -552,15 +549,15 @@ int main(int argc, char * argv[])
 			switch(systemMode)
 			{
 				case 0:
-					break;
+				break;
 				case 1:
-					break;
+				break;
 				case 2:
-					break;
+				break;
 				case 3:
-					break;
+				break;
 				default:
-					break;
+				break;
 			}
 			/************************************************************************/
 			/* Command input                                                        */
@@ -631,16 +628,16 @@ int main(int argc, char * argv[])
 						for(int k=0;k<3;k++)
 						for(int p=0;p<3;p++)
 						if(allMap[i-1+k][j-1+p]==4)
-						filterPoint++;
+							filterPoint++;
 						if(filterPoint>4)
-						allMap[i][j] = 4;
+							allMap[i][j] = 4;
 						filterPoint = 0;
 						for(int k=0;k<3;k++)
 						for(int p=0;p<3;p++)
 						if(allMap[i-1+k][j-1+p]==2)
-						filterPoint++;
+							filterPoint++;
 						if(filterPoint>4)
-						allMap[i][j] = 2;
+							allMap[i][j] = 2;
 						filterPoint = 0;
 					}
 				}
@@ -651,7 +648,7 @@ int main(int argc, char * argv[])
 					for(int k = 0; k< allMapSize ; k++)
 					{
 						for(int j=0;j<allMapSize;j++)
-						savefile << (char)allMap[k][j];
+							savefile << (char)allMap[k][j];
 						savefile << endl;
 					}
 					savefile.close();
@@ -713,9 +710,7 @@ int main(int argc, char * argv[])
 					delay_ms(50);
 				}
 				else
-				{
 					cursorX-=int(50/unitScale);	//cursor move
-				}
 			}
 			else if(kb.compare("Right")==0)
 			{
@@ -728,9 +723,7 @@ int main(int argc, char * argv[])
 					delay_ms(50);
 				}
 				else
-				{
 					cursorX+=int(50/unitScale);	//cursor move
-				}
 			}
 			else if(kb.compare("Down")==0)
 			{
@@ -743,9 +736,7 @@ int main(int argc, char * argv[])
 					delay_ms(50);
 				}
 				else
-				{
 					cursorY-=int(50/unitScale);	//cursor move
-				}
 			}
 			else if(kb.compare("/")==0)
 			{
@@ -769,15 +760,15 @@ int main(int argc, char * argv[])
 					kb = linux_kbhit();
 					delay_ms(10);//protect process
 					if(kb.compare("Up")==0)//up arrow
-					cursorY+=int(30/unitScale);	//cursor move
+						cursorY+=int(30/unitScale);	//cursor move
 					else if(kb.compare("Down")==0)//down arrow
-					cursorY-=int(30/unitScale);	//cursor move
+						cursorY-=int(30/unitScale);	//cursor move
 					else if(kb.compare("Right")==0)//right arrow
-					cursorX+=int(30/unitScale);	//cursor move
+						cursorX+=int(30/unitScale);	//cursor move
 					else if(kb.compare("Left")==0)//left arrow
-					cursorX-=int(30/unitScale);	//cursor move
+						cursorX-=int(30/unitScale);	//cursor move
 					else if(kb.compare("/")==0)//stop '/' key
-					decide = true;
+						decide = true;
 					allMap[allMapSize/2-robotY][allMapSize/2+robotX] = 5;//robot
 					printf("################### move point and press '/' ###################\n");
 					printf("\033[%d;%dH",1,3);//set cursor 0,2
@@ -804,7 +795,7 @@ int main(int argc, char * argv[])
 				for(int k = 0; k< allMapSize ; k++)
 				{
 					for(int j=0;j<allMapSize;j++)
-					savefile << (char)allMap[k][j];
+						savefile << (char)allMap[k][j];
 					savefile << endl;
 				}
 				savefile.close();
@@ -815,7 +806,7 @@ int main(int argc, char * argv[])
 			{
 				for(int i=0;i<allMapSize;i++)
 				for(int j=0;j<allMapSize;j++)
-				allMap[i][j] = 0;
+					allMap[i][j] = 0;
 				OKsign = true;
 				SerialPrint("reset");
 				systemMode = 1; 
@@ -843,16 +834,16 @@ int main(int argc, char * argv[])
 					for(int k=0;k<3;k++)
 					for(int p=0;p<3;p++)
 					if(allMap[i-1+k][j-1+p]==4)
-					filterPoint++;
+						filterPoint++;
 					if(filterPoint>4)
-					allMap[i][j] = 4;
+						allMap[i][j] = 4;
 					filterPoint = 0;
 					for(int k=0;k<3;k++)
 					for(int p=0;p<3;p++)
 					if(allMap[i-1+k][j-1+p]==2)
-					filterPoint++;
+						filterPoint++;
 					if(filterPoint>4)
-					allMap[i][j] = 2;
+						allMap[i][j] = 2;
 					filterPoint = 0;
 				}
 			}
@@ -874,9 +865,9 @@ void SerialPrint(const char* format)
 	{
 		serial1 = write(fd,format,int(strlen(format)));
 		if(serial1 < 0)
-		perror("write failed - ");
+			perror("write failed - ");
 		else
-		OKsign = false;
+			OKsign = false;
 		
 	}
 	
@@ -895,7 +886,7 @@ bool SerialRead()
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("No data on port\n");
 		for(int i=0;i<10;i++)
-		printf("                                                                                        \n");
+			printf("                                                                                        \n");
 	}
 	else
 	{
@@ -931,16 +922,16 @@ void printSSHmonitor(int currentY,int currentX)
 {
 	for(int i = 0 ; i<printSize;i++)
 	for(int j = 0; j<printSize;j++)
-	pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)+currentX];
+		pinMap[i][j] = allMap[(allMapSize/2+i-printSize/2)-currentY][(allMapSize/2+j-printSize/2)+currentX];
 	if(pinMap[printSize/2][printSize/2] != 3)
-	pinMap[ printSize/2 ][ printSize/2 ] = 5;//setup of print center
+		pinMap[ printSize/2 ][ printSize/2 ] = 5;//setup of print center
 	printf("\n ");
 	printf("\033[97m");//white
 	for(int i=0;i<printSize/2-1;i++)
-	printf("--");
+		printf("--");
 	printf("FRONT");
 	for(int i=0;i<printSize/2-1;i++)
-	printf("--");
+		printf("--");
 	printf("-\n");
 	int prePixel = 0;
 	for(int i=0;i<printSize;i++)
@@ -953,43 +944,43 @@ void printSSHmonitor(int currentY,int currentX)
 			{
 				case 1://sensing
 				if(prePixel != 1)
-				printf("\033[43m\033[33m");//orange background color
+					printf("\033[43m\033[33m");//orange background color
 				printf("  ");
 				prePixel = 1;
 				break;
 				case 2://wall
 				if(prePixel != 2)
-				printf("\033[41m");		//red background color
+					printf("\033[41m");		//red background color
 				printf("  ");
 				prePixel = 2;
 				break;
 				case 3://arrival point
 				if(prePixel != 3)
-				printf("\033[44m");		//blue background color
+					printf("\033[44m");		//blue background color
 				printf("  ");
 				prePixel = 3;
 				break;
 				case 4://empty
 				if(prePixel != 4)
-				printf("\033[47m");		//white background color
+					printf("\033[47m");		//white background color
 				printf("  ");
 				prePixel = 4;
 				break;
 				case 5://center
 				if(prePixel != 5)
-				printf("\033[45m\033[36m");	//magenta BG & cyan
+					printf("\033[45m\033[36m");	//magenta BG & cyan
 				printf("<>");
 				prePixel = 5;
 				break;
 				case 6://path
 				if(prePixel != 6)
-				printf("\033[45m\033[37m");
+					printf("\033[45m\033[37m");
 				printf("  ");
 				prePixel = 6;
 				break;
 				default:
 				if(prePixel != 0)
-				printf("\033[40m\033[97m");	//black BG & white
+					printf("\033[40m\033[97m");	//black BG & white
 				printf("  ");
 				prePixel = 0;
 				break;
@@ -1000,10 +991,10 @@ void printSSHmonitor(int currentY,int currentX)
 	}
 	printf(" ");
 	for(int i=0;i<printSize/2;i++)
-	printf("--");
+		printf("--");
 	printf("BACK");
 	for(int i=0;i<printSize/2-1;i++)
-	printf("--");
+		printf("--");
 	printf("\n");
 	printf("\033[0m");//white
 }
@@ -1023,8 +1014,12 @@ void Line(int x0, int y0,int x1, int y1) //printing line
 	}
 	if(x0 > x1) 
 	{
-		t=x0;x0=x1;x1=t;
-		t=y0;y0=y1;y1=t;
+		t=x0;
+		x0=x1;
+		x1=t;
+		t=y0;
+		y0=y1;
+		y1=t;
 	}
 	int16_t dx, dy;
 	dx = x1 - x0;
@@ -1032,20 +1027,20 @@ void Line(int x0, int y0,int x1, int y1) //printing line
 	int16_t err = dx / 2;
 	int16_t ystep;
 	if(y0 < y1)
-	ystep = 1;
+		ystep = 1;
 	else
-	ystep = -1;
+		ystep = -1;
 	for (; x0<=x1; x0++) 
 	{
 		if (steep) 
 		{
 			if(allMap[y0][x0]!=2 && allMap[y0][x0]!=6)
-			allMap[y0][x0]=4;
+				allMap[y0][x0]=4;
 		} 
 		else 
 		{
 			if(allMap[x0][y0]!=2 && allMap[x0][y0]!=6)
-			allMap[x0][y0]=4;
+				allMap[x0][y0]=4;
 		}
 		err -= dy;
 		if (err < 0) 
