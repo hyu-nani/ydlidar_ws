@@ -158,37 +158,37 @@ void saveMapBMP()
 	{
 		switch(allMap[j][i])
 		{
-			case 0: // none
+			case 0: // none : black
 				red[i][j]	= 0;
 				green[i][j]	= 0;
 				blue[i][j]	= 0;
 			break;
-			case 1: // sense
+			case 1: // sense : yellow
 				red[i][j]	= 0;
 				green[i][j]	= 1;
 				blue[i][j]	= 1;
 			break;
-			case 2: // wall
+			case 2: // wall : red
 				red[i][j]	= 1;
 				green[i][j]	= 0;
 				blue[i][j]	= 0;
 			break;
-			case 3: // arrive point
+			case 3: // arrive point : blue
 				red[i][j]	= 0;
 				green[i][j]	= 0;
 				blue[i][j]	= 1;
 			break; 
-			case 4: // empty place
+			case 4: // empty place : white
 				red[i][j]	= 1;
 				green[i][j]	= 1;
 				blue[i][j]	= 1;
 			break;
-			case 5: // center point
+			case 5: // center point : green
 				red[i][j]	= 0;
 				green[i][j]	= 1;
 				blue[i][j]	= 0;
 			break;
-			case 6: // path way
+			case 6: // path way : gray
 				red[i][j]	= 0.2;
 				green[i][j]	= 0.2;
 				blue[i][j]	= 0.2;
@@ -243,7 +243,6 @@ void saveMapBMP()
 		fwrite(img+(w*(h-i-1)*3),3,w,f);
 		fwrite(bmppad,1,(4-(w*3)%4)%4,f);
 	}
-
 	free(img);
 	fclose(f);
 }
