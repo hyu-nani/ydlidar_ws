@@ -907,6 +907,7 @@ int main(int argc, char * argv[])
 				}
 				savefile.close();
 				saveMapCSV();
+				saveMapBMP();
 				system("clear");
 			}
 			else if(kb.compare("R")==0 || kb.compare("r")==0)//reset
