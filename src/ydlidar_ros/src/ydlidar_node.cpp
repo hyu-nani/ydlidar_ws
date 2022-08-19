@@ -26,19 +26,18 @@ using namespace std;
 
 #define RAD2DEG(x) ((x)*180./M_PI)
 #define ROSVerision "1.4.6"
-float	YD_distance[500];
-float	YD_angle[500];
-float	old_distance[500];
+float	YD_distance[500]; // 라이다 거리 
+float	YD_angle[500]; // 라이다 각도
+float	old_distance[500]; // 이전 라이다 거리
 int		fd;
 int		serial1;
 bool	init1 = true;
-float	data_average[500]	=	{0};
-int		data_count[500]		=	{0};
-int		printCount = 0;
-int		lidarReadCount;
-int 	ignoreTime = 0;	//방향 전환 후 관성으로 인한 라이다의 오차를 없애기 위한 입력무시 횟수
-float	gapAngle = 0.0; //회전시 원심력으로 인한 오차
-
+float	data_average[500]	=	{0}; // 라이다 값이 평균치 저장 변수
+int		data_count[500]		=	{0}; // 라이다 값의 동일 입력 가중치
+int		printCount = 0; // SSH 프린트의 횟수
+int		lidarReadCount; 
+int 	ignoreTime = 0;	// 방향 전환 후 관성으로 인한 라이다의 오차를 없애기 위한 입력무시 횟수
+float	gapAngle = 0.0; // 회전시 관성으로 인한 오차
 
 char	scanData[30];
 
@@ -46,7 +45,7 @@ float	val	=	0;
 
 int		systemMode	=	1;	// 0 = default, 1 = control robot mode
 
-const int	printSize								=	150;		//185
+const int	printSize								=	150;		//4K - 185
 //SSH print size 170 for laptop 100 for tablet
 
 int			pinMap[printSize][printSize]			=	{0};		//SSH print map
@@ -62,7 +61,8 @@ double	robotAngle = 0;//initial angle
 
 //delay
 void	delay_ms(int time){usleep(time*1000);} 
-bool	OKsign	=	false;
+bool	OKsign	=	false; // 
+
 //arrival point
 int		arrivalX = 0, arrivalY = 0;//arrival coordinate
 

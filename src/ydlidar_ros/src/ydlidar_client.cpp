@@ -4,7 +4,6 @@
  *
  *  Copyright 2015 - 2018 EAI TEAM
  *  http://www.ydlidar.com
- * 
  */
 
 #include "ros/ros.h"
