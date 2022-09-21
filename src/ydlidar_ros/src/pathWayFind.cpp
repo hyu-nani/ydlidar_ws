@@ -1,19 +1,19 @@
 /************************************************************************/
-/*  ±æ Ã£´Â ÄÚµå     path finding algorithm                             */
+/*  ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½Úµï¿½     path finding algorithm                             */
 /************************************************************************/
 /*
-	allmap ¿¡¼­ ÇöÀç ÁÂÇ¥¿Í ¸ñÇ¥ ÁÂÇ¥ »çÀÌÀÇ ÃÖ´Ü °Å¸®¸¦ ¼øÂ÷ÀûÀ¸·Î 
-	Ç¥½ÃÇÏ´Â ÄÚµå¸¦ ±¸Çö ÇÒ »ý°¢
+	allmap ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç¥ï¿½ï¿½ ï¿½ï¿½Ç¥ ï¿½ï¿½Ç¥ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½Å¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	Ç¥ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Úµå¸¦ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	[ BPS ]
-	Âü°í »çÀÌÆ®
+	ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
 	https://blog.naver.com/therich21/222665726554
 	
-	È¸ÇÇÇØ¾ßÇÒ µµÆ® avoid dot
+	È¸ï¿½ï¿½ï¿½Ø¾ï¿½ï¿½ï¿½ ï¿½ï¿½Æ® avoid dot
 	1. wall
 	2. sensing
 	3. none space
-	Áï, ¾Æ¹«°Íµµ ¾Æ´Ñ °ø°£ÀÌ ¾Æ´Ñ ÀÎ½ÄµÈ ºó°ø°£ ÀÌ¿©¾ß ÇÏ¸ç.
-	Áï°¢ÀûÀÎ Àü¹æ È¸ÇÇ¸¦ À§ÇØ ¼ø°£ÀûÀ¸·Î ¼¾½ÌµÇ´Â °÷ ¶ÇÇÑ º®À¸·Î °£ÁÖÇÑ´Ù.
+	ï¿½ï¿½, ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½Æ´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ ï¿½Î½Äµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Ï¸ï¿½.
+	ï¿½ï°¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÌµÇ´ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 */
 unsigned int	mazeMap[allMapSize][allMapSize]	=	{0};
 unsigned int	countMaze[allMapSize][allMapSize]	=	{0};
@@ -21,11 +21,12 @@ int		startX, startY;
 int		endX, endY;
 int		moveX = 0, moveY = 0;
 /*
-	Convert allmap to mazeMap
-	and
-	setting start position , arrival position
-	1 : path
-	0 : wall
+brief :Convert allmap to mazeMap
+note  :setting start position , arrival position
+		1 : path
+		0 : wall
+param :
+return:
 */
 void initMap()
 {
@@ -68,6 +69,12 @@ void initMap()
 		mazeMap[y+i-2][x+j-2] = 0;
 }
 
+/*
+brief : find way
+note  : 
+param : start X, start Y, end X, end Y
+return: find or not.(true:find, false:not find)
+*/
 bool findWay(int sx, int sy, int ex, int ey)
 {
 	int count = 1;
@@ -139,8 +146,8 @@ bool findWay(int sx, int sy, int ex, int ey)
 	//next move point
 	moveX = 0;
 	moveY = 0;
-	//ÇöÀç ¹æÇâ¿¡ µû¸¥ °ª ¼öÁ¤ ÇÊ¿ä
-	if( -10 < robotAngle && robotAngle < 10)//À§
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ê¿ï¿½
+	if( -10 < robotAngle && robotAngle < 10)//ï¿½ï¿½
 	{
 		if(countMaze[sy - 1][sx] == -1)
 			moveY = -1;
@@ -151,7 +158,7 @@ bool findWay(int sx, int sy, int ex, int ey)
 		else if(countMaze[sy][sx + 1] == -1)
 			moveX = 1;
 	}
-	else if( 80 < robotAngle && robotAngle < 100)//ÁÂ
+	else if( 80 < robotAngle && robotAngle < 100)//ï¿½ï¿½
 	{
 		if(countMaze[sy - 1][sx] == -1)
 			moveX = -1;
@@ -162,7 +169,7 @@ bool findWay(int sx, int sy, int ex, int ey)
 		else if(countMaze[sy][sx + 1] == -1)
 			moveY = -1;
 	}
-	else if( -100 < robotAngle && robotAngle < -80)//¿ì
+	else if( -100 < robotAngle && robotAngle < -80)//ï¿½ï¿½
 	{
 		if(countMaze[sy - 1][sx] == -1)
 			moveX = 1;
@@ -173,7 +180,7 @@ bool findWay(int sx, int sy, int ex, int ey)
 		else if(countMaze[sy][sx + 1] == -1)
 			moveY = 1;
 	}
-	else if( 170 < robotAngle && robotAngle < -170)//¾Æ·¡
+	else if( 170 < robotAngle && robotAngle < -170)//ï¿½Æ·ï¿½
 	{
 		if(countMaze[sy - 1][sx] == -1)
 			moveY = 1;
