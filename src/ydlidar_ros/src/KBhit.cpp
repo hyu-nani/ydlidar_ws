@@ -7,7 +7,7 @@
 #include <errno.h>
 #include <termios.h>
 
-/*
+/**
 brief : SSH 통신 중 키보드 입력 여부 확인 코드
 note  :
 param :

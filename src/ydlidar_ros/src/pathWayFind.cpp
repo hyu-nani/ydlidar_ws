@@ -20,7 +20,7 @@ unsigned int	countMaze[allMapSize][allMapSize]	=	{0};
 int		startX, startY;
 int		endX, endY;
 int		moveX = 0, moveY = 0;
-/*
+/**
 brief :Convert allmap to mazeMap
 note  :setting start position , arrival position
 		1 : path
@@ -69,7 +69,7 @@ void initMap()
 		mazeMap[y+i-2][x+j-2] = 0;
 }
 
-/*
+/**
 brief : find way
 note  : 
 param : start X, start Y, end X, end Y
