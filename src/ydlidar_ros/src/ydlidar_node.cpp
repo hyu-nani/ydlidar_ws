@@ -511,8 +511,7 @@ int main(int argc, char * argv[])
 					
 				break;
 				case 1:
-				/*     System Mode 1 : Default mode remote control   (edit)           
-				�⺻ �۵� �ڵ�� �Ƶ��̳뿡 ��ǥ�� ���� Ȯ�� ��û
+				/*     System Mode 1 : Default mode remote control   (edit)    
 				*/
 				SerialPrint("Pos");//require to position data
 				delay_ms(100);
@@ -545,13 +544,12 @@ int main(int argc, char * argv[])
 				break;
 				case 2:
 				/*		System Mode 2 : adjust to error gap used the lidar (edit)           
-				���� ���� �˰������� ���� �Ƶ��̳��� �ϵ������ ������ �ɵ�����
-				<�̿ϼ�>
+				
 				*/
-				if(count == 10) // �� ī��Ʈ���� ���� ���� ����
+				if(count == 10)
 					distanceTest = YD_distance[2];
 				else if(count == 11)
-				{// 10cm ���� ����	
+				{// 10cm 
 					SerialPrint("10cm");
 				}
 				else if(count > 12)
@@ -559,7 +557,7 @@ int main(int argc, char * argv[])
 					OKsign = true;
 					SerialPrint("Pos");
 					if(YD_distance[2] > distanceTest)
-					{	//�ٽ� ������ �Ÿ��� ���󰪺��� Ŭ��
+					{
 						
 					}
 					else
@@ -570,15 +568,7 @@ int main(int argc, char * argv[])
 				break;
 				case 3:
 				/*		System Mode 3 : setting arrival and move (edit)                  
-				<sequence>
-				1. �ռ� Ŀ���� �̵��� ���� �������� ���� (�ý���1)
-				2. ������ ������ ���ÿ� �̷ΰ�� �� ������������ �Ÿ����
-				3. ���� �̵� ��ǥ�� Ȯ�� �� �Ƶ��̳뿡 ����
-				4. �Ƶ��̳� ������ �ν��� ��ǥ��ġ�� �̵�
-				5. �̵� �� ���� ��ǥ Ȯ��
-				6. ��������̿��� ��ǥ Ȯ�� �� ������ǥ���� �� 2�� �������� �̵�
 				
-				OKsign �� �Ƶ��̳�� ����� �� �� ���� Ȯ�ο�. ������ Ȯ�εǸ� true
 				*/
 				if(OKsign)
 				{
@@ -595,7 +585,7 @@ int main(int argc, char * argv[])
 					}
 					//output(moveX moveY)
 					
-					if(moveY!=0 || moveX != 0)
+					if(moveY != 0 || moveX != 0)
 					{
 						char buffer[20];
 						sprintf(buffer, "go/%d/%dE", moveX, moveY);
@@ -747,7 +737,6 @@ int main(int argc, char * argv[])
 						filterPoint = 0;
 					}
 				}
-				linux_kbhit
 				else if(strcmp(scanData,"save")==0)
 				{
 					ofstream savefile;
