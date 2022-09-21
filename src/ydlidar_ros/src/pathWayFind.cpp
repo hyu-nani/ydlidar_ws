@@ -70,7 +70,7 @@ void initMap()
 }
 
 /**
-brief : find way
+brief : find way and drawing
 note  : 
 param : start X, start Y, end X, end Y
 return: find or not.(true:find, false:not find)
@@ -142,6 +142,16 @@ bool findWay(int sx, int sy, int ex, int ey)
 			return false;
 		}
 	}
+}
+
+/**
+ * brief : go to next position in the map
+ * note  :
+ * param :
+ * return:
+ */
+bool goNextPosition()
+{
 	//printf("%d\n", count);
 	//next move point
 	moveX = 0;

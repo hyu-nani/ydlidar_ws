@@ -490,16 +490,16 @@ int main(int argc, char * argv[])
 			switch(systemMode)
 			{
 				case 0:
-				printf("Zero");
+				printf("0");
 				break;
 				case 1:
-				printf("One");
+				printf("1");
 				break;
 				case 2:
-				printf("Two");
+				printf("2");
 				break;
 				case 3:
-				printf("Three");
+				printf("3");
 				break;
 			}
 			printf("\n");
@@ -640,7 +640,7 @@ int main(int argc, char * argv[])
 			rate.sleep();
 			ros::spinOnce();
 			/************************************************************************/
-			/* end system            SSH ������� �����ڵ�	                        */
+			/* end system            SSH 출력 후 실행 부                            */
 			/************************************************************************/
 			switch(systemMode)
 			{
@@ -656,7 +656,7 @@ int main(int argc, char * argv[])
 				break;
 			}
 			/************************************************************************/
-			/* Command input                                                        */
+			/* Command list                                                         */
 			/************************************************************************/
 			string kb = linux_kbhit();
 			if(kb.compare("nothing")!=0)
@@ -664,7 +664,8 @@ int main(int argc, char * argv[])
 				//printf("%s", kb);
 				delay_ms(10);
 			}
-			if(kb.compare("Space")==0)//command hit
+			// command word list
+			if(kb.compare("Space")==0)
 			{
 				printf("\033[45m\033[36m");
 				for(int i=0; i<printSize/2-1; i++)
@@ -676,8 +677,8 @@ int main(int argc, char * argv[])
 				printf("\033[40m\033[97m");
 				printf("\nCommand Please...\n input:");
 				scanf(" %s",scanData);
-				//Command List
-				if(strcmp(scanData,"stop") == 0)//all stop
+				// all stop
+				if(strcmp(scanData,"stop") == 0)
 				{		
 					SerialPrint("stop");
 					ignoreTime = 10;		//Delay to eliminate Lidar value error due to inertia
@@ -688,30 +689,35 @@ int main(int argc, char * argv[])
 					printf("\033[40m\033[97m");
 					break;
 				}
+				// Serial print "up"
 				else if(strcmp(scanData,"up") == 0)
 				{
 					SerialPrint("up");
 					system("clear");
 					delay_ms(10);
 				}
+				// Serial print "down"
 				else if(strcmp(scanData,"down") == 0)
 				{
 					SerialPrint("down");
 					system("clear");
 					delay_ms(10);
 				}
+				// Serial print "10cm"
 				else if(strcmp(scanData,"10cm") == 0)
 				{
 					SerialPrint("10cm");
 					system("clear");
 					delay_ms(10);
 				}
+				// Serial print "test"
 				else if(strcmp(scanData,"test") == 0)
 				{
 					SerialPrint("test");
 					system("clear");
 					delay_ms(10);
 				}
+				// map filtering - remove empty place 
 				else if(strcmp(scanData,"filter") == 0)
 				{
 					printf("Filtering.............................\n");
@@ -737,6 +743,7 @@ int main(int argc, char * argv[])
 						filterPoint = 0;
 					}
 				}
+				// save file
 				else if(strcmp(scanData,"save")==0)
 				{
 					ofstream savefile;
@@ -749,11 +756,13 @@ int main(int argc, char * argv[])
 					}
 					savefile.close();
 				}
+				// forcibly mode setting 
 				else if(strcmp(scanData,"mode")==0)
 				{
 					printf("Setting mode!");
 					scanf("%d", &systemMode);
 				}
+				// scale change
 				else if(strcmp(scanData,"scale")==0)
 				{
 					char buffer[20];
@@ -771,13 +780,6 @@ int main(int argc, char * argv[])
 				delay_ms(50);
 			/************************************************************************/
 			/*   Kbhit keyboard command list										*/
-			/*								                                        */
-			/*   up arrow : front													*/
-			/*   down arrow : back													*/
-			/*   left arrow : left													*/
-			/*   right arrow : right												*/
-			/*   Key M : active mapping												*/
-			/*   Key G : move														*/
 			/************************************************************************/
 			}
 			else if(kb.compare("Up")==0)
@@ -895,8 +897,8 @@ int main(int argc, char * argv[])
 					savefile << endl;
 				}
 				savefile.close();
-				saveMapCSV();
-				saveMapBMP();
+				saveMapCSV(); // save file map.csv
+				saveMapBMP(); // save file map.bmp
 				system("clear");
 			}
 			else if(kb.compare("R")==0 || kb.compare("r")==0)//reset
