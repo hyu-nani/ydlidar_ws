@@ -577,33 +577,37 @@ int main(int argc, char * argv[])
 					if(!findWay(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY))
 					{
 						printf("i can't Find way!!!!!!!!!!!!!!!!\n");
+						SerialPrint("stop");
 						delay_ms(2000);
 					}
 					else//success
 					{
-						systemMode = 1;
-					}
-					//output(moveX moveY)
-					
-					if(moveY != 0 || moveX != 0)
-					{
-						char buffer[20];
-						sprintf(buffer, "go/%d/%dE", moveX, moveY);
-						printf("send>%s",buffer);
-						SerialPrint(buffer);
-						//reset val
-						moveX = 0;
-						moveY = 0;
-					}
-					else
-					{
-						SerialPrint("stop");
+						if(goNextPosition())
+						{
+							OKsign = false;
+							char buffer[20];
+							sprintf(buffer, "go/%d/%dE", moveX, moveY);
+							printf("send>%s",buffer);
+							SerialPrint(buffer);
+							//reset val
+							moveX = 0;
+							moveY = 0;
+						}
+						else
+						{
+							SerialPrint("stop");
+						}
 					}
 				}
 				else
 				{
 					SerialPrint("Pos");//require to position data
 					delay_ms(50);
+				}
+				if(arrivalX==robotX && arrivalY==robotY)
+				{	
+					systemMode = 1;
+					break;
 				}
 				SerialRead();
 				break;
@@ -877,8 +881,8 @@ int main(int argc, char * argv[])
 				allMap[allMapSize/2-cursorY][allMapSize/2+cursorX] = 3;//setup arrival point
 				arrivalX = allMapSize/2+cursorX;
 				arrivalY = allMapSize/2-cursorY;
-				integration = true;
-				OKsign = true;
+				integration = true; //integrate cursor and robot pos
+				while(!OKsign){delay_ms(100)}
 				cursorX = robotX;
 				cursorY = robotY;
 				system("clear");
@@ -971,6 +975,14 @@ void SerialPrint(const char* format)
 	}
 	
 }
+
+/**
+ * brief : 	read Serial code
+ * note  : 	OK : change OKsign
+ * 			Pos : read position and angle
+ * param : 
+ * return:
+ */
 bool SerialRead()
 {
 	char buf[256] = "";
@@ -1017,6 +1029,13 @@ bool SerialRead()
 		return false;
 	}
 }
+
+/**
+ * brief : SSH 모니터 출력 코드
+ * note  :
+ * param : 현재 X, Y 좌표
+ * return:
+ */
 void printSSHmonitor(int currentY,int currentX)
 {
 	for(int i = 0 ; i<printSize;i++)
@@ -1098,6 +1117,12 @@ void printSSHmonitor(int currentY,int currentX)
 	printf("\033[0m");//white
 }
 
+/**
+ * brief : Drawing line in the map
+ * note  :
+ * param : start X, Y end X, Y
+ * return:
+ */
 void Line(int x0, int y0,int x1, int y1) //printing line
 { 
 	int steep = abs(y1 - y0) > abs(x1 - x0);

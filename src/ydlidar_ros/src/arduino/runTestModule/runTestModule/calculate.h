@@ -3,7 +3,14 @@
  *
  * Created: 2022-03-16 9:26:56
  *  Author: cube_
- */ 
+ */
+
+/**
+ * brief : 이전 클럭과 현재 클럭 비교 후 이동 좌표 및 각도 중첩
+ * note  :
+ * param : 왼쪽 바퀴 현재 클럭수 , 오른쪽 바퀴 현재 클럭 수
+ * return:
+ */
 void positionCalculate(double nowPosL, double nowPosR)
 {
 	double distanceL = diameter*M_PI/pulse*(nowPosL-oldPosL);
@@ -28,7 +35,12 @@ void positionCalculate(double nowPosL, double nowPosR)
 }
 
 int oldDirect=0;
-//0:stop, 1:front, 2:left, 3:right, 4:back
+/**
+ * brief : 방향에 따른 좌우 모터속도의 중첩오차 변경 코드
+ * note  : 방향- 0:stop, 1:front, 2:left, 3:right, 4:back
+ * param : 왼쪽 바퀴 현재 클럭수 , 오른쪽 바퀴 현재 클럭 수 , 방향
+ * return:
+ */
 void errorGapCal(double nowPosL, double nowPosR, int direct)
 {
 	//if the direction changed, save the wheel position 
@@ -85,6 +97,12 @@ void errorGapCal(double nowPosL, double nowPosR, int direct)
 	}
 }
 
+/**
+ * brief : rotate counter clockwise
+ * note  :
+ * param :
+ * return:
+ */
 void rotateLeft()
 {
 	driverSet(speedLeft,0,1,1,0,speedRight);
@@ -97,6 +115,13 @@ void rotateLeft()
 		analogWrite(driverPwmR,rightPWMoutput-errorGap);
 	}
 }
+
+/**
+ * brief : rotate clockwise
+ * note  :
+ * param :
+ * return:
+ */
 void rotateRight()
 {
 	driverSet(speedLeft,1,0,0,1,speedRight);
@@ -109,6 +134,13 @@ void rotateRight()
 		analogWrite(driverPwmR,rightPWMoutput-errorGap);
 	}
 }
+
+/**
+ * brief : Unit 1 point move code
+ * note  :
+ * param :
+ * return:
+ */
 void goOnePoint(){
 	driverSet(speedLeft,1,0,1,0,speedRight);
 	int fixDistance = robot_distance;
@@ -119,6 +151,13 @@ void goOnePoint(){
 		analogWrite(driverPwmR,rightPWMoutput-errorGap);
 	}
 }
+
+/**
+ * brief : Unit 1 point move code
+ * note  :
+ * param :
+ * return:
+ */
 void backOnePoint()
 {
 	driverSet(speedLeft,0,1,0,1,speedRight);

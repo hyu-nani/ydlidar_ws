@@ -147,17 +147,16 @@ bool findWay(int sx, int sy, int ex, int ey)
 /**
  * brief : go to next position in the map
  * note  :
- * param :
- * return:
+ * param : now X, now Y
+ * return: go(true), not(false)
  */
-bool goNextPosition()
+bool goNextPosition(int nowX, int nowY)
 {
 	//printf("%d\n", count);
 	//next move point
 	moveX = 0;
 	moveY = 0;
-	//���� ���⿡ ���� �� ���� �ʿ�
-	if( -10 < robotAngle && robotAngle < 10)//��
+	if( -10 < robotAngle && robotAngle < 10)//front
 	{
 		if(countMaze[sy - 1][sx] == -1)
 			moveY = -1;
@@ -168,7 +167,7 @@ bool goNextPosition()
 		else if(countMaze[sy][sx + 1] == -1)
 			moveX = 1;
 	}
-	else if( 80 < robotAngle && robotAngle < 100)//��
+	else if( 80 < robotAngle && robotAngle < 100)//left
 	{
 		if(countMaze[sy - 1][sx] == -1)
 			moveX = -1;
@@ -179,7 +178,7 @@ bool goNextPosition()
 		else if(countMaze[sy][sx + 1] == -1)
 			moveY = -1;
 	}
-	else if( -100 < robotAngle && robotAngle < -80)//��
+	else if( -100 < robotAngle && robotAngle < -80)//right
 	{
 		if(countMaze[sy - 1][sx] == -1)
 			moveX = 1;
@@ -190,7 +189,7 @@ bool goNextPosition()
 		else if(countMaze[sy][sx + 1] == -1)
 			moveY = 1;
 	}
-	else if( 170 < robotAngle && robotAngle < -170)//�Ʒ�
+	else if( 170 < robotAngle && robotAngle < -170)//back
 	{
 		if(countMaze[sy - 1][sx] == -1)
 			moveY = 1;
@@ -201,5 +200,8 @@ bool goNextPosition()
 		else if(countMaze[sy][sx + 1] == -1)
 			moveX = -1;
 	}
-	return true;
+	if(moveX!=0 || moveY!=0)
+		return true;
+	else
+		return false;
 }
