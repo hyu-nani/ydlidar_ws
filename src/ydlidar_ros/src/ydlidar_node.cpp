@@ -525,7 +525,7 @@ int main(int argc, char * argv[])
 				*/
 			 	OKsign = false;
 				SerialPrint("Pos");//require to position data
-				delay_ms(100);
+				delay_ms(20);
 				SerialRead();
 				//filtering
 				for(int i=allMapSize/2-printSize;i<allMapSize/2+printSize;i++)
