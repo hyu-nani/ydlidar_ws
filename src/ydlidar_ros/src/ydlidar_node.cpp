@@ -623,6 +623,7 @@ int main(int argc, char * argv[])
 					break;
 				}
 				SerialRead();
+				delay_ms(50);
 				break;
 				default:
 				break;

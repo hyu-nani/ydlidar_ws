@@ -181,5 +181,5 @@ void loop()
 	if(Serial.available()==0)
 	delay(1000);
 	else
-	delay(1);
+	delay(10);
 }
