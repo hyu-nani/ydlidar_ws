@@ -176,5 +176,6 @@ void loop()
 		}
 		
 	}
-	Serial.print("OK");//notify completion of transfer
+	
+	Serial.print("OK\n");//notify completion of transfer
 }
