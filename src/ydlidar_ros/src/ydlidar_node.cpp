@@ -1021,27 +1021,25 @@ bool SerialRead()
 	}
 	if(strcmp(buf,"OK")==0)//success transform message
 	{
-		printf("ddddddddddddddddddddddddddddddddd");
+		//printf("ddddddddddddddddddddddddddddddddd");
 		delay_ms(1);
 		OKsign = true;
 		return true;
 	}
-	else
+	if( buf[0]=='P' && buf[1]=='o' && buf[2]=='s' )
 	{
-		if( buf[0]=='P' && buf[1]=='o' && buf[2]=='s' )
+		sscanf(buf,"Pos/%d/%d/%lf/%fE",&robotX,&robotY,&robotAngle,&val);
+		if(integration == true)
 		{
-			sscanf(buf,"Pos/%d/%d/%lf/%fE",&robotX,&robotY,&robotAngle,&val);
-			if(integration == true)
-			{
-				cursorX = robotX;
-				cursorY = robotY;
-			}
-			printf("reading....");
-			OKsign = true;
-			delay_ms(1);
+			cursorX = robotX;
+			cursorY = robotY;
 		}
-		return false;
+		printf("reading....");
+		OKsign = true;
+		delay_ms(1);
+		return true;
 	}
+	return false;
 }
 
 /**
