@@ -585,7 +585,7 @@ int main(int argc, char * argv[])
 						if(goNextPosition(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY))
 						{
 							OKsign = false;
-							char buffer[20];
+							char buffer[20] = "";
 							sprintf(buffer, "go/%d/%dE", moveX, moveY);
 							printf("send> %s",buffer);
 							printf("\n");
