@@ -895,7 +895,7 @@ int main(int argc, char * argv[])
 				arrivalX = allMapSize/2+cursorX;
 				arrivalY = allMapSize/2-cursorY;
 				integration = true; //integrate cursor and robot pos
-				while(!OKsign){delay_ms(100);}
+				//while(!OKsign){delay_ms(100);}
 				cursorX = robotX;
 				cursorY = robotY;
 				system("clear");
