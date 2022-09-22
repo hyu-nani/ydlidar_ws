@@ -411,7 +411,7 @@ int main(int argc, char * argv[])
 	SerialPrint(buffer);
 	while(!OKsign)
 	{
-		delay_ms(1000);
+		delay_ms(200);
 		SerialRead();
 	}
 	system("clear");

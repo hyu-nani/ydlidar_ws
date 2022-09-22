@@ -179,7 +179,7 @@ void loop()
 	
 	Serial.print("OK");//notify completion of transfer
 	if(Serial.available()==0)
-	delay(500);
+	delay(1000);
 	else
 	delay(1);
 }
