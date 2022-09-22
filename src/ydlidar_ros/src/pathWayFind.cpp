@@ -142,6 +142,7 @@ bool findWay(int sx, int sy, int ex, int ey)
 			return false;
 		}
 	}
+	return true;
 }
 
 /**
