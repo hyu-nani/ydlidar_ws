@@ -180,4 +180,6 @@ void loop()
 	Serial.print("OK\n");//notify completion of transfer
 	if(Serial.available()==0)
 	delay(200);
+	else
+	delay(1);
 }
