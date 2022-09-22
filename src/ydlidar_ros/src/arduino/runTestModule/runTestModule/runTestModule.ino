@@ -31,6 +31,10 @@ void loop()
 	analogWrite(driverPwmR,rightPWMoutput-errorGap);
 	if(Serial.available())
 	{
+		//reset the SerialData
+		for(int j=0;j<256;j++)
+		SerialData[j] = '\0';
+		
 		int i = 0;
 		while(Serial.available())
 		{
@@ -151,7 +155,6 @@ void loop()
 		{	
 			digitalWrite(led, HIGH);
 			delay(1000);
-			digitalWrite(led, LOW);
 			arrivalX = 0;
 			arrivalY = 0;
 			sscanf(SerialData,"go/%d/%dE", &arrivalX, &arrivalY);
@@ -185,9 +188,7 @@ void loop()
 				//Serial.println("OK");
 			}
 		}
-		//reset the SerialData
-		for(int j=0;j<256;j++)
-		SerialData[j] = '\0';
+		
 	}
 	
 }
