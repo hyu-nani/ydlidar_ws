@@ -582,7 +582,7 @@ int main(int argc, char * argv[])
 					}
 					else//success
 					{
-						if(goNextPosition())
+						if(goNextPosition(allMapSize/2+robotX, allMapSize/2-robotY, arrivalX, arrivalY))
 						{
 							OKsign = false;
 							char buffer[20];

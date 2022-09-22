@@ -150,7 +150,7 @@ bool findWay(int sx, int sy, int ex, int ey)
  * param : now X, now Y
  * return: go(true), not(false)
  */
-bool goNextPosition(int nowX, int nowY)
+bool goNextPosition(int sx, int sy, int ex, int ey)
 {
 	//printf("%d\n", count);
 	//next move point
