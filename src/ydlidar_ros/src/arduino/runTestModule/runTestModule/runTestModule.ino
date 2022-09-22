@@ -34,7 +34,7 @@ void loop()
 		//reset the SerialData
 		for(int j=0;j<256;j++)
 		SerialData[j] = '\0';
-		
+
 		int i = 0;
 		while(Serial.available())
 		{
@@ -46,33 +46,28 @@ void loop()
 		{
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
-			Serial.print("OK");//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"front")==0)
 		{
 			direction = 1;
 			driverSet(speedLeft,1,0,1,0,speedRight);
 			fixAngle = robot_angle;
-			Serial.print("OK");//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"left")==0)
 		{
 			direction = 2;
 			driverSet(speedLeft,0,1,1,0,speedRight);
-			Serial.print("OK");//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"right")==0)
 		{
 			direction = 3;
 			driverSet(speedLeft,1,0,0,1,speedRight);
-			Serial.print("OK");//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"back")==0)
 		{
 			direction = 4;
 			driverSet(speedLeft,0,1,0,1,speedRight);
 			fixAngle = robot_angle;
-			Serial.print("OK");//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"reset")==0)
 		{
@@ -81,7 +76,6 @@ void loop()
 			robot_angle = 0;
 			robotX = 0;
 			robotY = 0;
-			Serial.print("OK");//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"test")==0)
 		{
@@ -105,7 +99,6 @@ void loop()
 			robot_distance = 0;
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
-			Serial.print("OK");//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"10cm")==0)
 		{
@@ -130,22 +123,19 @@ void loop()
 			robot_distance = 0;
 			direction = 0;
 			driverSet(speedLeft,0,0,0,0,speedRight);
-			Serial.print("OK");	//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"up")==0)//this code for setting of value
 		{
 			robot_wheel_pitch += 0.01;
-			Serial.print("OK");	//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"down")==0)
 		{
 			robot_wheel_pitch -= 0.01;
-			Serial.print("OK");	//notify completion of transfer
+			Serial.print("OK");	
 		}
 		else if(SerialData[0]=='U' && SerialData[1]=='n')
 		{
 			sscanf(SerialData,"Unit%fD",&unitScale);
-			Serial.print("OK");	//notify completion of transfer
 		}
 		else if(strcmp(SerialData,"Pos")==0)
 		{
@@ -162,23 +152,19 @@ void loop()
 			{
 				rotateRight();
 				goOnePoint();
-				Serial.print("OK");
 			}
 			else if(arrivalX == -1)
 			{
 				rotateLeft();
 				goOnePoint();
-				Serial.print("OK");
 			}
 			else if(arrivalY == 1)
 			{
 				goOnePoint();
-				Serial.print("OK");
 			}
 			else if(arrivalY == -1)
 			{
 				backOnePoint();
-				Serial.print("OK");
 			}
 		}
 		else
@@ -190,5 +176,5 @@ void loop()
 		}
 		
 	}
-	
+	Serial.print("OK");//notify completion of transfer
 }
