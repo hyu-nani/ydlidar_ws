@@ -178,5 +178,6 @@ void loop()
 	}
 	
 	Serial.print("OK\n");//notify completion of transfer
-	delay(100);
+	if(Serial.available()==0)
+	delay(200);
 }
