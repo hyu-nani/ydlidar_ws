@@ -588,6 +588,7 @@ int main(int argc, char * argv[])
 							char buffer[20];
 							sprintf(buffer, "go/%d/%dE", moveX, moveY);
 							printf("send>%s",buffer);
+							printf("\n");
 							SerialPrint(buffer);
 							delay_ms(5000);
 							//reset val
