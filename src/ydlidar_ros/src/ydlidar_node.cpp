@@ -587,7 +587,7 @@ int main(int argc, char * argv[])
 							OKsign = false;
 							char buffer[20];
 							sprintf(buffer, "go/%d/%dE", moveX, moveY);
-							printf("send>%s",buffer);
+							printf("send> %s",buffer);
 							printf("\n");
 							SerialPrint(buffer);
 							delay_ms(5000);

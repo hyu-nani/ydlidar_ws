@@ -149,6 +149,9 @@ void loop()
 		}
 		else if(SerialData[0]=='g' && SerialData[1]=='o')//targetting mode
 		{	
+			digitalWrite(led, HIGH);
+			delay(1000);
+			digitalWrite(led, LOW);
 			arrivalX = 0;
 			arrivalY = 0;
 			sscanf(SerialData,"go/%d/%dE", &arrivalX, &arrivalY);
