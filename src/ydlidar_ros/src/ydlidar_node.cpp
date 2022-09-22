@@ -601,7 +601,7 @@ int main(int argc, char * argv[])
 							printf("send> %s",buffer);
 							printf("\n");
 							SerialPrint(buffer);
-							delay_ms(5000);
+							//delay_ms(5000);
 							//reset val
 							moveX = 0;
 							moveY = 0;
@@ -609,6 +609,7 @@ int main(int argc, char * argv[])
 						else
 						{
 							SerialPrint("stop");
+							delay_ms(1000);
 						}
 					}
 				}
