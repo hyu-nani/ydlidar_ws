@@ -61,7 +61,9 @@ double	robotAngle = 0;//initial angle
 
 //delay
 void	delay_ms(int time){usleep(time*1000);} 
-bool	OKsign	=	false; // 
+
+/** arduino now. true: process , false:done */
+bool	OKsign	=	false; 
 
 //arrival point
 int		arrivalX = 0, arrivalY = 0;//arrival coordinate
@@ -403,9 +405,17 @@ int main(int argc, char * argv[])
 	
 	printf("unit");
 	int count=0;
-	char buffer[20];
+	OKsign = false;
+	char buffer[20] = "";
 	sprintf(buffer, "Unit%fD\n",unitScale);
+	SerialPrint(buffer);
+	while(!OKsign)
+	{
+		delay_ms(1000);
+		SerialRead();
+	}
 	system("clear");
+
 	
 	delay_ms(1000);
     while (ret&&ros::ok()) 
@@ -513,6 +523,7 @@ int main(int argc, char * argv[])
 				case 1:
 				/*     System Mode 1 : Default mode remote control   (edit)    
 				*/
+			 	OKsign = false;
 				SerialPrint("Pos");//require to position data
 				delay_ms(100);
 				SerialRead();
@@ -790,7 +801,7 @@ int main(int argc, char * argv[])
 			}
 			else if(kb.compare("Up")==0)
 			{
-				if(integration)
+				if(integration && OKsign)
 				{
 					SerialPrint("front");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
@@ -805,7 +816,7 @@ int main(int argc, char * argv[])
 			}
 			else if(kb.compare("Left")==0)
 			{
-				if(integration)
+				if(integration && OKsign)
 				{
 					SerialPrint("left");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
@@ -818,7 +829,7 @@ int main(int argc, char * argv[])
 			}
 			else if(kb.compare("Right")==0)
 			{
-				if(integration)
+				if(integration && OKsign)
 				{
 					SerialPrint("right");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
@@ -831,7 +842,7 @@ int main(int argc, char * argv[])
 			}
 			else if(kb.compare("Down")==0)
 			{
-				if(integration)
+				if(integration && OKsign)
 				{
 					SerialPrint("back");
 					ignoreTime = 20;	//Delay to eliminate Lidar value error due to inertia
