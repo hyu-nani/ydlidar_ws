@@ -1018,7 +1018,7 @@ bool SerialRead()
 		printf("\033[%d;%dH",printSize+10,3);
 		printf("%d bytes read :\n   [ %s ]   ", serial1, buf);
 	}
-	if(strcmp(buf,"OK\n")==0)//success transform message
+	if(strcmp(buf,"OK")==0)//success transform message
 	{
 		printf("ddddddddddddddddddddddddddddddddd");
 		delay_ms(1);
