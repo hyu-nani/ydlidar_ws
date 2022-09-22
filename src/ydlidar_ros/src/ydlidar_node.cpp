@@ -977,6 +977,12 @@ int main(int argc, char * argv[])
     return 0;
 }
 
+/**
+ * brief : transport serial data
+ * note  :
+ * param : string data
+ * return:
+ */
 void SerialPrint(const char* format)
 {
 	if(OKsign)
