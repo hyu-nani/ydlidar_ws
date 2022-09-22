@@ -589,6 +589,7 @@ int main(int argc, char * argv[])
 							sprintf(buffer, "go/%d/%dE", moveX, moveY);
 							printf("send>%s",buffer);
 							SerialPrint(buffer);
+							delay_ms(5000);
 							//reset val
 							moveX = 0;
 							moveY = 0;
@@ -661,7 +662,7 @@ int main(int argc, char * argv[])
 			}
 			/************************************************************************/
 			/* Command list                                                         */
-			/************************************************************************/
+			/**************************r**********************************************/
 			string kb = linux_kbhit();
 			if(kb.compare("nothing")!=0)
 			{
