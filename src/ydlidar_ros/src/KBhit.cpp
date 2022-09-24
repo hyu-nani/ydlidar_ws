@@ -8,10 +8,10 @@
 #include <termios.h>
 
 /**
-brief : SSH 통신 중 키보드 입력 여부 확인 코드
-note  :
-param :
-return: 해당 키보드 값
+ * brief : SSH 통신 중 키보드 입력 여부 확인 코드
+ * note  :
+ * param :
+ * return: 해당 키보드 값
 */
 const char* linux_kbhit()
 {
