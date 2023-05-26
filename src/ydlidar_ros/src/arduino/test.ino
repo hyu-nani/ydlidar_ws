@@ -12,7 +12,7 @@
 #define encoderPinC 2       // 오른쪽 파란색
 #define encoderPinD 3       // 왼쪽 보라색
 
-#define PI 3.141592
+#define PI 3.14159265359
 
 int in1, in2, in3, in4;
 int pwmR;
